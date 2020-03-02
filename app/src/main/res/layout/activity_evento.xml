@@ -15,7 +15,7 @@
         android:layout_centerInParent="true"
         android:textColor="#000"
         android:textStyle="bold"
-        android:text="¿En qué podemos ayudaxrte?"
+        android:text="¿En qué podemos ayudaxre?"
         android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
