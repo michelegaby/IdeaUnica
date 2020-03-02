@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent"
+    tools:context=".menu.Entrevista.Entrevistas">
+    <LinearLayout
+        android:gravity="top"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/titulo_entrevistas"
+            android:text="Personajes Destacados"
+            android:layout_marginTop="50dp"
+            android:textSize="40dp"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:text="Latest"
+            android:layout_marginBottom="10dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginVertical="10dp"
+            android:id="@+id/Entrevista_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

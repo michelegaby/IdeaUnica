@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Color"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/menu">
+        <menu>
+            <item
+                android:id="@+id/action_eliminar_evento"
+                android:title="Eliminar Evento"
+                android:icon="@drawable/eliminar_black"/>
+            <item
+                android:id="@+id/action_exits"
+                android:title="Salir"
+                android:icon="@drawable/exit"/>
+        </menu>
+    </item>
+</menu>

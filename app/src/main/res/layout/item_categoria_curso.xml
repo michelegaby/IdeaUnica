@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="8dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_margin="5dp">
+    <ImageView
+        android:id="@+id/item_img_categoria_curso"
+        android:src="@drawable/fondorosa"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:gravity="bottom"
+        android:background="@drawable/fondo_degradado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/item_titulo_categoria_curso"
+            android:layout_marginLeft="15dp"
+            android:text="Categoria"
+            android:textColor="@color/colorblanco"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/item_tipo_categoria_curso"
+            android:textColor="@color/colorblanco"
+            android:textSize="12dp"
+            android:ellipsize="end"
+            android:text="@string/lorem_text"
+            android:maxLines="3"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/item_titulo_categoria_curso"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:id="@+id/item_empresa_item"
+    android:clipToPadding="false"
+    app:cardBackgroundColor="#fff"
+    app:cardCornerRadius="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/item_emp_cv_logo"
+                android:layout_width="96dp"
+                android:transitionName="imgTransition"
+                android:layout_height="96dp"
+                android:src="@drawable/fondorosa"
+                app:civ_border_width="0dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginVertical="10dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/item_emp_titulo"
+                android:text="Salon de eventos Roma"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/item_emp_cat"
+                android:text="Salon de eventos"
+                android:textSize="12dp"
+                android:textColor="#6B6868"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/item_emp_direccion"
+                android:text="5,3 millas · Avenida Bolivia, Ex avenida El Palmar esquina Agata nro 6490, Santa Cruz de la Sierra"
+                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

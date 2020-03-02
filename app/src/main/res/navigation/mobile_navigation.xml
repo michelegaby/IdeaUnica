@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.michele.ideaunica.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_gastos"
+        android:name="com.michele.ideaunica.ui.gastos.GastosFragment"
+        android:label="Control de Gatos"
+        tools:layout="@layout/fragment_gastos" />
+    <fragment
+        android:id="@+id/nav_tareas"
+        android:name="com.michele.ideaunica.ui.tareas.tareasFragment"
+        android:label="Tareas"
+        tools:layout="@layout/fragment_tareas" />
+    <fragment
+        android:id="@+id/nav_notas"
+        android:name="com.michele.ideaunica.ui.notas.NotasFragment"
+        android:label="Notas"
+        tools:layout="@layout/fragment_notas" />
+    <fragment
+        android:id="@+id/nav_calculadora"
+        android:name="com.michele.ideaunica.ui.calculadora.CalculadoraFragment"
+        android:label="Calculadora"
+        tools:layout="@layout/fragment_calculadora" />
+    <fragment
+        android:id="@+id/nav_editar"
+        android:name="com.michele.ideaunica.ui.evento.EditarEventoFragment"
+        android:label="Editar Evento"
+        tools:layout="@layout/fragment_editar_evento" />
+    <fragment
+        android:id="@+id/nav_invitados_a_confirmar"
+        android:name="com.michele.ideaunica.ui.invitados.InvitadosaConfirmarFragment"
+        android:label="Invitados a Confirmar"
+        tools:layout="@layout/fragment_invitados_a_confirmar" />
+    <fragment
+        android:id="@+id/nav_invitados_confirmados"
+        android:name="com.michele.ideaunica.ui.invitados.InvitadosConfirmadosFragment"
+        android:label="Invitados Confirmados"
+        tools:layout="@layout/fragment_invitados_confirmados" />
+</navigation>

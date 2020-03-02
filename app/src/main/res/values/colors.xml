@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#FF95B3</color>
+    <color name="colorblanco">#ffffff</color>
+    <color name="colorlinea">#AFAFAF</color>
+    <color name="colorTransparente">#00AFAFAF</color>
+
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.michele.ideaunica">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".menu.Entrevista.VerDetalleEntrevista"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNobar" ></activity>
+        <activity
+            android:name=".menu.Entrevista.DetalleEntrevista"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNobar" />
+        <activity
+            android:name=".menu.Revista.DetalleRevista"
+            android:theme="@style/AppThemeNobar" />
+        <activity android:name=".menu.Revista.Revistas" />
+        <activity android:name=".menu.Entrevista.Entrevistas" />
+        <activity android:name=".menu.evento.Evento" />
+        <activity android:name=".menu.Contacto.Contactos" />
+        <activity android:name=".menu.evento.Eventos" />
+        <activity
+            android:name=".OnBoarding"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNobar" />
+        <activity
+            android:name=".evento.DetalleEvento"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoche" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/AppThemeNobar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.invitados.EditarInvitado" />
+        <activity android:name=".ui.gastos.MostrarGasto" />
+        <activity android:name=".ui.gastos.EditarGasto" />
+        <activity
+            android:name=".ui.gastos.NuevoGasto"
+            android:label="Nuevo Gasto" />
+        <activity
+            android:name=".cursos.Curso"
+            android:theme="@style/AppThemeNoche" />
+        <activity android:name=".ui.invitados.NuevoInvitado" />
+        <activity android:name=".cumple.NuevoEvento" />
+        <activity android:name=".cursos.Cursos" />
+        <activity
+            android:name=".empresa.Empresa"
+            android:theme="@style/AppThemeNobar" />
+        <activity android:name=".empresa.Empresas" />
+        <activity android:name=".departamento.Categoria" />
+        <activity
+            android:name=".IdeaUnica"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.notas.Nota"
+            android:label="Nota"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoche" />
+        <activity
+            android:name=".ui.notas.EditarNota"
+            android:label="Editar Nota"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoche" />
+        <activity
+            android:name=".ui.notas.NuevaNota"
+            android:label="Nueva Nota"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoche" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>

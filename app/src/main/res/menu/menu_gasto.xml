@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/mn_editar_gasto"
+        android:title=""
+        android:iconTint="#000"
+        android:icon="@drawable/editar"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:checkable="true"/>
+    <item android:id="@+id/mn_eliminar_gasto"
+        android:title="Eliminar"
+        android:icon="@drawable/eliminar_black"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:checkable="true"/>
+</menu>

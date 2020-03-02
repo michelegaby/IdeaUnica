@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">Idea Unica</string>
+
+    <string-array name="Spinner_tipo_evento">
+        <item>Cumpleaños</item>
+        <item>Celebración</item>
+        <item>Reunión</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="Spinner_tipo_invitado">
+        <item>Familiar</item>
+        <item>Amigo</item>
+        <item>Trabajo</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="Spinner_tipo_pago">
+        <item>Al Contado</item>
+        <item>En Cuotas</item>
+    </string-array>
+
+    <string-array name="tarea_seis_meses">
+        <item>Defina su presupuesto</item>
+        <item>Cantidad de invitados</item>
+        <item>Lugar del evento</item>
+        <item>Fecha y hora</item>
+        <item>Temática</item>
+
+    </string-array>
+
+    <string-array name="tarea_cinco_meses">
+        <item>Elegir lugar del evento, si será al aire libre o lugar cerrado</item>
+        <item>Fecha del evento</item>
+        <item>Cantidad de invitados niños y adultos</item>
+        <item>Temática</item>
+        <item>Invitaciones (entregar una semana antes como máximo)</item>
+        <item>Elegir show o juegos, de acuerdo a las edades del agasajado e invitados</item>
+        <item>Premios Para el show</item>
+        <item>Definir vestimenta del agasajado y la familia</item>
+        <item>Definir la decoración con la decoradora a cargo</item>
+        <item>Elegir diseño, sabores, rellenos, de torta y dulces (Utilizar nuestra calculadora digital)</item>
+        <item>Diseño de canastas o dulceras (recuerda que en su interior deberá tener un mínimo de 12 dulces de acuerdo a tamaño)</item>
+        <item>Diseño de piñata (relleno según tamaño, no introducir juguetes que lastimen a los niños al caer)</item>
+        <item>Elegir mobiliario infantil y adulto</item>
+        <item>Elegir vajilla, cristalería y mantelería</item>
+        <item>Centros de mesa (tomar en cuenta la visibilidad de los invitados)</item>
+        <item>Personalización de recuerdos (si fuera de su preferencia)</item>
+        <item>Catering (Utilizar nuestra calculadora digital)</item>
+        <item>Carritos de dulces</item>
+        <item>Gaseosas, jugos, agua (Utilizar nuestra calculadora digital)</item>
+        <item>Meseros (Cada 30 invitados – 1 mesero)</item>
+        <item>Contar con asistentes en la cocina</item>
+        <item>Contar con asistentes de limpieza constante en el salón o lugar del evento</item>
+        <item>Contar con una coordinadora para cuidar los detalles de la mesa principal</item>
+        <item>Elegir quien tomara las fotografías y video</item>
+    </string-array>
+    <string-array name="tarea_dos_dias">
+        <item>Tener todos los detalles que llevaremos al lugar del evento listos</item>
+        <item>Coordinar con todos los proveedores horario de entrega de productos</item>
+        <item>Revisar vestimentas</item>
+        <item>Revisar cuentas con proveedores para definir detalles pendientes</item>
+        <item>Tener todos los detalles que llevaremos al lugar del evento listos</item>
+        <item>Coordinar con todos los proveedores horario de entrega de productos</item>
+        <item>Revisar vestimentas</item>
+        <item>Revisar cuentas con proveedores para definir detalles pendientes</item>
+    </string-array>
+    <string-array name="tarea_dia">
+        <item>8:00 am llevar todos los detalles para la fiesta, ingresar al área de enfriamiento la bebida</item>
+        <item>9:00 am – 13:30 pm Montaje de la fiesta. En el transcurso de este horario los proveedores deberán dejar en el lugar del evento todos los productos contratados.</item>
+        <item>15:00 pm Fotógrafo y Videografo en la fiesta, para capturar las mejores imágenes antes que lleguen los invitados</item>
+        <item>Como sugerencia dejar encargadas dos coordinadoras para el cuidado de la mesa central , asi la mesa de dulces quedara intacta hasta la hora de cantar cumpleaños.</item>
+        <item>16:00 pm – 17:30 pm Los meseros inician la distribución de bebidas y aperitivos para los invitados</item>
+        <item>18:00 pm Repartir la comida principal , pedir pausa al show para comer</item>
+        <item>Como sugerencia repartir primero la comida a los niños para que no demorar al show y así los adultos disfruten un momento agradable.</item>
+        <item>19:00 pm Cantar cumpleaños feliz</item>
+        <item>A partir de este momento se distribuirá canastas o dulceras , torta y piñata a los invitados</item>
+        <item>Fin del evento</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="lorem_text">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. </string>
+    <string name="lorem_text2">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
+    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
+    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

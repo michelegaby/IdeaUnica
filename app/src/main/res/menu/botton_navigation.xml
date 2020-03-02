@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/nav_cursos"
+        android:icon="@drawable/cursos"
+        android:title="Cursos" />
+    <item
+        android:id="@+id/nav_blog"
+        android:icon="@drawable/blog"
+        android:title="Blog" />
+    <item
+        android:id="@+id/nav_cumple"
+        android:icon="@drawable/cumple"
+        android:title="Mi fiesta" />
+    <item
+        android:id="@+id/nav_evento"
+        android:icon="@drawable/dashboard"
+        android:title="Otros" />
+</menu>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/mn_guardar_nueva_nota"
+        android:title="Guardar"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:checkable="true"/>
+
+    <item android:id="@+id/mn_color_nueva_nota"
+        android:title="Color"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/colores">
+        <menu>
+            <item
+                android:id="@+id/mn_azul_nueva_nota"
+                android:title="Azul"
+                android:icon="@drawable/color_azul"/>
+            <item
+                android:id="@+id/mn_verde_nueva_nota"
+                android:title="Verde"
+                android:icon="@drawable/color_verde"/>
+            <item
+                android:id="@+id/mn_amarillo_nueva_nota"
+                android:title="Amarillo"
+                android:icon="@drawable/color_amarillo"/>
+            <item
+                android:id="@+id/mn_lila_nueva_nota"
+                android:title="Lila"
+                android:icon="@drawable/color_lila"/>
+            <item
+                android:id="@+id/mn_celeste_nueva_nota"
+                android:title="Celeste"
+                android:icon="@drawable/color_celeste"/>
+        </menu>
+    </item>
+</menu>
