@@ -15,11 +15,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".menu.Entrevista.VerDetalleEntrevista"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNobar" ></activity>
         <activity
             android:name=".menu.Entrevista.DetalleEntrevista"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNobar" />
         <activity
             android:name=".menu.Revista.DetalleRevista"
@@ -31,11 +29,9 @@
         <activity android:name=".menu.evento.Eventos" />
         <activity
             android:name=".OnBoarding"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNobar" />
         <activity
             android:name=".evento.DetalleEvento"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoche" />
         <activity
             android:name=".SplashScreen"
@@ -64,22 +60,18 @@
         <activity android:name=".empresa.Empresas" />
         <activity android:name=".departamento.Categoria" />
         <activity
-            android:name=".IdeaUnica"
-            android:screenOrientation="portrait" />
+            android:name=".IdeaUnica" />
         <activity
             android:name=".ui.notas.Nota"
             android:label="Nota"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoche" />
         <activity
             android:name=".ui.notas.EditarNota"
             android:label="Editar Nota"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoche" />
         <activity
             android:name=".ui.notas.NuevaNota"
             android:label="Nueva Nota"
-            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoche" />
         <activity
             android:name=".MainActivity"
