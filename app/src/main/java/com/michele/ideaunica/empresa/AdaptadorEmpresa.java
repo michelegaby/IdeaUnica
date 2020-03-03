@@ -47,7 +47,7 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         myViewHolder.direccion.setText(nData.get(i).getDireccion());
         myViewHolder.categoria.setText(nData.get(i).getCategoria());
-        Glide.with(nContext).load("https://sice.com.bo/ideaunica/"+nData.get(i).getUrl())
+        Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.fondorosa)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.circleImageView);
