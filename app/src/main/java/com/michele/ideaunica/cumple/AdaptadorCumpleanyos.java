@@ -65,14 +65,6 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
                         .placeholder(R.drawable.cargando)
                         .error(R.drawable.fondorosa)
                         .into(myViewHolder.img);
-
-                /*
-                load(imageUrl)
-    .asGif()
-    .placeholder(R.drawable.loading2)
-    .crossFade()
-    .into(imageView);
-                * */
             }
         }catch (Exception e){
             Toast.makeText(nContext,nData.get(i).getUrlfoto()+" MSN "+e.getMessage(),Toast.LENGTH_LONG).show();
@@ -89,7 +81,6 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
         private TextView hora;
         private CircleImageView img;
         private LinearLayout linearLayout;
-
         public MyViewHolder(@NonNull View itemView, final AdaptadorCumpleanyos.OnItemClickListener listener) {
             super(itemView);
             titulo=itemView.findViewById(R.id.item_titulo_cumpleanyos);

@@ -38,13 +38,10 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
     }
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_departamento,viewGroup,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
-
         view.setOnClickListener(this);
-
         return viewHolder;
     }
     @Override
@@ -59,7 +56,6 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
                         myViewHolder.progressBar.setVisibility(View.GONE);
                         return false;
                     }
-
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                         myViewHolder.progressBar.setVisibility(View.GONE);
@@ -86,7 +82,6 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
         private TextView nombre;
         private ImageView img;
         private ProgressBar progressBar;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre=itemView.findViewById(R.id.item_dep_nombre);
@@ -101,7 +96,6 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
     }
     private int lastPosition = -1;
     private void setAnimation(View viewToAnimate, int position) {
-
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(nContext, android.R.anim.slide_in_left);
             animation.setDuration(1000);

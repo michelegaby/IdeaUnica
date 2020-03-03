@@ -40,7 +40,6 @@ public class AdapterBoarding extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view=inflater.inflate(R.layout.boarding_layout,null);
-
         ImageView slideImageView=view.findViewById(R.id.boarding_image);
         TextView slideHeading=view.findViewById(R.id.boarding_heading);
         TextView slideDescription=view.findViewById(R.id.boarding_desc);
@@ -48,7 +47,6 @@ public class AdapterBoarding extends PagerAdapter {
         slideHeading.setText(mListSlider.get(position).getHeading());
         slideDescription.setText(mListSlider.get(position).getDesc());
         slideImageView.setImageResource(mListSlider.get(position).getImages());
-
         container.addView(view);
         return view;
     }

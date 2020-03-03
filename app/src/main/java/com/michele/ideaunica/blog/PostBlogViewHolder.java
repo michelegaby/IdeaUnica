@@ -44,9 +44,7 @@ public class PostBlogViewHolder extends BaseViewHolder{
         empresa.setText(post.getEmpresa());
         tiempo.setText(post.getTime());
         contenido.setText(post.getContenido());
-
         makeTextViewResizable(contenido, 10, "Ver más", true);
-
         if(post.getUrlphoto().isEmpty() || post.getUrlphoto().equals("") || post.getUrlphoto().equals("null")){
             img.setVisibility(View.GONE);
         }else{
@@ -57,14 +55,11 @@ public class PostBlogViewHolder extends BaseViewHolder{
                     .error(R.drawable.fondorosa)
                     .into(img);
         }
-
-
         Glide.with(itemView.getContext())
-                .load("https://sice.com.bo/ideaunica/"+post.getUrlempresa())
+                .load("https://ideaunicabolivia.com/"+post.getUrlempresa())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(imgEmpresa);
-
         leer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,9 +70,7 @@ public class PostBlogViewHolder extends BaseViewHolder{
         });
     }
 
-
     public static void makeTextViewResizable(final TextView tv, final int maxLine, final String expandText, final boolean viewMore) {
-
         if (tv.getTag() == null) {
             tv.setTag(tv.getText());
         }
@@ -114,7 +107,6 @@ public class PostBlogViewHolder extends BaseViewHolder{
                                                                             final int maxLine, final String spanableText, final boolean viewMore) {
         String str = strSpanned.toString();
         SpannableStringBuilder ssb = new SpannableStringBuilder(strSpanned);
-
         if (str.contains(spanableText)) {
             ssb.setSpan(new MySpannable(false){
                 @Override

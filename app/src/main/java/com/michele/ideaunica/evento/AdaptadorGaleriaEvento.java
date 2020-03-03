@@ -25,14 +25,12 @@ public class AdaptadorGaleriaEvento extends RecyclerView.Adapter<AdaptadorGaleri
     Context nContext;
     ArrayList<GaleriaEventoClass> nData;
 
-
     public AdaptadorGaleriaEvento(Context nContext, ArrayList<GaleriaEventoClass> nData) {
         this.nContext = nContext;
         this.nData = nData;
     }
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_galeria_evento,viewGroup,false);
         MyViewHolder viewHolder = new MyViewHolder(view);

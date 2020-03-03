@@ -65,34 +65,27 @@ public class Empresa extends AppCompatActivity {
     private ImageView imgToolBar;
     private TextView descripcion;
     private LinearLayout contacto;
-
     private LinearLayout phone;
     private LinearLayout whatsApp;
     private LinearLayout facebook;
     private LinearLayout instagram;
     private LinearLayout pageweb;
     private LinearLayout email;
-
     private TextView tvphone;
     private TextView tvwhatsApp;
     private TextView tvfacebook;
     private TextView tvinstagram;
     private TextView tvpageweb;
     private TextView tvemail;
-
-
     private Button titulo_descripcion;
     private Button titulo_contacto;
-
     private ProgressBar ub;
     private ProgressBar gal;
     //Galeria
     AdaptadorGaleriaEmpresa adaptadorGaleriaEmpresa;
     private ArrayList<GaleriaEmpresaClass> listGaleria = new ArrayList<>();
-
     //Descripcion
     String des="";
-
     //Complementos Ubicacion
     AdaptadorUbicacion adaptadorUbicacion;
     private ArrayList<UbicacionClass> listUbicacion = new ArrayList<>();
@@ -112,7 +105,6 @@ public class Empresa extends AppCompatActivity {
             drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
             getSupportActionBar().setHomeAsUpIndicator(drawable);
             getSupportActionBar().setTitle("");
-
             Bundle parametros = this.getIntent().getExtras();
             titulo.setText(parametros.getString("titulo"));
             categoria.setText(parametros.getString("categoria"));
@@ -121,12 +113,10 @@ public class Empresa extends AppCompatActivity {
                     .placeholder(R.drawable.fondorosa)
                     .error(R.drawable.fondorosa)
                     .into(photo);
-
             Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("urlToolBar"))
                     .placeholder(R.drawable.fondorosa)
                     .error(R.drawable.fondorosa)
                     .into(imgToolBar);
-
             CollapsingToolbarLayout collapsingToolbarLayout= findViewById(R.id.collappEmpresa);
             collapsingToolbarLayout.setContentScrim(new ColorDrawable(Color.parseColor("#"+parametros.getString("color","ffffff"))));
             titulo_descripcion.setOnClickListener(new View.OnClickListener() {
@@ -155,9 +145,7 @@ public class Empresa extends AppCompatActivity {
                     }
                 }
             });
-
             GenerarDatos(parametros.getString("codigo"),parametros.getInt("id"),parametros.getString("titulo"));
-
             if(!parametros.getString("numero").equals("") && !parametros.getString("numero").isEmpty()){
                 phone.setVisibility(View.VISIBLE);
                 final String tel="+"+parametros.getString("numero");
@@ -170,7 +158,6 @@ public class Empresa extends AppCompatActivity {
                     }
                 });
             }
-
             if(!parametros.getString("whatsapp").equals("null")&& !parametros.getString("whatsapp").isEmpty()){
                 whatsApp.setVisibility(View.VISIBLE);
                 final String what=parametros.getString("whatsapp");
@@ -196,7 +183,6 @@ public class Empresa extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
             }
             if(!parametros.getString("instagram").equals("null")&& !parametros.getString("instagram").isEmpty()){
                 instagram.setVisibility(View.VISIBLE);
@@ -291,7 +277,6 @@ public class Empresa extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
     }
 
     public void GenerarDatos(final String cod,final int id,final String tl){
@@ -310,7 +295,6 @@ public class Empresa extends AppCompatActivity {
                                                     object.getInt("id"),
                                                     tl,
                                                     object.getString("url"));
-
                                     listGaleria.add(galeriaEmpresaClass);
                                 }
                                 adaptadorGaleriaEmpresa = new AdaptadorGaleriaEmpresa(Empresa.this, listGaleria);
@@ -322,16 +306,13 @@ public class Empresa extends AppCompatActivity {
                                         Bundle bundle = new Bundle();
                                         bundle.putSerializable("images", listGaleria);
                                         bundle.putInt("position", position);
-
                                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                         SliderShowGaleriaEmpresa newFragment = SliderShowGaleriaEmpresa.newInstance();
                                         newFragment.setArguments(bundle);
                                         newFragment.show(ft, "slideshow");
                                     }
-
                                     @Override
                                     public void onLongClick(View view, int position) {
-
                                     }
                                 }));
                                 gal.setVisibility(View.GONE);
@@ -339,7 +320,6 @@ public class Empresa extends AppCompatActivity {
                                 e.printStackTrace();
                                 gal.setVisibility(View.GONE);
                             }
-
                             try {
                                 JSONArray jsonArray2 = jsonObject.getJSONArray("direccion");
                                 for (int i = 0; i < jsonArray2.length(); i++) {
@@ -349,7 +329,6 @@ public class Empresa extends AppCompatActivity {
                                                     object.getInt("id"),
                                                     object.getString("sucursal"),
                                                     object.getString("direccion"), object.getString("url"));
-
                                     listUbicacion.add(ubicacionClass);
                                 }
                                 adaptadorUbicacion = new AdaptadorUbicacion(Empresa.this, listUbicacion);
@@ -359,11 +338,9 @@ public class Empresa extends AppCompatActivity {
                                     public void onClick(View v) {
                                         Uri location=Uri.parse(listUbicacion.get(rv_ubicacion.getChildAdapterPosition(v)).getUrl());
                                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
-
                                         PackageManager packageManager = getPackageManager();
                                         List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
                                         boolean isIntentSafe = activities.size() > 0;
-
                                         if (isIntentSafe) {
                                             startActivity(mapIntent);
                                         }
@@ -371,7 +348,6 @@ public class Empresa extends AppCompatActivity {
                                 });
                                 rv_ubicacion.setVisibility(View.VISIBLE);
                                 rv_ubicacion.setAdapter(adaptadorUbicacion);
-
                                 ub.setVisibility(View.GONE);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -382,7 +358,6 @@ public class Empresa extends AppCompatActivity {
                             Toast.makeText(Empresa.this,
                                     "Error", Toast.LENGTH_LONG)
                                     .show();
-
                             gal.setVisibility(View.GONE);
                             ub.setVisibility(View.GONE);
                         }
@@ -410,4 +385,3 @@ public class Empresa extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 }
-

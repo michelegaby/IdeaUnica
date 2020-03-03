@@ -47,23 +47,6 @@ public class AdaptadorEvento extends RecyclerView.Adapter<AdaptadorEvento.MyView
     }
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        /*myViewHolder.titulo.setTypeface(Typeface.createFromAsset(nContext.getAssets(),"fonts/toledo-serial-bold.ttf"));
-        myViewHolder.titulo.setText(nData.get(i).getTitulo());
-        SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat formateador = new SimpleDateFormat("MMM d, yyyy");
-        try {
-            Date date = parseador.parse(nData.get(i).getFecha());
-            myViewHolder.fecha.setText(formateador.format(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            myViewHolder.fecha.setText(nData.get(i).getFecha());
-        }
-        try {
-            Date date = parseador.parse(nData.get(i).getFecha_final());
-            myViewHolder.fecha.setText(myViewHolder.fecha.getText().toString()+"-"+formateador.format(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
         Glide.with(nContext).load(nData.get(i).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
@@ -105,7 +88,6 @@ public class AdaptadorEvento extends RecyclerView.Adapter<AdaptadorEvento.MyView
     }
     private int lastPosition = -1;
     private void setAnimation(View viewToAnimate, int position) {
-
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(nContext, android.R.anim.slide_in_left);
             animation.setDuration(1000);

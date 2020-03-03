@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".menu.evento.Evento">
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarEntrevista"
+        android:id="@+id/appbarEvento"
         android:layout_width="match_parent"
         android:layout_height="250dp">
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collappEntrevista"
+            android:id="@+id/collappEvento"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
@@ -19,13 +19,13 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
             <ImageView
-                android:id="@+id/imgToolBar_Entrevista"
+                android:id="@+id/imgToolBar_Evento"
                 android:src="@drawable/camello"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarEntrevista"
+                android:id="@+id/toolbarEvento"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"/>

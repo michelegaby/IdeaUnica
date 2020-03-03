@@ -50,7 +50,6 @@ public class Categoria extends AppCompatActivity {
     private EditText buscar;
     private TextView departamento;
     private SliderLayout sliderLayout;
-
     //Complementos
     AdaptadorCategoria adaptadorCategoria;
     private ArrayList<CategoriaClass> listCategoria = new ArrayList<>();
@@ -93,20 +92,15 @@ public class Categoria extends AppCompatActivity {
         buscar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 try{
                     ArrayList<CategoriaClass> listafiltrada= filter(listCategoria,s.toString());
                     adaptadorCategoria.setfilter(listafiltrada);
-
                 }catch (Exception e)
                 {
                     Toast.makeText(Categoria.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -118,7 +112,6 @@ public class Categoria extends AppCompatActivity {
         ArrayList<CategoriaClass> listFiltada= new ArrayList<>();
         try{
             texto=texto.toLowerCase();
-
             for(CategoriaClass cat: categorias){
                 String titulo = cat.getTitulo().toLowerCase();
                 if(titulo.contains(texto)){
@@ -167,9 +160,7 @@ public class Categoria extends AppCompatActivity {
                             progress.setVisibility(View.GONE);
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorCategoria);
-
                             JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
-
                             for (int i = 0; i < jsonArray2.length(); i++) {
                                 DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
                                 JSONObject object = jsonArray2.getJSONObject(i);
@@ -183,7 +174,6 @@ public class Categoria extends AppCompatActivity {
                                 });
                                 sliderLayout.addSliderView(sliderView);
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Categoria.this,

@@ -76,20 +76,15 @@ public class Empresas extends AppCompatActivity {
         buscar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 try{
                     ArrayList<EmpresaClass> listafiltrada= filter(listEmpresa,s.toString());
                     adaptadorEmpresa.setfilter(listafiltrada);
-
                 }catch (Exception e)
                 {
                     Toast.makeText(Empresas.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -101,7 +96,6 @@ public class Empresas extends AppCompatActivity {
         ArrayList<EmpresaClass> listFiltada= new ArrayList<>();
         try{
             texto=texto.toLowerCase();
-
             for(EmpresaClass emp: empresass){
                 String titulo = emp.getTitulo().toLowerCase();
                 if(titulo.contains(texto)){
@@ -145,16 +139,13 @@ public class Empresas extends AppCompatActivity {
                                                 object.getString("email").trim(),
                                                 object.getString("url"),
                                                 object.getString("urlToolbar"));
-
                                 listEmpresa.add(empresaClass);
                             }
-
                             adaptadorEmpresa= new AdaptadorEmpresa(Empresas.this,listEmpresa);
                             myrecyclerview.setLayoutManager(new LinearLayoutManager(Empresas.this));
                             progress.setVisibility(View.GONE);
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorEmpresa);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Empresas.this,
@@ -184,4 +175,3 @@ public class Empresas extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 }
-

@@ -37,7 +37,6 @@ import java.util.Map;
 public class CursosFragment extends Fragment {
 
     View view;
-
     //Componentes
     private RecyclerView rv_cursos;
     private ProgressBar progress;
@@ -45,9 +44,8 @@ public class CursosFragment extends Fragment {
     //Complementos
     AdaptadorCategoriaCurso adaptadorCategoriaCurso;
     private ArrayList<CategoriaCursosClass> listCategoriaCurso = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/categoria_cursos.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/categoria_cursos.php";
     private RecyclerView.LayoutManager manager;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class CursosFragment extends Fragment {
             @Override
             public void onRefresh() {
                 new UnaTarea().execute();
-
             }
         });
         return view;
@@ -66,7 +63,6 @@ public class CursosFragment extends Fragment {
 
 
     private class UnaTarea extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected Void doInBackground(Void... params) {
             try {
@@ -77,7 +73,6 @@ public class CursosFragment extends Fragment {
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
@@ -105,7 +100,6 @@ public class CursosFragment extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("categoria-cursos");
-
                             for (int i=0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
@@ -117,7 +111,6 @@ public class CursosFragment extends Fragment {
                                                 object.getString("url"));
                                 listCategoriaCurso.add(cursos);
                             }
-
                             adaptadorCategoriaCurso= new
                                     AdaptadorCategoriaCurso(
                                     getContext(),listCategoriaCurso);
@@ -140,7 +133,6 @@ public class CursosFragment extends Fragment {
                             });
                             rv_cursos.setAdapter(adaptadorCategoriaCurso);
                             progress.setVisibility(View.GONE);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(),

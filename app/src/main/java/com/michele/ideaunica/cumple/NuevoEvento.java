@@ -57,7 +57,6 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
     Bitmap fotobitmapSrc;
     Bitmap fondobitmapSrc;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-
     private boolean estadofondo=false;
     private boolean estadofoto=false;
 
@@ -75,7 +74,6 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
         Date d = new Date();
         CharSequence s = DateFormat.format("d/MM/yyyy ", d.getTime());
         fecha.setText(s);
-
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,21 +86,6 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
                     if (ContextCompat.checkSelfPermission(NuevoEvento.this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
-
-                        /*if (ActivityCompat.shouldShowRequestPermissionRationale(NuevoEvento.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                            Toast.makeText(getApplicationContext(),
-                                    "shouldShowRequestPermissionRationale",
-                                    Toast.LENGTH_LONG).show();
-                            ActivityCompat.requestPermissions(
-                                    NuevoEvento.this,
-                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-                        } else {
-                            ActivityCompat.requestPermissions(NuevoEvento.this,
-                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-                        }*/
-
                         ActivityCompat.requestPermissions(NuevoEvento.this,
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
@@ -114,7 +97,6 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
                 }
             }
         });
-
         hora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,21 +228,16 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
         SimpleDateFormat simpleDateFormat =
                 new SimpleDateFormat("yyMMdd-hhmmss-SSS");
         String fileName = "imgFondo" + simpleDateFormat.format(new Date()) + ".jpg";
-
         File dir = getPublicAlbumStorageDir(MyAlbum);
         File file = new File(dir, fileName);
-
         OutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(file);
             fondobitmapSrc.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
             outputStream.flush();
             outputStream.close();
-
             Toast.makeText(getApplicationContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
-
             return file.getAbsolutePath();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return "error";
@@ -275,21 +252,16 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
         SimpleDateFormat simpleDateFormat =
                 new SimpleDateFormat("yyMMdd-hhmmss-SSS");
         String fileName = "imgFoto" + simpleDateFormat.format(new Date()) + ".jpg";
-
         File dir = getPublicAlbumStorageDir(MyAlbum);
         File file = new File(dir, fileName);
-
         OutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(file);
             fotobitmapSrc.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
             outputStream.flush();
             outputStream.close();
-
             Toast.makeText(getApplicationContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
-
             return file.getAbsolutePath();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return "error";
@@ -304,12 +276,10 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
             if(estadofoto==true && estadofondo==true)
             {
                 insert="insert into evento(id,titulo,fecha,hora,urlfoto,urlfondo,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFoto()+"','"+GuardarFondo()+"','HABILITADO')";
-
             }else
             {
                 if(estadofoto==true){
                     insert="insert into evento(id,titulo,fecha,hora,urlfoto,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFoto()+"','HABILITADO')";
-
                 }else{
                     if(estadofondo==true)
                     {
@@ -320,7 +290,6 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
                     }
                 }
             }
-
             try {
                 BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
                 SQLiteDatabase bd = objEvento.getWritableDatabase();

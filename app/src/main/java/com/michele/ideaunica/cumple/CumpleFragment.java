@@ -67,7 +67,6 @@ public class CumpleFragment extends Fragment {
             if(bd!=null){
                 Cursor objCursor=bd.rawQuery("Select * from evento where estado='HABILITADO'",null);
                 listCumple.clear();
-
                 while (objCursor.moveToNext()){
                     listCumple.add(new CumpleanyosClass(objCursor.getInt(0),objCursor.getString(1),objCursor.getString(2),objCursor.getString(3),objCursor.getString(4),objCursor.getString(5)));
                 }
@@ -90,7 +89,6 @@ public class CumpleFragment extends Fragment {
                 });
             }
             bd.close();
-
         }
         catch (Exception E){
             Toast.makeText(getContext(),"Error Nose porque",Toast.LENGTH_SHORT).show();

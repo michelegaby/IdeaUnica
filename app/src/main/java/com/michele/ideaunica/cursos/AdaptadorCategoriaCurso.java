@@ -25,24 +25,20 @@ public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCate
     }
     @Override
     public AdaptadorCategoriaCurso.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_categoria_curso,viewGroup,false);
         AdaptadorCategoriaCurso.MyViewHolder viewHolder = new AdaptadorCategoriaCurso.MyViewHolder(view);
-
         view.setOnClickListener(this);
-
         return viewHolder;
     }
     @Override
     public void onBindViewHolder(@NonNull AdaptadorCategoriaCurso.MyViewHolder myViewHolder, int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         myViewHolder.contenido.setText(nData.get(i).getContenido());
-        Glide.with(nContext).load("https://sice.com.bo/ideaunica/"+nData.get(i).getUrl())
+        Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
-
     }
     @Override
     public int getItemCount() {
@@ -62,7 +58,6 @@ public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCate
         private TextView titulo;
         private TextView contenido;
         private ImageView img;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titulo=itemView.findViewById(R.id.item_titulo_categoria_curso);

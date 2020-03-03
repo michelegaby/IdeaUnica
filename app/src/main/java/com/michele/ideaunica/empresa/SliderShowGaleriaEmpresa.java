@@ -44,20 +44,14 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
         viewPager=v.findViewById(R.id.fragment_viewpaper);
         lblCount=v.findViewById(R.id.lbl_count);
         lblTitule=v.findViewById(R.id.titulo_viewpaper);
-
         galeriaEmpresaClasses = (ArrayList<GaleriaEmpresaClass>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
-
         Log.e(TAG, "position: " + selectedPosition);
         Log.e(TAG, "images size: " + galeriaEmpresaClasses.size());
-
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
         setCurrentItem(selectedPosition);
-
-
         return v;
     }
     private void setCurrentItem(int position) {
@@ -67,26 +61,20 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
 
     //	page change listener
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
         @Override
         public void onPageSelected(int position) {
             displayMetaInfo(position);
         }
-
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
-
         }
-
         @Override
         public void onPageScrollStateChanged(int arg0) {
-
         }
     };
 
     private void displayMetaInfo(int position) {
         lblCount.setText((position + 1) + " of " + galeriaEmpresaClasses.size());
-
         GaleriaEmpresaClass image = galeriaEmpresaClasses.get(position);
         lblTitule.setText(image.getTitulo());
     }
@@ -101,9 +89,7 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
         public MyViewPagerAdapter(){
-
         }
-
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {

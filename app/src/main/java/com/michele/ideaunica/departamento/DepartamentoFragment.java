@@ -37,7 +37,6 @@ import java.util.Map;
 public class DepartamentoFragment extends Fragment {
 
     View view;
-
     //Componentes
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
@@ -57,15 +56,12 @@ public class DepartamentoFragment extends Fragment {
             @Override
             public void onRefresh() {
                 new UnaTarea().execute();
-
             }
         });
         return view;
     }
 
-
     private class UnaTarea extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected Void doInBackground(Void... params) {
             try {
@@ -76,7 +72,6 @@ public class DepartamentoFragment extends Fragment {
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
@@ -104,13 +99,11 @@ public class DepartamentoFragment extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("departamento");
-
                             for (int i=0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 DepartamentoClass departamento= new DepartamentoClass(object.getInt("id"),
                                         object.getString("nombre").trim(),object.getString("url").trim());
-
                                 listDepartamento.add(departamento);
                             }
                             progress.setVisibility(View.GONE);
@@ -130,7 +123,6 @@ public class DepartamentoFragment extends Fragment {
                                 }
                             });
                             myrecyclerview.setAdapter(adaptadorDepartamento);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(),

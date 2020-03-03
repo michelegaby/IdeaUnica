@@ -40,7 +40,6 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
     }
     @Override
     public AdaptadorCurso.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_curso,viewGroup,false);
         AdaptadorCurso.MyViewHolder viewHolder = new AdaptadorCurso.MyViewHolder(view);
@@ -49,14 +48,13 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorCurso.MyViewHolder myViewHolder, final int position) {
         myViewHolder.titulo.setText(nData.get(position).getTitulo());
-        Glide.with(nContext).load("https://sice.com.bo/ideaunica/"+nData.get(position).getUrl())
+        Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(position).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.imagen);
         myViewHolder.precio.setText(nData.get(position).getCosto());
         myViewHolder.contenido.setText(nData.get(position).getContenido());
         myViewHolder.departamento.setText(nData.get(position).getDepartamento());
-
         try {
             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat formateador = new SimpleDateFormat("d MMMM, yyyy");
@@ -90,13 +88,10 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
                 parmetros.putString("duracion",nData.get(position).getCantidad());
                 parmetros.putString("img","https://sice.com.bo/ideaunica/"+nData.get(position).getUrl());
                 intent.putExtras(parmetros);
-                Pair[] pairs = new Pair[1];
-                pairs[0]= new Pair<View,String>(myViewHolder.titulo,"txtTransition2");
-                ActivityOptions options= ActivityOptions.makeSceneTransitionAnimation((Activity) nContext,pairs);
-                nContext.startActivity(intent,options.toBundle());
+                nContext.startActivity(intent);
+                ((Activity) nContext).overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
-
     }
     @Override
     public int getItemCount() {
@@ -111,7 +106,6 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
         private TextView precio;
         private TextView fecha;
         private CardView cardView;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titulo=itemView.findViewById(R.id.item_titulo_curso);

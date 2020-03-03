@@ -36,7 +36,6 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
     }
     @Override
     public AdaptadorEmpresa.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_empresa,viewGroup,false);
         AdaptadorEmpresa.MyViewHolder viewHolder = new AdaptadorEmpresa.MyViewHolder(view);
@@ -72,7 +71,6 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
                 parametros.putString("email",nData.get(i).getEmail());
                 parametros.putString("url",nData.get(i).getUrl());
                 parametros.putString("urlToolBar",nData.get(i).getUrlToolBar());
-
                 intent.putExtras(parametros);
                 Pair[] pairs = new Pair[2];
                 pairs[0]= new Pair<View,String>(myViewHolder.circleImageView,"imgTransition");
@@ -95,7 +93,6 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
         private TextView categoria;
         private CircleImageView circleImageView;
         private CardView cardView;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titulo=itemView.findViewById(R.id.item_emp_titulo);

@@ -25,20 +25,16 @@ public class AdaptadorUbicacion extends RecyclerView.Adapter<AdaptadorUbicacion.
     }
     @Override
     public AdaptadorUbicacion.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_direccion,viewGroup,false);
         AdaptadorUbicacion.MyViewHolder viewHolder = new AdaptadorUbicacion.MyViewHolder(view);
-
         view.setOnClickListener(this);
-
         return viewHolder;
     }
     @Override
     public void onBindViewHolder(@NonNull AdaptadorUbicacion.MyViewHolder myViewHolder, int i) {
         myViewHolder.titulo.setText(nData.get(i).getSucursal());
         myViewHolder.detalle.setText(nData.get(i).getDireccion());
-
     }
     @Override
     public int getItemCount() {
@@ -56,10 +52,8 @@ public class AdaptadorUbicacion extends RecyclerView.Adapter<AdaptadorUbicacion.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
         private TextView titulo;
         private TextView detalle;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titulo=itemView.findViewById(R.id.item_dir_titulo);
@@ -71,6 +65,5 @@ public class AdaptadorUbicacion extends RecyclerView.Adapter<AdaptadorUbicacion.
         nData = new ArrayList<>();
         nData.addAll(listUbicacion);
         notifyDataSetChanged();
-
     }
 }

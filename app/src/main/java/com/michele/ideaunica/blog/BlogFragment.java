@@ -54,28 +54,23 @@ public class BlogFragment extends Fragment{
     //Complementos
     private TimelineAdapter adapter;
     private List<TimelineClass> nData;
-    private static  String URL="https://sice.com.bo/ideaunica/apps/blog.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/blog.php";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_blog,container,false);
-
         iniRV();
         setupAdapter();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new UnaTarea().execute();
-
             }
         });
         return view;
     }
-
-
     private class UnaTarea extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected Void doInBackground(Void... params) {
             try {
@@ -93,20 +88,17 @@ public class BlogFragment extends Fragment{
             swipeRefreshLayout.setRefreshing(false);
         }
     }
-
     public static BlogFragment newInstance(){
         BlogFragment fragment=new BlogFragment();
         Bundle args=new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
-
     private void iniRV() {
         timelineRv=view.findViewById(R.id.timelinedosfragment_rv);
         timelineRv.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_blog);
     }
-
     private void setupAdapter() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
@@ -128,7 +120,6 @@ public class BlogFragment extends Fragment{
                                     TimelineClass headerTimelineClass = new TimelineClass(headerBlogClass);
                                     nData.add(headerTimelineClass);
                                 }
-                                ///aaaaaa
                                 PostBlogClass postBlogClass=
                                         new PostBlogClass(
                                                 object.getString("id"),
@@ -139,17 +130,14 @@ public class BlogFragment extends Fragment{
                                                 object.getString("logo"),
                                                 object.getString("url"));
                                 final TimelineClass postBlogTimelineClass= new TimelineClass(postBlogClass);
-
                                 nData.add(postBlogTimelineClass);
                             }
-
                             adapter=new TimelineAdapter(getContext(),nData);
                             timelineRv.setAdapter(adapter);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(),
-                                    "Error 1", Toast.LENGTH_LONG)
+                                    "Error", Toast.LENGTH_LONG)
                                     .show();
                         }
                     }
@@ -158,7 +146,7 @@ public class BlogFragment extends Fragment{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(),
-                                "Error  2"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexion:"+error.getMessage(), Toast.LENGTH_LONG)
                                 .show();
                     }
                 }) {

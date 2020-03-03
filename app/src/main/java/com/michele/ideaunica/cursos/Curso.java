@@ -56,35 +56,29 @@ import java.util.Map;
 public class Curso extends AppCompatActivity {
 
     //Componentes
-    private SliderLayout sliderLayout;
     private TextView titulo;
     private TextView fecha;
     private TextView departamento;
     private TextView contenido;
     private TextView autor;
     private TextView costo;
-
     private TextView telefono;
     private TextView whatsapp;
     private TextView facebook;
     private TextView instagram;
     private TextView pageweb;
     private TextView email;
-
     private LinearLayout lnwhatsapp;
     private LinearLayout lnfacebook;
     private LinearLayout lninstagram;
     private LinearLayout lnpageweb;
     private LinearLayout lnemail;
-
     private LinearLayout contacto;
     private Button titulo_contacto;
-
     private TextView duracion;
     private LinearLayout lntelefono;
     private static String ID;
     private static  String URL="https://sice.com.bo/ideaunica/apps/galeria_curso.php";
-
     private TextView informacion;
     private TextView contenidos;
 
@@ -92,8 +86,6 @@ public class Curso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curso);
-        /*Toolbar toolbar = findViewById(R.id.toolbarCurso);
-        setSupportActionBar(toolbar);*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
@@ -118,7 +110,6 @@ public class Curso extends AppCompatActivity {
         contenido.setText(parametros.getString("descripcion"));
         autor.setText(parametros.getString("autor"));
         duracion.setText("x "+parametros.getString("duracion")+"día/s");
-
         try {
             titulo_contacto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -158,7 +149,6 @@ public class Curso extends AppCompatActivity {
                     }
                 });
             }
-
             if(!parametros.getString("facebook").equals("null")&& !parametros.getString("facebook").isEmpty()){
                 lnfacebook.setVisibility(View.VISIBLE);
                 final String face=parametros.getString("facebook");
@@ -173,7 +163,6 @@ public class Curso extends AppCompatActivity {
                 });
 
             }
-
             if(!parametros.getString("instagram").equals("null")&& !parametros.getString("instagram").isEmpty()){
                 lninstagram.setVisibility(View.VISIBLE);
                 final String inst=parametros.getString("instagram");
@@ -187,7 +176,6 @@ public class Curso extends AppCompatActivity {
                     }
                 });
             }
-
             if(!parametros.getString("paginaweb").equals("null")&& !parametros.getString("paginaweb").isEmpty()){
                 lnpageweb.setVisibility(View.VISIBLE);
                 final String web=parametros.getString("paginaweb");
@@ -201,7 +189,6 @@ public class Curso extends AppCompatActivity {
                     }
                 });
             }
-
             if(!parametros.getString("email").equals("null") && !parametros.getString("email").isEmpty() ){
                 lnemail.setVisibility(View.VISIBLE);
                 final String em=parametros.getString("email");
@@ -227,25 +214,6 @@ public class Curso extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
         }
-
-        /*DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int width = metrics.widthPixels; // ancho absoluto en pixels
-        sliderLayout=findViewById(R.id.slider_curso);
-        sliderLayout.setMinimumHeight(width);
-        sliderLayout.setIndicatorAnimation(IndicatorAnimations.FILL);
-        sliderLayout.setScrollTimeInSec(3);
-        DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
-        sliderView.setImageUrl(parametros.getString("img"));
-        sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-        sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
-            @Override
-            public void onSliderClick(SliderView sliderView) {
-                Toast.makeText(getApplicationContext(),"ss",Toast.LENGTH_LONG).show();
-            }
-        });
-        sliderLayout.addSliderView(sliderView);*/
-        //setSliderLayout();
     }
 
     private void InicilizarComponentes() {
@@ -256,7 +224,6 @@ public class Curso extends AppCompatActivity {
         autor=findViewById(R.id.autor_curso);
         costo=findViewById(R.id.costo_curso);
         duracion=findViewById(R.id.duracion_curso);
-
         lntelefono=findViewById(R.id.phone_Curso);
         telefono=findViewById(R.id.tx_phone_curso);
         lnwhatsapp=findViewById(R.id.whatsapp_curso);
@@ -271,59 +238,9 @@ public class Curso extends AppCompatActivity {
         email=findViewById(R.id.tx_email_curso);
         titulo_contacto=findViewById(R.id.titulo_contacto_curso);
         contacto=findViewById(R.id.contacto_curso);
-
-
         contenidos=findViewById(R.id.contenidos);
         informacion=findViewById(R.id.informacion);
-
     }
-
-    /*
-    private void setSliderLayout(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("galeria-curso");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
-                                JSONObject object = jsonArray.getJSONObject(i);
-                                            sliderView.setImageUrl(object.getString("url"));
-                                            sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-                                            sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
-                                                @Override
-                                                public void onSliderClick(SliderView sliderView) {
-                                                    Toast.makeText(getApplicationContext(),"ss",Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                    sliderLayout.addSliderView(sliderView);
-                                }
-
-                        } catch (JSONException e) {
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),
-                                "Error  2"+error.getMessage(), Toast.LENGTH_LONG)
-                                .show();
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("cod",ID);
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-    */
     @Override
     public boolean onSupportNavigateUp() {
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
@@ -331,5 +248,11 @@ public class Curso extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
 }

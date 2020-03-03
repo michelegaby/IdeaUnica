@@ -49,7 +49,7 @@ public class Cursos extends AppCompatActivity {
     //Complementos
     AdaptadorCurso adaptadorCurso;
     private ArrayList<CursosClass> listCurso = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/cursos.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/cursos.php";
 
     private static String cat;
     private static String ID;
@@ -68,7 +68,6 @@ public class Cursos extends AppCompatActivity {
         getSupportActionBar().setTitle("Cursos de "+parametros.getString("titulo"));
         InicializarComponentes();
         GenerarDatos();
-        //Buscar();
     }
 
     @Override
@@ -91,7 +90,6 @@ public class Cursos extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("cursos");
-
                             for (int i=0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
@@ -117,13 +115,11 @@ public class Cursos extends AppCompatActivity {
                                         object.getString("url"));
                                 listCurso.add(cursos);
                             }
-
                             adaptadorCurso= new AdaptadorCurso(Cursos.this,listCurso);
                             rv_curso.setLayoutManager(new LinearLayoutManager(Cursos.this));
                             progressBar.setVisibility(View.GONE);
                             rv_curso.setVisibility(View.VISIBLE);
                             rv_curso.setAdapter(adaptadorCurso);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
@@ -156,20 +152,15 @@ public class Cursos extends AppCompatActivity {
         buscar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 try{
                     ArrayList<CursosClass> listafiltrada= filter(listCurso,s.toString());
                     adaptadorCurso.setfilter(listafiltrada);
-
                 }catch (Exception e)
                 {
                     Toast.makeText(Cursos.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -181,7 +172,6 @@ public class Cursos extends AppCompatActivity {
         ArrayList<CursosClass> listFiltada= new ArrayList<>();
         try{
             texto=texto.toLowerCase();
-
             for(CursosClass cur: cursosos){
                 String titulo = cur.getTitulo().toLowerCase();
                 String contenido = cur.getDescripcion().toLowerCase();

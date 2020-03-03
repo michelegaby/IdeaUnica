@@ -24,14 +24,12 @@ public class AdaptadorGaleriaEmpresa extends RecyclerView.Adapter<AdaptadorGaler
     Context nContext;
     ArrayList<GaleriaEmpresaClass> nData;
 
-
     public AdaptadorGaleriaEmpresa(Context nContext, ArrayList<GaleriaEmpresaClass> nData) {
         this.nContext = nContext;
         this.nData = nData;
     }
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view= LayoutInflater.from(nContext).inflate(R.layout.item_galeria_empresa,viewGroup,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
@@ -68,10 +66,8 @@ public class AdaptadorGaleriaEmpresa extends RecyclerView.Adapter<AdaptadorGaler
     }
 
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
-
         private GestureDetector gestureDetector;
         private AdaptadorGaleriaEmpresa.ClickListener clickListener;
-
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final AdaptadorGaleriaEmpresa.ClickListener clickListener) {
             this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
@@ -79,7 +75,6 @@ public class AdaptadorGaleriaEmpresa extends RecyclerView.Adapter<AdaptadorGaler
                 public boolean onSingleTapUp(MotionEvent e) {
                     return true;
                 }
-
                 @Override
                 public void onLongPress(MotionEvent e) {
                     View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
@@ -89,24 +84,19 @@ public class AdaptadorGaleriaEmpresa extends RecyclerView.Adapter<AdaptadorGaler
                 }
             });
         }
-
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-
             View child = rv.findChildViewUnder(e.getX(), e.getY());
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
                 clickListener.onClick(child, rv.getChildPosition(child));
             }
             return false;
         }
-
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
         }
-
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
         }
     }
 }
