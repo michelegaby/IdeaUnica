@@ -44,7 +44,7 @@ public class AdaptadorCategoria extends RecyclerView.Adapter<AdaptadorCategoria.
         myViewHolder.detalle.setText(nData.get(i).getCantidad());
 
         Glide.with(nContext)
-                .load("https://sice.com.bo/ideaunica/"+nData.get(i).getUrl())
+                .load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);

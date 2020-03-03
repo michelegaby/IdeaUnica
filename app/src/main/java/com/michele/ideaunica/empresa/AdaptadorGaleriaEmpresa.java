@@ -39,7 +39,7 @@ public class AdaptadorGaleriaEmpresa extends RecyclerView.Adapter<AdaptadorGaler
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Glide.with(nContext).load("https://sice.com.bo/ideaunica/"+nData.get(i).getUrl())
+        Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .thumbnail(0.5f)
                 .transition(withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

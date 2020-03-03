@@ -43,7 +43,7 @@ public class Empresas extends AppCompatActivity {
     //Complementos
     AdaptadorEmpresa adaptadorEmpresa;
     private ArrayList<EmpresaClass> listEmpresa = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/empresas.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/empresas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

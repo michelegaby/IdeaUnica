@@ -45,7 +45,7 @@ public class DepartamentoFragment extends Fragment {
     //Complementos
     AdaptadorDepartamento adaptadorDepartamento;
     private ArrayList<DepartamentoClass> listDepartamento = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/departamento.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/departamento.php";
 
     @Nullable
     @Override

@@ -96,7 +96,7 @@ public class Empresa extends AppCompatActivity {
     //Complementos Ubicacion
     AdaptadorUbicacion adaptadorUbicacion;
     private ArrayList<UbicacionClass> listUbicacion = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/empresa_descripcion.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/empresa_descripcion.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,12 +117,12 @@ public class Empresa extends AppCompatActivity {
             titulo.setText(parametros.getString("titulo"));
             categoria.setText(parametros.getString("categoria"));
             descripcion.setText(Html.fromHtml(parametros.getString("descripcion")));
-            Glide.with(getApplicationContext()).load("https://sice.com.bo/ideaunica/"+parametros.getString("url"))
+            Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("url"))
                     .placeholder(R.drawable.fondorosa)
                     .error(R.drawable.fondorosa)
                     .into(photo);
 
-            Glide.with(getApplicationContext()).load("https://sice.com.bo/ideaunica/"+parametros.getString("urlToolBar"))
+            Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("urlToolBar"))
                     .placeholder(R.drawable.fondorosa)
                     .error(R.drawable.fondorosa)
                     .into(imgToolBar);
@@ -155,7 +155,9 @@ public class Empresa extends AppCompatActivity {
                     }
                 }
             });
-            GenerarDatos(parametros.getString("codigo"),parametros.getString("titulo"));
+
+            GenerarDatos(parametros.getString("codigo"),parametros.getInt("id"),parametros.getString("titulo"));
+
             if(!parametros.getString("numero").equals("") && !parametros.getString("numero").isEmpty()){
                 phone.setVisibility(View.VISIBLE);
                 final String tel="+"+parametros.getString("numero");
@@ -292,7 +294,7 @@ public class Empresa extends AppCompatActivity {
 
     }
 
-    public void GenerarDatos(final String cod,final String tl){
+    public void GenerarDatos(final String cod,final int id,final String tl){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -400,6 +402,7 @@ public class Empresa extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("cod",cod);
+                params.put("id",String.valueOf(id));
                 return params;
             }
         };

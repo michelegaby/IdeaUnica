@@ -54,7 +54,7 @@ public class Categoria extends AppCompatActivity {
     //Complementos
     AdaptadorCategoria adaptadorCategoria;
     private ArrayList<CategoriaClass> listCategoria = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/categoria.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/categoria.php";
     private RecyclerView.LayoutManager manager;
 
     @Override
