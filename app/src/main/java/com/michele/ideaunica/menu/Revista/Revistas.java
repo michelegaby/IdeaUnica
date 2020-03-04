@@ -14,9 +14,25 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.menu.evento.AdaptadorEvento;
+import com.michele.ideaunica.menu.evento.Evento;
+import com.michele.ideaunica.menu.evento.EventoClass;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Revistas extends AppCompatActivity {
 
@@ -26,7 +42,7 @@ public class Revistas extends AppCompatActivity {
     //Complementos
     AdaptadorRevista adaptadorRevista;
     private ArrayList<RevistaClass> listRevista = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/categoria.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/revista.php";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +55,7 @@ public class Revistas extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Revista");
         InicializarComponentes();
-        GenerarDatos();
+        GenerarDatos1();
     }
 
     @Override
@@ -64,6 +80,65 @@ public class Revistas extends AppCompatActivity {
         adaptadorRevista= new AdaptadorRevista(this,listRevista);
         myrecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         myrecyclerview.setAdapter(adaptadorRevista);
+    }
+
+
+    public void GenerarDatos1(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("evento");
+                            for (int i=0;i<jsonArray.length();i++)
+                            {
+                                JSONObject object = jsonArray.getJSONObject(i);
+
+                                listRevista.add(new RevistaClass(
+                                        object.getInt("id"),
+                                        object.getString("titulo"),
+                                        object.getString("fecha"),
+                                        object.getString("url"),
+                                        object.getString("descripcion_inicio"),
+                                        object.getString("autor"),
+                                        object.getString("descripcion_final"),
+                                        object.getString("facebook"),
+                                        object.getString("whatsapp"),
+                                        object.getString("instagram"),
+                                        object.getString("email")));
+
+                            }
+                            progress.setVisibility(View.GONE);
+                            adaptadorRevista= new AdaptadorRevista(Revistas.this,listRevista);
+                            myrecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            myrecyclerview.setAdapter(adaptadorRevista);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "No existe ningun evento", Toast.LENGTH_LONG)
+                                    .show();
+                            progress.setVisibility(View.GONE);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),
+                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                .show();
+                        progress.setVisibility(View.GONE);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
+        requestQueue.add(stringRequest);
     }
 
     private void InicializarComponentes() {

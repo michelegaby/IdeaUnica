@@ -12,11 +12,10 @@
     android:layout_marginBottom="25dp">
     <ImageView
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"
         android:src="@drawable/fondorosa"
-        android:id="@+id/item_photo_galeria_evento">
+        android:id="@+id/item_galeria_evento">
     </ImageView>
 </androidx.cardview.widget.CardView>

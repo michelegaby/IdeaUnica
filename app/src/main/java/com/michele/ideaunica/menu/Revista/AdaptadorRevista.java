@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,16 +56,15 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
             myViewHolder.fecha.setText(nData.get(i).getFecha());
         }
         myViewHolder.descripcion.setText(nData.get(i).getDescripcion());
-        Glide.with(nContext).load(nData.get(i).getUrl())
+        Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
         myViewHolder.leer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(nContext.getApplicationContext(), DetalleRevista.class);
-                nContext.startActivity(i);
-                ((Activity) nContext).overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                Intent intent = new Intent(nContext,DetalleRevista.class);
+                nContext.startActivity(intent);
             }
         });
 

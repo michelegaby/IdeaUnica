@@ -229,9 +229,6 @@ public class Curso extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             try {
-                                Toast.makeText(getApplicationContext(),
-                                        "Entro", Toast.LENGTH_LONG)
-                                        .show();
                                 JSONObject jsonObject = new JSONObject(response);
                                 JSONArray jsonArray = jsonObject.getJSONArray("galeria-curso");
                                 for (int i=0;i<jsonArray.length();i++)

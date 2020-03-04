@@ -11,20 +11,38 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.departamento.AdaptadorDepartamento;
+import com.michele.ideaunica.departamento.Categoria;
+import com.michele.ideaunica.departamento.DepartamentoClass;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Eventos extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private ProgressBar progress;
     //Complementos
     AdaptadorEvento adaptadorEvento;
     private ArrayList<EventoClass> listEvento = new ArrayList<>();
-    private static  String URL="https://sice.com.bo/ideaunica/apps/departamento.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/evento.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,32 +61,79 @@ public class Eventos extends AppCompatActivity {
 
     private void InicializarComponenetes() {
         recyclerView=findViewById(R.id.Evento_recyclerview);
+        progress=findViewById(R.id.progress_eventos);
     }
 
-    private void GenerarDatos() {
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/bahiaesmeralda.png","Feria de dia de las madre","2019-05-20","2019-05-29","SSao Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/mamalena.jpeg","Feria de expocruz","2019-05-01","2019-05-29","SaoPaubo Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/toyota.jpg","Feria de expocruz","2019-04-02","2019-05-22","SaoP Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/bahiaesmeralda.png","Feria de dia de las madre","2019-05-05","2019-05-25","Sao ASPaublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/mamalena.jpeg","Feria de dia de las madre","2019-05-20","2019-05-21","Sao dsPaublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/saunapiscinaamazonas.png","Feria de expocruz","2019-02-20","2019-05-22","Saofdd Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/mamalena.jpeg","Feria de expocruz","2019-05-01","2019-05-29","SaoPaubo Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/toyota.jpg","Feria de expocruz","2019-04-02","2019-05-22","SaoP Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/bahiaesmeralda.png","Feria de dia de las madre","2019-05-05","2019-05-25","Sao ASPaublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/mamalena.jpeg","Feria de dia de las madre","2019-05-20","2019-05-21","Sao dsPaublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        listEvento.add(new EventoClass(1,"https://sice.com.bo/ideaunica/img/empresa/saunapiscinaamazonas.png","Feria de expocruz","2019-02-20","2019-05-22","Saofdd Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"));
-        adaptadorEvento= new AdaptadorEvento(getApplicationContext(),listEvento);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        adaptadorEvento.setOnClickListener(new View.OnClickListener() {
+    public void GenerarDatos(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("evento");
+                            for (int i=0;i<jsonArray.length();i++)
+                            {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                EventoClass departamento= new EventoClass(
+                                        object.getInt("id"),
+                                        object.getString("url").trim(),
+                                        object.getString("titulo").trim(),
+                                        object.getString("fecha_inicio"),
+                                        object.getString("fecha_final"),
+                                        object.getString("descripcion").trim());
+                                listEvento.add(departamento);
+                            }
+                            progress.setVisibility(View.GONE);
+                            adaptadorEvento= new AdaptadorEvento(getApplicationContext(),listEvento);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            adaptadorEvento.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i = new Intent(getApplicationContext(),Evento.class);
+                                    Bundle parametros = new Bundle();
+                                    parametros.putString("ID",
+                                            String.valueOf(listEvento.get(recyclerView.getChildAdapterPosition(v)).getID()));
+                                    parametros.putString("titulo",
+                                            String.valueOf(listEvento.get(recyclerView.getChildAdapterPosition(v)).getTitulo()));
+                                    parametros.putString("fecha_inicio",
+                                            String.valueOf(listEvento.get(recyclerView.getChildAdapterPosition(v)).getFecha()));
+                                    parametros.putString("fecha_final",
+                                            String.valueOf(listEvento.get(recyclerView.getChildAdapterPosition(v)).getFecha_final()));
+                                    parametros.putString("descripcion",
+                                            String.valueOf(listEvento.get(recyclerView.getChildAdapterPosition(v)).getDescripcion()));
+                                    i.putExtras(parametros);
+                                    startActivity(i);
+                                }
+                            });
+                            recyclerView.setAdapter(adaptadorEvento);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "No existe ningun evento", Toast.LENGTH_LONG)
+                                    .show();
+                            progress.setVisibility(View.GONE);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),
+                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                .show();
+                        progress.setVisibility(View.GONE);
+                    }
+                }) {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Evento.class);
-                startActivity(intent);
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                return params;
             }
-        });
-        recyclerView.setAdapter(adaptadorEvento);
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
+        requestQueue.add(stringRequest);
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
