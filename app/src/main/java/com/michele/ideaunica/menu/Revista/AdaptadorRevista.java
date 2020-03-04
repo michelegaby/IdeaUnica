@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
         return viewHolder;
     }
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setTypeface(Typeface.createFromAsset(nContext.getAssets(),"fonts/toledo-serial-bold.ttf"));
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,6 +65,19 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(nContext,DetalleRevista.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("id",nData.get(i).getID());
+                parametros.putString("titulo",nData.get(i).getTitulo());
+                parametros.putString("fecha",myViewHolder.fecha.getText().toString());
+                parametros.putString("autor",nData.get(i).getAutor());
+                parametros.putString("descripcion",nData.get(i).getDescripcion());
+                parametros.putString("descripcion_final",nData.get(i).getDescripcion_final());
+                parametros.putString("facebook",nData.get(i).getFacebook());
+                parametros.putString("whatsapp",nData.get(i).getWhatsapp());
+                parametros.putString("instagram",nData.get(i).getInstagram());
+                parametros.putString("email",nData.get(i).getEmail());
+                parametros.putString("url",nData.get(i).getUrl());
+                intent.putExtras(parametros);
                 nContext.startActivity(intent);
             }
         });

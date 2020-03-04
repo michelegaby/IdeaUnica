@@ -41,7 +41,7 @@ public class AdaptadorEntrevista extends RecyclerView.Adapter<AdaptadorEntrevist
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         Glide.with(nContext)
-                .load(nData.get(i).getUrl())
+                .load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
