@@ -21,8 +21,6 @@ import java.util.ArrayList;
 public class Eventos extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-
-
     //Complementos
     AdaptadorEvento adaptadorEvento;
     private ArrayList<EventoClass> listEvento = new ArrayList<>();

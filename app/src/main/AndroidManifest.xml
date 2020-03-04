@@ -24,15 +24,13 @@
             android:theme="@style/AppThemeNobar" />
         <activity android:name=".menu.Revista.Revistas" />
         <activity android:name=".menu.Entrevista.Entrevistas" />
-        <activity android:name=".menu.evento.Evento" />
+        <activity android:name=".menu.evento.Evento"
+            android:theme="@style/AppThemeNobar"/>
         <activity android:name=".menu.Contacto.Contactos" />
         <activity android:name=".menu.evento.Eventos" />
         <activity
             android:name=".OnBoarding"
             android:theme="@style/AppThemeNobar" />
-        <activity
-            android:name=".evento.DetalleEvento"
-            android:theme="@style/AppThemeNoche" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppThemeNobar">

@@ -20,7 +20,6 @@ import com.michele.ideaunica.blog.BlogFragment;
 import com.michele.ideaunica.cumple.CumpleFragment;
 import com.michele.ideaunica.cursos.CursosFragment;
 import com.michele.ideaunica.departamento.DepartamentoFragment;
-import com.michele.ideaunica.evento.EventoFragment;
 import com.michele.ideaunica.menu.MenuFragment;
 
 public class IdeaUnica extends AppCompatActivity {

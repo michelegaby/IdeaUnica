@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -48,6 +49,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -77,8 +79,13 @@ public class Curso extends AppCompatActivity {
     private Button titulo_contacto;
     private TextView duracion;
     private LinearLayout lntelefono;
+    private RecyclerView rv_galeria;
+
+    AdaptadorGaleriaCurso adaptadorGaleriaCurso;
+    private ArrayList<GaleriaCursoClass> listGaleria = new ArrayList<>();
     private static String ID;
-    private static  String URL="https://sice.com.bo/ideaunica/apps/galeria_curso.php";
+    private static  String URL="https://ideaunicabolivia.com/apps/galeriaCurso.php";
+
     private TextView informacion;
     private TextView contenidos;
 
@@ -210,11 +217,59 @@ public class Curso extends AppCompatActivity {
                     }
                 });
             }
-
+            GenerarGaleria();
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void GenerarGaleria() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                Toast.makeText(getApplicationContext(),
+                                        "Entro", Toast.LENGTH_LONG)
+                                        .show();
+                                JSONObject jsonObject = new JSONObject(response);
+                                JSONArray jsonArray = jsonObject.getJSONArray("galeria-curso");
+                                for (int i=0;i<jsonArray.length();i++)
+                                {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    GaleriaCursoClass cursos= new GaleriaCursoClass(object.getInt("id"),"", object.getString("url"));
+                                    listGaleria.add(cursos);
+                                }
+                                adaptadorGaleriaCurso= new AdaptadorGaleriaCurso(Curso.this,listGaleria);
+                                rv_galeria.setLayoutManager(new LinearLayoutManager(Curso.this));
+                                rv_galeria.setVisibility(View.VISIBLE);
+                                rv_galeria.setAdapter(adaptadorGaleriaCurso);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(),
+                                        "Error", Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Error:"+error.getMessage(), Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("cod",ID);
+                    return params;
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
+            requestQueue.add(stringRequest);
+        }
 
     private void InicilizarComponentes() {
         titulo=findViewById(R.id.titulo_curso);
@@ -240,6 +295,7 @@ public class Curso extends AppCompatActivity {
         contacto=findViewById(R.id.contacto_curso);
         contenidos=findViewById(R.id.contenidos);
         informacion=findViewById(R.id.informacion);
+        rv_galeria=findViewById(R.id.galeria_curso_recyclerview);
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -249,7 +305,6 @@ public class Curso extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
