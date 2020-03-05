@@ -7,7 +7,7 @@
     tools:context=".menu.Entrevista.DetalleEntrevista">
     <ImageView
         android:adjustViewBounds="true"
-        android:id="@+id/img_fondo_detalle_entrevista"
+        android:id="@+id/img_fondo_detalleentrevista"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/bannn" />
+        app:srcCompat="@drawable/fondorosa" />
     <ImageView
         android:adjustViewBounds="true"
         android:id="@+id/degradado_entrevista"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/img_fondo_detalle_entrevista"
+        app:layout_constraintBottom_toBottomOf="@+id/img_fondo_detalleentrevista"
         app:layout_constraintVertical_bias="0.072"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -47,14 +47,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/titulo_detalle_entrevista"
+                android:id="@+id/nombre_detalleEntrevista"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:paddingHorizontal="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="30dp"
                 android:paddingTop="50dp"
-                android:transitionName="tituloTransition3"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:text="Seiland Norway"
                 android:textColor="#fff"
                 android:textAllCaps="true"
@@ -66,7 +66,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/fecha_detalle_entrevista"
                 app:layout_constraintVertical_bias="0.072" />
             <TextView
-                android:id="@+id/fecha_detalle_entrevista"
+                android:id="@+id/fecha_detalleEntrevista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -85,7 +85,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/txt_detalle_entrevista"
                 app:layout_constraintVertical_bias="0.072" />
             <TextView
-                android:id="@+id/txt_detalle_entrevista"
+                android:id="@+id/biografia_detalleEntrevista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -93,7 +93,6 @@
                 android:layout_marginStart="8dp"
                 android:paddingHorizontal="16dp"
                 android:textColor="#fff"
-                android:maxLines="5"
                 android:ellipsize="end"
                 android:layout_marginTop="20dp"
                 android:text="@string/lorem_text"

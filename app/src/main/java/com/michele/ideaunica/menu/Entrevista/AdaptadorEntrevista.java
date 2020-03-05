@@ -2,6 +2,7 @@ package com.michele.ideaunica.menu.Entrevista;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class AdaptadorEntrevista extends RecyclerView.Adapter<AdaptadorEntrevist
         return viewHolder;
     }
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder,final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         Glide.with(nContext)
                 .load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
@@ -49,6 +50,9 @@ public class AdaptadorEntrevista extends RecyclerView.Adapter<AdaptadorEntrevist
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(nContext,DetalleEntrevista.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("id",nData.get(i).getID());
+                intent.putExtras(parametros);
                 nContext.startActivity(intent);
             }
         });
