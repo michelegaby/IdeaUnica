@@ -2,6 +2,7 @@ package com.michele.ideaunica.ui.tareas;
 
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,9 +60,37 @@ public class tareasFragment extends Fragment {
         InicializarComponentes();
         Bundle parametros = getActivity().getIntent().getExtras();
         ID=parametros.getInt("ID",0);
-        Llenar();
+
         Onclick();
         return view;
+    }
+
+    private void GenerarDatosPrimero() {
+        try {
+            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd= obj.getReadableDatabase();
+            if(bd!=null){
+                Cursor objCursor = bd.rawQuery("Select * from tarea where idevento=" + ID+" and mes=1", null);
+
+                while (objCursor.moveToNext()){
+                    listTareas1.add(new TareaClass(objCursor.getInt(0),objCursor.getString(3),objCursor.getInt(4)));
+                }
+                adaptadorTarea1 = new AdaptadorTarea(getContext(), listTareas1);
+                rv_uno.setLayoutManager(new LinearLayoutManager(getContext()));
+                rv_uno.setAdapter(adaptadorTarea1);
+                adaptadorTarea1.setOnItemClickListener(new AdaptadorTarea.OnItemClickListener() {
+                    @Override
+                    public void onItenClick(int position) {
+                        UpdateTarea1(position);
+                    }
+                });
+            }
+            bd.close();
+
+        }
+        catch (Exception E){
+            Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void Llenar() {
