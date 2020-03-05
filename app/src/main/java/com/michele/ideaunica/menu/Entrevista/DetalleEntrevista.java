@@ -40,7 +40,8 @@ public class DetalleEntrevista extends AppCompatActivity {
     private TextView biografia;
     private ImageView img;
 
-    private int ID;
+    private static int ID;
+    private static String urlimg;
     private static  String URL="https://ideaunicabolivia.com/apps/biografia.php";
 
     @Override
@@ -50,11 +51,17 @@ public class DetalleEntrevista extends AppCompatActivity {
         inicializarComponentes();
         Bundle parametros = this.getIntent().getExtras();
         ID=parametros.getInt("id");
+
         GenerarDatos();
         ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(getApplicationContext(), VerDetalleEntrevista.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("id",ID);
+                parametros.putString("nombre",nombre.getText().toString());
+                parametros.putString("img",urlimg);
+                intent.putExtras(parametros);
                 startActivity(intent);
             }
         });
@@ -84,6 +91,7 @@ public class DetalleEntrevista extends AppCompatActivity {
                                     .placeholder(R.drawable.cargando)
                                     .error(R.drawable.fondorosa)
                                     .into(img);
+                            urlimg=object.getString("url");
                             nombre.setText(object.getString("nombre"));
                             fecha.setText(object.getString("fechanacimiento"));
                             biografia.setText(object.getString("biografia"));

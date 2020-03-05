@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -36,7 +36,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
                 android:background="#4D4B4B"/>
-
             <LinearLayout
                 android:id="@+id/ln_seis_meses_tarea"
                 android:visibility="gone"
@@ -56,7 +55,6 @@
                     android:layout_height="1px"
                     android:background="#4D4B4B"/>
             </LinearLayout>
-
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -145,4 +143,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
