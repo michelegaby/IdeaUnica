@@ -116,12 +116,12 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (file.mkdirs()) {
-            Toast.makeText(getApplicationContext(),
+            /*Toast.makeText(getApplicationContext(),
                     file.getAbsolutePath() + " creado",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show();*/
         }else{
-            Toast.makeText(getApplicationContext(),
-                    "Directory no creado", Toast.LENGTH_LONG).show();
+            /*Toast.makeText(getApplicationContext(),
+                    "Directory no creado", Toast.LENGTH_LONG).show();*/
         }
         return file;
     }
@@ -236,7 +236,7 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
             fondobitmapSrc.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
             outputStream.flush();
             outputStream.close();
-            Toast.makeText(getApplicationContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
             return file.getAbsolutePath();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -260,7 +260,7 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
             fotobitmapSrc.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
             outputStream.flush();
             outputStream.close();
-            Toast.makeText(getApplicationContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
             return file.getAbsolutePath();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

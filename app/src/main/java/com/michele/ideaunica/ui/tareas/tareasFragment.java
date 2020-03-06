@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import com.michele.ideaunica.ui.notas.AdaptadorNota;
 import com.michele.ideaunica.ui.notas.NotaClass;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class tareasFragment extends Fragment {
 
@@ -62,9 +65,14 @@ public class tareasFragment extends Fragment {
         ID=parametros.getInt("ID",0);
 
         Onclick();
+        GenerarDatosPrimero();
+        GenerarDatosSegundo();
+        GenerarDatosTercero();
+
         return view;
     }
 
+    /*UNO*/
     private void GenerarDatosPrimero() {
         try {
             BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
@@ -75,6 +83,11 @@ public class tareasFragment extends Fragment {
                 while (objCursor.moveToNext()){
                     listTareas1.add(new TareaClass(objCursor.getInt(0),objCursor.getString(3),objCursor.getInt(4)));
                 }
+                if(listTareas1.size()==0)
+                {
+                    Llenar1();
+                }
+
                 adaptadorTarea1 = new AdaptadorTarea(getContext(), listTareas1);
                 rv_uno.setLayoutManager(new LinearLayoutManager(getContext()));
                 rv_uno.setAdapter(adaptadorTarea1);
@@ -93,9 +106,140 @@ public class tareasFragment extends Fragment {
         }
     }
 
+    public void Llenar1(){
+
+        try {
+            BDEvento objEvento= new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = objEvento.getWritableDatabase();
+            if(bd!=null){
+                Resources res = getResources();
+                String[] messeis = res.getStringArray(R.array.tarea_seis_meses);
+                for (String t: messeis) {
+                    bd.execSQL("insert into tarea values(?,"+ID+",1,'"+t+"',1)");
+                }
+            }
+            bd.close();
+            GenerarDatosPrimero();
+        }catch (Exception E){
+            Toast.makeText(getContext(),"ERROR",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /*DOS*/
+    private void GenerarDatosSegundo() {
+        try {
+            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd= obj.getReadableDatabase();
+            if(bd!=null){
+                Cursor objCursor = bd.rawQuery("Select * from tarea where idevento=" + ID+" and mes=2", null);
+
+                while (objCursor.moveToNext()){
+                    listTareas2.add(new TareaClass(objCursor.getInt(0),objCursor.getString(3),objCursor.getInt(4)));
+                }
+                if(listTareas2.size()==0)
+                {
+                    Llenar2();
+                }
+
+                adaptadorTarea2=new AdaptadorTarea(getContext(),listTareas2);
+                rv_nueve.setLayoutManager(new LinearLayoutManager(getContext()));
+                rv_nueve.setAdapter(adaptadorTarea2);
+                adaptadorTarea2.setOnItemClickListener(new AdaptadorTarea.OnItemClickListener() {
+                    @Override
+                    public void onItenClick(int position) {
+                        UpdateTarea2(position);
+                    }
+                });
+                rv_nueve.setVisibility(View.VISIBLE);
+            }
+            bd.close();
+
+        }
+        catch (Exception E){
+            Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void Llenar2(){
+
+        try {
+            BDEvento objEvento= new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = objEvento.getWritableDatabase();
+            if(bd!=null){
+                Resources res = getResources();
+                String[] mescinco = res.getStringArray(R.array.tarea_cinco_meses);
+                for (String t: mescinco) {
+                    bd.execSQL("insert into tarea values(?,"+ID+",2,'"+t+"',1)");
+                }
+            }
+            bd.close();
+            GenerarDatosSegundo();
+        }catch (Exception E){
+            Toast.makeText(getContext(),"ERROR",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /*TRES*/
+    private void GenerarDatosTercero() {
+        try {
+            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd= obj.getReadableDatabase();
+            if(bd!=null){
+                Cursor objCursor = bd.rawQuery("Select * from tarea where idevento=" + ID+" and mes=3", null);
+
+                while (objCursor.moveToNext()){
+                    listTareas3.add(new TareaClass(objCursor.getInt(0),objCursor.getString(3),objCursor.getInt(4)));
+                }
+                if(listTareas3.size()==0)
+                {
+                    Llenar3();
+                }
+
+                adaptadorTarea3=new AdaptadorTarea(getContext(),listTareas3);
+                rv_diez.setLayoutManager(new LinearLayoutManager(getContext()));
+                rv_diez.setAdapter(adaptadorTarea3);
+                adaptadorTarea3.setOnItemClickListener(new AdaptadorTarea.OnItemClickListener() {
+                    @Override
+                    public void onItenClick(int position) {
+                        UpdateTarea3(position);
+                    }
+                });
+                rv_diez.setVisibility(View.VISIBLE);
+            }
+            bd.close();
+
+        }
+        catch (Exception E){
+            Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void Llenar3(){
+
+        try {
+            BDEvento objEvento= new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = objEvento.getWritableDatabase();
+            if(bd!=null){
+                Resources res = getResources();
+                String[] diadelevento = res.getStringArray(R.array.tarea_dia);
+                for (String t: diadelevento) {
+                    bd.execSQL("insert into tarea values(?,"+ID+",3,'"+t+"',1)");
+                }
+            }
+            bd.close();
+            GenerarDatosTercero();
+        }catch (Exception E){
+            Toast.makeText(getContext(),"ERROR",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+
+
     private void Llenar() {
         Resources res = getResources();
-        String[] messeis = res.getStringArray(R.array.tarea_seis_meses);
+        /*String[] messeis = res.getStringArray(R.array.tarea_seis_meses);
         for (String t: messeis) {
             listTareas1.add(new TareaClass(1,t,1));
         }
@@ -138,7 +282,7 @@ public class tareasFragment extends Fragment {
                 UpdateTarea3(position);
             }
         });
-        rv_diez.setVisibility(View.VISIBLE);
+        rv_diez.setVisibility(View.VISIBLE);*/
     }
 
     private void Onclick() {
@@ -236,6 +380,7 @@ public class tareasFragment extends Fragment {
 
         try {
             if(listTareas2.get(posicion).getEstado()==1){
+
                 adaptadorTarea2.UpdateItem(posicion);
             }else {
                 AlertDialog.Builder Advertencia= new AlertDialog.Builder(getContext());
@@ -291,31 +436,4 @@ public class tareasFragment extends Fragment {
         }
     }
 
-    private void UpdateTarea4(final int posicion) {
-        try {
-            if(listTareas4.get(posicion).getEstado()==1){
-
-                adaptadorTarea4.UpdateItem(posicion);
-            }else {
-                AlertDialog.Builder Advertencia= new AlertDialog.Builder(getContext());
-                Advertencia.setTitle("Tarea");
-                Advertencia.setMessage("Esta seguro que desea indicar que la tarea no fue realizada?");
-                Advertencia.setCancelable(false);
-                Advertencia.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        adaptadorTarea4.UpdateItem(posicion);
-                    }
-                });
-                Advertencia.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                Advertencia.show();
-            }
-        } catch (Exception E) {
-            Toast.makeText(getContext(), "Error, Intentelo mas tarde por favor", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

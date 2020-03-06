@@ -97,7 +97,7 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
             View view = layoutInflater.inflate(R.layout.image_fullscreen, container, false);
             ImageView imageViewPreview = view.findViewById(R.id.item_image_fullscreen);
             GaleriaEmpresaClass image = galeriaEmpresaClasses.get(position);
-            Glide.with(getActivity()).load("https://sice.com.bo/ideaunica/"+image.getUrl())
+            Glide.with(getActivity()).load("https://ideaunicabolivia.com/"+image.getUrl())
                     .thumbnail(0.5f)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageViewPreview);
