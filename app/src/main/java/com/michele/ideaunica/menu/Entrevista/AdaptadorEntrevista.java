@@ -56,6 +56,7 @@ public class AdaptadorEntrevista extends RecyclerView.Adapter<AdaptadorEntrevist
                 nContext.startActivity(intent);
             }
         });
+        myViewHolder.lugar.setText(nData.get(i).getLugar());
     }
     @Override
     public int getItemCount() {
@@ -65,11 +66,13 @@ public class AdaptadorEntrevista extends RecyclerView.Adapter<AdaptadorEntrevist
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
+        private TextView lugar;
         private ImageView img;
         private CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titulo=itemView.findViewById(R.id.item_titulo_entrevista);
+            lugar=itemView.findViewById(R.id.item_lugar_entrevista);
             img=itemView.findViewById(R.id.item_photo_entrevista);
             cardView=itemView.findViewById(R.id.item_cardview_entrevista);
         }

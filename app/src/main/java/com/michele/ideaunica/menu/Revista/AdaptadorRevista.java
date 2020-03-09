@@ -45,7 +45,7 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
     }
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        myViewHolder.titulo.setTypeface(Typeface.createFromAsset(nContext.getAssets(),"fonts/toledo-serial-bold.ttf"));
+        //myViewHolder.titulo.setTypeface(Typeface.createFromAsset(nContext.getAssets(),"fonts/toledo-serial-bold.ttf"));
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");

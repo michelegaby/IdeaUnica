@@ -73,7 +73,6 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/detalle_arriba_detallerevista"
-                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/lorem_text"
                 android:textSize="15dp"
@@ -123,7 +122,6 @@
                 android:overScrollMode="never"/>
             <TextView
                 android:id="@+id/detalle_abajo_detallerevista"
-                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/lorem_text"
                 android:textSize="15dp"

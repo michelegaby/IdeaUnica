@@ -2,6 +2,9 @@ package com.michele.ideaunica.blog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -41,10 +44,11 @@ public class PostBlogViewHolder extends BaseViewHolder{
     @Override
     void setData(TimelineClass item) {
         final PostBlogClass post = item.getPostBlogClass();
+        //contenido.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/toruslight.ttf"));
         empresa.setText(post.getEmpresa());
         tiempo.setText(post.getTime());
         contenido.setText(post.getContenido());
-        makeTextViewResizable(contenido, 10, "Ver más", true);
+        makeTextViewResizable(contenido, 10, " Ver más ", true);
         if(post.getUrlphoto().isEmpty() || post.getUrlphoto().equals("") || post.getUrlphoto().equals("null")){
             img.setVisibility(View.GONE);
         }else{
@@ -60,14 +64,20 @@ public class PostBlogViewHolder extends BaseViewHolder{
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(imgEmpresa);
-        leer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(post.getUrl());
-                Intent intent =new Intent(Intent.ACTION_VIEW,uri);
-                context.startActivity(intent);
-            }
-        });
+        if(post.getUrlphoto().isEmpty() || post.getUrlphoto().equals("") || post.getUrlphoto().equals("null")){
+            leer.setVisibility(View.GONE);
+        }else
+        {
+            leer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri uri = Uri.parse(post.getUrl());
+                    Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                    context.startActivity(intent);
+                }
+            });
+        }
+
     }
 
     public static void makeTextViewResizable(final TextView tv, final int maxLine, final String expandText, final boolean viewMore) {
@@ -115,9 +125,9 @@ public class PostBlogViewHolder extends BaseViewHolder{
                     tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
                     tv.invalidate();
                     if (viewMore) {
-                        makeTextViewResizable(tv, -1, "Leer menos", false);
+                        makeTextViewResizable(tv, -1, " Leer menos ", false);
                     } else {
-                        makeTextViewResizable(tv, 10, "Leer más", true);
+                        makeTextViewResizable(tv, 10, " Leer más ", true);
                     }
                 }
             }, str.indexOf(spanableText), str.indexOf(spanableText) + spanableText.length(), 0);

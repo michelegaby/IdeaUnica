@@ -57,7 +57,6 @@ public class tareasFragment extends Fragment {
     private LinearLayout ln_seis;
     private Button btn_seis;
 
-
     //Complementos
     AdaptadorTarea adaptadorTarea1;
     private ArrayList<TareaClass> listTareas1 = new ArrayList<>();

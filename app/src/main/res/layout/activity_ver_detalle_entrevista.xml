@@ -122,7 +122,6 @@
                 android:overScrollMode="never"/>
             <TextView
                 android:id="@+id/descripcionAbajo_VerdetalleEntrevista"
-                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/lorem_text"
                 android:textSize="15dp"

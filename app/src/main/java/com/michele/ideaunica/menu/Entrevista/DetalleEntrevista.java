@@ -36,7 +36,6 @@ public class DetalleEntrevista extends AppCompatActivity {
 
     private Button ver;
     private TextView nombre;
-    private TextView fecha;
     private TextView biografia;
     private ImageView img;
 
@@ -70,7 +69,6 @@ public class DetalleEntrevista extends AppCompatActivity {
     private void inicializarComponentes(){
         ver=findViewById(R.id.abajo_detalle_evento);
         nombre=findViewById(R.id.nombre_detalleEntrevista);
-        fecha=findViewById(R.id.fecha_detalleEntrevista);
         biografia=findViewById(R.id.biografia_detalleEntrevista);
         img=findViewById(R.id.img_fondo_detalleentrevista);
     }
@@ -93,7 +91,6 @@ public class DetalleEntrevista extends AppCompatActivity {
                                     .into(img);
                             urlimg=object.getString("url");
                             nombre.setText(object.getString("nombre"));
-                            fecha.setText(object.getString("fechanacimiento"));
                             biografia.setText(object.getString("biografia"));
 
                         } catch (JSONException e) {

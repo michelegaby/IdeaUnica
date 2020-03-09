@@ -78,6 +78,7 @@ public class Entrevistas extends AppCompatActivity {
                                 listEntrevisto.add(new EntrevistaClass(
                                         object.getInt("id"),
                                         object.getString("titulo"),
+                                        "SCZ-Bolivia",
                                         object.getString("url")));
 
                             }

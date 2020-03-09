@@ -36,7 +36,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,7 +110,15 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                             rv_galeria.setAdapter(adaptadorGaleriaEntrevista);
                             JSONArray jsonArray2 = jsonObject.getJSONArray("detalle");
                             JSONObject object = jsonArray2.getJSONObject(0);
-                            fecha.setText(object.getString("fecha"));
+                            SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+                            SimpleDateFormat formateador = new SimpleDateFormat("MMM d, yyyy");
+                            try {
+                                Date date = parseador.parse(object.getString("fecha"));
+                                fecha.setText(formateador.format(date));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                                fecha.setText(object.getString("fecha"));
+                            }
                             descripcion_inicio.setText(object.getString("descripcion_inicio"));
                             descripcion_final.setText(object.getString("descripcion_final"));
                             autor.setText(object.getString("autor"));

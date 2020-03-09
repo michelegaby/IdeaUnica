@@ -33,8 +33,21 @@
         android:textColor="#000"
         android:textStyle="bold"
         android:textSize="18dp"
-        android:padding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
         android:text="in The Bog: Iris low "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/item_lugar_entrevista"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="10dp"
+        android:text="in The Bog: Iris low "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

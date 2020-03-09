@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <RelativeLayout
             android:layout_marginTop="20dp"
             android:gravity="bottom"
             android:orientation="horizontal"
@@ -28,7 +28,9 @@
                 android:transitionName="txtTransition2"
                 android:textColor="#000"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@id/costo_curso"/>
             <TextView
                 android:id="@+id/costo_curso"
                 android:gravity="bottom|end"
@@ -36,9 +38,11 @@
                 android:textSize="25dp"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
         <LinearLayout
             android:layout_marginHorizontal="5dp"
             android:orientation="horizontal"
@@ -124,6 +128,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+            <LinearLayout
+                android:paddingVertical="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="15dp"
+                    android:text="Horario:"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="15dp"
+                    android:text="10:00 pm"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingVertical="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="15dp"
+                    android:text="Direccion"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginEnd="20dp"
+                    android:textSize="15sp"
+                    android:text="4to anillo zona no se que 4to anillo zona no se que 4to anillo zona no se que 4to anillo zona no se que"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <Button
                 android:id="@+id/titulo_contacto_curso"
                 android:layout_width="match_parent"
@@ -143,7 +186,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
-                    android:visibility="gone"
                     android:padding="5dp"
                     android:id="@+id/phone_Curso"
                     android:orientation="horizontal"
@@ -166,7 +208,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:visibility="gone"
+
                     android:id="@+id/whatsapp_curso"
                     android:padding="5dp"
                     android:orientation="horizontal"
@@ -176,7 +218,6 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
-                        android:tint="#19C13A"
                         android:layout_margin="10dp"
                         android:src="@drawable/whatsapp"
                         android:layout_width="20dp"
@@ -190,7 +231,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:visibility="gone"
+
                     android:id="@+id/facebook_curso"
                     android:orientation="horizontal"
                     android:clickable="true"
@@ -199,9 +240,9 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
-                        android:tint="#2E4D72"
                         android:src="@drawable/facebook"
-                        android:layout_margin="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="8dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
@@ -214,7 +255,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:visibility="gone"
+
                     android:id="@+id/instagram_curso"
                     android:orientation="horizontal"
                     android:padding="5dp"
@@ -224,7 +265,6 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
-                        android:tint="#C8349A"
                         android:src="@drawable/instagram"
                         android:layout_margin="10dp"
                         android:layout_width="20dp"
@@ -238,7 +278,6 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/paginaweb_curso"
                     android:orientation="horizontal"
                     android:clickable="true"
@@ -248,7 +287,6 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
-                        android:tint="#0474A7"
                         android:src="@drawable/mundo"
                         android:layout_margin="10dp"
                         android:layout_width="20dp"
@@ -262,7 +300,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:visibility="gone"
+
                     android:id="@+id/email_curso"
                     android:clickable="true"
                     android:padding="5dp"

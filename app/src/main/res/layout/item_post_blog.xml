@@ -73,10 +73,11 @@
         <TextView
             android:paddingHorizontal="10dp"
             android:lineSpacingExtra="8sp"
+            android:textColor="#000"
             android:id="@+id/item_post_blog_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
         <Button
             android:id="@+id/item_post_blog_leer_mas"
             android:paddingHorizontal="10dp"
@@ -91,9 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="3dp"
             app:cardBackgroundColor="#fff"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="5dp">
             <ImageView
                 android:id="@+id/item_post_blog_img"
                 android:visibility="gone"
