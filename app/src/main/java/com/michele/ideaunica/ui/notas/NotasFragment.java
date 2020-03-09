@@ -64,7 +64,6 @@ public class NotasFragment extends Fragment {
         fab=view.findViewById(R.id.fab_fragment_notas);
     }
     private void GenerarDatos() {
-
         try {
             BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
             SQLiteDatabase bd= obj.getReadableDatabase();

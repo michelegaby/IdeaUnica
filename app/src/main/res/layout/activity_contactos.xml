@@ -17,13 +17,13 @@
             android:layout_centerInParent="true"
             android:textColor="#000"
             android:textStyle="bold"
-            android:text="Hola,"
+            android:text="Hola!!!"
             android:textSize="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_marginHorizontal="20dp"
-            android:text="Para poder comunicarnos con usted, sobre publicidad o alguna otra información, por favor proporciónenos su número de telefónico o correo electrónico."
+            android:text="Entre en contacto con nosotros para dudas, sugerencias y publicidades. Llene los campos obligatorios y responderemos sus preguntas."
             android:textSize="18dp"
             android:textColor="#000"
             android:layout_width="match_parent"
@@ -32,12 +32,11 @@
             android:textColor="#000"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
-            android:text="Número de teléfono:"
+            android:text="Número de teléfono"
             android:textSize="18dp"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
         <LinearLayout
             android:layout_marginVertical="10dp"
             android:orientation="horizontal"
@@ -57,12 +56,13 @@
                 android:layout_height="match_parent"
                 android:background="#CCCCCC"/>
             <EditText
+                android:id="@+id/celular_contacto"
                 android:paddingVertical="5dp"
                 android:textColor="#000"
                 android:hint="Ej. 75010136"
                 android:background="@null"
                 android:textSize="18dp"
-                android:inputType="phone"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -81,14 +81,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/email_contacto"
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="20dp"
             android:paddingVertical="5dp"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:textColor="#000"
-            android:hint="Ej. alguine@gmail.com"
+            android:hint="Ej. alguien@gmail.com"
             android:background="@null"
             android:textSize="18dp"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <View
@@ -100,20 +102,21 @@
             android:textColor="#000"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
-            android:text="Asunto:"
+            android:text="Asunto"
             android:textSize="18dp"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
         <EditText
+            android:id="@+id/asunto_contacto"
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="20dp"
             android:paddingVertical="5dp"
             android:textColor="#000"
-            android:hint="Ej. Sobre la publicidad"
+            android:hint="Ej. publicidad"
             android:background="@null"
             android:textSize="18dp"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <View
@@ -121,22 +124,20 @@
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#CCCCCC"/>
-
         <TextView
             android:textColor="#000"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
-            android:text="Mensaje:"
+            android:text="Mensaje"
             android:textSize="18dp"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
         <EditText
+            android:id="@+id/mesaje_contacto"
             android:padding="10dp"
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="20dp"
-            android:inputType="textMultiLine"
             android:hint="Describir el asunto"
             android:background="@drawable/margen_gris"
             android:minLines="6"
@@ -144,40 +145,8 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:scrollbars="vertical" />
-        <TextView
-            android:textColor="#000"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:text="Añadir imagenes(Opcional):"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_margin="5dp"
-                android:src="@drawable/margen_gris"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-            <ImageView
-                android:layout_margin="5dp"
-                android:src="@drawable/margen_gris"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-        </LinearLayout>
         <Button
+            android:id="@+id/enviar_contacto"
             android:padding="10dp"
             android:layout_marginVertical="20dp"
             android:text="Enviar"

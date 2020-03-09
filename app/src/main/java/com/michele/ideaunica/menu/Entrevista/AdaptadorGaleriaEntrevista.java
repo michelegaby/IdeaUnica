@@ -35,10 +35,11 @@ public class AdaptadorGaleriaEntrevista extends RecyclerView.Adapter<AdaptadorGa
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Glide.with(nContext).load(nData.get(i).getUrl())
+        Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.cargando)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
+
 
     }
     @Override

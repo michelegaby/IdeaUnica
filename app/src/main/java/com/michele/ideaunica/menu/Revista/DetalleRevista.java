@@ -2,29 +2,62 @@ package com.michele.ideaunica.menu.Revista;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.menu.evento.AdaptadorGaleriaEvento;
+import com.michele.ideaunica.menu.evento.GaleriaEventoClass;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetalleRevista extends AppCompatActivity {
 
     private RecyclerView rv_galeria;
+    private TextView titulo;
+    private TextView fecha;
+    private TextView autor;
+    private TextView descripcion_arriba;
+    private TextView descripcion_abajo;
+    private ImageView banner;
+    private CardView facebook;
+    private CardView whatsapp;
+    private CardView instragram;
+    private CardView email;
 
     //Galeria
+    private  static int ID;
     AdaptadorGaleriaRevista adaptadorGaleriaRevista;
     private ArrayList<GaleriaRevistaClass> listGaleria = new ArrayList<>();
+    private static  String URL="https://ideaunicabolivia.com/apps/galeriaRevista.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +73,74 @@ public class DetalleRevista extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(drawable);
             getSupportActionBar().setTitle("");
             inicializarComponente();
+            Bundle parametros = this.getIntent().getExtras();
+            ID=parametros.getInt("id");
+            titulo.setText(parametros.getString("titulo"));
+            fecha.setText(parametros.getString("fecha"));
+            descripcion_arriba.setText(parametros.getString("descripcion"));
+            autor.setText(parametros.getString("autor"));
+            descripcion_abajo.setText(parametros.getString("descripcion_final"));
+            Glide.with(getApplicationContext())
+                    .load("https://ideaunicabolivia.com/"+parametros.getString("url"))
+                    .placeholder(R.drawable.cargando)
+                    .error(R.drawable.fondorosa)
+                    .into(banner);
+            if(!parametros.getString("whatsapp").equals("null")&& !parametros.getString("whatsapp").isEmpty()){
+                whatsapp.setVisibility(View.VISIBLE);
+                final String what=parametros.getString("whatsapp");
+                whatsapp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
+                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        startActivity(intent);
+                    }
+                });
+            }
+            if(!parametros.getString("facebook").equals("null")&& !parametros.getString("facebook").isEmpty()){
+                facebook.setVisibility(View.VISIBLE);
+                final String face=parametros.getString("facebook");
+                facebook.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Uri uri = Uri.parse(face);
+                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        startActivity(intent);
+                    }
+                });
+            }
+            if(!parametros.getString("instagram").equals("null")&& !parametros.getString("instagram").isEmpty()){
+                instragram.setVisibility(View.VISIBLE);
+                final String inst=parametros.getString("instagram");
+                instragram.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Uri uri=Uri.parse(inst);
+                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        startActivity(intent);
+                    }
+                });
+            }
+            if(!parametros.getString("email").equals("null") && !parametros.getString("email").isEmpty() ){
+                email.setVisibility(View.VISIBLE);
+                final String em=parametros.getString("email");
+                email.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent emailSelectorIntent = new Intent(Intent.ACTION_SENDTO);
+                        emailSelectorIntent.setData(Uri.parse("mailto:"));
+                        final Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{em});
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "IDEA UNICA");
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas le hablo como referencia de la app para consultar");
+                        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        emailIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                        emailIntent.setSelector( emailSelectorIntent );
+                        if( emailIntent.resolveActivity(getPackageManager()) != null )
+                            startActivity(emailIntent);
+                    }
+                });
+            }
             GenerarDatos();
         }
         catch (Exception e){
@@ -47,18 +148,62 @@ public class DetalleRevista extends AppCompatActivity {
         }
     }
 
-    private void GenerarDatos() {
-        listGaleria.add(new GaleriaRevistaClass(1, "A", "https://instagram.fsrz1-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/84334237_1141950142810111_2477597141694371976_n.jpg?_nc_ht=instagram.fsrz1-2.fna.fbcdn.net&_nc_cat=107&_nc_ohc=aSti_n6LMw8AX-hz6N-&oh=71bc8bebaf215fac498fd09cf5c55d86&oe=5E89FAE5"));
-        listGaleria.add(new GaleriaRevistaClass(1, "A", "https://instagram.fsrz1-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/82632320_168875744401288_5025732237549078941_n.jpg?_nc_ht=instagram.fsrz1-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=hFgv4emN36sAX-EXLez&oh=de779c16c23c9968827a9d4b8db895ad&oe=5E8AB3BC"));
-        adaptadorGaleriaRevista= new AdaptadorGaleriaRevista(this,listGaleria);
-        rv_galeria.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        rv_galeria.setAdapter(adaptadorGaleriaRevista);
-    }
-
     private void inicializarComponente() {
         rv_galeria=findViewById(R.id.galeria_revista_recyclerview);
+        titulo=findViewById(R.id.titulo_detallerevista);
+        fecha=findViewById(R.id.fecha_detallerevista);
+        autor=findViewById(R.id.autor_detallerevista);
+        descripcion_arriba=findViewById(R.id.detalle_arriba_detallerevista);
+        descripcion_abajo=findViewById(R.id.detalle_abajo_detallerevista);
+        facebook=findViewById(R.id.facebook_revista);
+        whatsapp=findViewById(R.id.whatsapp_revista);
+        instragram=findViewById(R.id.instagram_revista);
+        email=findViewById(R.id.email_revista);
+        banner=findViewById(R.id.imgToolBar_revista);
     }
 
+    public void GenerarDatos(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("galeria-revista");
+                            for (int i=0;i<jsonArray.length();i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                listGaleria.add(new GaleriaRevistaClass(object.getInt("id"), "A",
+                                        object.getString("url")));
+                            }
+                            adaptadorGaleriaRevista= new AdaptadorGaleriaRevista(DetalleRevista.this,listGaleria);
+                            rv_galeria.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            rv_galeria.setAdapter(adaptadorGaleriaRevista);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "No existe tal evento de este evento", Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),
+                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                .show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cod",String.valueOf(ID));
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
     @Override
     public boolean onSupportNavigateUp() {
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
@@ -72,5 +217,4 @@ public class DetalleRevista extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
-
 }

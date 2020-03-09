@@ -21,7 +21,7 @@
             app:expandedTitleMarginEnd="64dp">
             <ImageView
                 android:id="@+id/imgToolBar_Entrevista"
-                android:src="@drawable/bannn"
+                android:src="@drawable/fondorosa"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -51,8 +51,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:gravity="center"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/item_titulo_Entrevista"
+                android:id="@+id/titulo_VerDetalleEntrevista"
                 android:text="Salon de evento"
                 android:layout_width="wrap_content"
                 android:textColor="@color/colorAccent"
@@ -61,7 +62,7 @@
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/item_fecha_Entrevista"
+                android:id="@+id/fecha_VerDetalleEntrevista"
                 android:layout_gravity="center_horizontal"
                 android:text="2 de febrero, 2020"
                 android:textSize="15dp"
@@ -71,7 +72,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/item_detalle_Entrevista"
+                android:id="@+id/descripcionArriba_VerdetalleEntrevista"
                 android:layout_gravity="center_horizontal"
                 android:textSize="15dp"
                 android:textColor="#000"
@@ -101,6 +102,7 @@
                     android:lineSpacingExtra="8sp"
                     android:ellipsize="end"/>
                 <TextView
+                    android:id="@+id/autor_VerdetalleEntrevista"
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"
                     android:layout_gravity="center_horizontal"
@@ -119,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"/>
             <TextView
+                android:id="@+id/descripcionAbajo_VerdetalleEntrevista"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/lorem_text"
@@ -149,6 +152,8 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/facebook_entrevista"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -169,6 +174,8 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/whatsapp_entrevista"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:clickable="true"
@@ -187,6 +194,8 @@
                         android:layout_height="match_parent"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/instagram_entrevista"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -207,6 +216,8 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/email_entrevista"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:foreground="?android:attr/selectableItemBackground"
