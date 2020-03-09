@@ -264,7 +264,7 @@ public class EditarEventoFragment extends Fragment{
             }
             bd.close();
         } catch (Exception E) {
-            Toast.makeText(getContext(), "Error Nose porque", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error:"+E.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -272,12 +272,13 @@ public class EditarEventoFragment extends Fragment{
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (file.mkdirs()) {
-            Toast.makeText(getContext(),
+            /*Toast.makeText(getContext(),
                     file.getAbsolutePath() + " creado",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show();*/
         }else{
+            /*
             Toast.makeText(getContext(),
-                    "Directory no creado", Toast.LENGTH_LONG).show();
+                    "Directory no creado", Toast.LENGTH_LONG).show();*/
         }
         return file;
     }
@@ -298,7 +299,7 @@ public class EditarEventoFragment extends Fragment{
             outputStream.flush();
             outputStream.close();
 
-            Toast.makeText(getContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
 
             return file.getAbsolutePath();
 
@@ -327,7 +328,7 @@ public class EditarEventoFragment extends Fragment{
             outputStream.flush();
             outputStream.close();
 
-            Toast.makeText(getContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
 
             return file.getAbsolutePath();
 

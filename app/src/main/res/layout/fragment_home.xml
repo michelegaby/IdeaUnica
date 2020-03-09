@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:contentDescription="@string/img"
             android:id="@+id/img_fondo_evento"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -36,7 +37,7 @@
                     android:text="Maria Elliot"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_marginTop="70dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -52,7 +53,7 @@
                     android:gravity="center"
                     android:text="¡La gran hora llegó!"
                     android:textColor="@color/colorAccent"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
@@ -71,46 +72,46 @@
                             android:id="@+id/dias_dias_evento"
                             android:text="00"
                             android:textColor="#000"
-                            android:textSize="30dp"
+                            android:textSize="30sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text=" | "
                             android:textColor="#000"
-                            android:textSize="35dp"
+                            android:textSize="35sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/dias_hora_evento"
                             android:text="00"
                             android:textColor="#000"
-                            android:textSize="30dp"
+                            android:textSize="30sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text=" | "
                             android:textColor="#000"
-                            android:textSize="35dp"
+                            android:textSize="35sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/dias_minutos_evento"
                             android:text="00"
                             android:textColor="#000"
-                            android:textSize="30dp"
+                            android:textSize="30sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text=" | "
                             android:textColor="#000"
-                            android:textSize="35dp"
+                            android:textSize="35sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/dias_seg_evento"
                             android:text="00"
                             android:textColor="#000"
-                            android:textSize="30dp"
+                            android:textSize="30sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -123,25 +124,25 @@
                         <TextView
                             android:text="  Días   "
                             android:textColor="#000"
-                            android:textSize="18dp"
+                            android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="  Hrs.   "
                             android:textColor="#000"
-                            android:textSize="18dp"
+                            android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="   Min.  "
                             android:textColor="#000"
-                            android:textSize="18dp"
+                            android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="   Seg.  "
                             android:textColor="#000"
-                            android:textSize="18dp"
+                            android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -155,7 +156,7 @@
                     android:layout_height="wrap_content">
                     <LinearLayout
                         android:gravity="center"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginEnd="5dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
@@ -163,33 +164,33 @@
                             android:gravity="center"
                             android:textColor="#000"
                             android:text="Inv. Confirmados"
-                            android:layout_width="100dp"
+                            android:layout_width="100sp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
                             android:id="@+id/invitados_confirmados_evento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="#000"
-                            android:textSize="18dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="18sp" />
                     </LinearLayout>
                     <LinearLayout
                         android:gravity="center"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
                             android:gravity="center"
                             android:text="Inv.Sin Confirmar"
-                            android:layout_width="100dp"
+                            android:layout_width="100sp"
                             android:textColor="#000"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/invitados_sin_confirmar_evento"
                             android:text="0"
-                            android:textSize="18dp"
+                            android:textSize="18sp"
                             android:textColor="#000"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -198,7 +199,7 @@
                 <TextView
                     android:layout_marginTop="10dp"
                     android:text="Tareas Realizadas:"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -208,20 +209,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/tareas_hechas_evento"
                         android:text="0"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                     <TextView
                         android:text="/"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                     <TextView
-                        android:text="51"
-                        android:textSize="18dp"
+                        android:id="@+id/tareas_total_evento"
+                        android:text="54"
+                        android:textSize="18sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
@@ -239,6 +242,7 @@
             app:cardCornerRadius="55dp"
             app:cardElevation="10dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:id="@+id/img_perfil_evento"
                 android:src="@drawable/perfil"
                 android:adjustViewBounds="true"

@@ -1,6 +1,7 @@
 package com.michele.ideaunica.ui.tareas;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.michele.ideaunica.BDEvento;
 import com.michele.ideaunica.R;
 import com.michele.ideaunica.cumple.CumpleanyosClass;
 
@@ -101,11 +103,30 @@ public class AdaptadorTarea extends RecyclerView.Adapter<AdaptadorTarea.MyViewHo
         {
             TareaClass tareaClass2= new TareaClass(tareaClass1.getId(),tareaClass1.getTitulo(),2);
             nData.add(tareaClass2);
+            CambiarEstado(tareaClass1.getId(),2);
 
         }else {
             TareaClass tareaClass2= new TareaClass(tareaClass1.getId(),tareaClass1.getTitulo(),1);
             nData.add(0,tareaClass2);
+            CambiarEstado(tareaClass1.getId(),1);
         }
         notifyDataSetChanged();
+    }
+
+
+    private boolean CambiarEstado(int idd,int nuevoestado){
+        try {
+            BDEvento obj= new BDEvento(nContext,"bdEvento",null,1);
+            SQLiteDatabase bd= obj.getReadableDatabase();
+            if(bd!=null){
+                bd.execSQL("update tarea set estado="+nuevoestado+" where id="+idd);
+                return true;
+            }
+            bd.close();
+            return false;
+        }
+        catch (Exception E){
+            return false;
+        }
     }
 }

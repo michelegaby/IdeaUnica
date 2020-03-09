@@ -1,34 +1,48 @@
 <resources>
     <string name="app_name">Idea Unica</string>
-
+    <string name="img">Imagen</string>
     <string-array name="Spinner_tipo_evento">
         <item>Cumpleaños</item>
         <item>Celebración</item>
         <item>Reunión</item>
         <item>Otro</item>
     </string-array>
-
     <string-array name="Spinner_tipo_invitado">
         <item>Familiar</item>
         <item>Amigo</item>
         <item>Trabajo</item>
         <item>Otro</item>
     </string-array>
-
     <string-array name="Spinner_tipo_pago">
         <item>Al Contado</item>
         <item>En Cuotas</item>
     </string-array>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="lorem_text">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. </string>
+    <string name="lorem_text2">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
+    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
+    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="tarea_seis_meses">
         <item>Defina su presupuesto</item>
         <item>Cantidad de invitados</item>
         <item>Lugar del evento</item>
         <item>Fecha y hora</item>
         <item>Temática</item>
-
     </string-array>
-
     <string-array name="tarea_cinco_meses">
         <item>Elegir lugar del evento, si será al aire libre o lugar cerrado</item>
         <item>Fecha del evento</item>
@@ -55,15 +69,26 @@
         <item>Contar con una coordinadora para cuidar los detalles de la mesa principal</item>
         <item>Elegir quien tomara las fotografías y video</item>
     </string-array>
+    <string-array name="tarea_un_mes">
+        <item>Revisar lista de proveedores</item>
+        <item>Entrar en contacto con cada proveedor para revisar avances</item>
+        <item>Realizar compras de detalles, como dulces premios de show, vela, desechables y todo lo que este en nuestra lista de necesidades</item>
+    </string-array>
+    <string-array name="tarea_una_semana">
+        <item>Entregar invitaciones</item>
+        <item>Revisar lista de invitados</item>
+        <item>Revisar listado de compras</item>
+        <item>Entrar en contacto con todos los proveedores y marcar horario de entrega de material</item>
+        <item>Entrar en contacto con el salón para revisar últimos detalles</item>
+    </string-array>
     <string-array name="tarea_dos_dias">
         <item>Tener todos los detalles que llevaremos al lugar del evento listos</item>
         <item>Coordinar con todos los proveedores horario de entrega de productos</item>
+        <item>Relleno de canastas</item>
         <item>Revisar vestimentas</item>
         <item>Revisar cuentas con proveedores para definir detalles pendientes</item>
-        <item>Tener todos los detalles que llevaremos al lugar del evento listos</item>
-        <item>Coordinar con todos los proveedores horario de entrega de productos</item>
-        <item>Revisar vestimentas</item>
-        <item>Revisar cuentas con proveedores para definir detalles pendientes</item>
+        <item>Revisar todo el material para llevar al lugar del evento</item>
+        <item>Envolver con papel de regalos los premios para el show</item>
     </string-array>
     <string-array name="tarea_dia">
         <item>8:00 am llevar todos los detalles para la fiesta, ingresar al área de enfriamiento la bebida</item>
@@ -77,25 +102,5 @@
         <item>A partir de este momento se distribuirá canastas o dulceras , torta y piñata a los invitados</item>
         <item>Fin del evento</item>
     </string-array>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
-    <string name="lorem_text">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. </string>
-    <string name="lorem_text2">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
-    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
-    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -18,18 +18,20 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/btn_seis_meses_tarea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:text="Seis Meses Antes"
-                android:textSize="15dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="#000"
+                android:drawableRight="@drawable/keyboard_arrow_up"
                 android:gravity="left|center_vertical"
-                android:drawableRight="@drawable/keyboard_arrow_down"/>
+                android:text="Seis Meses Antes"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
             <View
                 android:layout_marginTop="20dp"
                 android:layout_marginVertical="10dp"
@@ -38,7 +40,7 @@
                 android:background="#4D4B4B"/>
             <LinearLayout
                 android:id="@+id/ln_seis_meses_tarea"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -61,17 +63,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/btn_un_dia_tarea"
+                android:id="@+id/btn_cinco_meses_tarea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:text="Un Día Antes"
-                android:textSize="15dp"
+                android:text="Cinco Meses antes"
+                android:textSize="15sp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:gravity="left|center_vertical"
-                android:drawableRight="@drawable/keyboard_arrow_down"/>
+                android:drawableRight="@drawable/keyboard_arrow_up"/>
             <View
                 android:layout_marginTop="20dp"
                 android:layout_marginVertical="10dp"
@@ -80,13 +82,159 @@
                 android:background="#4D4B4B"/>
 
             <LinearLayout
-                android:id="@+id/ln_un_dia_tarea"
-                android:visibility="gone"
+                android:id="@+id/ln_cinco_meses_tarea"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginVertical="5dp"
+                    android:textColor="#000"
+                    android:text="Una vez definidos estos principales detalles tocara decidir si contratara una organizadora o la organización estará a su cargo."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginVertical="5dp"
+                    android:text="En caso de decidir que usted será su propia organizadora seguir los siguientes pasos."
+                    android:textColor="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cinco_meses_tarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"/>
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#4D4B4B"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_un_mes_tarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Un Mes Antes del evento"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:gravity="left|center_vertical"
+                android:drawableRight="@drawable/keyboard_arrow_up"/>
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_marginVertical="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#4D4B4B"/>
+
+            <LinearLayout
+                android:id="@+id/ln_un_mes_tarea"
+                android:visibility="visible"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_un_dia_tarea"
+                    android:id="@+id/rv_un_mes_tarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"/>
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#4D4B4B"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_una_semana_tarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Un Semana Antes del evento"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:gravity="left|center_vertical"
+                android:drawableRight="@drawable/keyboard_arrow_up"/>
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_marginVertical="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#4D4B4B"/>
+
+            <LinearLayout
+                android:id="@+id/ln_una_semana_tarea"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_una_semana_tarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"/>
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#4D4B4B"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_dos_dias_tarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Dos días Antes del evento"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:gravity="left|center_vertical"
+                android:drawableRight="@drawable/keyboard_arrow_up"/>
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_marginVertical="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#4D4B4B"/>
+
+            <LinearLayout
+                android:id="@+id/ln_dos_dias_tarea"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_dos_dias_tarea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -109,12 +257,12 @@
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="Día del Evento"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:gravity="left|center_vertical"
-                android:drawableRight="@drawable/keyboard_arrow_down"/>
+                android:drawableRight="@drawable/keyboard_arrow_up"/>
             <View
                 android:layout_marginTop="20dp"
                 android:layout_marginVertical="10dp"
@@ -124,7 +272,7 @@
 
             <LinearLayout
                 android:id="@+id/ln_dia_del_evento_tarea"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

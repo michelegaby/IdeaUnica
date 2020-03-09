@@ -31,6 +31,11 @@ public class HomeFragment extends Fragment {
     View view;
 
     private static int ID;
+
+
+    private TextView tareas;
+    private TextView tareas_hechas;
+
     private TextView dias;
     private TextView hora;
     private TextView min;
@@ -55,6 +60,7 @@ public class HomeFragment extends Fragment {
         InicializarComponentes();
         InicializarDatos();
         GenerarInicializacionInvitados();
+        GenerarTarea();
         return view;
     }
 
@@ -106,10 +112,13 @@ public class HomeFragment extends Fragment {
         sinconfirmar=view.findViewById(R.id.invitados_sin_confirmar_evento);
         confirmar=view.findViewById(R.id.invitados_confirmados_evento);
         msn=view.findViewById(R.id.msn_home_evento);
+        tareas=view.findViewById(R.id.tareas_total_evento);
+        tareas_hechas=view.findViewById(R.id.tareas_hechas_evento);
     }
 
     private void GenerarInicializacionInvitados() {
         try {
+
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
@@ -129,7 +138,21 @@ public class HomeFragment extends Fragment {
             }
             bd.close();
         } catch (Exception E) {
-            Toast.makeText(getContext(), "Error Nose porque", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error:"+E.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void GenerarTarea() {
+        try {
+            BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if (bd != null) {
+                Cursor objCursor = bd.rawQuery("Select * from tarea where estado=2 and idevento="+ID, null);
+                tareas_hechas.setText(objCursor.getCount()+"");
+            }
+            bd.close();
+        } catch (Exception E) {
+            Toast.makeText(getContext(), "Error:"+E.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
