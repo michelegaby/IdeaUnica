@@ -72,7 +72,6 @@ public class Categoria extends AppCompatActivity {
         GenerarDatos(parametros.getString("departamento"));
         BuscarCategoria();
         myrecyclerview.setHasFixedSize(true);
-        sliderLayout=findViewById(R.id.slider_publicidad_categoria);
         sliderLayout.setIndicatorAnimation(IndicatorAnimations.FILL);
         sliderLayout.setScrollTimeInSec(3);
     }
@@ -87,6 +86,7 @@ public class Categoria extends AppCompatActivity {
         progress=findViewById(R.id.progress_categoria);
         buscar=findViewById(R.id.buscar_categorias);
         departamento=findViewById(R.id.departamento_categorias);
+        sliderLayout=findViewById(R.id.slider_publicidad_categoria);
     }
     private void BuscarCategoria() {
         buscar.addTextChangedListener(new TextWatcher() {
@@ -187,7 +187,7 @@ public class Categoria extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Categoria.this,
-                                "Error  2"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión"+error.getMessage(), Toast.LENGTH_LONG)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }

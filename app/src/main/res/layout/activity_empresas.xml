@@ -60,9 +60,26 @@
         </LinearLayout>
         <com.smarteist.autoimageslider.SliderLayout
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="200dp"
-            android:layout_marginHorizontal="20dp"
             android:id="@+id/slider_publicidad_empresas" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/sliderViewPagerPublicidadEmpresas"
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+            </androidx.viewpager.widget.ViewPager>
+            <LinearLayout
+                android:id="@+id/dotsLayoutPublicidadEmpresa"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal" />
+        </RelativeLayout>
         <ProgressBar
             android:layout_marginVertical="20dp"
             android:id="@+id/progress_empresas"
