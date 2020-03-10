@@ -70,21 +70,12 @@ public class CalculadoraFragment extends Fragment{
     private TextView Agua;
     private ImageButton menosAgua;
 
-    //AlcoholH
-    private ImageButton masAlcoholH;
-    private TextView AlcoholH;
-    private ImageButton menosAcoholH;
 
     //AlcoholM
     /*
     private ImageButton masAlcoholM;
     private TextView AlcoholM;
     private ImageButton menosAcoholM;*/
-
-    //Vino
-    private ImageButton masVino;
-    private TextView Vino;
-    private ImageButton menosVino;
 
     //Platos
     private ImageButton masPlatos;
@@ -149,14 +140,13 @@ public class CalculadoraFragment extends Fragment{
         SMS = "Cantidad total:<br/> <br/> ";
 
         SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Pastel.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" gr. de Pastel, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Dulce.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" cantidad de Aperitivos dulces, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Salado.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" cantidad de Aperitivos salados, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Sand.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" cantindad de sandwiches, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Gas.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" ml. de Gaseosa <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Jugo.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" ml. de jugo, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Agua.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" ml. de agua, <br/> <br/> ";
-        SMS = SMS +String.valueOf(personaadulto*Integer.valueOf(AlcoholH.getText().toString()))+" ml. de bebida alcoholica, <br/> ";
-        SMS = SMS +String.valueOf(personaadulto*Integer.valueOf(Vino.getText().toString()))+" ml. de vino, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Dulce.getText().toString()))+(personanino*(Integer.valueOf(Dulce.getText().toString())/2)))+" cantidad de Aperitivos dulces, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Salado.getText().toString()))+(personanino*(Integer.valueOf(Salado.getText().toString())/2)))+" cantidad de Aperitivos salados, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Sand.getText().toString()))+(personanino*(Integer.valueOf(Sand.getText().toString()))))+" cantindad de hamburguesa, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Gas.getText().toString()))+(personanino*(Integer.valueOf(Gas.getText().toString())/2)))+" ml. de Gaseosa <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Jugo.getText().toString()))+(personanino*(Integer.valueOf(Jugo.getText().toString())/2)))+" ml. de jugo, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Agua.getText().toString()))+(personanino*(Integer.valueOf(Agua.getText().toString())/2)))+" ml. de agua, <br/> <br/> ";
+
 
 
         SMS = SMS+ "<br/> Utensilios: <br/> <br/>";
@@ -335,58 +325,8 @@ public class CalculadoraFragment extends Fragment{
             }
         });
 
-        masAlcoholH.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int a=Integer.valueOf(AlcoholH.getText().toString());
-                AlcoholH.setText(String.valueOf(a+1));
-            }
-        });
 
-        menosAcoholH.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!AlcoholH.getText().equals("0")){
-                    int a=Integer.valueOf(AlcoholH.getText().toString());
-                    AlcoholH.setText(String.valueOf(a-1));
-                }
-            }
-        });
-    /*
-        masAlcoholM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int a=Integer.valueOf(AlcoholM.getText().toString());
-                AlcoholM.setText(String.valueOf(a+1));
-            }
-        });
-        menosAcoholM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!AlcoholM.getText().equals("0")){
-                    int a=Integer.valueOf(AlcoholM.getText().toString());
-                    AlcoholM.setText(String.valueOf(a-1));
-                }
-            }
-        });*/
 
-        masVino.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int a=Integer.valueOf(Vino.getText().toString());
-                Vino.setText(String.valueOf(a+1));
-            }
-        });
-
-        menosVino.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!Vino.getText().equals("0")){
-                    int a=Integer.valueOf(Vino.getText().toString());
-                    Vino.setText(String.valueOf(a-1));
-                }
-            }
-        });
 
         //Utenciolios
         masPlatos.setOnClickListener(new View.OnClickListener() {
@@ -560,19 +500,6 @@ public class CalculadoraFragment extends Fragment{
         menosAgua=view.findViewById(R.id.agua_quitar_adulto);
         Agua=view.findViewById(R.id.agua_adulto);
 
-
-        masAlcoholH=view.findViewById(R.id.cerveza_hombre_add_adulto);
-        menosAcoholH=view.findViewById(R.id.cerveza_hombre_quitar_adulto);
-        AlcoholH=view.findViewById(R.id.cerveza_hombre_adulto);
-
-        /*masAlcoholM=view.findViewById(R.id.cerveza_mujer_add_adulto);
-        menosAcoholM=view.findViewById(R.id.cerveza_mujer_quitar_adulto);
-        AlcoholM=view.findViewById(R.id.cerveza_mujer_adulto);*/
-
-
-        masVino=view.findViewById(R.id.vino_add_adulto);
-        menosVino=view.findViewById(R.id.vino_quitar_adulto);
-        Vino=view.findViewById(R.id.vino_adulto);
 
         //utencilios
 

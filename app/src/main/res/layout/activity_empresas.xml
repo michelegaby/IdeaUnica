@@ -56,14 +56,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
         <com.smarteist.autoimageslider.SliderLayout
             android:layout_width="match_parent"
             android:visibility="gone"
             android:layout_height="200dp"
             android:id="@+id/slider_publicidad_empresas" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -94,5 +92,4 @@
             android:clipToPadding="true"
             android:id="@+id/Empresas_recyclerview"/>
     </LinearLayout>
-
 </androidx.core.widget.NestedScrollView>

@@ -80,6 +80,8 @@ public class Curso extends AppCompatActivity {
     private TextView duracion;
     private LinearLayout lntelefono;
     private RecyclerView rv_galeria;
+    private TextView horario;
+    private TextView direccion;
 
     AdaptadorGaleriaCurso adaptadorGaleriaCurso;
     private ArrayList<GaleriaCursoClass> listGaleria = new ArrayList<>();
@@ -116,6 +118,8 @@ public class Curso extends AppCompatActivity {
         departamento.setText(parametros.getString("departamento"));
         contenido.setText(parametros.getString("descripcion"));
         autor.setText(parametros.getString("autor"));
+        horario.setText(parametros.getString("horario"));
+        direccion.setText(parametros.getString("direccion"));
         duracion.setText("x "+parametros.getString("duracion")+"día/s");
         try {
             titulo_contacto.setOnClickListener(new View.OnClickListener() {
@@ -293,6 +297,8 @@ public class Curso extends AppCompatActivity {
         contenidos=findViewById(R.id.contenidos);
         informacion=findViewById(R.id.informacion);
         rv_galeria=findViewById(R.id.galeria_curso_recyclerview);
+        direccion=findViewById(R.id.direccion_curso);
+        horario=findViewById(R.id.horario_curso);
     }
     @Override
     public boolean onSupportNavigateUp() {

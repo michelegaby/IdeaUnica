@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="Instructor/a:"
                     android:textColor="#000"
                     android:textStyle="bold"
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/autor_curso"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="Evelin Ribera!"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="Fecha:"
                     android:textColor="#000"
                     android:textStyle="bold"
@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/fecha_curso"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="25 noviembre, 2019"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
@@ -134,14 +134,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="Horario:"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:textSize="15dp"
+                    android:id="@+id/horario_curso"
+                    android:textSize="15sp"
                     android:text="10:00 pm"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
@@ -153,13 +154,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="Direccion"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/direccion_curso"
                     android:layout_marginEnd="20dp"
                     android:textSize="15sp"
                     android:text="4to anillo zona no se que 4to anillo zona no se que 4to anillo zona no se que 4to anillo zona no se que"
@@ -175,7 +177,7 @@
                 android:text="Contacto"
                 android:paddingRight="10dp"
                 android:textSize="15dp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="#000"
                 android:gravity="left|center_vertical"
@@ -186,6 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:visibility="gone"
                     android:padding="5dp"
                     android:id="@+id/phone_Curso"
                     android:orientation="horizontal"
@@ -208,7 +211,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:id="@+id/whatsapp_curso"
                     android:padding="5dp"
                     android:orientation="horizontal"
@@ -231,7 +234,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:id="@+id/facebook_curso"
                     android:orientation="horizontal"
                     android:clickable="true"
@@ -242,7 +245,7 @@
                     <ImageView
                         android:src="@drawable/facebook"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="5dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
@@ -255,7 +258,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:id="@+id/instagram_curso"
                     android:orientation="horizontal"
                     android:padding="5dp"
@@ -278,6 +281,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/paginaweb_curso"
                     android:orientation="horizontal"
                     android:clickable="true"
@@ -300,7 +304,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:id="@+id/email_curso"
                     android:clickable="true"
                     android:padding="5dp"

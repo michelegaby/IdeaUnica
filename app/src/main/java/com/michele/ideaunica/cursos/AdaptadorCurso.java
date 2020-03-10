@@ -71,6 +71,8 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
                 Bundle parmetros= new Bundle();
                 parmetros.putString("ID",nData.get(position).getId());
                 parmetros.putString("fecha",nData.get(position).getFecha());
+                parmetros.putString("horario",nData.get(position).getHorario());
+                parmetros.putString("direccion",nData.get(position).getDireccion());
                 parmetros.putString("autor",nData.get(position).getAutor());
                 parmetros.putString("whatsapp",nData.get(position).getWhatsapp());
                 parmetros.putString("facebook",nData.get(position).getFacebook());

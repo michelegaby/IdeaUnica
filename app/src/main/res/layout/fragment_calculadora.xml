@@ -202,7 +202,7 @@
             <TextView
                 android:id="@+id/dulces_adulto"
                 android:gravity="center"
-                android:text="2"
+                android:text="1"
                 android:layout_centerInParent="true"
                 android:background="@drawable/medio"
                 android:textSize="18dp"
@@ -258,7 +258,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/medio"
                 android:gravity="center"
-                android:text="6"
+                android:text="5"
                 android:textColor="#000"
                 android:textSize="18dp" />
             <ImageButton
@@ -489,166 +489,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <LinearLayout
-            android:visibility="gone"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/cerveza"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/cerveza_hombre_quitar_adulto"/>
-            <ImageButton
-                android:id="@+id/cerveza_hombre_quitar_adulto"
-                android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
-                android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/cerveza_hombre_adulto"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:id="@+id/cerveza_hombre_adulto"
-                android:gravity="center"
-                android:text="500"
-                android:layout_centerInParent="true"
-                android:background="@drawable/medio"
-                android:textSize="18dp"
-                android:textColor="#000"
-                android:layout_width="60dp"
-                android:layout_height="35dp"/>
-            <ImageButton
-                android:id="@+id/cerveza_hombre_add_adulto"
-                android:layout_toRightOf="@id/cerveza_hombre_adulto"
-                android:src="@drawable/add"
-                android:layout_centerVertical="true"
-                android:background="@drawable/mas"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/cerveza_hombre_add_adulto"
-                android:text="ml. de bebidas alcoholicas por Hombre *"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
-                android:textColor="#000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:visibility="gone"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/coctel"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/cerveza_mujer_quitar_adulto"/>
-            <ImageButton
-                android:id="@+id/cerveza_mujer_quitar_adulto"
-                android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
-                android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/cerveza_mujer_adulto"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:id="@+id/cerveza_mujer_adulto"
-                android:gravity="center"
-                android:text="200"
-                android:layout_centerInParent="true"
-                android:background="@drawable/medio"
-                android:textSize="18dp"
-                android:textColor="#000"
-                android:layout_width="60dp"
-                android:layout_height="35dp"/>
-            <ImageButton
-                android:id="@+id/cerveza_mujer_add_adulto"
-                android:layout_toRightOf="@id/cerveza_mujer_adulto"
-                android:src="@drawable/add"
-                android:layout_centerVertical="true"
-                android:background="@drawable/mas"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/cerveza_mujer_add_adulto"
-                android:text="ml. de Bebidas alcoholicas por Mujer *"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
-                android:textColor="#000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:visibility="gone"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/vino"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/vino_quitar_adulto"/>
-            <ImageButton
-                android:id="@+id/vino_quitar_adulto"
-                android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
-                android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/vino_adulto"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:id="@+id/vino_adulto"
-                android:gravity="center"
-                android:text="50"
-                android:layout_centerInParent="true"
-                android:background="@drawable/medio"
-                android:textSize="18dp"
-                android:textColor="#000"
-                android:layout_width="60dp"
-                android:layout_height="35dp"/>
-            <ImageButton
-                android:id="@+id/vino_add_adulto"
-                android:layout_toRightOf="@id/vino_adulto"
-                android:src="@drawable/add"
-                android:layout_centerVertical="true"
-                android:background="@drawable/mas"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/vino_add_adulto"
-                android:text="ml. de vido o champany *"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
-                android:textColor="#000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
         <View
             android:layout_marginTop="40dp"
             android:layout_marginVertical="10dp"
@@ -697,7 +537,7 @@
             <TextView
                 android:id="@+id/platos_persona"
                 android:gravity="center"
-                android:text="2"
+                android:text="1"
                 android:layout_centerInParent="true"
                 android:background="@drawable/medio"
                 android:textSize="18dp"

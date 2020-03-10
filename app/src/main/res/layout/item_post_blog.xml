@@ -78,15 +78,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"/>
+
         <Button
             android:id="@+id/item_post_blog_leer_mas"
-            android:paddingHorizontal="10dp"
-            android:background="@null"
-            android:textAllCaps="false"
-            android:foreground="?attr/selectableItemBackground"
-            android:text="Leer post"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/keyboard_arrow_down"
+            android:drawableTint="#000"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingHorizontal="10dp"
+            android:text="Leer post"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

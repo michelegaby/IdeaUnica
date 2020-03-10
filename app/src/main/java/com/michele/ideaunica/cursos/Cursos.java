@@ -98,6 +98,8 @@ public class Cursos extends AppCompatActivity {
                                         object.getString("titulo"),
                                         object.getString("autor"),
                                         object.getString("fecha"),
+                                        object.getString("horario"),
+                                        object.getString("direccion"),
                                         object.getString("cantidad"),
                                         object.getString("costo"),
                                         object.getString("contenido"),
@@ -111,7 +113,7 @@ public class Cursos extends AppCompatActivity {
                                         object.getString("instagram"),
                                         object.getString("nombreinstagram"),
                                         object.getString("paginaweb"),
-                                        object.getString("paginaweb"),
+                                        object.getString("email"),
                                         object.getString("url"));
                                 listCurso.add(cursos);
                             }
