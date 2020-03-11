@@ -7,9 +7,10 @@
     <LinearLayout
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:layout_width="35px"
+        android:layout_width="20dp"
         android:layout_height="match_parent">
         <ImageView
+            android:contentDescription="@string/img"
             android:layout_marginTop="3dp"
             android:src="@drawable/posicion"
             android:adjustViewBounds="true"
@@ -19,23 +20,21 @@
     </LinearLayout>
     <LinearLayout
         android:layout_marginVertical="10dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/item_dir_titulo"
-            android:text="Sucursal 1"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/item_dir_detalle"
-            android:text="5,3 millas · Avenida Bolivia, Ex avenida El Palmar esquina Agata nro 6490, Santa Cruz de la Sierra"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:textColor="#6B6868"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

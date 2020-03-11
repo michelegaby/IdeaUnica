@@ -89,7 +89,6 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
 
         private TextView titulo;
         private TextView direccion;
-        private TextView estado;
         private TextView categoria;
         private CircleImageView circleImageView;
         private CardView cardView;

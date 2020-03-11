@@ -22,20 +22,18 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/titulo_curso"
-                android:text="Grand Royale Park Hotel"
-                android:textSize="40dp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:transitionName="txtTransition2"
                 android:textColor="#000"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@id/costo_curso"/>
+                android:layout_toStartOf="@id/costo_curso"/>
             <TextView
                 android:id="@+id/costo_curso"
                 android:gravity="bottom|end"
-                android:text="$220"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -49,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:tint="@color/colorAccent"
                 android:src="@drawable/posicion"
                 android:adjustViewBounds="true"
@@ -58,15 +57,14 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/departamento_curso"
-                android:layout_marginLeft="10dp"
-                android:textSize="15dp"
-                android:text="Departament"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:text="@string/departamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/duracion_curso"
                 android:gravity="end"
-                android:text="/3 días"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -77,10 +75,10 @@
             android:background="#A8A5A5"/>
         <TextView
             android:id="@+id/informacion"
-            android:text="INFORMACIÓN"
+            android:text="@string/informacion"
             android:textColor="#000"
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -95,7 +93,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textSize="15sp"
-                    android:text="Instructor/a:"
+                    android:text="@string/instructor"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:layout_width="120dp"
@@ -103,7 +101,6 @@
                 <TextView
                     android:id="@+id/autor_curso"
                     android:textSize="15sp"
-                    android:text="Evelin Ribera!"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -115,7 +112,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textSize="15sp"
-                    android:text="Fecha:"
+                    android:text="@string/fechapuntos"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:layout_width="120dp"
@@ -123,7 +120,6 @@
                 <TextView
                     android:id="@+id/fecha_curso"
                     android:textSize="15sp"
-                    android:text="25 noviembre, 2019"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -135,7 +131,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textSize="15sp"
-                    android:text="Horario:"
+                    android:text="@string/horariopuntos"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:layout_width="120dp"
@@ -143,7 +139,6 @@
                 <TextView
                     android:id="@+id/horario_curso"
                     android:textSize="15sp"
-                    android:text="10:00 pm"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -155,7 +150,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textSize="15sp"
-                    android:text="Direccion"
+                    android:text="@string/direccionpuntos"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:layout_width="120dp"
@@ -164,7 +159,6 @@
                     android:id="@+id/direccion_curso"
                     android:layout_marginEnd="20dp"
                     android:textSize="15sp"
-                    android:text="4to anillo zona no se que 4to anillo zona no se que 4to anillo zona no se que 4to anillo zona no se que"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -174,14 +168,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
-                android:text="Contacto"
-                android:paddingRight="10dp"
-                android:textSize="15dp"
+                android:text="@string/contacto"
+                android:paddingEnd="10dp"
+                android:paddingStart="0dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="#000"
-                android:gravity="left|center_vertical"
-                android:drawableRight="@drawable/keyboard_arrow_up"/>
+                android:gravity="start|center_vertical"
+                android:drawableEnd="@drawable/keyboard_arrow_up"/>
             <LinearLayout
                 android:id="@+id/contacto_curso"
                 android:orientation="vertical"
@@ -198,14 +193,14 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:layout_margin="10dp"
                         android:src="@drawable/phone"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_phone_curso"
-                        android:text="+591 78006388"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -221,14 +216,14 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:layout_margin="10dp"
                         android:src="@drawable/whatsapp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_whatsapp_curso"
-                        android:text="+591 78006388"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -243,16 +238,16 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:src="@drawable/facebook"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:padding="5dp"
                         android:id="@+id/tx_facebook_curso"
-                        android:text="https://www.facebook.com/decokidsdecoraciones/"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -268,14 +263,14 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:src="@drawable/instagram"
                         android:layout_margin="10dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_instagram_curso"
-                        android:text="https://www.instagram.com/decokids_by_ns/"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -291,14 +286,14 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:src="@drawable/mundo"
                         android:layout_margin="10dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_paginaweb_curso"
-                        android:text="+591 78006388"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -314,14 +309,14 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:layout_margin="10dp"
                         android:src="@drawable/email"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_email_curso"
-                        android:text="nicoli_@hotmail.com"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -329,10 +324,10 @@
             </LinearLayout>
         </LinearLayout>
         <TextView
-            android:text="CONTENIDO"
+            android:text="@string/contenido"
             android:textColor="#000"
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -341,8 +336,7 @@
             android:id="@+id/contenido_curso"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:textSize="15dp"
-            android:text="@string/lorem_text"
+            android:textSize="15sp"
             android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -10,6 +10,7 @@
     android:layout_height="250dp"
     android:layout_margin="5dp">
     <ImageView
+        android:contentDescription="@string/img"
         android:id="@+id/item_img_categoria_curso"
         android:src="@drawable/fondorosa"
         android:adjustViewBounds="true"
@@ -22,20 +23,19 @@
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/item_titulo_categoria_curso"
-            android:layout_marginLeft="15dp"
-            android:text="Categoria"
+            android:layout_marginStart="15dp"
             android:textColor="#000"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/item_tipo_categoria_curso"
             android:textColor="#000"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:ellipsize="end"
-            android:text="@string/lorem_text"
             android:maxLines="3"
+            android:minLines="3"
             android:layout_marginHorizontal="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

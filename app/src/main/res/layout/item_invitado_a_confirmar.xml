@@ -24,33 +24,23 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="60dp"
-                android:transitionName="imgTransition"
-                android:layout_height="60dp"
-                android:src="@drawable/camello"
-                app:civ_border_width="0dp"
-                android:visibility="gone"
-                android:id="@+id/item_user_invitado_a_confirmar" />
             <TextView
                 android:layout_marginHorizontal="10dp"
                 android:id="@+id/item_nombre_invitado_a_confirmar"
-                android:text="Nombre del invitado"
                 android:textStyle="bold"
-                android:textSize="20dp"
+                android:text="@string/nav_header_title"
+                android:textSize="20sp"
                 android:textColor="@color/colorAccent"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@id/item_user_invitado_a_confirmar"
+                android:layout_alignParentTop="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:text="@string/totalpuntos"
                 android:layout_marginHorizontal="10dp"
                 android:id="@+id/item_tipo_invitado_a_confirmar"
-                android:text="Familiar"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#8A000000"
-                android:layout_toRightOf="@id/item_user_invitado_a_confirmar"
                 android:layout_below="@id/item_nombre_invitado_a_confirmar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -66,23 +56,22 @@
         <LinearLayout
             android:id="@+id/item_detalle_invitado_a_confirmar"
             android:orientation="vertical"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Acompañante/s"
-                android:textSize="18dp"
+                android:text="@string/acompañantepuntos"
+                android:textSize="18sp"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
                 android:textColor="#5C5C5C"/>
             <LinearLayout
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:tint="#5C5C5C"
                     android:layout_margin="10dp"
                     android:src="@drawable/pareja"
@@ -90,61 +79,58 @@
                     android:layout_height="30dp"/>
                 <LinearLayout
                     android:orientation="vertical"
-                    android:paddingLeft="10dp"
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Adulto/s:"
+                        android:text="@string/adultospuntos"
                         android:textColor="#5C5C5C"/>
                     <TextView
                         android:id="@+id/item_adulto_invitado_a_confirmar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5 personas"
                         android:textColor="#8A000000"
-                        android:textSize="12dp"/>
+                        android:textSize="12sp"/>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:tint="#5C5C5C"
                     android:paddingTop="5dp"
                     android:layout_margin="10dp"
                     android:src="@drawable/hermanos"
                     android:layout_width="30dp"
-                    android:layout_centerVertical="true"
                     android:layout_height="30dp"/>
                 <LinearLayout
-                    android:paddingLeft="10dp"
+                    android:padding="10dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Niño/s:"
+                        android:text="@string/ninopuntos"
                         android:textColor="#5C5C5C"/>
                     <TextView
                         android:id="@+id/item_ninyo_invitado_a_confirmar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5 personas"
                         android:textColor="#8A000000"
-                        android:textSize="12dp"/>
+                        android:textSize="12sp"/>
                 </LinearLayout>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contacto:"
-                android:textSize="18dp"
+                android:text="@string/contactopuntos"
+                android:textSize="18sp"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
                 android:textColor="#5C5C5C"/>
@@ -154,14 +140,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:tint="#5C5C5C"
                     android:layout_margin="10dp"
                     android:src="@drawable/phone"
                     android:layout_width="30dp"
-                    android:layout_centerVertical="true"
                     android:layout_height="30dp"/>
                 <LinearLayout
-                    android:paddingLeft="10dp"
+                    android:padding="10dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -169,50 +155,53 @@
                         android:id="@+id/item_celular_invitado_a_confirmar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(999) 345 32 45"
                         android:textColor="#5C5C5C"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Celular"
+                        android:text="@string/celular"
                         android:textColor="#8A000000"
-                        android:textSize="12dp"/>
+                        android:textSize="12sp"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:weightSum="3"
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/item_eliminar_invitado_a_confirmar"
                     android:paddingVertical="10dp"
                     android:layout_width="wrap_content"
-                    android:text="Eliminar"
+                    android:text="@string/eliminar"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:background="@color/colorAccent"
                     android:textColor="#ffffff"
-                    android:foreground="?android:attr/selectableItemBackground"/>
+                    android:foreground="?android:attr/selectableItemBackground"
+                    style="?android:attr/buttonBarButtonStyle"/>
                 <Button
                     android:id="@+id/item_modificar_invitado_a_confirmar"
                     android:paddingVertical="10dp"
                     android:layout_width="wrap_content"
-                    android:text="Modificar"
+                    android:text="@string/modificar"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:textColor="#fff"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:background="#FFD1D1"/>
+                    android:background="#FFD1D1"
+                    style="?android:attr/buttonBarButtonStyle"/>
                 <Button
                     android:id="@+id/item_confirmar_invitado_a_confirmar"
                     android:paddingVertical="10dp"
                     android:layout_width="wrap_content"
-                    android:text="Confirmar"
+                    android:text="@string/confirmar"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:textColor="#fff"
                     android:background="#AADCD1"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </LinearLayout>
         </LinearLayout>

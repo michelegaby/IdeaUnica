@@ -1,6 +1,45 @@
 <resources>
     <string name="app_name">Idea Unica</string>
     <string name="img">Imagen</string>
+    <string name="imgpublicidad">Publicidad</string>
+    <string name="vencimientopuntos">Vencimiento</string>
+    <string name="imgempresa">Logo</string>
+    <string name="buscar">Buscar</string>
+    <string name="departamento">Departamento</string>
+    <string name="sucursales">Sucursales</string>
+    <string name="descsucursales">Sucuarsales disponibles</string>
+    <string name="galeria">Galeria</string>
+    <string name="descripcion">Descripción</string>
+    <string name="contacto">Contacto</string>
+    <string name="contenido">Contenido:</string>
+    <string name="departamentopuntos">Departamento:</string>
+    <string name="costopuntos">Costo(Bs):</string>
+    <string name="fechapuntos">Fecha:</string>
+    <string name="informacion">Información:</string>
+    <string name="instructor">Instructor/a:</string>
+    <string name="horariopuntos">Horario/s:</string>
+    <string name="direccionpuntos">Dirección:</string>
+    <string name="eventos">Eventos</string>
+    <string name="revista">Revista</string>
+    <string name="entrevistas">Entrevistas</string>
+    <string name="contactanos">Contáctanos</string>
+    <string name="desccontactanos">Para mas informacion.</string>
+    <string name="descentrevistas">Los mejores profesionales nacionales e internacionales.</string>
+    <string name="descrevista">Fiestas sociales.</string>
+    <string name="desceventos">Próximos eventos.</string>
+    <string name="totalpuntos">Total: </string>
+    <string name="apagar">A Pagar</string>
+    <string name="pago">Pago</string>
+    <string name="vencido">Vencido</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="modificar">Modificar</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="contactopuntos">Contacto:</string>
+    <string name="acompañantepuntos">Acompañante/s:</string>
+    <string name="adultospuntos">Adulto/s:</string>
+    <string name="ninopuntos">Niño/s:</string>
+    <string name="celular">Celular</string>
+
     <string-array name="Spinner_tipo_evento">
         <item>Cumpleaños</item>
         <item>Celebración</item>

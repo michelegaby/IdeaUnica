@@ -24,16 +24,14 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/item_dia_evento"
-                android:text="31"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/item_mes_evento"
-                android:text="MAR."
                 android:textAllCaps="true"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -47,13 +45,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_toLeftOf="@id/item_img_evento"
+            android:layout_toStartOf="@id/item_img_evento"
             android:layout_alignParentStart="true"
             android:layout_marginStart="60dp">
             <TextView
                 android:id="@+id/item_titulo_evento"
-                android:text="Feicon Batimat Sao Paulo"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:textColor="#000"
@@ -62,8 +59,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/item_fecha_evento"
-                android:text="31 de mar. - 3 de abr."
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:textColor="#6B6868"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -71,16 +67,15 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/item_detalle_evento"
-                android:text="Sao Paublo Expo. Estudiante no se que mas poner no se que mas ponder 2.0"
                 android:textColor="#363535"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <ImageView
-
+            android:contentDescription="@string/img"
             android:layout_alignParentEnd="true"
             android:layout_margin="5dp"
             android:layout_centerVertical="true"
@@ -89,6 +84,6 @@
             android:id="@+id/item_img_evento"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

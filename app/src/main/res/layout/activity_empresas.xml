@@ -17,7 +17,7 @@
             android:layout_height="60dp">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginLeft="95dp"
+                android:layout_marginStart="95dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="3dp">
@@ -28,20 +28,22 @@
                     android:orientation="horizontal">
                     <EditText
                         android:id="@+id/buscar_empresas"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="#000"
-                        android:textSize="18dp"
-                        android:hint="Buscar"
-                        android:background="@null"/>
+                        android:textSize="18sp"
+                        android:inputType="text"
+                        android:hint="@string/buscar"
+                        android:background="@null"
+                        android:autofillHints="" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 app:cardBackgroundColor="@color/colorAccent"
@@ -49,19 +51,15 @@
                 app:cardElevation="2dp"
                 app:cardPreventCornerOverlap="true">
                 <ImageView
-                    android:tint="#fff"
-                    android:padding="10dp"
-                    android:background="@color/colorAccent"
-                    android:src="@drawable/search"
+                    android:contentDescription="@string/img"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="@color/colorAccent"
+                    android:padding="10dp"
+                    android:src="@drawable/search"
+                    android:tint="#fff" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-        <com.smarteist.autoimageslider.SliderLayout
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="200dp"
-            android:id="@+id/slider_publicidad_empresas" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

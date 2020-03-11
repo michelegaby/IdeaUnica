@@ -164,7 +164,7 @@ public class Categoria extends AppCompatActivity {
                             for (int i = 0; i < jsonArray2.length(); i++) {
                                 DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
                                 JSONObject object = jsonArray2.getJSONObject(i);
-                                sliderView.setImageUrl("https://sice.com.bo/ideaunica/"+object.getString("url"));
+                                sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
                                 sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
                                 sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
                                     @Override

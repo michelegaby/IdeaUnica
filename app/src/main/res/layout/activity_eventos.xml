@@ -7,19 +7,18 @@
     android:orientation="vertical"
     android:background="#fff"
     tools:context=".menu.evento.Eventos">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Evento_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/img_publicidad_eventos"/>
-
     <ProgressBar
         android:layout_centerInParent="true"
         android:id="@+id/progress_eventos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <ImageView
+        android:contentDescription="@string/imgpublicidad"
         android:id="@+id/img_publicidad_eventos"
         android:layout_alignParentBottom="true"
         android:src="@drawable/bannerpublicidad2"

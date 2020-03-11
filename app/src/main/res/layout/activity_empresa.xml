@@ -21,6 +21,7 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:id="@+id/imgToolBar_empresa"
                 android:src="@drawable/camello"
                 android:scaleType="centerCrop"
@@ -50,7 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/img_empresa"
                     android:layout_width="100dp"
                     android:transitionName="imgTransition"
@@ -65,8 +65,7 @@
                     android:layout_height="match_parent">
                     <TextView
                         android:id="@+id/titulo_empresa"
-                        android:text="Salon de eventos Roma"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="#000"
                         android:textStyle="bold"
                         android:transitionName="letraTransition"
@@ -74,8 +73,7 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/categoria_empresa"
-                        android:text="Salon de eventos"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="#6B6868"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -90,14 +88,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:text="Descripción"
-                    android:layout_marginTop="20px"
-                    android:textSize="20dp"
+                    android:text="@string/descripcion"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
                     android:textAllCaps="false"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:gravity="left|center_vertical"
-                    android:drawableRight="@drawable/keyboard_arrow_down"/>
+                    android:gravity="start|center_vertical"
+                    android:drawableEnd="@drawable/keyboard_arrow_down"/>
                 <TextView
                     android:id="@+id/descripcion_empresa"
                     android:layout_width="match_parent"
@@ -111,14 +109,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:text="Contacto"
-                android:layout_marginTop="20px"
-                android:textSize="20dp"
+                android:text="@string/contacto"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:gravity="left|center_vertical"
-                android:drawableRight="@drawable/keyboard_arrow_up"/>
+                android:gravity="start|center_vertical"
+                android:drawableEnd="@drawable/keyboard_arrow_up"/>
             <LinearLayout
                 android:id="@+id/contacto_empresa"
                 android:orientation="vertical"
@@ -135,14 +133,14 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:layout_margin="10dp"
                         android:src="@drawable/phone"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_phone_empresa"
-                        android:text="+591 78006388"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -158,6 +156,7 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:tint="#19C13A"
                         android:layout_margin="10dp"
                         android:src="@drawable/whatsapp"
@@ -165,8 +164,7 @@
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_whatsapp_empresa"
-                        android:text="+591 78006388"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -182,6 +180,7 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:tint="#2E4D72"
                         android:src="@drawable/facebook"
                         android:layout_margin="10dp"
@@ -189,8 +188,7 @@
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_facebook_empresa"
-                        android:text="https://www.facebook.com/decokidsdecoraciones/"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -206,6 +204,7 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:tint="#C8349A"
                         android:src="@drawable/instagram"
                         android:layout_margin="10dp"
@@ -213,8 +212,7 @@
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_instagram_empresa"
-                        android:text="https://www.instagram.com/decokids_by_ns/"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -230,6 +228,7 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:tint="#0474A7"
                         android:src="@drawable/mundo"
                         android:layout_margin="10dp"
@@ -237,8 +236,7 @@
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_paginaweb_empresa"
-                        android:text="+591 78006388"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -254,29 +252,29 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:layout_margin="10dp"
                         android:src="@drawable/email"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
                         android:id="@+id/tx_email_empresa"
-                        android:text="nicoli_@hotmail.com"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
             <TextView
-                android:text="Sucursales"
-                android:textSize="20dp"
+                android:text="@string/sucursales"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="Sucuarsales disponibles"
+                android:text="@string/descsucursales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <ProgressBar
@@ -293,8 +291,8 @@
                 android:clipToPadding="false"
                 android:overScrollMode="never" />
             <TextView
-                android:text="Galeria"
-                android:textSize="20dp"
+                android:text="@string/galeria"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"

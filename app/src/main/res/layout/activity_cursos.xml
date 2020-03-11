@@ -13,7 +13,7 @@
         android:layout_height="60dp">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginLeft="95dp"
+            android:layout_marginStart="95dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="25dp"
             app:cardElevation="3dp">
@@ -24,18 +24,20 @@
                 android:orientation="horizontal">
                 <EditText
                     android:id="@+id/buscar_cursos"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#000"
-                    android:textSize="18dp"
-                    android:hint="Buscar"
+                    android:textSize="18sp"
+                    android:inputType="text"
+                    android:autofillHints="@string/buscar"
+                    android:hint="@string/buscar"
                     android:background="@null"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
             app:cardElevation="3dp"
             app:cardCornerRadius="22.5dp"
             android:layout_width="45dp"
@@ -43,6 +45,7 @@
             android:clickable="true"
             android:layout_height="45dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:tint="#fff"
                 android:padding="10dp"
                 android:background="@color/colorAccent"

@@ -13,6 +13,7 @@
     android:layout_marginVertical="5dp"
     android:id="@+id/departamento_item">
     <ImageView
+        android:contentDescription="@string/img"
         android:id="@+id/item_dep_img"
         android:src="@drawable/camello"
         android:adjustViewBounds="true"
@@ -32,10 +33,9 @@
         <TextView
             android:layout_alignParentBottom="true"
             android:id="@+id/item_dep_nombre"
-            android:text="SANTA CRUZ"
             android:textColor="#fff"
             android:textAllCaps="true"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="30dp"

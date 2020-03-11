@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp">
         <ImageView
+            android:contentDescription="@string/img"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,10 +33,9 @@
         android:gravity="center"
         android:textColor="#000"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
-        android:text="in The Bog: Iris low "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -43,11 +43,9 @@
         android:gravity="center"
         android:textColor="#000"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:paddingHorizontal="10dp"
         android:paddingBottom="10dp"
-        android:text="in The Bog: Iris low "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 </LinearLayout>
