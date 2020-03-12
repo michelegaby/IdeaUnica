@@ -12,7 +12,7 @@
         <TextView
             android:text="Invitados Confirmados"
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textColor="#000"
             android:textStyle="bold"
             android:layout_width="match_parent"
@@ -21,7 +21,7 @@
 
         <TextView
             android:text="Cantidad de Adultos:"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
@@ -31,30 +31,29 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:id="@+id/quitar_adulto"
-                android:src="@drawable/quitar"
-                android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/total_adulto"
                 android:layout_width="50dp"
-                android:layout_height="35dp"
+                android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
+                android:background="@drawable/menos"
+                android:contentDescription="@string/img"
+                android:scaleType="fitCenter"
+                android:src="@drawable/quitar" />
             <TextView
                 android:id="@+id/total_adulto"
                 android:gravity="center"
                 android:text="0"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/add_adulto"
-                android:layout_toRightOf="@id/total_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
@@ -63,7 +62,7 @@
         </LinearLayout>
         <TextView
             android:text="Cantidad de niños:"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
@@ -74,10 +73,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/quitar_ninyo"
                 android:src="@drawable/quitar"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/total_ninyo"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -87,15 +86,14 @@
                 android:gravity="center"
                 android:text="0"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/add_ninyo"
-                android:layout_toRightOf="@id/total_ninyo"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
@@ -112,14 +110,14 @@
         <TextView
             android:text="Comida y benidas"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:text="* Cantidad de comida y bebidas para cada persona adulta. Teniendo como referencia que la mitad de cada item correspondras a cada niño."
-            android:textSize="13dp"
+            android:textSize="13sp"
             android:textColor="#4D4B4B"
             android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
@@ -131,18 +129,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/pastel"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/pastel_quitar_adulto"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/pastel_quitar_adulto"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/pastel_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -151,28 +147,24 @@
                 android:id="@+id/pastel_adulto"
                 android:gravity="center"
                 android:text="100"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/pastel_add_adulto"
-                android:layout_toRightOf="@id/pastel_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/pastel_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="Gramos de Pastel"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -183,18 +175,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/golosinas"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/dulces_quitar_adulto"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/dulces_quitar_adulto"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/dulces_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -203,28 +193,24 @@
                 android:id="@+id/dulces_adulto"
                 android:gravity="center"
                 android:text="1"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/dulces_add_adulto"
-                android:layout_toRightOf="@id/dulces_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/dulces_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="Aperitivos de Dulces"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -235,18 +221,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:contentDescription="@string/img"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/salado_quitar_adulto"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/patatas" />
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/salado_quitar_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/salado_adulto"
                 android:adjustViewBounds="true"
                 android:background="@drawable/menos"
                 android:scaleType="fitCenter"
@@ -255,18 +239,16 @@
                 android:id="@+id/salado_adulto"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
                 android:gravity="center"
                 android:text="5"
                 android:textColor="#000"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/salado_add_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/salado_adulto"
                 android:adjustViewBounds="true"
                 android:background="@drawable/mas"
                 android:scaleType="fitCenter"
@@ -274,12 +256,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/salado_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="Aperitivos Salados"
                 android:textColor="#000"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
             android:gravity="center_vertical"
@@ -287,18 +267,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/sandwich"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/sandwiches_quitar_adulto"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/sandwiches_quitar_adulto"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/sandwiches_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -307,28 +285,24 @@
                 android:id="@+id/sandwiches_adulto"
                 android:gravity="center"
                 android:text="1"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/sandwiches_add_adulto"
-                android:layout_toRightOf="@id/sandwiches_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/sandwiches_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de hamburguesa"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -339,18 +313,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/cola"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/gaseosa_quitar_adulto"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/gaseosa_quitar_adulto"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/gaseosa_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -359,28 +331,24 @@
                 android:id="@+id/gaseosa_adulto"
                 android:gravity="center"
                 android:text="500"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/gaseosa_add_adulto"
-                android:layout_toRightOf="@id/gaseosa_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/gaseosa_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="ml. de Gaseosa"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -391,18 +359,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/jugo"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/jugo_quitar_adulto"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/jugo_quitar_adulto"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/jugo_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -411,28 +377,24 @@
                 android:id="@+id/jugo_adulto"
                 android:gravity="center"
                 android:text="360"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/jugo_add_adulto"
-                android:layout_toRightOf="@id/jugo_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/jugo_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="ml. de jugos"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -443,18 +405,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/agua"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/agua_quitar_adulto"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/agua_quitar_adulto"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/agua_adulto"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -463,28 +423,24 @@
                 android:id="@+id/agua_adulto"
                 android:gravity="center"
                 android:text="200"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/agua_add_adulto"
-                android:layout_toRightOf="@id/agua_adulto"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/agua_add_adulto"
+                android:layout_marginStart="10dp"
                 android:text="ml. de agua"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -499,14 +455,14 @@
         <TextView
             android:text="Utensilios desechables"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:text="* Cantidad de utensilios por persona."
-            android:textSize="13dp"
+            android:textSize="13sp"
             android:textColor="#4D4B4B"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -518,18 +474,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/platos"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/platos_quitar_persona"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/platos_quitar_persona"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/platos_persona"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -538,28 +492,24 @@
                 android:id="@+id/platos_persona"
                 android:gravity="center"
                 android:text="1"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/platos_add_persona"
-                android:layout_toRightOf="@id/platos_persona"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/platos_add_persona"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de Platos"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -570,18 +520,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/vaso"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/vasos_quitar_persona"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/vasos_quitar_persona"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/vasos_persona"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -590,28 +538,24 @@
                 android:id="@+id/vasos_persona"
                 android:gravity="center"
                 android:text="3"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/vasos_add_persona"
-                android:layout_toRightOf="@id/vasos_persona"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/vasos_add_persona"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de vasos"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -622,18 +566,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/cuchara"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/cucharas_quitar_persona"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/cucharas_quitar_persona"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/cucharas_persona"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -642,28 +584,24 @@
                 android:id="@+id/cucharas_persona"
                 android:gravity="center"
                 android:text="2"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/cucharas_add_persona"
-                android:layout_toRightOf="@id/cucharas_persona"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/cucharas_add_persona"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de cucharas"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -674,18 +612,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/cubiertos"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/tenedores_quitar_persona"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/tenedores_quitar_persona"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/tenedores_persona"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -694,28 +630,24 @@
                 android:id="@+id/tenedores_persona"
                 android:gravity="center"
                 android:text="1"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/tenedores_add_persona"
-                android:layout_toRightOf="@id/tenedores_persona"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/tenedores_add_persona"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de tenedores"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -726,18 +658,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/servilleta"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/servilletas_quitar_persona"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/servilletas_quitar_persona"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/servilletas_persona"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -746,28 +676,24 @@
                 android:id="@+id/servilletas_persona"
                 android:gravity="center"
                 android:text="2"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/servilletas_add_persona"
-                android:layout_toRightOf="@id/servilletas_persona"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/servilletas_add_persona"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de Servilletas"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -778,18 +704,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/img"
                 android:src="@drawable/copa"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@id/copa_quitar_persona"/>
+                android:layout_marginEnd="15dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/copa_quitar_persona"
                 android:src="@drawable/quitar"
-                android:layout_centerVertical="true"
                 android:background="@drawable/menos"
-                android:layout_toLeftOf="@id/copa_persona"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
@@ -798,28 +722,24 @@
                 android:id="@+id/copa_persona"
                 android:gravity="center"
                 android:text="1"
-                android:layout_centerInParent="true"
                 android:background="@drawable/medio"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
             <ImageButton
+                android:contentDescription="@string/img"
                 android:id="@+id/copa_add_persona"
-                android:layout_toRightOf="@id/copa_persona"
                 android:src="@drawable/add"
-                android:layout_centerVertical="true"
                 android:background="@drawable/mas"
                 android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"/>
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/copa_add_persona"
+                android:layout_marginStart="10dp"
                 android:text="Unidad de copas"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -828,7 +748,7 @@
             android:id="@+id/calcular_comida"
             android:layout_marginVertical="20dp"
             android:text="Calcular"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:background="@color/colorAccent"
             android:textColor="#fff"
             android:layout_width="match_parent"

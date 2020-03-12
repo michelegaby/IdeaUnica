@@ -8,6 +8,8 @@
     android:background="@color/colorblanco"
     tools:context=".SplashScreen">
     <ImageView
+        android:contentDescription="@string/img"
+        android:tint="@color/colorAccent"
         android:id="@+id/logo_splash"
         android:src="@drawable/logo3"
         android:layout_centerHorizontal="true"
@@ -15,20 +17,20 @@
         android:layout_height="80dp"/>
     <TextView
         android:id="@+id/from_splash"
-        android:text="from"
+        android:text="@string/from"
         android:layout_centerInParent="true"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="#8A8989"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/nombre_splash"
-        android:text="SICE SRL"
+        android:text="@string/sice"
         android:layout_centerInParent="true"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
         android:textColor="@color/colorAccent"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/from_splash"/>

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:contentDescription="@string/img"
             android:id="@+id/img_fondo_nuevo_evento"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -41,15 +42,16 @@
                     android:layout_height="wrap_content">
 
                     <EditText
+                        android:autofillHints="@string/titulo"
                         android:id="@+id/titulo_nuevo_evento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="@null"
                         android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
-                        android:hint="Titulo..."
+                        android:hint="@string/titulo"
                         android:inputType="textCapSentences"
-                        android:textSize="25dp" />
+                        android:textSize="20sp" />
 
                     <View
                         android:layout_marginTop="20dp"
@@ -58,19 +60,22 @@
                         android:layout_height="1px"
                         android:background="#4D4B4B"/>
                     <TextView
-                        android:textSize="18dp"
+                        android:textSize="18sp"
+                        android:textColor="#000000"
                         android:layout_marginVertical="10dp"
-                        android:text="Seleccione una fecha:"
+                        android:text="@string/seleccionarfechapuntos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:autofillHints="@string/fechapuntos"
                         android:id="@+id/fecha_nuevo_evento"
                         android:layout_width="match_parent"
                         android:focusable="false"
                         android:inputType="date"
+                        android:textSize="20sp"
+                        android:hint="@string/fechapuntos"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="Hoy" />
+                        android:background="@null" />
                     <View
                         android:layout_marginTop="20dp"
                         android:layout_marginVertical="10dp"
@@ -90,12 +95,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:textSize="18dp"
+                        android:textSize="18sp"
+                        android:textColor="#000000"
                         android:layout_marginVertical="10dp"
-                        android:text="Seleccione la hora del evento"
+                        android:text="@string/seleccionarhoraeventopuntos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:autofillHints="@string/hora"
                         android:id="@+id/hora_nuevo_evento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -104,7 +111,7 @@
                         android:clickable="true"
                         android:maxLines="1"
                         android:background="@null"
-                        android:hint="Hora" />
+                        android:hint="@string/hora" />
                     <View
                         android:layout_marginTop="20dp"
                         android:layout_marginVertical="10dp"
@@ -114,9 +121,9 @@
                     <Button
                         android:layout_marginVertical="30dp"
                         android:id="@+id/guardar_nuevo_evento"
-                        android:text="Crear nuevo Evento"
+                        android:text="@string/crearevento"
                         android:textAllCaps="false"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:background="@color/colorAccent"
                         android:textColor="#fff"
                         android:layout_width="match_parent"
@@ -134,6 +141,7 @@
             app:cardCornerRadius="55dp"
             app:cardElevation="10dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:id="@+id/photo_nuevo_evento"
                 android:src="@drawable/perfil"
                 android:layout_width="match_parent"
@@ -143,24 +151,27 @@
                 android:scaleType="centerCrop"
                 android:layout_height="match_parent"/>
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/foto_mas_nuevo_evento"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_toRightOf="@id/foto_nuevo_evento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/img_fondo_nuevo_evento"
+            android:layout_marginStart="-33dp"
             android:layout_marginTop="-30dp"
-            android:layout_marginLeft="-35dp"
-            app:cardCornerRadius="55dp"
+            android:layout_toEndOf="@id/foto_nuevo_evento"
             app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="55dp"
             app:cardElevation="10dp">
+
             <ImageView
-                android:tint="#fff"
-                android:src="@drawable/add"
+                android:contentDescription="@string/img"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:layout_height="match_parent"/>
+                android:src="@drawable/add"
+                android:tint="#fff" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </ScrollView>

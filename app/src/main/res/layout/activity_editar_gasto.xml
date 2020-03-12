@@ -14,9 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Título:"
+            android:text="@string/titulopuntos"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -24,27 +26,48 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="18sp"
+            android:singleLine="true"
             android:background="@null"
-            android:hint="Título..." />
+            android:inputType="text"
+            android:autofillHints="@string/ejemplotitulogasto"
+            android:hint="@string/ejemplotitulogasto" />
+        <View
+            android:layout_marginVertical="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"/>
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Proveedor:"
+            android:text="@string/proveedorpuntos"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/proveedor_editar_gasto"
             android:layout_marginTop="10dp"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:background="@null"
-            android:hint="Proveedor..." />
+            android:textSize="18sp"
+            android:autofillHints="@string/ejemploproveedor"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/ejemploproveedor" />
+        <View
+            android:layout_marginVertical="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"/>
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Valor(Total):"
+            android:text="@string/valorgasto"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -52,14 +75,23 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="00.0"
+            android:textSize="18sp"
+            android:autofillHints="@string/ejemplovalorgasto"
+            android:hint="@string/ejemploproveedor"
+            android:singleLine="true"
             android:inputType="numberDecimal"
             android:background="@null" />
+        <View
+            android:layout_marginVertical="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"/>
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#000"
             android:layout_marginVertical="10dp"
-            android:text="Forma de pago:"
+            android:text="@string/formadepagopuntos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -67,14 +99,16 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="Al Contado"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:autofillHints="@string/formadepagopuntos"
             android:background="@null" />
-
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Cuotas:"
+            android:text="@string/cuotaspuntos"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -82,13 +116,21 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="1"
+            android:textSize="18sp"
+            android:hint="@string/ejemplocuaota"
+            android:singleLine="true"
             android:background="@null" />
+        <View
+            android:layout_marginVertical="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"/>
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
-            android:text="Fecha:"
+            android:text="@string/fechapuntos"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -96,17 +138,26 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="Fecha"
+            android:textSize="18sp"
+            android:autofillHints="@string/ejemplofecha"
+            android:hint="@string/ejemplofecha"
             android:focusable="false"
             android:clickable="true"
             android:maxLines="1"
+            android:singleLine="true"
             android:inputType="date"
             android:background="@null" />
+        <View
+            android:layout_marginVertical="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"/>
         <TextView
-            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Comentario:"
+            android:text="@string/comentariopuntos"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -114,18 +165,25 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="Comentario..."
+            android:textSize="18sp"
+            android:inputType="text"
+            android:autofillHints="@string/ejemplocomentariogasto"
+            android:hint="@string/ejemplocomentariogasto"
             android:maxLines="1"
             android:background="@null" />
+        <View
+            android:layout_marginVertical="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"/>
         <CheckBox
             android:id="@+id/confirmar_editar_gasto"
-            android:text="¿Pagó?"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/pagopregunta"
             android:layout_marginBottom="40dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
+            android:textSize="25sp" />
     </LinearLayout>
 </ScrollView>

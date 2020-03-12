@@ -37,19 +37,19 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/item_titulo_cumpleanyos"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/item_fecha_cumpleanyos"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/item_hora_cumpleanyos"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

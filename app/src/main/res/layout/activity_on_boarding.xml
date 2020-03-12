@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OnBoarding">
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/sliderViewPagerBoarding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/dotsLayout">
-
     </androidx.viewpager.widget.ViewPager>
     <LinearLayout
         android:id="@+id/dotsLayout"
@@ -28,8 +26,8 @@
         android:layout_alignParentBottom="true"
         android:background="@color/zxing_transparent"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="BACK"
-        android:visibility="invisible" />
+        android:text="@string/anterior"
+        android:visibility="invisible"/>
     <Button
         android:id="@+id/nextBtn"
         android:layout_width="wrap_content"
@@ -38,5 +36,5 @@
         android:background="@color/zxing_transparent"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_alignParentBottom="true"
-        android:text="NEXT" />
+        android:text="@string/siguiente" />
 </RelativeLayout>

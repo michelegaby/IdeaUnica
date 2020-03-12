@@ -13,20 +13,22 @@
         android:layout_height="wrap_content">
         <TextView
             android:textColor="#000"
-            android:textSize="18dp"
-            android:text="Ingrese el nombre"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/ingresarnombrepuntos"
             android:layout_marginVertical="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:autofillHints="@string/nombre"
             android:inputType="textCapSentences"
             android:id="@+id/nombre_nuevo_invitado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
-            android:hint="Nombre..." />
+            android:hint="@string/nombre" />
         <View
             android:layout_marginTop="20dp"
             android:layout_marginVertical="10dp"
@@ -34,9 +36,10 @@
             android:layout_height="1px"
             android:background="#4D4B4B"/>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="#000"
-            android:text="Acompañantes"
+            android:textStyle="bold"
+            android:text="@string/acompañantepuntos"
             android:layout_marginVertical="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -48,21 +51,23 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Aduto/s:"
+                android:text="@string/adultospuntos"
                 android:textColor="#000"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_marginVertical="10dp"/>
             <EditText
+                android:autofillHints="@string/cero"
                 android:id="@+id/adulto_nuevo_invitado"
                 android:layout_marginVertical="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLines="1"
-                android:layout_marginRight="30dp"
-                android:hint="0" />
+                android:layout_marginEnd="30dp"
+                android:hint="@string/cero" />
         </LinearLayout>
         <LinearLayout
             android:layout_gravity="center_vertical"
@@ -71,32 +76,36 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Niño/s:"
+                android:text="@string/ninospuntos"
                 android:textColor="#000"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_marginVertical="10dp"/>
             <EditText
+                android:autofillHints="@string/cero"
                 android:id="@+id/ninyo_nuevo_invitado"
                 android:layout_marginVertical="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLines="1"
-                android:layout_marginRight="30dp"
-                android:hint="0" />
+                android:layout_marginEnd="30dp"
+                android:hint="@string/cero" />
         </LinearLayout>
 
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="#000"
-            android:text="Ingrese un numero de contacto"
+            android:textStyle="bold"
+            android:text="@string/ingresarcontactopuntos"
             android:layout_marginVertical="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:autofillHints="@string/ejemplocelular"
             android:id="@+id/celular_nuevo_invitado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +114,7 @@
             android:digits="1234567890"
             android:singleLine="true"
             android:background="@null"
-            android:hint="Celular..." />
+            android:hint="@string/celular" />
         <View
             android:layout_marginTop="20dp"
             android:layout_marginVertical="10dp"
@@ -114,9 +123,10 @@
             android:background="#4D4B4B"/>
 
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="#000"
-            android:text="Tipo"
+            android:text="@string/tipopuntos"
+            android:textStyle="bold"
             android:layout_marginVertical="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -132,8 +142,8 @@
         </Spinner>
         <CheckBox
             android:id="@+id/confirmar_nuevo_invitado"
-            android:text="¿Invitado Confirmado?"
-            android:textSize="18dp"
+            android:text="@string/invitadosconfirmadopregunta"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -141,8 +151,8 @@
             android:id="@+id/guardar_nuevo_invitado"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Guardar"
-            android:textSize="20dp"
+            android:text="@string/guardar"
+            android:textSize="20sp"
             android:padding="10dp"
             android:textAllCaps="false"
             android:background="@color/colorAccent"

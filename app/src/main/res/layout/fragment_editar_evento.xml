@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:contentDescription="@string/img"
             android:id="@+id/img_fondo_editar_evento"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -37,15 +38,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
+                        android:autofillHints="@string/titulo"
                         android:inputType="textCapSentences"
                         android:layout_marginTop="10dp"
                         android:id="@+id/titulo_editar_evento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:background="@null"
                         android:digits="abcdefghijklmñnopqrstuvwxyz ABCDEFGHIJKLMÑNOPQRSTUVWXYZ "
-                        android:hint="Titulo..." />
+                        android:hint="@string/titulo" />
                     <View
                         android:layout_marginTop="20dp"
                         android:layout_marginVertical="10dp"
@@ -53,19 +55,22 @@
                         android:layout_height="1px"
                         android:background="#4D4B4B"/>
                     <TextView
-                        android:textSize="18dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
                         android:layout_marginVertical="10dp"
-                        android:text="Seleccione una fecha:"
+                        android:text="@string/seleccionarfechapuntos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:autofillHints="@string/ejemplofecha"
                         android:id="@+id/fecha_editar_evento"
                         android:layout_width="match_parent"
                         android:focusable="false"
                         android:inputType="date"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="Hoy" />
+                        android:hint="@string/ejemplofecha" />
                     <View
                         android:layout_marginTop="20dp"
                         android:layout_marginVertical="10dp"
@@ -85,12 +90,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:layout_marginVertical="10dp"
-                        android:text="Seleccione la hora del evento"
+                        android:text="@string/seleccionarhoraeventopuntos"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <EditText
+                        android:autofillHints="@string/hora"
                         android:id="@+id/hora_editar_evento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -99,7 +107,7 @@
                         android:clickable="true"
                         android:maxLines="1"
                         android:background="@null"
-                        android:hint="Hora" />
+                        android:hint="@string/hora" />
                     <View
                         android:layout_marginTop="20dp"
                         android:layout_marginVertical="10dp"
@@ -109,9 +117,9 @@
                     <Button
                         android:layout_marginVertical="30dp"
                         android:id="@+id/guardar_editar_evento"
-                        android:text="Guadar"
+                        android:text="@string/guardar"
                         android:textAllCaps="false"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:background="@color/colorAccent"
                         android:textColor="#fff"
                         android:layout_width="match_parent"
@@ -129,6 +137,7 @@
             app:cardCornerRadius="55dp"
             app:cardElevation="10dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:id="@+id/photo_editar_evento"
                 android:src="@drawable/perfil"
                 android:layout_width="match_parent"
@@ -141,14 +150,15 @@
             android:id="@+id/foto_mas_editar_evento"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_toRightOf="@id/foto_editar_evento"
+            android:layout_toEndOf="@id/foto_editar_evento"
             android:layout_below="@+id/img_fondo_editar_evento"
             android:layout_marginTop="-30dp"
-            android:layout_marginLeft="-35dp"
+            android:layout_marginStart="-35dp"
             app:cardCornerRadius="55dp"
             app:cardBackgroundColor="@color/colorAccent"
             app:cardElevation="10dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:tint="#fff"
                 android:src="@drawable/add"
                 android:layout_width="match_parent"

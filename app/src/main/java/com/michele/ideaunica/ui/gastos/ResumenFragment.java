@@ -47,7 +47,6 @@ public class ResumenFragment extends Fragment {
     public ResumenFragment() {
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -202,5 +201,10 @@ public class ResumenFragment extends Fragment {
         Final=view.findViewById(R.id.final_resumen);
         Gastos=view.findViewById(R.id.gastos_resumen);
         RESUMEN=view.findViewById(R.id.cardview_resumen);
+    }
+    @Override
+    public void onStart() {
+        GenerarDatos();
+        super.onStart();
     }
 }

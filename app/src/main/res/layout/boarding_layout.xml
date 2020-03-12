@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
+        android:contentDescription="@string/img"
         android:paddingHorizontal="20dp"
         android:id="@+id/boarding_image"
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5 Opciones" />
+        android:text="@string/titulo" />
     <TextView
         android:id="@+id/boarding_desc"
         android:layout_below="@id/boarding_heading"

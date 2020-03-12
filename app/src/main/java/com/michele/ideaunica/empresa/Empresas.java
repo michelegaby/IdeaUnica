@@ -32,8 +32,6 @@ import com.michele.ideaunica.R;
 import com.michele.ideaunica.empresa.Publicidad.AdapterPublicidad;
 import com.michele.ideaunica.empresa.Publicidad.PublicidadClass;
 import com.smarteist.autoimageslider.DefaultSliderView;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
@@ -52,7 +50,6 @@ public class Empresas extends AppCompatActivity {
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
     private EditText buscar;
-    private SliderLayout sliderLayout;
 
     private ViewPager mSliderViewPaper;
     private LinearLayout mDotsLayout;
@@ -80,18 +77,6 @@ public class Empresas extends AppCompatActivity {
         getSupportActionBar().setTitle(parametros.getString("titulo"));
         GenerarDatos(parametros.getString("categoria"));
         BuscarEmpresas();
-
-        sliderLayout.setIndicatorAnimation(IndicatorAnimations.FILL);
-        sliderLayout.setScrollTimeInSec(3);
-
-        mList = new ArrayList<>();
-        mList.add(new PublicidadClass("5 Opciones","Dispone de 5 opciones, la de inicio donde eligira el el departamento y categoria para ver los diferentes lugares donde podra disponer que desea.","img/publicidad/publicidad2.jpeg"));
-        mList.add(new PublicidadClass("Inicio","Donde podras encontrar diferentes tipo de empresas, con dependencia de los departamentos","img/publicidad/publicidad3.jpeg"));
-        mList.add(new PublicidadClass("Cursos","Cursos que se va presentar","img/publicidad/publicidad1.jpeg"));
-        sliderAdapter=new AdapterPublicidad(this,mList);
-        mSliderViewPaper.setAdapter(sliderAdapter);
-        addDotsIndicator(0);
-        mSliderViewPaper.addOnPageChangeListener(viewLitener);
     }
 
     @Override
@@ -104,7 +89,6 @@ public class Empresas extends AppCompatActivity {
         myrecyclerview=findViewById(R.id.Empresas_recyclerview);
         progress=findViewById(R.id.progress_empresas);
         buscar=findViewById(R.id.buscar_empresas);
-        sliderLayout=findViewById(R.id.slider_publicidad_empresas);
         mSliderViewPaper= findViewById(R.id.sliderViewPagerPublicidadEmpresas);
         mDotsLayout=findViewById(R.id.dotsLayoutPublicidadEmpresa);
     }
@@ -184,19 +168,17 @@ public class Empresas extends AppCompatActivity {
                             myrecyclerview.setAdapter(adaptadorEmpresa);
 
                             JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
+                            mList = new ArrayList<>();
                             for (int i = 0; i < jsonArray2.length(); i++) {
                                 DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
                                 JSONObject object = jsonArray2.getJSONObject(i);
-                                sliderView.setImageUrl("https://sice.com.bo/ideaunica/"+object.getString("url"));
-                                sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-                                sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
-                                    @Override
-                                    public void onSliderClick(SliderView sliderView) {
-                                        Toast.makeText(getApplicationContext(),"ss",Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                                sliderLayout.addSliderView(sliderView);
+                                mList.add(new PublicidadClass("5 Opciones","Dispone de 5 opciones, la de inicio donde eligira el el departamento y categoria para ver los diferentes lugares donde podra disponer que desea.",object.getString("url")));
                             }
+                            sliderAdapter=new AdapterPublicidad(Empresas.this,mList);
+                            mSliderViewPaper.setAdapter(sliderAdapter);
+                            addDotsIndicator(0);
+                            mSliderViewPaper.addOnPageChangeListener(viewLitener);
+                            
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Empresas.this,

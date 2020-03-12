@@ -21,6 +21,7 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
             <ImageView
+                android:contentDescription="@string/img"
                 android:id="@+id/imgToolBar_revista"
                 android:src="@drawable/fondorosa"
                 android:scaleType="centerCrop"
@@ -54,18 +55,16 @@
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/titulo_detallerevista"
-                android:text="Salon de evento"
                 android:layout_width="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/fecha_detallerevista"
                 android:layout_gravity="center_horizontal"
-                android:text="2 de febrero, 2020"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#5A5A5A"
                 android:layout_width="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -75,7 +74,7 @@
                 android:id="@+id/detalle_arriba_detallerevista"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/lorem_text"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -94,9 +93,9 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_gravity="center_horizontal"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#000"
-                    android:text="Por:"
+                    android:text="@string/por"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="8sp"
@@ -104,11 +103,10 @@
                 <TextView
                     android:id="@+id/autor_detallerevista"
                     android:textStyle="bold"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#000"
-                    android:text="Maria Jofse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="8sp"
@@ -124,7 +122,7 @@
                 android:id="@+id/detalle_abajo_detallerevista"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/lorem_text"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -136,8 +134,8 @@
 
             <TextView
                 android:layout_gravity="center_horizontal"
-                android:text="Redes Sociales"
-                android:textSize="15dp"
+                android:text="@string/redessociales"
+                android:textSize="15sp"
                 android:textColor="#5A5A5A"
                 android:layout_width="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -165,6 +163,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="5dp">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:padding="15dp"
                         android:src="@drawable/facebook"
                         android:layout_width="match_parent"
@@ -187,6 +186,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="5dp">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:padding="15dp"
                         android:src="@drawable/whatsapp"
                         android:layout_width="match_parent"
@@ -207,6 +207,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="5dp">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:padding="15dp"
                         android:src="@drawable/instagram"
                         android:layout_width="match_parent"
@@ -229,6 +230,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="5dp">
                     <ImageView
+                        android:contentDescription="@string/img"
                         android:padding="15dp"
                         android:src="@drawable/email"
                         android:layout_width="match_parent"

@@ -12,21 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Título:"
+            android:text="@string/titulopuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
-
+            android:autofillHints="@string/titulo"
             android:inputType="textCapSentences"
             android:id="@+id/titulo_nuevo_gasto"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="18sp"
             android:background="@null"
-            android:hint="Título..." />
+            android:hint="@string/titulo" />
         <View
             android:layout_marginTop="20dp"
             android:layout_marginVertical="10dp"
@@ -34,21 +36,23 @@
             android:layout_height="1px"
             android:background="#4D4B4B"/>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Proveedor:"
+            android:text="@string/proveedorpuntos"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
-
+            android:autofillHints="@string/ejemploproveedor"
             android:inputType="textCapSentences"
             android:id="@+id/proveedor_nuevo_gasto"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="18sp"
             android:background="@null"
-            android:hint="Proveedor..." />
+            android:hint="@string/ejemploproveedor" />
         <View
             android:layout_marginTop="20dp"
             android:layout_marginVertical="10dp"
@@ -56,18 +60,21 @@
             android:layout_height="1px"
             android:background="#4D4B4B"/>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Valor(Total):"
+            android:text="@string/valorgasto"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
+            android:autofillHints="@string/cero"
             android:id="@+id/dinero_nuevo_gasto"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="00.0"
+            android:textSize="20sp"
+            android:hint="@string/cero"
             android:inputType="numberDecimal"
             android:background="@null" />
         <View
@@ -77,9 +84,11 @@
             android:layout_height="1px"
             android:background="#4D4B4B"/>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:layout_marginVertical="10dp"
-            android:text="Forma de pago:"
+            android:text="@string/formadepagopuntos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Spinner
@@ -98,18 +107,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:layout_marginVertical="10dp"
-                android:text="Cuotas:"
+                android:text="@string/cuotaspuntos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:autofillHints="@string/uno"
                 android:id="@+id/cuotas_nuevo_gasto"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:hint="1"
+                android:textSize="20sp"
+                android:hint="@string/uno"
                 android:inputType="number"
                 android:background="@null" />
             <View
@@ -119,24 +131,29 @@
                 android:layout_height="1px"
                 android:background="#4D4B4B"/>
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"
-                android:text="Fecha de pago de la primera cuota:"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:text="@string/fechaprimeracuotapuntos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:layout_marginBottom="10dp"
-                android:text="Las demas cuotas seran programadas a diferencia de un mes de esta fecha, realizando una división dentre las cuotas y el pago total."
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:text="@string/descripcionfechacuota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:autofillHints="@string/ejemplofecha"
                 android:id="@+id/fecha_nuevo_gasto"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:hint="Fecha"
+                android:textSize="20sp"
+                android:hint="@string/ejemplofecha"
                 android:focusable="false"
                 android:clickable="true"
                 android:maxLines="1"
@@ -150,20 +167,22 @@
                 android:background="#4D4B4B"/>
         </LinearLayout>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Comentario:"
+            android:text="@string/comentariopuntos"
+            android:textStyle="bold"
+            android:textColor="#000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
-
+            android:autofillHints="@string/ejemplocomentariogasto"
             android:inputType="textCapSentences"
             android:id="@+id/comentario_nuevo_gasto"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="comentario..."
+            android:textSize="20sp"
+            android:hint="@string/ejemplocomentariogasto"
             android:background="@null" />
         <View
             android:layout_marginTop="20dp"

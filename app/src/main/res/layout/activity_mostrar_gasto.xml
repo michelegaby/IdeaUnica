@@ -14,9 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Título:"
+            android:text="@string/titulopuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -24,12 +26,14 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:background="@null"/>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Proveedor:"
+            android:text="@string/proveedorpuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -37,12 +41,14 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:background="@null"/>
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Valor(Total):"
+            android:text="@string/valorgasto"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -50,13 +56,14 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:inputType="numberDecimal"
+            android:textSize="20sp"
             android:background="@null" />
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Forma de pago:"
+            android:text="@string/formadepagopuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -64,13 +71,15 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:background="@null" />
 
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Cuotas:"
+            android:text="@string/cuotaspuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -78,13 +87,14 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="1"
+            android:textSize="20sp"
             android:background="@null" />
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
-            android:text="Fecha:"
+            android:text="@string/fechapuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -92,17 +102,18 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="Fecha"
+            android:textSize="20sp"
+            android:hint="@string/ejemplofecha"
             android:focusable="false"
             android:clickable="true"
             android:maxLines="1"
-            android:inputType="date"
             android:background="@null" />
         <TextView
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginVertical="10dp"
-            android:text="Comentario:"
+            android:text="@string/comentariopuntos"
+            android:textColor="#000"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -110,16 +121,17 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:hint="comentario..."
+            android:textSize="20sp"
+            android:hint="@string/ejemplocomentariogasto"
             android:background="@null" />
         <CheckBox
             android:id="@+id/confirmar_mostrar_invitado"
-            android:text="¿Pagó?"
-            android:textSize="18dp"
+            android:text="@string/pagopregunta"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="40dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>

@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.notas.EditarNota">
-    <ScrollView
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/encabezado_editar_nota"
+            android:padding="15dp"
+            android:gravity="bottom"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/encabezado_editar_nota"
-                android:padding="15dp"
-                android:gravity="bottom"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="#4C79FB">
-                <EditText
-                    android:id="@+id/titulo_editar_nota"
-                    android:hint="Título"
-                    android:textColorHint="#8BFFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:background="@null"
-                    android:textColor="#fff"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
+            android:layout_height="100dp"
+            android:background="#4C79FB">
             <EditText
-                android:id="@+id/contenido_editar_nota"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="20dp"
-                android:hint="Notas"
-                android:textColor="#000"
-                android:textSize="18dp"
-                android:singleLine="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
+                android:id="@+id/titulo_editar_nota"
+                android:hint="@string/titulo"
+                android:textColorHint="#8BFFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 android:background="@null"
-                android:inputType="textMultiLine"
+                android:inputType="text"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
         </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+        <EditText
+            android:id="@+id/contenido_editar_nota"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp"
+            android:hint="@string/descripcion"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:singleLine="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@null"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
