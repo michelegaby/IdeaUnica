@@ -139,13 +139,13 @@ public class CalculadoraFragment extends Fragment{
 
         SMS = "Cantidad total:<br/> <br/> ";
 
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Pastel.getText().toString()))+(personanino*(Integer.valueOf(Pastel.getText().toString())/2)))+" gr. de Pastel, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Dulce.getText().toString()))+(personanino*(Integer.valueOf(Dulce.getText().toString())/2)))+" cantidad de Aperitivos dulces, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Salado.getText().toString()))+(personanino*(Integer.valueOf(Salado.getText().toString())/2)))+" cantidad de Aperitivos salados, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Sand.getText().toString()))+(personanino*(Integer.valueOf(Sand.getText().toString()))))+" cantindad de hamburguesa, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Gas.getText().toString()))+(personanino*(Integer.valueOf(Gas.getText().toString())/2)))+" ml. de Gaseosa <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Jugo.getText().toString()))+(personanino*(Integer.valueOf(Jugo.getText().toString())/2)))+" ml. de jugo, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto*Integer.valueOf(Agua.getText().toString()))+(personanino*(Integer.valueOf(Agua.getText().toString())/2)))+" ml. de agua, <br/> <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Pastel.getText().toString()))+(personanino*(Double.valueOf(Pastel.getText().toString())/2)))+" gr. de Pastel, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Dulce.getText().toString()))+(personanino*(Double.valueOf(Dulce.getText().toString())/2)))+" cantidad de Aperitivos dulces, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Salado.getText().toString()))+(personanino*(Double.valueOf(Salado.getText().toString())/2)))+" cantidad de Aperitivos salados, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Sand.getText().toString()))+(personanino*(Double.valueOf(Sand.getText().toString()))))+" cantindad de hamburguesa, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Gas.getText().toString()))+(personanino*(Double.valueOf(Gas.getText().toString())/2)))+" ml. de Gaseosa <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Jugo.getText().toString()))+(personanino*(Double.valueOf(Jugo.getText().toString())/2)))+" ml. de jugo, <br/> ";
+        SMS = SMS +String.valueOf((personaadulto*Double.valueOf(Agua.getText().toString()))+(personanino*(Double.valueOf(Agua.getText().toString())/2)))+" ml. de agua, <br/> <br/> ";
 
 
 

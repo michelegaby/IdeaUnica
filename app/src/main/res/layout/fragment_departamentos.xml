@@ -30,9 +30,9 @@
                     <ImageView
                         android:tint="@color/colorAccent"
                         android:contentDescription="@string/imgempresa"
-                        android:src="@drawable/logo3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
+                        android:src="@drawable/logoevelin"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_marginTop="10dp"
