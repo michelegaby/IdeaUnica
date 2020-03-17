@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,15 +43,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Empresas extends AppCompatActivity {
-
 
     //Componentes
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
     private EditText buscar;
-
     private ViewPager mSliderViewPaper;
     private LinearLayout mDotsLayout;
     private TextView[] mDots;
@@ -84,7 +85,6 @@ public class Empresas extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
     private void InicializarComponentes() {
         myrecyclerview=findViewById(R.id.Empresas_recyclerview);
         progress=findViewById(R.id.progress_empresas);
@@ -207,9 +207,7 @@ public class Empresas extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-    public void addDotsIndicator(int position)
-    {
+    public void addDotsIndicator(int position) {
         mDots = new TextView[mList.size()];
         mDotsLayout.removeAllViews();
         for (int i=0;i<mDots.length;i++){
