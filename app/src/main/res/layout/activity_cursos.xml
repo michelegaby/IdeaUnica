@@ -70,4 +70,13 @@
         android:layout_height="match_parent"
         android:clipToPadding="true"
         android:id="@+id/Cursos_recyclerview"/>
+    <ImageView
+        android:contentDescription="@string/imgpublicidad"
+        android:id="@+id/img_publicidad_eventos"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bannerexpofiesta1"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

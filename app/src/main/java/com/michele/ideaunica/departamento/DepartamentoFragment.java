@@ -91,6 +91,7 @@ public class DepartamentoFragment extends Fragment {
         progress=view.findViewById(R.id.progress_departamento);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_departamento);
     }
+
     public void GenerarDatos(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
@@ -98,7 +99,7 @@ public class DepartamentoFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("departamento");
+                            JSONArray jsonArray = jsonObject.getJSONArray("departamentos");
                             for (int i=0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
@@ -126,7 +127,7 @@ public class DepartamentoFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(),
-                                    "Error 1", Toast.LENGTH_LONG)
+                                    "Error", Toast.LENGTH_LONG)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -136,7 +137,7 @@ public class DepartamentoFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(),
-                                "Error  2"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión"+error.getMessage(), Toast.LENGTH_LONG)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }

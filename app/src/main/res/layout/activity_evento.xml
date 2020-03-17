@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:title=""
-            app:contentScrim="?attr/colorAccent"
+            app:contentScrim="#FAD5E2"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
             <ImageView
