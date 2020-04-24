@@ -6,5 +6,6 @@
     <color name="colorblanco">#ffffff</color>
     <color name="colorlinea">#AFAFAF</color>
     <color name="colorTransparente">#00AFAFAF</color>
+    <color name="bannerColorRosa">#FAD5E2</color>
 
 </resources>

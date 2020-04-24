@@ -29,13 +29,11 @@ import java.util.Date;
 public class HomeFragment extends Fragment {
 
     View view;
-
     private static int ID;
 
-
+    //Componentes
     private TextView tareas;
     private TextView tareas_hechas;
-
     private TextView dias;
     private TextView hora;
     private TextView min;
@@ -109,11 +107,11 @@ public class HomeFragment extends Fragment {
         img_banner = view.findViewById(R.id.img_fondo_evento);
         img_perfil = view.findViewById(R.id.img_perfil_evento);
         fecha = view.findViewById(R.id.fecha_home_evento);
-        sinconfirmar=view.findViewById(R.id.invitados_sin_confirmar_evento);
-        confirmar=view.findViewById(R.id.invitados_confirmados_evento);
-        msn=view.findViewById(R.id.msn_home_evento);
-        tareas=view.findViewById(R.id.tareas_total_evento);
-        tareas_hechas=view.findViewById(R.id.tareas_hechas_evento);
+        sinconfirmar = view.findViewById(R.id.invitados_sin_confirmar_evento);
+        confirmar = view.findViewById(R.id.invitados_confirmados_evento);
+        msn = view.findViewById(R.id.msn_home_evento);
+        tareas = view.findViewById(R.id.tareas_total_evento);
+        tareas_hechas = view.findViewById(R.id.tareas_hechas_evento);
     }
 
     private void GenerarInicializacionInvitados() {
@@ -122,13 +120,13 @@ public class HomeFragment extends Fragment {
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                int si=0;
-                int no=0;
-                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento=" + ID, null);
+                int si = 0;
+                int no = 0;
+                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento = " + ID, null);
                 while (objCursor.moveToNext()) {
                     if(objCursor.getString(7).equals("CONFIRMADO"))
                     {
-                        si= si+objCursor.getInt(3)+1+objCursor.getInt(4);
+                        si = si + objCursor.getInt(3) + 1 + objCursor.getInt(4);
                     }else {
                         no = no + objCursor.getInt(3) + 1 + objCursor.getInt(4);
                     }
@@ -138,7 +136,7 @@ public class HomeFragment extends Fragment {
             }
             bd.close();
         } catch (Exception E) {
-            Toast.makeText(getContext(), "Error:"+E.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error:" + E.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -147,12 +145,12 @@ public class HomeFragment extends Fragment {
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from tarea where estado=2 and idevento="+ID, null);
-                tareas_hechas.setText(objCursor.getCount()+"");
+                Cursor objCursor = bd.rawQuery("Select * from tarea where estado = 2 and idevento = " + ID, null);
+                tareas_hechas.setText(objCursor.getCount() + "");
             }
             bd.close();
         } catch (Exception E) {
-            Toast.makeText(getContext(), "Error:"+E.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error:" + E.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -161,7 +159,7 @@ public class HomeFragment extends Fragment {
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from evento where id=" + ID, null);
+                Cursor objCursor = bd.rawQuery("Select * from evento where id = " + ID, null);
                 while (objCursor.moveToNext()) {
                     if(objCursor.getString(7).equals("HABILITADO"))
                     {

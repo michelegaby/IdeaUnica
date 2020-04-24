@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:src="@drawable/camello"
+        android:src="@drawable/fondorosa"
         android:id="@+id/item_photo_galeria_curso">
     </ImageView>
 </androidx.cardview.widget.CardView>

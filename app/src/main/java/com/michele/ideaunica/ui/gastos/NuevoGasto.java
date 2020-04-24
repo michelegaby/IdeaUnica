@@ -32,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+
     //Componentes
     private TextView titulo;
     private TextView proveedor;
@@ -42,6 +43,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
     private TextView comentario;
     private LinearLayout linearLayout;
 
+    //Complemento
     public static int ID;
 
     @Override
@@ -55,11 +57,14 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         InicializarComponentes();
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+
+        ID = parametros.getInt("ID",0);
+
+        //Funcionalidad para el tipo de gasto(Visualiza nuevos campos)
         tipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==1)
+                if(position == 1)
                     linearLayout.setVisibility(View.VISIBLE);
                 else
                     linearLayout.setVisibility(View.GONE);
@@ -69,6 +74,8 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
 
             }
         });
+
+        //Funcionalidad para la fecha
         fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,14 +85,14 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
     }
 
     private void InicializarComponentes() {
-        titulo=findViewById(R.id.titulo_nuevo_gasto);
-        proveedor=findViewById(R.id.proveedor_nuevo_gasto);
-        dinero=findViewById(R.id.dinero_nuevo_gasto);
-        tipo=findViewById(R.id.tipo_nuevo_gasto);
-        cuota=findViewById(R.id.cuotas_nuevo_gasto);
-        fecha=findViewById(R.id.fecha_nuevo_gasto);
-        comentario=findViewById(R.id.comentario_nuevo_gasto);
-        linearLayout=findViewById(R.id.tipo_linear_nuevo_gasto);
+        titulo = findViewById(R.id.titulo_nuevo_gasto);
+        proveedor = findViewById(R.id.proveedor_nuevo_gasto);
+        dinero = findViewById(R.id.dinero_nuevo_gasto);
+        tipo = findViewById(R.id.tipo_nuevo_gasto);
+        cuota = findViewById(R.id.cuotas_nuevo_gasto);
+        fecha = findViewById(R.id.fecha_nuevo_gasto);
+        comentario = findViewById(R.id.comentario_nuevo_gasto);
+        linearLayout = findViewById(R.id.tipo_linear_nuevo_gasto);
     }
 
     @Override
@@ -102,9 +109,9 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.mn_guardar_nuevo_gasto)
+        if(item.getItemId() == R.id.mn_guardar_nuevo_gasto)
         {
-            if(linearLayout.getVisibility()==View.VISIBLE)
+            if(linearLayout.getVisibility() == View.VISIBLE)
             {
                 if(!titulo.getText().toString().trim().equals("")
                 && !proveedor.getText().toString().trim().equals("")
@@ -136,15 +143,15 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
     public void GuardarAlContado(final String titulo,final String proveedor,
                              final String dinero,final String comentario){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
+            if(bd != null){
 
                 Date d = new Date();
                 CharSequence s = DateFormat.format("d/MM/yyyy", d.getTime());
-                int result=-1;
+                int result = -1;
 
-                ContentValues nuevo= new ContentValues();
+                ContentValues nuevo = new ContentValues();
                 nuevo.put("idevento",ID);
                 nuevo.put("titulo",titulo);
                 nuevo.put("proveedor",proveedor);
@@ -152,7 +159,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
                 nuevo.put("fecha",s.toString());
                 nuevo.put("tipo","Al Contado");
 
-                result= (int) bd.insert("gastos",null, nuevo);
+                result = (int) bd.insert("gastos",null, nuevo);
                 CrearCuotas(result,dinero,"1",s.toString(),comentario,"Pagado");
                 msn("Se Guardo Correctamente");
                 onBackPressed();
@@ -167,12 +174,12 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
     public void GuardarCuota(final String titulo,final String proveedor,
                                  final String dinero,final String cuota, final String fecha,final String comentario){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                int result=-1;
+            if(bd != null){
+                int result = -1;
 
-                ContentValues nuevo= new ContentValues();
+                ContentValues nuevo = new ContentValues();
                 nuevo.put("idevento",ID);
                 nuevo.put("titulo",titulo);
                 nuevo.put("proveedor",proveedor);
@@ -180,7 +187,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
                 nuevo.put("fecha",fecha);
                 nuevo.put("tipo","En Cuotas");
 
-                result= (int) bd.insert("gastos",null, nuevo);
+                result = (int) bd.insert("gastos",null, nuevo);
                 CrearCuotas(result,dinero,cuota,fecha,comentario,"Sin Pagar");
 
             }
@@ -194,14 +201,14 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
 
     private void CrearCuotas(final int result,final String dinero,final String cuota,final String fecha,final String comentario,final String estado) {
         try {
-            double d=Double.valueOf(dinero)/Double.valueOf(cuota);
+            double d = Double.valueOf(dinero) / Double.valueOf(cuota);
 
-            for (int i= 1;i<=Integer.valueOf(cuota);i++)
+            for (int i = 1;i <= Integer.valueOf(cuota); i++)
             {
-                BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+                BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
                 SQLiteDatabase bd = objEvento.getWritableDatabase();
-                if(bd!=null){
-                    int resulta=-1;
+                if(bd != null){
+                    int resulta = -1;
                     String dt = fecha;
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -212,7 +219,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
 
                     } catch (Exception e) {
                     }
-                    ContentValues nuevo= new ContentValues();
+                    ContentValues nuevo = new ContentValues();
                     nuevo.put("idgasto",result);
                     nuevo.put("numCuota",i);
                     nuevo.put("fecha",fecha);
@@ -220,7 +227,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
                     nuevo.put("fecha",dt);
                     nuevo.put("estado",estado);//Pagado
                     nuevo.put("comentario",comentario);//Pagado
-                    resulta= (int) bd.insert("cuotas",null, nuevo);
+                    resulta = (int) bd.insert("cuotas",null, nuevo);
                 }
                 bd.close();
             }
@@ -229,9 +236,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
         }catch (Exception E){
             msn(E.getMessage());
         }
-
     }
-
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -239,7 +244,7 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
     }
 
     private void showDatePickerDialog(){
-        DatePickerDialog datePickerDialog= new DatePickerDialog(
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,this,
                 Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
@@ -247,8 +252,8 @@ public class NuevoGasto extends AppCompatActivity implements DatePickerDialog.On
         );
         datePickerDialog.show();
     }
+
     public void msn(String mss){
         Toast.makeText(getApplicationContext(),mss,Toast.LENGTH_SHORT).show();
     }
-
 }

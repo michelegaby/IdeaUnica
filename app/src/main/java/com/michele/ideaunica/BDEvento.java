@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BDEvento extends SQLiteOpenHelper
 {
-    private static final String CREAR_EVENTO="create table evento (" +
+    private static final String CREAR_EVENTO = "create table evento (" +
             "id integer primary key autoincrement," +
             "titulo text not null," +
             "fecha text not null," +
@@ -17,7 +17,7 @@ public class BDEvento extends SQLiteOpenHelper
             "presupuesto text," +
             "estado text not null );";
 
-    private static final String CREAR_INVITADOS="create table invitados (" +
+    private static final String CREAR_INVITADOS = "create table invitados (" +
             "id integer primary key autoincrement," +
             "idevento integer not null," +
             "nombre text not null," +
@@ -29,7 +29,7 @@ public class BDEvento extends SQLiteOpenHelper
             "foreign key(idevento) references evento(id));";
 
 
-    private static final String CREAR_NOTAS="create table notas (" +
+    private static final String CREAR_NOTAS = "create table notas (" +
             "id integer primary key autoincrement," +
             "idevento integer not null," +
             "fecha text not null," +
@@ -39,7 +39,7 @@ public class BDEvento extends SQLiteOpenHelper
             "foreign key(idevento) references evento(id));";
 
 
-    private static final String CREAR_GASTO="create table gastos (" +
+    private static final String CREAR_GASTO = "create table gastos (" +
             "id integer primary key autoincrement," +
             "idevento integer not null," +
             "titulo text not null," +
@@ -49,7 +49,7 @@ public class BDEvento extends SQLiteOpenHelper
             "tipo text not null," +
             "foreign key(idevento) references evento(id));";
 
-    private static final String CREAR_CUOTAS="create table cuotas (" +
+    private static final String CREAR_CUOTAS = "create table cuotas (" +
             "id integer primary key autoincrement," +
             "idgasto integer not null," +
             "numCuota text not null," +
@@ -59,7 +59,7 @@ public class BDEvento extends SQLiteOpenHelper
             "comentario text ," +
             "foreign key(idgasto) references gastos(id));";
 
-    private static final String CREAR_TAREA="create table tarea (" +
+    private static final String CREAR_TAREA = "create table tarea (" +
             "id integer primary key autoincrement," +
             "idevento integer not null," +
             "mes integer not null," +

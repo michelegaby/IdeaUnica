@@ -8,8 +8,8 @@
         android:id="@+id/linedos"
         android:layout_width="1dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/img"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,18 +20,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="·"
+        android:text="@string/puntopost"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/linedos"
         app:layout_constraintStart_toStartOf="@id/linedos"
         app:layout_constraintTop_toTopOf="@id/linedos"/>
     <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/item_post_blog_img_empresa"
         android:layout_width="40dp"
         android:layout_marginTop="10dp"
         android:layout_height="40dp"
-        android:contentDescription="Logodelaempresa"
+        android:contentDescription="@string/logoempresa"
         app:layout_constraintEnd_toEndOf="@id/linedos"
         app:layout_constraintStart_toStartOf="@id/linedos"
         app:layout_constraintTop_toBottomOf="@id/item_post_blog_punto"
@@ -41,10 +40,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +83,7 @@
             android:drawableTint="#000"
             android:foreground="?attr/selectableItemBackground"
             android:paddingHorizontal="10dp"
-            android:text="Leer post"
+            android:text="@string/leerpost"
             android:textAllCaps="false"
             android:textSize="15sp" />
 
@@ -100,7 +97,7 @@
             <ImageView
                 android:id="@+id/item_post_blog_img"
                 android:visibility="gone"
-                android:contentDescription="foto"
+                android:contentDescription="@string/img"
                 android:src="@drawable/camello"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,7 +108,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginVertical="10dp"
             android:layout_width="fill_parent"
-            android:layout_height="2sp"
+            android:layout_height="2dp"
             android:background="@color/colorlinea"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

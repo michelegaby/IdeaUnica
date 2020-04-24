@@ -81,15 +81,18 @@ public class Empresa extends AppCompatActivity {
     private Button titulo_contacto;
     private ProgressBar ub;
     private ProgressBar gal;
-    //Galeria
-    AdaptadorGaleriaEmpresa adaptadorGaleriaEmpresa;
-    private ArrayList<GaleriaEmpresaClass> listGaleria = new ArrayList<>();
+
     //Descripcion
-    String des="";
+    String des = "";
+
     //Complementos Ubicacion
     AdaptadorUbicacion adaptadorUbicacion;
     private ArrayList<UbicacionClass> listUbicacion = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/empresa_descripcion.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/empresa_descripcion.php";
+
+    //Complementos Galeria
+    AdaptadorGaleriaEmpresa adaptadorGaleriaEmpresa;
+    private ArrayList<GaleriaEmpresaClass> listGaleria = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,20 +112,27 @@ public class Empresa extends AppCompatActivity {
             titulo.setText(parametros.getString("titulo"));
             categoria.setText(parametros.getString("categoria"));
             descripcion.setText(Html.fromHtml(parametros.getString("descripcion")));
+
+            //Imagen del Banner
             Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("url"))
                     .placeholder(R.drawable.fondorosa)
                     .error(R.drawable.fondorosa)
                     .into(photo);
+
+            //Imagen del logo
             Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("urlToolBar"))
                     .placeholder(R.drawable.fondorosa)
                     .error(R.drawable.fondorosa)
                     .into(imgToolBar);
-            CollapsingToolbarLayout collapsingToolbarLayout= findViewById(R.id.collappEmpresa);
+
+            CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collappEmpresa);
             collapsingToolbarLayout.setContentScrim(new ColorDrawable(Color.parseColor("#"+parametros.getString("color","ffffff"))));
+
+            //Desplegar descripcion
             titulo_descripcion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(descripcion.getMaxLines()==3){
+                    if(descripcion.getMaxLines() == 3){
                         descripcion.setMaxLines(Integer.MAX_VALUE);
                         titulo_descripcion.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.keyboard_arrow_up,0);
                     }
@@ -132,10 +142,12 @@ public class Empresa extends AppCompatActivity {
                     }
                 }
             });
+
+            //Desplegar contactos
             titulo_contacto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(contacto.getVisibility()==View.GONE){
+                    if(contacto.getVisibility() == View.GONE){
                         contacto.setVisibility(View.VISIBLE);
                         titulo_contacto.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.keyboard_arrow_up,0);
                     }
@@ -145,74 +157,87 @@ public class Empresa extends AppCompatActivity {
                     }
                 }
             });
+
             GenerarDatos(parametros.getString("codigo"),parametros.getInt("id"),parametros.getString("titulo"));
+
+            //Abrir para llamar
             if(!parametros.getString("numero").equals("") && !parametros.getString("numero").isEmpty()){
                 phone.setVisibility(View.VISIBLE);
-                final String tel="+"+parametros.getString("numero");
+                final String tel = "+"+parametros.getString("numero");
                 tvphone.setText(tel);
                 phone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent =new Intent(Intent.ACTION_DIAL,Uri.fromParts("tel", tel, null));
+                        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.fromParts("tel", tel, null));
                         startActivity(intent);
                     }
                 });
             }
+
+            //Abrir para whatsapp
             if(!parametros.getString("whatsapp").equals("null")&& !parametros.getString("whatsapp").isEmpty()){
                 whatsApp.setVisibility(View.VISIBLE);
-                final String what=parametros.getString("whatsapp");
+                final String what = parametros.getString("whatsapp");
                 tvwhatsApp.setText("+"+what);
                 whatsApp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Abrir para facebook
             if(!parametros.getString("facebook").equals("null")&& !parametros.getString("facebook").isEmpty()){
                 facebook.setVisibility(View.VISIBLE);
-                final String face=parametros.getString("facebook");
+                final String face = parametros.getString("facebook");
                 tvfacebook.setText(parametros.getString("nombrefacebook"));
                 facebook.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse(face);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Abrir para instagram
             if(!parametros.getString("instagram").equals("null")&& !parametros.getString("instagram").isEmpty()){
                 instagram.setVisibility(View.VISIBLE);
-                final String inst=parametros.getString("instagram");
+                final String inst = parametros.getString("instagram");
                 tvinstagram.setText(parametros.getString("nombreinstagram"));
                 instagram.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Uri uri=Uri.parse(inst);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Uri uri = Uri.parse(inst);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Abrir para paginaweb
             if(!parametros.getString("paginaweb").equals("null")&& !parametros.getString("paginaweb").isEmpty()){
                 pageweb.setVisibility(View.VISIBLE);
-                final String web=parametros.getString("paginaweb");
+                final String web = parametros.getString("paginaweb");
                 tvpageweb.setText(web);
                 pageweb.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse(web);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Abrir para email
             if(!parametros.getString("email").equals("null") && !parametros.getString("email").isEmpty() ){
                 email.setVisibility(View.VISIBLE);
-                final String em=parametros.getString("email");
+                final String em = parametros.getString("email");
                 tvemail.setText(em);
                 email.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -241,37 +266,37 @@ public class Empresa extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         onBackPressed();
         return true;
     }
 
     private void InicializarComponentes() {
-        rv_ubicacion=findViewById(R.id.Ubicacion_recyclerview);
-        rv_galeria=findViewById(R.id.Galeria_empresa_recyclerview);
-        titulo=findViewById(R.id.titulo_empresa);
-        categoria=findViewById(R.id.categoria_empresa);
-        photo=findViewById(R.id.img_empresa);
-        descripcion=findViewById(R.id.descripcion_empresa);
-        contacto=findViewById(R.id.contacto_empresa);
-        phone=findViewById(R.id.phone_empresa);
-        whatsApp=findViewById(R.id.whatsapp_empresa);
-        facebook=findViewById(R.id.facebook_empresa);
-        instagram=findViewById(R.id.instagram_empresa);
-        pageweb=findViewById(R.id.paginaweb_empresa);
-        email=findViewById(R.id.email_empresa);
-        tvphone=findViewById(R.id.tx_phone_empresa);
-        tvwhatsApp=findViewById(R.id.tx_whatsapp_empresa);
-        tvfacebook=findViewById(R.id.tx_facebook_empresa);
-        tvinstagram=findViewById(R.id.tx_instagram_empresa);
-        tvpageweb=findViewById(R.id.tx_paginaweb_empresa);
-        tvemail=findViewById(R.id.tx_email_empresa);
-        titulo_descripcion=findViewById(R.id.titulo_descripcion_empresa);
-        titulo_contacto=findViewById(R.id.titulo_contacto_empresa);
-        imgToolBar=findViewById(R.id.imgToolBar_empresa);
-        ub=findViewById(R.id.progress_sucursal);
-        gal=findViewById(R.id.progress_galeria_empresa);
+        rv_ubicacion = findViewById(R.id.Ubicacion_recyclerview);
+        rv_galeria = findViewById(R.id.Galeria_empresa_recyclerview);
+        titulo = findViewById(R.id.titulo_empresa);
+        categoria = findViewById(R.id.categoria_empresa);
+        photo = findViewById(R.id.img_empresa);
+        descripcion = findViewById(R.id.descripcion_empresa);
+        contacto = findViewById(R.id.contacto_empresa);
+        phone = findViewById(R.id.phone_empresa);
+        whatsApp = findViewById(R.id.whatsapp_empresa);
+        facebook = findViewById(R.id.facebook_empresa);
+        instagram = findViewById(R.id.instagram_empresa);
+        pageweb = findViewById(R.id.paginaweb_empresa);
+        email = findViewById(R.id.email_empresa);
+        tvphone = findViewById(R.id.tx_phone_empresa);
+        tvwhatsApp = findViewById(R.id.tx_whatsapp_empresa);
+        tvfacebook = findViewById(R.id.tx_facebook_empresa);
+        tvinstagram = findViewById(R.id.tx_instagram_empresa);
+        tvpageweb = findViewById(R.id.tx_paginaweb_empresa);
+        tvemail = findViewById(R.id.tx_email_empresa);
+        titulo_descripcion = findViewById(R.id.titulo_descripcion_empresa);
+        titulo_contacto = findViewById(R.id.titulo_contacto_empresa);
+        imgToolBar = findViewById(R.id.imgToolBar_empresa);
+        ub = findViewById(R.id.progress_sucursal);
+        gal = findViewById(R.id.progress_galeria_empresa);
     }
 
     @Override
@@ -285,8 +310,11 @@ public class Empresa extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
                             try {
+
+                                //Obtencion de la galeria de fotos
                                 JSONArray jsonArray = jsonObject.getJSONArray("galeria");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
@@ -297,9 +325,12 @@ public class Empresa extends AppCompatActivity {
                                                     object.getString("url"));
                                     listGaleria.add(galeriaEmpresaClass);
                                 }
+
                                 adaptadorGaleriaEmpresa = new AdaptadorGaleriaEmpresa(Empresa.this, listGaleria);
                                 rv_galeria.setLayoutManager(new LinearLayoutManager(Empresa.this, LinearLayoutManager.HORIZONTAL, false));
                                 rv_galeria.setAdapter(adaptadorGaleriaEmpresa);
+
+                                //Funcion al seleccionar una imagen
                                 rv_galeria.addOnItemTouchListener(new AdaptadorGaleriaEmpresa.RecyclerTouchListener(getApplicationContext(), rv_galeria, new AdaptadorGaleriaEmpresa.ClickListener() {
                                     @Override
                                     public void onClick(View view, int position) {
@@ -315,12 +346,17 @@ public class Empresa extends AppCompatActivity {
                                     public void onLongClick(View view, int position) {
                                     }
                                 }));
+
                                 gal.setVisibility(View.GONE);
+
                             } catch (JSONException e) {
+                                //Error por motivo de que no existe ninguna foto
                                 e.printStackTrace();
                                 gal.setVisibility(View.GONE);
                             }
                             try {
+
+                                //Obtencion de las direcciones
                                 JSONArray jsonArray2 = jsonObject.getJSONArray("direccion");
                                 for (int i = 0; i < jsonArray2.length(); i++) {
                                     JSONObject object = jsonArray2.getJSONObject(i);
@@ -331,12 +367,15 @@ public class Empresa extends AppCompatActivity {
                                                     object.getString("direccion"), object.getString("url"));
                                     listUbicacion.add(ubicacionClass);
                                 }
+
                                 adaptadorUbicacion = new AdaptadorUbicacion(Empresa.this, listUbicacion);
                                 rv_ubicacion.setLayoutManager(new LinearLayoutManager(Empresa.this));
+
+                                //Funcion al seleccionar una direccion por URL
                                 adaptadorUbicacion.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Uri location=Uri.parse(listUbicacion.get(rv_ubicacion.getChildAdapterPosition(v)).getUrl());
+                                        Uri location = Uri.parse(listUbicacion.get(rv_ubicacion.getChildAdapterPosition(v)).getUrl());
                                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
                                         PackageManager packageManager = getPackageManager();
                                         List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
@@ -346,13 +385,16 @@ public class Empresa extends AppCompatActivity {
                                         }
                                     }
                                 });
+
                                 rv_ubicacion.setVisibility(View.VISIBLE);
                                 rv_ubicacion.setAdapter(adaptadorUbicacion);
                                 ub.setVisibility(View.GONE);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 ub.setVisibility(View.GONE);
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Empresa.this,
@@ -376,6 +418,8 @@ public class Empresa extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Envias como atributos el id de la empresa key = "id" y el codigo key = "cod"
                 params.put("cod",cod);
                 params.put("id",String.valueOf(id));
                 return params;

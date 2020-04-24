@@ -1,6 +1,7 @@
 package com.michele.ideaunica.cursos;
 
 public class GaleriaCursoClass {
+
     private int id;
     private String titulo;
     private String url;

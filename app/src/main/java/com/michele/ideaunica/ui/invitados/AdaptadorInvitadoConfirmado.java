@@ -28,7 +28,7 @@ public class AdaptadorInvitadoConfirmado extends RecyclerView.Adapter<AdaptadorI
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
-        nListener=listener;
+        nListener = listener;
     }
 
 
@@ -40,21 +40,21 @@ public class AdaptadorInvitadoConfirmado extends RecyclerView.Adapter<AdaptadorI
     public AdaptadorInvitadoConfirmado.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_invitado_confirmado,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_invitado_confirmado,viewGroup,false);
         AdaptadorInvitadoConfirmado.MyViewHolder viewHolder = new AdaptadorInvitadoConfirmado.MyViewHolder(view,nListener);
         return viewHolder;
     }
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorInvitadoConfirmado.MyViewHolder myViewHolder, final int i) {
         myViewHolder.nombre.setText(nData.get(i).getNombre());
-        myViewHolder.adulto.setText(nData.get(i).getAdultos()+" personas");
-        myViewHolder.ninyo.setText(nData.get(i).getNinyos()+" personas");
+        myViewHolder.adulto.setText(nData.get(i).getAdultos() + " personas");
+        myViewHolder.ninyo.setText(nData.get(i).getNinyos() + " personas");
         myViewHolder.celular.setText(String.valueOf(nData.get(i).getCelular()));
         myViewHolder.tipo.setText(nData.get(i).getTipo());
         myViewHolder.mostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(myViewHolder.expandableView.getVisibility()==View.GONE){
+                if(myViewHolder.expandableView.getVisibility() == View.GONE){
                     myViewHolder.expandableView.setVisibility(View.VISIBLE);
                     myViewHolder.mostrar.setBackgroundResource(R.drawable.keyboard_arrow_up);
                 }
@@ -85,36 +85,36 @@ public class AdaptadorInvitadoConfirmado extends RecyclerView.Adapter<AdaptadorI
 
         public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            nombre=itemView.findViewById(R.id.item_nombre_invitado_confirmado);
-            tipo=itemView.findViewById(R.id.item_tipo_invitado_confirmado);
-            adulto=itemView.findViewById(R.id.item_adulto_invitado_confirmado);
-            ninyo=itemView.findViewById(R.id.item_ninyo_invitado_confirmado);
-            expandableView=itemView.findViewById(R.id.item_detalle_invitado_confirmado);
-            celular=itemView.findViewById(R.id.item_celular_invitado_confirmado);
+            nombre = itemView.findViewById(R.id.item_nombre_invitado_confirmado);
+            tipo = itemView.findViewById(R.id.item_tipo_invitado_confirmado);
+            adulto = itemView.findViewById(R.id.item_adulto_invitado_confirmado);
+            ninyo = itemView.findViewById(R.id.item_ninyo_invitado_confirmado);
+            expandableView = itemView.findViewById(R.id.item_detalle_invitado_confirmado);
+            celular = itemView.findViewById(R.id.item_celular_invitado_confirmado);
+            modificar = itemView.findViewById(R.id.item_modificar_invitado_confirmado);
+            desconfirmar = itemView.findViewById(R.id.item_desconfirmar_invitado_confirmado);
+            mostrar = itemView.findViewById(R.id.item_mostrar_invitado_confirmado);
 
-            modificar=itemView.findViewById(R.id.item_modificar_invitado_confirmado);
-            desconfirmar=itemView.findViewById(R.id.item_desconfirmar_invitado_confirmado);
-
-            mostrar=itemView.findViewById(R.id.item_mostrar_invitado_confirmado);
-
+            //Funcionalidad de modificar en el padre
             modificar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        int position= getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
                             listener.onModificarClick(position);
                         }
                     }
                 }
             });
 
+            //Funcionalidad de desconfirmar en el padre
             desconfirmar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        int position= getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
                             listener.onDesConfirmarClick(position);
                         }
                     }
@@ -122,11 +122,13 @@ public class AdaptadorInvitadoConfirmado extends RecyclerView.Adapter<AdaptadorI
             });
         }
     }
+
     public void setfilter(ArrayList<InvitadosClass> listaInvitado){
         nData = new ArrayList<>();
         nData.addAll(listaInvitado);
         notifyDataSetChanged();
     }
+
     public void removeItem(int position){
         nData.remove(position);
         notifyItemRemoved(position);
@@ -136,6 +138,4 @@ public class AdaptadorInvitadoConfirmado extends RecyclerView.Adapter<AdaptadorI
         nData.add(position, invitado);
         notifyItemInserted(position);
     }
-
-
 }

@@ -24,41 +24,6 @@ public class CursosClass {
     private String email;
     private String url;
 
-    public CursosClass(String id, String autor, String fecha, String cantidad, String tipo, String titulo, String departamento, String descripcion, String telefono, String url) {
-        this.id = id;
-        this.autor = autor;
-        this.fecha = fecha;
-        this.cantidad = cantidad;
-        this.tipo = tipo;
-        this.titulo = titulo;
-        this.departamento = departamento;
-        this.descripcion = descripcion;
-        this.telefono = telefono;
-        this.url = url;
-    }
-
-    public CursosClass(String id, String titulo, String autor, String fecha, String cantidad, String costo, String contenido, String tipo, String departamento, String descripcion, String telefono, String whatsapp, String facebook, String nombrefacebook, String instagram, String nombreinstagram, String paginaweb, String email, String url) {
-        this.id = id;
-        this.titulo = titulo;
-        this.autor = autor;
-        this.fecha = fecha;
-        this.cantidad = cantidad;
-        this.costo = costo;
-        this.contenido = contenido;
-        this.tipo = tipo;
-        this.departamento = departamento;
-        this.descripcion = descripcion;
-        this.telefono = telefono;
-        this.whatsapp = whatsapp;
-        this.facebook = facebook;
-        this.nombrefacebook = nombrefacebook;
-        this.instagram = instagram;
-        this.nombreinstagram = nombreinstagram;
-        this.paginaweb = paginaweb;
-        this.email = email;
-        this.url = url;
-    }
-
     public CursosClass(String id, String titulo, String autor, String fecha, String horario, String direccion, String cantidad, String costo, String contenido, String tipo, String departamento, String descripcion, String telefono, String whatsapp, String facebook, String nombrefacebook, String instagram, String nombreinstagram, String paginaweb, String email, String url) {
         this.id = id;
         this.titulo = titulo;

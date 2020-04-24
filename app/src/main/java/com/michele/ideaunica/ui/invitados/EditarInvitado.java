@@ -28,6 +28,8 @@ public class EditarInvitado extends AppCompatActivity {
     private Button guardar;
     private Spinner tipo;
     private CheckBox confirmar;
+
+    //Complemento
     private static int ID;
 
     @Override
@@ -42,17 +44,20 @@ public class EditarInvitado extends AppCompatActivity {
         getSupportActionBar().setTitle("Editar Invitado");
         inicializarComponentes();
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+
+        ID = parametros.getInt("ID",0);
+
         nombre.setText(parametros.getString("nom","a"));
         adulto.setText(parametros.getString("adulto","a"));
         ninyo.setText(parametros.getString("nin","a"));
         celular.setText(parametros.getString("cel","a"));
 
-        String c=parametros.getString("confirmar","ACONFIRMAR");
+        String c = parametros.getString("confirmar","ACONFIRMAR");
         if(c.equals("CONFIRMADO")){
             confirmar.setChecked(true);
         }
 
+        //Funcionalidad para guardar modificacion
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,12 +92,12 @@ public class EditarInvitado extends AppCompatActivity {
 
     private void inicializarComponentes() {
         nombre = findViewById(R.id.nombre_editar_invitado);
-        adulto=findViewById(R.id.adulto_editar_invitado);
-        ninyo=findViewById(R.id.ninyo_editar_invitado);
-        celular=findViewById(R.id.celular_editar_invitado);
-        guardar=findViewById(R.id.guardar_editar_invitado);
-        tipo=findViewById(R.id.tipo_editar_invitado);
-        confirmar=findViewById(R.id.confirmar_editar_invitado);
+        adulto = findViewById(R.id.adulto_editar_invitado);
+        ninyo = findViewById(R.id.ninyo_editar_invitado);
+        celular = findViewById(R.id.celular_editar_invitado);
+        guardar = findViewById(R.id.guardar_editar_invitado);
+        tipo = findViewById(R.id.tipo_editar_invitado);
+        confirmar = findViewById(R.id.confirmar_editar_invitado);
     }
 
     @Override
@@ -103,10 +108,10 @@ public class EditarInvitado extends AppCompatActivity {
 
     public void Guardar(final String nom,final String adulto, final String ninyo,final String celular, final String tipo, final String estado){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                bd.execSQL("update invitados set nombre='"+nom+"', adultos="+adulto+", ninos="+ninyo+", celular='"+celular+"', tipo='"+tipo+"',estado='"+estado+"' where id='"+ID+"'");
+            if(bd != null){
+                bd.execSQL("update invitados set nombre = '" + nom + "', adultos = " + adulto + ", ninos = " + ninyo + ", celular = '" + celular + "', tipo = '" + tipo + "',estado = '" + estado + "' where id='" + ID + "'");
                 msn("Se guardo correctamente");
                 onBackPressed();
             }
@@ -116,6 +121,7 @@ public class EditarInvitado extends AppCompatActivity {
             msn("ERROR");
         }
     }
+
     public void msn(String mss){
         Toast.makeText(getApplicationContext(),mss,Toast.LENGTH_SHORT).show();
     }

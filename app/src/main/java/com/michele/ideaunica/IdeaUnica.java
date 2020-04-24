@@ -46,7 +46,6 @@ public class IdeaUnica extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
         fm.beginTransaction().add(R.id.fragment_container, fragment5, "5").hide(fragment5).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragment4, "4").hide(fragment4).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragment3, "3").hide(fragment3).commit();
@@ -87,9 +86,9 @@ public class IdeaUnica extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==STOREGE_PERMISSION_CODE){
-            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1]==PackageManager.PERMISSION_GRANTED){
+        if(requestCode == STOREGE_PERMISSION_CODE){
+            if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this,"Permisos Aceptados",Toast.LENGTH_SHORT).show();
             }
             else{

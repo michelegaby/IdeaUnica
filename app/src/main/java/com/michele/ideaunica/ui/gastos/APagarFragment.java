@@ -33,6 +33,7 @@ public class APagarFragment extends Fragment {
 
 
     View view;
+    public static int ID;
 
     //Componentes
     private RecyclerView recyclerView;
@@ -41,52 +42,49 @@ public class APagarFragment extends Fragment {
     AdaptadorGastos adaptadorGastos;
     private ArrayList<GastosClass> listGastos = new ArrayList<>();
 
-    public static int ID;
-
     public APagarFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_a_pagar, container, false);
+        view = inflater.inflate(R.layout.fragment_a_pagar, container, false);
         inicializarComponentes();
 
         Bundle parametros = getArguments();
-        ID=parametros.getInt("ID",0);
+        ID = parametros.getInt("ID",0);
         GenerarDatos();
         return view;
     }
 
     private void inicializarComponentes() {
-        recyclerView=view.findViewById(R.id.APagar_recyclerview);
+        recyclerView = view.findViewById(R.id.APagar_recyclerview);
     }
 
     private void GenerarDatos() {
         try {
 
-            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
+            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
                 Cursor objCursor = bd.rawQuery("Select * from gastos where idevento=" + ID, null);
                 listGastos.clear();
                 Date d = new Date();
                 CharSequence s = DateFormat.format("dd/MM/yyyy", d.getTime());
-                SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
-                Date date1= sdf.parse(s.toString());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date date1 = sdf.parse(s.toString());
 
                 while (objCursor.moveToNext()){
                     try {
-                        BDEvento obj2= new BDEvento(getContext(),"bdEvento",null,1);
-                        SQLiteDatabase bd2= obj2.getReadableDatabase();
-                        if(bd2!=null){
-                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto=" +
+                        BDEvento obj2 = new BDEvento(getContext(),"bdEvento",null,1);
+                        SQLiteDatabase bd2 = obj2.getReadableDatabase();
+                        if(bd2 != null){
+                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto = " +
                                     objCursor.getInt(0), null);
 
-                            int c= objCursor2.getCount();
+                            int c = objCursor2.getCount();
                             while (objCursor2.moveToNext()){
-                                    Date date2=sdf.parse(objCursor2.getString(3));
+                                    Date date2 = sdf.parse(objCursor2.getString(3));
                                     if(date1.before(date2)||date1.equals(date2))
                                         if(!objCursor2.getString(5).equals("Pagado"))
                                             listGastos.add(

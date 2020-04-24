@@ -1,6 +1,7 @@
 package com.michele.ideaunica.cursos;
 
 public class CategoriaCursosClass {
+
     private String id;
     private String titulo;
     private String contenido;

@@ -15,6 +15,7 @@ import java.util.List;
 public class TimelineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private Context nContext;
+
     private List<TimelineClass> nData;
 
     public TimelineAdapter(Context nContext, List<TimelineClass> nData) {

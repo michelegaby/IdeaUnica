@@ -24,13 +24,15 @@ public class AdaptadorGaleriaCurso extends RecyclerView.Adapter<AdaptadorGaleria
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorGaleriaCurso.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_galeria_curso,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_galeria_curso,viewGroup,false);
         AdaptadorGaleriaCurso.MyViewHolder viewHolder = new AdaptadorGaleriaCurso.MyViewHolder(view);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull AdaptadorGaleriaCurso.MyViewHolder myViewHolder, int i) {
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
@@ -38,18 +40,21 @@ public class AdaptadorGaleriaCurso extends RecyclerView.Adapter<AdaptadorGaleria
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView img;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            img=itemView.findViewById(R.id.item_photo_galeria_curso);
+            img = itemView.findViewById(R.id.item_photo_galeria_curso);
         }
     }
+
     public void setfilter(ArrayList<GaleriaCursoClass> lista){
         nData = new ArrayList<>();
         nData.addAll(lista);

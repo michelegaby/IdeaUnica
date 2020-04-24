@@ -23,16 +23,19 @@ public class AdaptadorGastos extends RecyclerView.Adapter<AdaptadorGastos.MyView
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorGastos.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_gastos,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_gastos,viewGroup,false);
         AdaptadorGastos.MyViewHolder viewHolder = new AdaptadorGastos.MyViewHolder(view);
 
+        //Funcionalidad en el padre
         view.setOnClickListener(this);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorGastos.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
@@ -41,19 +44,23 @@ public class AdaptadorGastos extends RecyclerView.Adapter<AdaptadorGastos.MyView
         myViewHolder.dinero.setText(nData.get(i).getDinero());
         myViewHolder.cuotas.setText(nData.get(i).getCuotas());
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public void setOnClickListener(View.OnClickListener listener){
-        this.listener =listener;
+        this.listener = listener;
     }
+
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if(listener != null){
             listener.onClick(v);
         }
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -63,13 +70,14 @@ public class AdaptadorGastos extends RecyclerView.Adapter<AdaptadorGastos.MyView
         private TextView cuotas;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_gastos);
-            fecha=itemView.findViewById(R.id.item_fecha_gastos);
-            tipo=itemView.findViewById(R.id.item_tipo_gastos);
-            dinero=itemView.findViewById(R.id.item_pago_gastos);
-            cuotas=itemView.findViewById(R.id.item_cuota_gastos);
+            titulo = itemView.findViewById(R.id.item_titulo_gastos);
+            fecha = itemView.findViewById(R.id.item_fecha_gastos);
+            tipo = itemView.findViewById(R.id.item_tipo_gastos);
+            dinero = itemView.findViewById(R.id.item_pago_gastos);
+            cuotas = itemView.findViewById(R.id.item_cuota_gastos);
         }
     }
+
     public void setfilter(ArrayList<GastosClass> listaGastos){
         nData = new ArrayList<>();
         nData.addAll(listaGastos);

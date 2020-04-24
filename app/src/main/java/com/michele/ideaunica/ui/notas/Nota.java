@@ -32,6 +32,7 @@ public class Nota extends AppCompatActivity {
     private LinearLayout color;
     private FloatingActionButton fab;
 
+    //Complementos
     private static int ID;
     private static int id;
     private static String colores;
@@ -46,8 +47,10 @@ public class Nota extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         inializarComponentes();
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("ID");
-        id=parametros.getInt("id");
+
+        ID = parametros.getInt("ID");
+
+        id = parametros.getInt("id");
 
         Generar();
     }
@@ -73,22 +76,21 @@ public class Nota extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void Generar(){
         try {
-            BDEvento obj= new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                Cursor objCursor = bd.rawQuery("Select * from notas where id=" + id, null);
+            BDEvento obj = new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                Cursor objCursor = bd.rawQuery("Select * from notas where id = " + id, null);
 
                 while (objCursor.moveToNext()){
                     titulo.setText(objCursor.getString(3));
-                    fecha.setText(objCursor.getString(2)+" - Ultima Actualización");
-                    contenidos=objCursor.getString(4);
+                    fecha.setText(objCursor.getString(2) + " - Ultima Actualización");
+                    contenidos = objCursor.getString(4);
                     contenido.setText(Html.fromHtml(contenidos));
-                    colores=objCursor.getString(5);
-                    color.setBackgroundColor(Color.parseColor("#"+colores));
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#"+colores)));
+                    colores = objCursor.getString(5);
+                    color.setBackgroundColor(Color.parseColor("#" + colores));
+                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#" + colores)));
                 }
 
             }
@@ -96,8 +98,8 @@ public class Nota extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(getApplicationContext(),EditarNota.class);
-                    Bundle parametros = new Bundle();
+                    Intent intent = new Intent(getApplicationContext(),EditarNota.class);
+                    Bundle parametros  = new Bundle();
                     parametros.putInt("id",id);
                     parametros.putString("titulo",titulo.getText().toString());
                     parametros.putString("color",colores);
@@ -113,7 +115,7 @@ public class Nota extends AppCompatActivity {
     }
 
     private void Eliminar() {
-        AlertDialog.Builder Advertencia= new AlertDialog.Builder(this);
+        AlertDialog.Builder Advertencia = new AlertDialog.Builder(this);
         Advertencia.setTitle("Eliminar");
         Advertencia.setMessage("Esta seguro de eliminar esta nota?");
         Advertencia.setCancelable(false);
@@ -134,10 +136,10 @@ public class Nota extends AppCompatActivity {
 
     public void EliminarNota(){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                bd.execSQL("delete from notas where id="+id);
+            if(bd != null){
+                bd.execSQL("delete from notas where id = " + id);
                 onBackPressed();
             }
             bd.close();
@@ -147,11 +149,11 @@ public class Nota extends AppCompatActivity {
     }
 
     private void inializarComponentes() {
-        titulo=findViewById(R.id.titulo_nota);
-        fecha=findViewById(R.id.fecha_nota);
-        contenido=findViewById(R.id.contenido_nota);
-        color=findViewById(R.id.encabezado_nota);
-        fab=findViewById(R.id.fab_nota_editar);
+        titulo = findViewById(R.id.titulo_nota);
+        fecha = findViewById(R.id.fecha_nota);
+        contenido = findViewById(R.id.contenido_nota);
+        color = findViewById(R.id.encabezado_nota);
+        fab = findViewById(R.id.fab_nota_editar);
     }
 
     @Override

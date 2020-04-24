@@ -14,6 +14,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,14 +46,16 @@ public class Cursos extends AppCompatActivity {
     private EditText buscar;
     private ProgressBar progressBar;
     private RecyclerView rv_curso;
+    private ImageView publicidad_img;
 
     //Complementos
     AdaptadorCurso adaptadorCurso;
     private ArrayList<CursosClass> listCurso = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/cursos.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/cursos.php";
 
     private static String cat;
     private static String ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +63,11 @@ public class Cursos extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         Bundle parametros = this.getIntent().getExtras();
-        cat=parametros.getString("titulo");
-        ID=parametros.getString("id");
+        cat = parametros.getString("titulo");
+        ID = parametros.getString("id");
         getSupportActionBar().setTitle("Cursos de "+parametros.getString("titulo"));
         InicializarComponentes();
         GenerarDatos();
@@ -77,9 +80,10 @@ public class Cursos extends AppCompatActivity {
     }
 
     private void InicializarComponentes() {
-        buscar=findViewById(R.id.buscar_cursos);
-        progressBar=findViewById(R.id.progress_cursos);
-        rv_curso=findViewById(R.id.Cursos_recyclerview);
+        buscar = findViewById(R.id.buscar_cursos);
+        progressBar = findViewById(R.id.progress_cursos);
+        rv_curso = findViewById(R.id.Cursos_recyclerview);
+        publicidad_img = findViewById(R.id.img_publicidad_eventos);
     }
 
     private void GenerarDatos() {
@@ -88,12 +92,15 @@ public class Cursos extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de la cursos de la categoria de curso seleccionada
                             JSONArray jsonArray = jsonObject.getJSONArray("cursos");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
-                                CursosClass cursos= new CursosClass(
+                                CursosClass cursos = new CursosClass(
                                         object.getString("id"),
                                         object.getString("titulo"),
                                         object.getString("autor"),
@@ -117,15 +124,18 @@ public class Cursos extends AppCompatActivity {
                                         object.getString("url"));
                                 listCurso.add(cursos);
                             }
-                            adaptadorCurso= new AdaptadorCurso(Cursos.this,listCurso);
+
+                            //La funcion de seleccionar se encuentra en el adapter
+                            adaptadorCurso = new AdaptadorCurso(Cursos.this,listCurso);
                             rv_curso.setLayoutManager(new LinearLayoutManager(Cursos.this));
                             progressBar.setVisibility(View.GONE);
                             rv_curso.setVisibility(View.VISIBLE);
                             rv_curso.setAdapter(adaptadorCurso);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "Error", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                             progressBar.setVisibility(View.GONE);
                         }
@@ -135,7 +145,7 @@ public class Cursos extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error:"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                         progressBar.setVisibility(View.GONE);
                     }
@@ -143,48 +153,13 @@ public class Cursos extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Envias como atributo el cod de la categoria de curso que seleccinaste key = "cod"
                 params.put("cod",ID);
                 return params;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         requestQueue.add(stringRequest);
-    }
-    private void Buscar() {
-        buscar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                try{
-                    ArrayList<CursosClass> listafiltrada= filter(listCurso,s.toString());
-                    adaptadorCurso.setfilter(listafiltrada);
-                }catch (Exception e)
-                {
-                    Toast.makeText(Cursos.this,e.toString(),Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
-    private ArrayList<CursosClass> filter(ArrayList<CursosClass> cursosos,String texto){
-        ArrayList<CursosClass> listFiltada= new ArrayList<>();
-        try{
-            texto=texto.toLowerCase();
-            for(CursosClass cur: cursosos){
-                String titulo = cur.getTitulo().toLowerCase();
-                String contenido = cur.getDescripcion().toLowerCase();
-                if(titulo.contains(texto)||contenido.contains(texto)){
-                    listFiltada.add(cur);
-                }
-            }
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return listFiltada;
     }
 }

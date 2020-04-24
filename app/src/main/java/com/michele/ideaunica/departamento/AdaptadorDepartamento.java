@@ -39,7 +39,7 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_departamento,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_departamento,viewGroup,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
         view.setOnClickListener(this);
         return viewHolder;
@@ -68,12 +68,15 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
     public int getItemCount() {
         return nData.size();
     }
+
+    //Indica que la funcionalidad de seleccion esta en el padre
     public void setOnClickListener(View.OnClickListener listener){
-        this.listener =listener;
+        this.listener = listener;
     }
+
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if(listener != null){
             listener.onClick(v);
         }
     }
@@ -84,9 +87,9 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
         private ProgressBar progressBar;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            nombre=itemView.findViewById(R.id.item_dep_nombre);
-            img=itemView.findViewById(R.id.item_dep_img);
-            progressBar=itemView.findViewById(R.id.progress_departamento);
+            nombre = itemView.findViewById(R.id.item_dep_nombre);
+            img = itemView.findViewById(R.id.item_dep_img);
+            progressBar = itemView.findViewById(R.id.progress_departamento);
         }
     }
     public void setfilter(ArrayList<DepartamentoClass> listaEntrada){

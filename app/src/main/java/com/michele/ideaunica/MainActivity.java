@@ -39,12 +39,11 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private AppBarLayout appBarLayout;
 
     public static int ID;
     public TextView navuser;
     public ImageView navphoto;
-
-    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +52,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+        ID = parametros.getInt("ID",0);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView= navigationView.getHeaderView(0);
+        View headerView = navigationView.getHeaderView(0);
         navuser = headerView.findViewById(R.id.usernameevento);
-        navphoto= headerView.findViewById(R.id.userphotoevento);
+        navphoto = headerView.findViewById(R.id.userphotoevento);
         navuser.setText(parametros.getString("titulo","NO"));
-        appBarLayout=findViewById(R.id.appbarEvento);
-
+        appBarLayout = findViewById(R.id.appbarEvento);
 
         if(parametros.getString("urlfoto","")
                 != null && !parametros.getString("urlfoto","").isEmpty())
@@ -86,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if(destination.getId()==R.id.nav_gastos)
+                if(destination.getId() == R.id.nav_gastos)
                 {
                     appBarLayout.setTargetElevation(0);
                 }else
@@ -106,15 +104,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId()==R.id.action_exits)
+        if(item.getItemId() == R.id.action_exits)
         {
             super.onBackPressed();
             super.onBackPressed();
         }
 
-        if(item.getItemId()==R.id.action_eliminar_evento)
+        if(item.getItemId() == R.id.action_eliminar_evento)
         {
-            AlertDialog.Builder Advertencia= new AlertDialog.Builder(this);
+            AlertDialog.Builder Advertencia = new AlertDialog.Builder(this);
             Advertencia.setTitle("Eliminar");
             Advertencia.setMessage("Esta seguro de eliminar esta evento?");
             Advertencia.setCancelable(false);
@@ -138,10 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void EliminarEvento() {
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                bd.execSQL("update evento set estado='DESHABILITADO' where id="+ID);
+            if(bd != null){
+                bd.execSQL("update evento set estado = 'DESHABILITADO' where id = "+ID);
             }
             bd.close();
         }catch (Exception E){

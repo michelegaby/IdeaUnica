@@ -50,10 +50,11 @@ public class Categoria extends AppCompatActivity {
     private EditText buscar;
     private TextView departamento;
     private SliderLayout sliderLayout;
+
     //Complementos
     AdaptadorCategoria adaptadorCategoria;
     private ArrayList<CategoriaClass> listCategoria = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/categoria.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/categoria.php";
     private RecyclerView.LayoutManager manager;
 
     @Override
@@ -63,7 +64,7 @@ public class Categoria extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Categorias");
         InicializarComponentes();
@@ -81,13 +82,15 @@ public class Categoria extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     private void InicializarComponentes() {
-        myrecyclerview=findViewById(R.id.Categoria_recyclerview);
-        progress=findViewById(R.id.progress_categoria);
-        buscar=findViewById(R.id.buscar_categorias);
-        departamento=findViewById(R.id.departamento_categorias);
-        sliderLayout=findViewById(R.id.slider_publicidad_categoria);
+        myrecyclerview = findViewById(R.id.Categoria_recyclerview);
+        progress = findViewById(R.id.progress_categoria);
+        buscar = findViewById(R.id.buscar_categorias);
+        departamento = findViewById(R.id.departamento_categorias);
+        sliderLayout = findViewById(R.id.slider_publicidad_categoria);
     }
+
     private void BuscarCategoria() {
         buscar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -99,7 +102,7 @@ public class Categoria extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 try{
-                    ArrayList<CategoriaClass> listafiltrada= filter(listCategoria,s.toString());
+                    ArrayList<CategoriaClass> listafiltrada = filter(listCategoria,s.toString());
                     adaptadorCategoria.setfilter(listafiltrada);
                 }catch (Exception e)
                 {
@@ -108,10 +111,11 @@ public class Categoria extends AppCompatActivity {
             }
         });
     }
+
     private ArrayList<CategoriaClass> filter(ArrayList<CategoriaClass> categorias,String texto){
-        ArrayList<CategoriaClass> listFiltada= new ArrayList<>();
+        ArrayList<CategoriaClass> listFiltada = new ArrayList<>();
         try{
-            texto=texto.toLowerCase();
+            texto = texto.toLowerCase();
             for(CategoriaClass cat: categorias){
                 String titulo = cat.getTitulo().toLowerCase();
                 if(titulo.contains(texto)){
@@ -124,28 +128,34 @@ public class Categoria extends AppCompatActivity {
         }
         return listFiltada;
     }
+
     public void GenerarDatos(final String dep){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de Categorias del departamento seleccionado
                             JSONArray jsonArray = jsonObject.getJSONArray("categoria");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
-                                CategoriaClass categoriaClass=
-                                        new CategoriaClass(
+                                CategoriaClass categoriaClass = new CategoriaClass(
                                                 object.getInt("id"),
                                                 object.getString("titulo").trim(),
                                                 object.getString("cantidad")+" Resultado/s",
                                                 object.getString("url"));
                                 listCategoria.add(categoriaClass);
                             }
-                            adaptadorCategoria= new AdaptadorCategoria(Categoria.this,listCategoria);
+
+                            adaptadorCategoria = new AdaptadorCategoria(Categoria.this,listCategoria);
                             manager = new GridLayoutManager(Categoria.this,2);
                             myrecyclerview.setLayoutManager(manager);
+
+                            //Funcion al seleccionar redireccionar a una lista(recyclerview) de todas las empresas de la categoria seleccionada
                             adaptadorCategoria.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -157,27 +167,31 @@ public class Categoria extends AppCompatActivity {
                                     startActivity(i);
                                 }
                             });
+
                             progress.setVisibility(View.GONE);
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorCategoria);
+
+                            //Publicidad
                             JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
                             for (int i = 0; i < jsonArray2.length(); i++) {
-                                DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
+                                DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
                                 JSONObject object = jsonArray2.getJSONObject(i);
                                 sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
                                 sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
                                 sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
                                     @Override
                                     public void onSliderClick(SliderView sliderView) {
-                                        Toast.makeText(getApplicationContext(),"ss",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(),"No disponible.",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 sliderLayout.addSliderView(sliderView);
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Categoria.this,
-                                    "Error", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_LONG)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -187,7 +201,7 @@ public class Categoria extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Categoria.this,
-                                "Error de conexión"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }
@@ -195,6 +209,8 @@ public class Categoria extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Envias como atributo el id del departamento con la key "departamento"
                 params.put("departamento",dep);
                 return params;
             }

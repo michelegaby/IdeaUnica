@@ -30,17 +30,17 @@ import java.util.ArrayList;
 public class InvitadosConfirmadosFragment  extends Fragment {
 
     View view;
+    private static int ID;
 
     //Componentes
     private FloatingActionButton fab;
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
     private SwipeRefreshLayout swipeRefreshLayout;
+
     //Complementos
     AdaptadorInvitadoConfirmado adaptadorInvitado;
     private ArrayList<InvitadosClass> listInvitados = new ArrayList<>();
-
-    private static int ID;
 
     public InvitadosConfirmadosFragment(){
 
@@ -49,17 +49,17 @@ public class InvitadosConfirmadosFragment  extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_invitados_confirmados,container,false);
+        view = inflater.inflate(R.layout.fragment_invitados_confirmados,container,false);
         InicializarComponentes();
 
         Bundle parametros = getActivity().getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+        ID = parametros.getInt("ID",0);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), NuevoInvitado.class);
-                Bundle parmetros= new Bundle();
+                Bundle parmetros = new Bundle();
                 parmetros.putInt("ID",ID);
                 intent.putExtras(parmetros);
                 startActivity(intent);
@@ -76,7 +76,6 @@ public class InvitadosConfirmadosFragment  extends Fragment {
         });
         return view;
     }
-
 
     private class UnaTarea extends AsyncTask<Void, Void, Void> {
 
@@ -100,8 +99,8 @@ public class InvitadosConfirmadosFragment  extends Fragment {
 
     private void InicializarComponentes() {
         fab = view.findViewById(R.id.fab_fragment_confirmado);
-        myrecyclerview=view.findViewById(R.id.Invitado_confirmar_recyclerview);
-        progress=view.findViewById(R.id.progress_invitados_confirmar);
+        myrecyclerview = view.findViewById(R.id.Invitado_confirmar_recyclerview);
+        progress = view.findViewById(R.id.progress_invitados_confirmar);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_invitados);
     }
 
@@ -110,7 +109,7 @@ public class InvitadosConfirmadosFragment  extends Fragment {
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento=" + ID+" and estado='CONFIRMADO'", null);
+                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento = " + ID + " and estado = 'CONFIRMADO'", null);
                 listInvitados.clear();
 
                 while (objCursor.moveToNext()) {
@@ -123,7 +122,7 @@ public class InvitadosConfirmadosFragment  extends Fragment {
                 adaptadorInvitado.setOnItemClickListener(new AdaptadorInvitadoConfirmado.OnItemClickListener() {
                     @Override
                     public void onModificarClick(int position) {
-                        Intent intent=new Intent(getContext(), EditarInvitado.class);
+                        Intent intent = new Intent(getContext(), EditarInvitado.class);
                         Bundle parametros = new Bundle();
                         parametros.putInt("ID",listInvitados.get(position).getID());
                         parametros.putString("nom",listInvitados.get(position).getNombre());
@@ -138,7 +137,7 @@ public class InvitadosConfirmadosFragment  extends Fragment {
 
                     @Override
                     public void onDesConfirmarClick(final int position) {
-                        AlertDialog.Builder Advertencia= new AlertDialog.Builder(getContext());
+                        AlertDialog.Builder Advertencia = new AlertDialog.Builder(getContext());
                         Advertencia.setTitle("Desconfirmar");
                         Advertencia.setMessage("Esta seguro que desea deconfirmar?");
                         Advertencia.setCancelable(false);
@@ -171,7 +170,7 @@ public class InvitadosConfirmadosFragment  extends Fragment {
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
 
-                bd.execSQL("update invitados set estado='NOCONFIRMADO' where id="+listInvitados.get(posicion).getID());
+                bd.execSQL("update invitados set estado = 'NOCONFIRMADO' where id = " + listInvitados.get(posicion).getID());
                 adaptadorInvitado.removeItem(posicion);
             }
             bd.close();

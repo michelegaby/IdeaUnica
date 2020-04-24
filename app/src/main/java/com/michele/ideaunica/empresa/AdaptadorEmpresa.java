@@ -34,13 +34,15 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorEmpresa.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_empresa,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_empresa,viewGroup,false);
         AdaptadorEmpresa.MyViewHolder viewHolder = new AdaptadorEmpresa.MyViewHolder(view);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorEmpresa.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
@@ -50,6 +52,8 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
                 .placeholder(R.drawable.fondorosa)
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.circleImageView);
+
+        //Funcion al seleccionar redirecciona a Empresa
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,18 +77,20 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
                 parametros.putString("urlToolBar",nData.get(i).getUrlToolBar());
                 intent.putExtras(parametros);
                 Pair[] pairs = new Pair[2];
-                pairs[0]= new Pair<View,String>(myViewHolder.circleImageView,"imgTransition");
-                pairs[1]= new Pair<View,String>(myViewHolder.titulo,"letraTransition");
-                ActivityOptions options= ActivityOptions.makeSceneTransitionAnimation((Activity) nContext,pairs);
+                pairs[0] = new Pair<View,String>(myViewHolder.circleImageView,"imgTransition");
+                pairs[1] = new Pair<View,String>(myViewHolder.titulo,"letraTransition");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) nContext,pairs);
                 nContext.startActivity(intent,options.toBundle());
             }
         });
 
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -92,15 +98,17 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
         private TextView categoria;
         private CircleImageView circleImageView;
         private CardView cardView;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_emp_titulo);
-            direccion=itemView.findViewById(R.id.item_emp_direccion);
-            categoria=itemView.findViewById(R.id.item_emp_cat);
-            circleImageView=itemView.findViewById(R.id.item_emp_cv_logo);
-            cardView=itemView.findViewById(R.id.item_empresa_item);
+            titulo = itemView.findViewById(R.id.item_emp_titulo);
+            direccion = itemView.findViewById(R.id.item_emp_direccion);
+            categoria = itemView.findViewById(R.id.item_emp_cat);
+            circleImageView = itemView.findViewById(R.id.item_emp_cv_logo);
+            cardView = itemView.findViewById(R.id.item_empresa_item);
         }
     }
+
     public void setfilter(ArrayList<EmpresaClass> listaEmpresa){
         nData = new ArrayList<>();
         nData.addAll(listaEmpresa);

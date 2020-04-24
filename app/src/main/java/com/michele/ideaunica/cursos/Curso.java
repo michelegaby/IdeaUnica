@@ -83,10 +83,11 @@ public class Curso extends AppCompatActivity {
     private TextView horario;
     private TextView direccion;
 
+    //Complementos
     AdaptadorGaleriaCurso adaptadorGaleriaCurso;
     private ArrayList<GaleriaCursoClass> listGaleria = new ArrayList<>();
     private static String ID;
-    private static  String URL="https://ideaunicabolivia.com/apps/galeriaCurso.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/galeriaCurso.php";
 
     private TextView informacion;
     private TextView contenidos;
@@ -98,14 +99,15 @@ public class Curso extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("");
         InicilizarComponentes();
         final Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getString("ID");
+        ID = parametros.getString("ID");
         titulo.setText(parametros.getString("titulo"));
         costo.setText("Bs."+parametros.getString("costo"));
+
         try {
             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat formateador = new SimpleDateFormat("d MMMM, yyyy");
@@ -115,17 +117,22 @@ public class Curso extends AppCompatActivity {
         } catch (ParseException e) {
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
         }
+
         departamento.setText(parametros.getString("departamento"));
         contenido.setText(parametros.getString("descripcion"));
         autor.setText(parametros.getString("autor"));
         horario.setText(parametros.getString("horario"));
         direccion.setText(parametros.getString("direccion"));
         duracion.setText("x "+parametros.getString("duracion")+"día/s");
+
+        //Contactos
         try {
+
+            //Desplegar contactos
             titulo_contacto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(contacto.getVisibility()==View.GONE){
+                    if(contacto.getVisibility() == View.GONE){
                         contacto.setVisibility(View.VISIBLE);
                         titulo_contacto.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.keyboard_arrow_up,0);
                     }
@@ -135,74 +142,85 @@ public class Curso extends AppCompatActivity {
                     }
                 }
             });
+
+            //Habilitar telefono
             if(!parametros.getString("telefono").equals("") && !parametros.getString("telefono").isEmpty()){
-                final String tel="+"+parametros.getString("telefono");
+                final String tel = "+"+parametros.getString("telefono");
                 telefono.setVisibility(View.VISIBLE);
                 telefono.setText(tel);
                 lntelefono.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent =new Intent(Intent.ACTION_DIAL,Uri.fromParts("tel", tel, null));
+                        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.fromParts("tel", tel, null));
                         startActivity(intent);
                     }
                 });
             }
+
+            //Habilitar whatsapp
             if(!parametros.getString("whatsapp").equals("null")&& !parametros.getString("whatsapp").isEmpty()){
                 lnwhatsapp.setVisibility(View.VISIBLE);
-                final String what=parametros.getString("whatsapp");
+                final String what = parametros.getString("whatsapp");
                 whatsapp.setText("+"+what);
                 lnwhatsapp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Habilitar facebook
             if(!parametros.getString("facebook").equals("null")&& !parametros.getString("facebook").isEmpty()){
                 lnfacebook.setVisibility(View.VISIBLE);
-                final String face=parametros.getString("facebook");
+                final String face = parametros.getString("facebook");
                 facebook.setText(parametros.getString("nombrefacebook"));
                 lnfacebook.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse(face);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
-
             }
+
+            //Habilitar instagram
             if(!parametros.getString("instagram").equals("null")&& !parametros.getString("instagram").isEmpty()){
                 lninstagram.setVisibility(View.VISIBLE);
-                final String inst=parametros.getString("instagram");
+                final String inst = parametros.getString("instagram");
                 instagram.setText(parametros.getString("nombreinstagram"));
                 lninstagram.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Uri uri=Uri.parse(inst);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Uri uri = Uri.parse(inst);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Habilitar pagina web
             if(!parametros.getString("paginaweb").equals("null")&& !parametros.getString("paginaweb").isEmpty()){
                 lnpageweb.setVisibility(View.VISIBLE);
-                final String web=parametros.getString("paginaweb");
+                final String web = parametros.getString("paginaweb");
                 pageweb.setText(web);
                 lnpageweb.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse(web);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Habilitar correo electronico
             if(!parametros.getString("email").equals("null") && !parametros.getString("email").isEmpty() ){
                 lnemail.setVisibility(View.VISIBLE);
-                final String em=parametros.getString("email");
+                final String em = parametros.getString("email");
                 email.setText(em);
                 lnemail.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -221,10 +239,54 @@ public class Curso extends AppCompatActivity {
                     }
                 });
             }
+
             GenerarGaleria();
+
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void InicilizarComponentes() {
+        titulo = findViewById(R.id.titulo_curso);
+        fecha = findViewById(R.id.fecha_curso);
+        departamento = findViewById(R.id.departamento_curso);
+        contenido = findViewById(R.id.contenido_curso);
+        autor = findViewById(R.id.autor_curso);
+        costo = findViewById(R.id.costo_curso);
+        duracion = findViewById(R.id.duracion_curso);
+        lntelefono = findViewById(R.id.phone_Curso);
+        telefono = findViewById(R.id.tx_phone_curso);
+        lnwhatsapp = findViewById(R.id.whatsapp_curso);
+        whatsapp = findViewById(R.id.tx_whatsapp_curso);
+        lnfacebook = findViewById(R.id.facebook_curso);
+        facebook = findViewById(R.id.tx_facebook_curso);
+        lninstagram = findViewById(R.id.instagram_curso);
+        instagram = findViewById(R.id.tx_instagram_curso);
+        lnpageweb = findViewById(R.id.paginaweb_curso);
+        pageweb = findViewById(R.id.tx_paginaweb_curso);
+        lnemail = findViewById(R.id.email_curso);
+        email = findViewById(R.id.tx_email_curso);
+        titulo_contacto = findViewById(R.id.titulo_contacto_curso);
+        contacto = findViewById(R.id.contacto_curso);
+        contenidos = findViewById(R.id.contenidos);
+        informacion = findViewById(R.id.informacion);
+        rv_galeria = findViewById(R.id.galeria_curso_recyclerview);
+        direccion = findViewById(R.id.direccion_curso);
+        horario = findViewById(R.id.horario_curso);
     }
 
     private void GenerarGaleria() {
@@ -233,22 +295,29 @@ public class Curso extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             try {
+                                //JSON
                                 JSONObject jsonObject = new JSONObject(response);
+
+                                //Obtencion de datos de galeria
                                 JSONArray jsonArray = jsonObject.getJSONArray("galeria-curso");
-                                for (int i=0;i<jsonArray.length();i++)
+                                for (int i = 0;i<jsonArray.length();i++)
                                 {
                                     JSONObject object = jsonArray.getJSONObject(i);
-                                    GaleriaCursoClass cursos= new GaleriaCursoClass(object.getInt("id"),"", object.getString("url"));
+                                    GaleriaCursoClass cursos = new GaleriaCursoClass(object.getInt("id"),"", object.getString("url"));
                                     listGaleria.add(cursos);
                                 }
-                                adaptadorGaleriaCurso= new AdaptadorGaleriaCurso(Curso.this,listGaleria);
+
+                                //no tiene funcionalidad al seleccionar
+
+                                adaptadorGaleriaCurso = new AdaptadorGaleriaCurso(Curso.this,listGaleria);
                                 rv_galeria.setLayoutManager(new LinearLayoutManager(Curso.this));
                                 rv_galeria.setVisibility(View.VISIBLE);
                                 rv_galeria.setAdapter(adaptadorGaleriaCurso);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(getApplicationContext(),
-                                        "Error", Toast.LENGTH_LONG)
+                                        "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                         .show();
                             }
                         }
@@ -257,13 +326,15 @@ public class Curso extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(getApplicationContext(),
-                                    "Error:"+error.getMessage(), Toast.LENGTH_LONG)
+                                    "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
+
+                    //Envias como atributo el id de curso key = "cod"
                     params.put("cod",ID);
                     return params;
                 }
@@ -271,46 +342,4 @@ public class Curso extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
             requestQueue.add(stringRequest);
         }
-
-    private void InicilizarComponentes() {
-        titulo=findViewById(R.id.titulo_curso);
-        fecha=findViewById(R.id.fecha_curso);
-        departamento=findViewById(R.id.departamento_curso);
-        contenido=findViewById(R.id.contenido_curso);
-        autor=findViewById(R.id.autor_curso);
-        costo=findViewById(R.id.costo_curso);
-        duracion=findViewById(R.id.duracion_curso);
-        lntelefono=findViewById(R.id.phone_Curso);
-        telefono=findViewById(R.id.tx_phone_curso);
-        lnwhatsapp=findViewById(R.id.whatsapp_curso);
-        whatsapp=findViewById(R.id.tx_whatsapp_curso);
-        lnfacebook=findViewById(R.id.facebook_curso);
-        facebook=findViewById(R.id.tx_facebook_curso);
-        lninstagram=findViewById(R.id.instagram_curso);
-        instagram=findViewById(R.id.tx_instagram_curso);
-        lnpageweb=findViewById(R.id.paginaweb_curso);
-        pageweb=findViewById(R.id.tx_paginaweb_curso);
-        lnemail=findViewById(R.id.email_curso);
-        email=findViewById(R.id.tx_email_curso);
-        titulo_contacto=findViewById(R.id.titulo_contacto_curso);
-        contacto=findViewById(R.id.contacto_curso);
-        contenidos=findViewById(R.id.contenidos);
-        informacion=findViewById(R.id.informacion);
-        rv_galeria=findViewById(R.id.galeria_curso_recyclerview);
-        direccion=findViewById(R.id.direccion_curso);
-        horario=findViewById(R.id.horario_curso);
-    }
-    @Override
-    public boolean onSupportNavigateUp() {
-        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
-        getSupportActionBar().setHomeAsUpIndicator(drawable);
-        onBackPressed();
-        return true;
-    }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.left_in, R.anim.right_out);
-    }
 }

@@ -24,12 +24,15 @@ import java.util.Date;
 
 public class NuevaNota extends AppCompatActivity {
 
+    //Componentes
     private EditText titulo;
     private EditText contenido;
     private LinearLayout encabezado;
 
+    //Complemento
     private static int ID;
     private static String colores;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,10 @@ public class NuevaNota extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4C79FB")));
-        colores="4C79FB";
+        colores = "4C79FB";
+
         InicializarComponentes();
+
         try {
             Bundle parametros = this.getIntent().getExtras();
             ID=parametros.getInt("ID",0);
@@ -48,6 +53,7 @@ public class NuevaNota extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         contenido.requestFocus();
     }
 
@@ -82,18 +88,18 @@ public class NuevaNota extends AppCompatActivity {
         try {
             if(!contenido.getText().toString().trim().equals(""))
             {
-                BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+                BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
                 SQLiteDatabase bd = objEvento.getWritableDatabase();
-                if(bd!=null){
+                if(bd != null){
                     Date d = new Date();
                     CharSequence s = DateFormat.format("MMMM d, yyyy ", d.getTime());
-                    String con=Html.toHtml(contenido.getText());
-                    String tl=titulo.getText().toString().trim();
+                    String con = Html.toHtml(contenido.getText());
+                    String tl = titulo.getText().toString().trim();
                     if(tl.equals(""))
                     {
-                        tl="Titulo";
+                        tl = "Titulo";
                     }
-                    bd.execSQL("insert into notas values(?,"+ID+",'"+s.toString()+"','"+tl+"','"+con+"','"+colores+"')");
+                    bd.execSQL("insert into notas values(?," + ID + ",'" + s.toString() + "','" + tl + "','" + con + "','" + colores + "')");
                     contenido.setText("");
                     titulo.setText("");
                     onBackPressed();
@@ -111,22 +117,22 @@ public class NuevaNota extends AppCompatActivity {
     }
 
     private void InicializarComponentes() {
-        titulo=findViewById(R.id.titulo_nueva_nota);
-        encabezado=findViewById(R.id.encabezado_nueva_nota);
-        contenido=findViewById(R.id.contenido_nueva_nota);
+        titulo = findViewById(R.id.titulo_nueva_nota);
+        encabezado = findViewById(R.id.encabezado_nueva_nota);
+        contenido = findViewById(R.id.contenido_nueva_nota);
     }
 
     public void Color(final String clr){
-        encabezado.setBackgroundColor(Color.parseColor("#"+clr));
-        colores=clr;
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#"+clr)));
+        encabezado.setBackgroundColor(Color.parseColor("#" + clr));
+        colores = clr;
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#" + clr)));
     }
 
     @Override
     public void onBackPressed() {
         if(!titulo.getText().toString().equals("") || !contenido.getText().toString().equals(""))
         {
-            AlertDialog.Builder Advertencia= new AlertDialog.Builder(this);
+            AlertDialog.Builder Advertencia = new AlertDialog.Builder(this);
             Advertencia.setTitle("Advertencia");
             Advertencia.setMessage("Desea salir. Las modificaciones realizadas se perderan");
             Advertencia.setCancelable(false);

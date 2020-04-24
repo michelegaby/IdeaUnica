@@ -17,6 +17,7 @@ public class ViewPagerInvitadosAdapter extends FragmentPagerAdapter {
     public  ViewPagerInvitadosAdapter(FragmentManager fm){
         super(fm);
     }
+
     @NonNull
     @Override
     public Fragment getItem(int position) {

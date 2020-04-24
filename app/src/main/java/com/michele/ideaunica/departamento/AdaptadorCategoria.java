@@ -27,14 +27,16 @@ public class AdaptadorCategoria extends RecyclerView.Adapter<AdaptadorCategoria.
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorCategoria.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_categoria,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_categoria,viewGroup,false);
         AdaptadorCategoria.MyViewHolder viewHolder = new AdaptadorCategoria.MyViewHolder(view);
         view.setOnClickListener(this);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
@@ -45,19 +47,24 @@ public class AdaptadorCategoria extends RecyclerView.Adapter<AdaptadorCategoria.
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
+    //Indica que la funcionalidad de seleccion esta en el padre
     public void setOnClickListener(View.OnClickListener listener){
-        this.listener =listener;
+        this.listener = listener;
     }
+
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if(listener != null){
             listener.onClick(v);
         }
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -65,11 +72,12 @@ public class AdaptadorCategoria extends RecyclerView.Adapter<AdaptadorCategoria.
         private ImageView img;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_cat_titulo);
-            detalle=itemView.findViewById(R.id.item_cat_cant);
-            img=itemView.findViewById(R.id.item_cat_img);
+            titulo = itemView.findViewById(R.id.item_cat_titulo);
+            detalle = itemView.findViewById(R.id.item_cat_cant);
+            img = itemView.findViewById(R.id.item_cat_img);
         }
     }
+
     public void setfilter(ArrayList<CategoriaClass> listaCategoria){
         nData = new ArrayList<>();
         nData.addAll(listaCategoria);

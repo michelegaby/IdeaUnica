@@ -37,21 +37,25 @@ import java.util.Map;
 public class DepartamentoFragment extends Fragment {
 
     View view;
+
     //Componentes
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
     private SwipeRefreshLayout swipeRefreshLayout;
+
     //Complementos
     AdaptadorDepartamento adaptadorDepartamento;
     private ArrayList<DepartamentoClass> listDepartamento = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/departamento.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/departamento.php";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_departamentos,container,false);
+        view = inflater.inflate(R.layout.fragment_departamentos,container,false);
         InicializarComponentes();
         GenerarDatos();
+
+        //Refresh de los departamentos
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -65,7 +69,6 @@ public class DepartamentoFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                listDepartamento.clear();
                 GenerarDatos();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -80,15 +83,15 @@ public class DepartamentoFragment extends Fragment {
     }
 
     public static DepartamentoFragment newInstance(){
-        DepartamentoFragment fragment=new DepartamentoFragment();
-        Bundle args=new Bundle();
+        DepartamentoFragment fragment = new DepartamentoFragment();
+        Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
     private void InicializarComponentes() {
-        myrecyclerview=view.findViewById(R.id.departamento_recyclerview);
-        progress=view.findViewById(R.id.progress_departamento);
+        myrecyclerview = view.findViewById(R.id.departamento_recyclerview);
+        progress = view.findViewById(R.id.progress_departamento);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_departamento);
     }
 
@@ -98,18 +101,27 @@ public class DepartamentoFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //vaciar el array listDepartamento
+                            listDepartamento.clear();
+
+                            //Obtencion de los departamentos
                             JSONArray jsonArray = jsonObject.getJSONArray("departamentos");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
-                                DepartamentoClass departamento= new DepartamentoClass(object.getInt("id"),
+                                DepartamentoClass departamento = new DepartamentoClass(object.getInt("id"),
                                         object.getString("nombre").trim(),object.getString("url").trim());
                                 listDepartamento.add(departamento);
                             }
+
                             progress.setVisibility(View.GONE);
-                            adaptadorDepartamento= new AdaptadorDepartamento(getContext(),listDepartamento);
+                            adaptadorDepartamento = new AdaptadorDepartamento(getContext(),listDepartamento);
                             myrecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                            //Funcion al seleccionar redireccionar a una lista(recyclerview) de todas las categorias del departamento seleccionada
                             adaptadorDepartamento.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -123,12 +135,15 @@ public class DepartamentoFragment extends Fragment {
                                     startActivity(i);
                                 }
                             });
+
                             myrecyclerview.setAdapter(adaptadorDepartamento);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(),
-                                    "Error", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_LONG)
                                     .show();
+                            listDepartamento.clear();
                             progress.setVisibility(View.GONE);
                         }
                     }
@@ -137,8 +152,9 @@ public class DepartamentoFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(),
-                                "Error de conexión"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
                                 .show();
+                        listDepartamento.clear();
                         progress.setVisibility(View.GONE);
                     }
                 }) {

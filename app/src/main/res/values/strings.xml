@@ -89,6 +89,20 @@
     <string name="siguiente">NEXT</string>
     <string name="anterior">BACK</string>
     <string name="barra"> | </string>
+    <string name="leerpost">Leer post</string>
+    <string name="puntopost"> · </string>
+    <string name="logoempresa">Logo de la empresa</string>
+    <string name="descripcionfragmentevento">Agrega tus próximos eventos!!</string>
+    <string name="mipresupuesto">Mi Presupuesto</string>
+    <string name="gastos">Gastos</string>
+    <string name="cerodecimal">00.0</string>
+    <string name="saldo">Saldo</string>
+    <string name="actual">Actual</string>
+    <string name="finalsaldo">Final</string>
+    <string name="acompañantes">Acompañante/s</string>=
+    <string name="desconfirmar">Desconfirmar</string>
+    <string name="actualifacionejemplofechanota">Mar 25, 2019 - Ultima Actualización</string>
+    <string name="tarea">Tarea</string>
 
     <string-array name="Spinner_tipo_evento">
         <item>Cumpleaños</item>

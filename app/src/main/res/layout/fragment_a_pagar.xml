@@ -4,10 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.gastos.APagarFragment">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/APagar_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 </RelativeLayout>

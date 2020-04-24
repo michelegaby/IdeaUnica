@@ -14,18 +14,24 @@ import java.util.Date;
 public class HeaderBlogViewHolder extends BaseViewHolder{
 
     private TextView tvHeader;
+
     public HeaderBlogViewHolder(@NonNull View itemView) {
         super(itemView);
         tvHeader=itemView.findViewById(R.id.item_header_text_blog);
     }
+
     @Override
     void setData(TimelineClass item) {
         HeaderBlogClass headerBlogClass = item.getHeaderBlogClass();
+
+        //Intentar cambiar el formato de la fecha
         try {
+
             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");
             Date date = parseador.parse(headerBlogClass.getHeaderblog());
             tvHeader.setText(formateador.format(date));
+
         } catch (ParseException e) {
             tvHeader.setText(headerBlogClass.getHeaderblog());
         };

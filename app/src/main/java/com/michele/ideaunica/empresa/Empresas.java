@@ -4,22 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,9 +25,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.michele.ideaunica.R;
-import com.michele.ideaunica.empresa.Publicidad.AdapterPublicidad;
-import com.michele.ideaunica.empresa.Publicidad.PublicidadClass;
 import com.smarteist.autoimageslider.DefaultSliderView;
+import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
@@ -41,10 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Empresas extends AppCompatActivity {
 
@@ -52,17 +43,12 @@ public class Empresas extends AppCompatActivity {
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
     private EditText buscar;
-    private ViewPager mSliderViewPaper;
-    private LinearLayout mDotsLayout;
-    private TextView[] mDots;
-    private int mCurrentPage;
-    private List<PublicidadClass> mList;
-    private AdapterPublicidad sliderAdapter;
+    private SliderLayout sliderLayout;
 
     //Complementos
     AdaptadorEmpresa adaptadorEmpresa;
     private ArrayList<EmpresaClass> listEmpresa = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/empresas.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/empresas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +59,7 @@ public class Empresas extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle(parametros.getString("titulo"));
         GenerarDatos(parametros.getString("categoria"));
@@ -85,13 +71,14 @@ public class Empresas extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     private void InicializarComponentes() {
-        myrecyclerview=findViewById(R.id.Empresas_recyclerview);
-        progress=findViewById(R.id.progress_empresas);
-        buscar=findViewById(R.id.buscar_empresas);
-        mSliderViewPaper= findViewById(R.id.sliderViewPagerPublicidadEmpresas);
-        mDotsLayout=findViewById(R.id.dotsLayoutPublicidadEmpresa);
+        myrecyclerview = findViewById(R.id.Empresas_recyclerview);
+        progress = findViewById(R.id.progress_empresas);
+        buscar = findViewById(R.id.buscar_empresas);
+        sliderLayout = findViewById(R.id.slider_publicidad_empresas);
     }
+
     private void BuscarEmpresas() {
         buscar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,7 +90,7 @@ public class Empresas extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 try{
-                    ArrayList<EmpresaClass> listafiltrada= filter(listEmpresa,s.toString());
+                    ArrayList<EmpresaClass> listafiltrada = filter(listEmpresa,s.toString());
                     adaptadorEmpresa.setfilter(listafiltrada);
                 }catch (Exception e)
                 {
@@ -112,10 +99,11 @@ public class Empresas extends AppCompatActivity {
             }
         });
     }
+
     private ArrayList<EmpresaClass> filter(ArrayList<EmpresaClass> empresass,String texto){
-        ArrayList<EmpresaClass> listFiltada= new ArrayList<>();
+        ArrayList<EmpresaClass> listFiltada = new ArrayList<>();
         try{
-            texto=texto.toLowerCase();
+            texto = texto.toLowerCase();
             for(EmpresaClass emp: empresass){
                 String titulo = emp.getTitulo().toLowerCase();
                 if(titulo.contains(texto)){
@@ -128,15 +116,19 @@ public class Empresas extends AppCompatActivity {
         }
         return listFiltada;
     }
+
     public void GenerarDatos(final String cate){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de las empresas de la categoria seleccionada
                             JSONArray jsonArray = jsonObject.getJSONArray("empresas");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 EmpresaClass empresaClass =
@@ -161,28 +153,34 @@ public class Empresas extends AppCompatActivity {
                                                 object.getString("urlToolbar"));
                                 listEmpresa.add(empresaClass);
                             }
-                            adaptadorEmpresa= new AdaptadorEmpresa(Empresas.this,listEmpresa);
+
+                            //Funcionalidad al seleccionar se encuentra en el adapter
+                            adaptadorEmpresa = new AdaptadorEmpresa(Empresas.this,listEmpresa);
                             myrecyclerview.setLayoutManager(new LinearLayoutManager(Empresas.this));
                             progress.setVisibility(View.GONE);
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorEmpresa);
 
+                            //Obtencion de la publicidad
                             JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
-                            mList = new ArrayList<>();
                             for (int i = 0; i < jsonArray2.length(); i++) {
-                                DefaultSliderView sliderView= new DefaultSliderView(getApplicationContext());
+                                DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
                                 JSONObject object = jsonArray2.getJSONObject(i);
-                                mList.add(new PublicidadClass("5 Opciones","Dispone de 5 opciones, la de inicio donde eligira el el departamento y categoria para ver los diferentes lugares donde podra disponer que desea.",object.getString("url")));
+                                sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
+                                sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
+                                sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
+                                    @Override
+                                    public void onSliderClick(SliderView sliderView) {
+                                        Toast.makeText(getApplicationContext(),"No disponible.",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                sliderLayout.addSliderView(sliderView);
                             }
-                            sliderAdapter=new AdapterPublicidad(Empresas.this,mList);
-                            mSliderViewPaper.setAdapter(sliderAdapter);
-                            addDotsIndicator(0);
-                            mSliderViewPaper.addOnPageChangeListener(viewLitener);
-                            
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Empresas.this,
-                                    "Error"+e.getMessage(), Toast.LENGTH_LONG)
+                                    "Error, Por favor intentelo mas tarde, gracias.", Toast.LENGTH_LONG)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -192,7 +190,7 @@ public class Empresas extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Empresas.this,
-                                "Error  de conexión"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error  de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }
@@ -200,6 +198,8 @@ public class Empresas extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Enviamos como atributo el id de la categoria con la key "cat"
                 params.put("cat",cate);
                 return params;
             }
@@ -207,33 +207,4 @@ public class Empresas extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    public void addDotsIndicator(int position) {
-        mDots = new TextView[mList.size()];
-        mDotsLayout.removeAllViews();
-        for (int i=0;i<mDots.length;i++){
-            mDots[i]=new TextView(this);
-            mDots[i].setText(Html.fromHtml("&#8226;"));
-            mDots[i].setTextSize(30);
-            mDots[i].setTextColor(getResources().getColor(R.color.colorlinea));
-            mDotsLayout.addView(mDots[i]);
-        }
-        if(mDots.length>0){
-            mDots[position].setTextColor(getResources().getColor(R.color.colorblanco));
-        }
-    }
-    ViewPager.OnPageChangeListener viewLitener= new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-        @Override
-        public void onPageSelected(int position) {
-            addDotsIndicator(position);
-            mCurrentPage=position;
-        }
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
 }

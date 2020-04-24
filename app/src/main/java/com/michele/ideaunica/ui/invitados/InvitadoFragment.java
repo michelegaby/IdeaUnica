@@ -19,11 +19,13 @@ import com.michele.ideaunica.R;
 public class InvitadoFragment extends Fragment {
 
     View view;
+    public static int ID;
 
+    //Componentes
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
-    public static int ID;
+    //Complemento
     public static InvitadoFragment newInstance() {
         return new InvitadoFragment();
     }
@@ -34,15 +36,16 @@ public class InvitadoFragment extends Fragment {
         view = inflater.inflate(R.layout.invitado_fragment, container, false);
         inicializarComponentes();
         Bundle parametros = getActivity().getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+
+        ID = parametros.getInt("ID",0);
+
         return view;
     }
 
     private void inicializarComponentes() {
-        viewPager=view.findViewById(R.id.viewpaper_invitados);
-        tabLayout=view.findViewById(R.id.tabs_invitados);
+        viewPager = view.findViewById(R.id.viewpaper_invitados);
+        tabLayout = view.findViewById(R.id.tabs_invitados);
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -68,19 +71,18 @@ public class InvitadoFragment extends Fragment {
     }
 
     private void setUpViewPager(ViewPager viewPager) {
-        ViewPagerInvitadosAdapter adapter= new ViewPagerInvitadosAdapter(getChildFragmentManager());
-        Bundle m= new Bundle();
+        ViewPagerInvitadosAdapter adapter = new ViewPagerInvitadosAdapter(getChildFragmentManager());
+        Bundle m = new Bundle();
         m.putInt("ID",ID);
 
-        InvitadosaConfirmarFragment resumenFragment= new InvitadosaConfirmarFragment();
+        InvitadosaConfirmarFragment resumenFragment = new InvitadosaConfirmarFragment();
         resumenFragment.setArguments(m);
         adapter.AddFragment(resumenFragment,"A Confirmar");
 
-        InvitadosConfirmadosFragment aPagarFragment= new InvitadosConfirmadosFragment();
+        InvitadosConfirmadosFragment aPagarFragment = new InvitadosConfirmadosFragment();
         aPagarFragment.setArguments(m);
         adapter.AddFragment(aPagarFragment,"Confirmados");
 
         viewPager.setAdapter(adapter);
     }
-
 }

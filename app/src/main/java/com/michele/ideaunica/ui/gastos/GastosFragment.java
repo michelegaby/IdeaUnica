@@ -23,11 +23,11 @@ public class GastosFragment extends Fragment {
 
     
     View view;
-    
+    public static int ID;
+
+    //Componentes
     private ViewPager viewPager;
     private TabLayout tabLayout;
-
-    public static int ID;
 
     @Nullable
     @Override
@@ -35,13 +35,13 @@ public class GastosFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_gastos, container, false);
         inicializarComponentes();
         Bundle parametros = getActivity().getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+        ID = parametros.getInt("ID",0);
         return view;
     }
 
     private void inicializarComponentes() {
-        viewPager=view.findViewById(R.id.viewpaper_gatos);
-        tabLayout=view.findViewById(R.id.tabs_gastos);
+        viewPager = view.findViewById(R.id.viewpaper_gatos);
+        tabLayout = view.findViewById(R.id.tabs_gastos);
     }
 
     @Override
@@ -68,27 +68,27 @@ public class GastosFragment extends Fragment {
     }
 
     private void setUpViewPager(ViewPager viewPager) {
-        ViewPagerGastosAdapter adapter= new ViewPagerGastosAdapter(getChildFragmentManager());
-        Bundle m= new Bundle();
+        ViewPagerGastosAdapter adapter = new ViewPagerGastosAdapter(getChildFragmentManager());
+        Bundle m = new Bundle();
         m.putInt("ID",ID);
 
-        ResumenFragment resumenFragment= new ResumenFragment();
+        ResumenFragment resumenFragment = new ResumenFragment();
         resumenFragment.setArguments(m);
         adapter.AddFragment(resumenFragment,"Resumen");
 
-        APagarFragment aPagarFragment= new APagarFragment();
+        APagarFragment aPagarFragment = new APagarFragment();
         aPagarFragment.setArguments(m);
         adapter.AddFragment(aPagarFragment,"A Pagar");
 
-        PagoFragment pagoFragment= new PagoFragment();
+        PagoFragment pagoFragment = new PagoFragment();
         pagoFragment.setArguments(m);
         adapter.AddFragment(pagoFragment,"Pago");
 
-        VencidoFragment vencidoFragment=new VencidoFragment();
+        VencidoFragment vencidoFragment = new VencidoFragment();
         vencidoFragment.setArguments(m);
         adapter.AddFragment(vencidoFragment,"Vencido");
 
-        TodoFragment todoFragment=new TodoFragment();
+        TodoFragment todoFragment = new TodoFragment();
         todoFragment.setArguments(m);
         adapter.AddFragment(todoFragment,"Todo");
 

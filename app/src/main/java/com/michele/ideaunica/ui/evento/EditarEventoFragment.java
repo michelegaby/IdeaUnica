@@ -51,6 +51,7 @@ public class EditarEventoFragment extends Fragment{
 
     View view;
     private static int ID;
+
     //componentes
     private EditText fecha;
     private EditText titulo;
@@ -59,13 +60,14 @@ public class EditarEventoFragment extends Fragment{
     private CalendarView calendario;
     private ImageView fondo;
     private ImageView photo;
+
+    //Complementos
     final String MyAlbum = "IdeaUnica";
     Bitmap fotobitmapSrc;
     Bitmap fondobitmapSrc;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-
-    private boolean estadofondo=false;
-    private boolean estadofoto=false;
+    private boolean estadofondo = false;
+    private boolean estadofoto = false;
 
     @Nullable
     @Override
@@ -93,7 +95,7 @@ public class EditarEventoFragment extends Fragment{
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/");
                 startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicacion"),11);
             }
@@ -101,7 +103,7 @@ public class EditarEventoFragment extends Fragment{
         fondo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/");
                 startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicacion"),10);
             }
@@ -145,32 +147,32 @@ public class EditarEventoFragment extends Fragment{
 
         return view;
     }
+
     public void msn(String mss){
         Toast.makeText(getContext(),mss,Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try{
-            if(resultCode==getActivity().RESULT_OK){
+            if(resultCode == getActivity().RESULT_OK){
                 Uri path = data.getData();
-                if(requestCode==10)
+                if(requestCode == 10)
                 {
                     try {
                         fondobitmapSrc = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), path);
                         fondo.setImageURI(path);
-                        estadofondo=true;
+                        estadofondo = true;
                     } catch (IOException e) {
                         Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
                     }
                 }
-                if(requestCode==11) {
+                if(requestCode == 11) {
                     try {
                         fotobitmapSrc = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), path);
                         photo.setImageURI(path);
-                        estadofoto=true;
+                        estadofoto = true;
                     } catch (IOException e) {
                         Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
                     }
@@ -182,15 +184,14 @@ public class EditarEventoFragment extends Fragment{
     }
 
     private void InicializarComponentes() {
-        fondo=view.findViewById(R.id.img_fondo_editar_evento);
-        titulo=view.findViewById(R.id.titulo_editar_evento);
-        fecha=view.findViewById(R.id.fecha_editar_evento);
-        hora=view.findViewById(R.id.hora_editar_evento);
-        calendario=view.findViewById(R.id.calendario_editar_evento);
-        photo=view.findViewById(R.id.photo_editar_evento);
-        guardar=view.findViewById(R.id.guardar_editar_evento);
+        fondo = view.findViewById(R.id.img_fondo_editar_evento);
+        titulo = view.findViewById(R.id.titulo_editar_evento);
+        fecha = view.findViewById(R.id.fecha_editar_evento);
+        hora = view.findViewById(R.id.hora_editar_evento);
+        calendario = view.findViewById(R.id.calendario_editar_evento);
+        photo = view.findViewById(R.id.photo_editar_evento);
+        guardar = view.findViewById(R.id.guardar_editar_evento);
     }
-
 
     private void showTime() {
 
@@ -203,21 +204,21 @@ public class EditarEventoFragment extends Fragment{
         TimePickerDialog dialog =
                 new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        String min="";
-                        String hor="";
+                        String min = "";
+                        String hor = "";
                         if(minute<10){
-                            min="0"+minute;
+                            min = "0"+minute;
                         }
                         else
                         {
-                            min=minute+"";
+                            min = minute+"";
                         }
                         if(hourOfDay<10){
-                            hor="0"+hourOfDay;
+                            hor = "0"+hourOfDay;
                         }
                         else
                         {
-                            hor=hourOfDay+"";
+                            hor = hourOfDay+"";
                         }
                         String time = hor+":"+min;
                         hora.setText(time);
@@ -231,7 +232,7 @@ public class EditarEventoFragment extends Fragment{
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from evento where id=" + ID, null);
+                Cursor objCursor = bd.rawQuery("Select * from evento where id = " + ID, null);
                 while (objCursor.moveToNext()) {
                     titulo.setText(objCursor.getString(1));
                     fecha.setText(objCursor.getString(2));
@@ -322,14 +323,12 @@ public class EditarEventoFragment extends Fragment{
         File file = new File(dir, fileName);
 
         OutputStream outputStream = null;
+
         try {
             outputStream = new FileOutputStream(file);
             fotobitmapSrc.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
             outputStream.flush();
             outputStream.close();
-
-            //Toast.makeText(getContext(),"File saved: \n" + file.getAbsolutePath(),Toast.LENGTH_LONG).show();
-
             return file.getAbsolutePath();
 
         } catch (FileNotFoundException e) {
@@ -340,33 +339,34 @@ public class EditarEventoFragment extends Fragment{
             return "error";
         }
     }
+
     public void Guardar(final String titulo,final String fecha, final String Hora){
         try {
-            String update="";
-            if(estadofoto==true && estadofondo==true)
+            String update = "";
+            if(estadofoto == true && estadofondo == true)
             {
-                update="update evento set titulo='"+titulo+"',fecha='"+fecha+"', hora='"+Hora+"', urlfoto='"+GuardarFoto()+"', urlfondo='"+GuardarFondo()+"' where id="+ID;
+                update = "update evento set titulo = '" + titulo + "',fecha = '" + fecha + "', hora = '" + Hora + "', urlfoto = '" + GuardarFoto() + "', urlfondo = '" + GuardarFondo() + "' where id = " + ID;
             }else
             {
-                if(estadofoto==true){
+                if(estadofoto == true){
 
-                    update="update evento set titulo='"+titulo+"',fecha='"+fecha+"', hora='"+Hora+"', urlfoto='"+GuardarFoto()+"' where id="+ID;
+                    update = "update evento set titulo = '" + titulo + "',fecha = '" + fecha + "', hora = '" + Hora + "', urlfoto = '" + GuardarFoto() + "' where id = " + ID;
 
                 }else{
-                    if(estadofondo==true)
+                    if(estadofondo == true)
                     {
-                        update="update evento set titulo='"+titulo+"',fecha='"+fecha+"', hora='"+Hora+"', urlfondo='"+GuardarFondo()+"' where id="+ID;
+                        update = "update evento set titulo = '" + titulo + "',fecha = '" + fecha + "', hora = '" + Hora + "', urlfondo = '" + GuardarFondo() + "' where id = " + ID;
                     }else
                     {
-                        update="update evento set titulo='"+titulo+"',fecha='"+fecha+"', hora='"+Hora+"' where id="+ID;
+                        update = "update evento set titulo = '" + titulo + "',fecha = '" + fecha + "', hora = '" + Hora + "' where id = " + ID;
                     }
                 }
             }
 
             try {
-                BDEvento objEvento= new BDEvento(getContext(),"bdEvento",null,1);
+                BDEvento objEvento = new BDEvento(getContext(),"bdEvento",null,1);
                 SQLiteDatabase bd = objEvento.getWritableDatabase();
-                if(bd!=null){
+                if(bd != null){
                     bd.execSQL(update);
                     msn("Se Guardo Correctamente");
                 }

@@ -29,9 +29,6 @@
         <activity android:name=".menu.Contacto.Contactos" />
         <activity android:name=".menu.evento.Eventos" />
         <activity
-            android:name=".OnBoarding"
-            android:theme="@style/AppThemeNobar" />
-        <activity
             android:name=".SplashScreen"
             android:theme="@style/AppThemeNobar">
             <intent-filter>
@@ -47,8 +44,8 @@
             android:name=".ui.gastos.NuevoGasto"
             android:label="Nuevo Gasto" />
         <activity
-            android:name=".cursos.Curso"
-            android:theme="@style/AppThemeNoche" />
+            android:name=".cursos.Curso"/>
+
         <activity android:name=".ui.invitados.NuevoInvitado" />
         <activity android:name=".cumple.NuevoEvento" />
         <activity android:name=".cursos.Cursos" />

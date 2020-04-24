@@ -1,6 +1,7 @@
 package com.michele.ideaunica.empresa;
 
 public class GaleriaEmpresaClass {
+
     private int id;
     private String titulo;
     private String url;
@@ -10,6 +11,7 @@ public class GaleriaEmpresaClass {
         this.titulo = titulo;
         this.url = url;
     }
+
     public int getId() {
         return id;
     }

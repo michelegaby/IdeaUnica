@@ -10,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarEmpresa"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="250dp">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collappEmpresa"
             android:layout_width="match_parent"

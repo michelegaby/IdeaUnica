@@ -38,13 +38,15 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorCurso.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_curso,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_curso,viewGroup,false);
         AdaptadorCurso.MyViewHolder viewHolder = new AdaptadorCurso.MyViewHolder(view);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorCurso.MyViewHolder myViewHolder, final int position) {
         myViewHolder.titulo.setText(nData.get(position).getTitulo());
@@ -55,6 +57,7 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
         myViewHolder.precio.setText(nData.get(position).getCosto());
         myViewHolder.contenido.setText(nData.get(position).getContenido());
         myViewHolder.departamento.setText(nData.get(position).getDepartamento());
+
         try {
             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat formateador = new SimpleDateFormat("d MMMM, yyyy");
@@ -64,11 +67,13 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
         } catch (ParseException e) {
             Toast.makeText(nContext,e.getMessage(),Toast.LENGTH_LONG).show();
         };
+
+        //Funcion al seleccionar direcciona a detalle del curso
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(nContext, Curso.class);
-                Bundle parmetros= new Bundle();
+                Bundle parmetros = new Bundle();
                 parmetros.putString("ID",nData.get(position).getId());
                 parmetros.putString("fecha",nData.get(position).getFecha());
                 parmetros.putString("horario",nData.get(position).getHorario());
@@ -99,6 +104,7 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
     public int getItemCount() {
         return nData.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -110,15 +116,16 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
         private CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_curso);
-            imagen=itemView.findViewById(R.id.item_img_curso);
-            cardView=itemView.findViewById(R.id.item_cardview_curso);
-            contenido=itemView.findViewById(R.id.item_contenido_curso);
-            departamento=itemView.findViewById(R.id.item_departamento_curso);
-            precio=itemView.findViewById(R.id.item_precio_curso);
-            fecha=itemView.findViewById(R.id.item_fecha_curso);
+            titulo = itemView.findViewById(R.id.item_titulo_curso);
+            imagen = itemView.findViewById(R.id.item_img_curso);
+            cardView = itemView.findViewById(R.id.item_cardview_curso);
+            contenido = itemView.findViewById(R.id.item_contenido_curso);
+            departamento = itemView.findViewById(R.id.item_departamento_curso);
+            precio = itemView.findViewById(R.id.item_precio_curso);
+            fecha = itemView.findViewById(R.id.item_fecha_curso);
         }
     }
+
     public void setfilter(ArrayList<CursosClass> listaCursos){
         nData = new ArrayList<>();
         nData.addAll(listaCursos);

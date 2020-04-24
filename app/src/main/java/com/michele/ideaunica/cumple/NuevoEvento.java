@@ -53,12 +53,14 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
     private CalendarView calendario;
     private ImageView fondo;
     private ImageView photo;
+
+    //Complementos
     final String MyAlbum = "IdeaUnica";
     Bitmap fotobitmapSrc;
     Bitmap fondobitmapSrc;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-    private boolean estadofondo=false;
-    private boolean estadofoto=false;
+    private boolean estadofondo = false;
+    private boolean estadofoto = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +73,13 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Nuevo Evento");
         inicializarComponentes();
+
+        //Obtener fehca actual
         Date d = new Date();
         CharSequence s = DateFormat.format("d/MM/yyyy ", d.getTime());
         fecha.setText(s);
+
+        //funcionalidad al querer guadar
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,12 +103,16 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
                 }
             }
         });
+
+        //Funcionalidad para seleccionar una hora
         hora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showTimePickerDialog();
             }
         });
+
+        //funcionalidad para seleccionar la fecha
         calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -116,15 +126,11 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (file.mkdirs()) {
-            /*Toast.makeText(getApplicationContext(),
-                    file.getAbsolutePath() + " creado",
-                    Toast.LENGTH_LONG).show();*/
         }else{
-            /*Toast.makeText(getApplicationContext(),
-                    "Directory no creado", Toast.LENGTH_LONG).show();*/
         }
         return file;
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -136,26 +142,27 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
+        if(resultCode == RESULT_OK){
             Uri path = data.getData();
-            if(requestCode==10)
+            if(requestCode == 10)
             {
                 try {
                     fondobitmapSrc = MediaStore.Images.Media.getBitmap(this.getContentResolver(), path);
                     fondo.setImageURI(path);
-                    estadofondo=true;
+                    estadofondo = true;
                 } catch (IOException e) {
                     Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
                 }
             }
-            if(requestCode==11) {
+            if(requestCode == 11) {
                 try {
                     fotobitmapSrc = MediaStore.Images.Media.getBitmap(this.getContentResolver(), path);
                     photo.setImageURI(path);
-                    estadofoto=true;
+                    estadofoto = true;
                 } catch (IOException e) {
                     Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
                 }
@@ -164,13 +171,13 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
     }
 
     public void onClickSeleccionarImagenfondo(View v){
-        Intent intent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
         startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicacion"),10);
     }
 
     public void onClickSeleccionarImagenfoto(View v){
-        Intent intent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
         startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicacion"),11);
     }
@@ -184,17 +191,19 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
     public void msn(String mss){
         Toast.makeText(getApplicationContext(),mss,Toast.LENGTH_SHORT).show();
     }
+
     private void inicializarComponentes() {
         fecha = findViewById(R.id.fecha_nuevo_evento);
-        titulo=findViewById(R.id.titulo_nuevo_evento);
-        hora=findViewById(R.id.hora_nuevo_evento);
-        guardar=findViewById(R.id.guardar_nuevo_evento);
-        calendario=findViewById(R.id.calendario_nuevo_evento);
-        fondo=findViewById(R.id.img_fondo_nuevo_evento);
-        photo=findViewById(R.id.photo_nuevo_evento);
+        titulo = findViewById(R.id.titulo_nuevo_evento);
+        hora = findViewById(R.id.hora_nuevo_evento);
+        guardar = findViewById(R.id.guardar_nuevo_evento);
+        calendario = findViewById(R.id.calendario_nuevo_evento);
+        fondo = findViewById(R.id.img_fondo_nuevo_evento);
+        photo = findViewById(R.id.photo_nuevo_evento);
     }
+
     private void showTimePickerDialog(){
-        TimePickerDialog dialog= new TimePickerDialog(
+        TimePickerDialog dialog = new TimePickerDialog(
                 this,
                 this,
                 Calendar.getInstance().get(Calendar.HOUR),
@@ -202,27 +211,29 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
                 true);
         dialog.show();
     }
+
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        String min="";
-        String hor="";
+        String min = "";
+        String hor = "";
         if(minute<10){
-            min="0"+minute;
+            min = "0"+minute;
         }
         else
         {
-            min=minute+"";
+            min = minute+"";
         }
         if(hourOfDay<10){
-            hor="0"+hourOfDay;
+            hor = "0"+hourOfDay;
         }
         else
         {
-            hor=hourOfDay+"";
+            hor = hourOfDay+"";
         }
         String time = hor+":"+min;
         hora.setText(time);
     }
+
     public String GuardarFondo(){
         Date date = new Date();
         SimpleDateFormat simpleDateFormat =
@@ -270,30 +281,33 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
             return "error";
         }
     }
+
     public void Guardar(final String titulo,final String fecha, final String Hora){
         try {
-            String insert="";
-            if(estadofoto==true && estadofondo==true)
+
+            String insert = "";
+            if(estadofoto == true && estadofondo == true)
             {
-                insert="insert into evento(id,titulo,fecha,hora,urlfoto,urlfondo,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFoto()+"','"+GuardarFondo()+"','HABILITADO')";
+                insert = "insert into evento(id,titulo,fecha,hora,urlfoto,urlfondo,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFoto()+"','"+GuardarFondo()+"','HABILITADO')";
             }else
             {
-                if(estadofoto==true){
-                    insert="insert into evento(id,titulo,fecha,hora,urlfoto,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFoto()+"','HABILITADO')";
+                if(estadofoto == true){
+                    insert = "insert into evento(id,titulo,fecha,hora,urlfoto,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFoto()+"','HABILITADO')";
                 }else{
-                    if(estadofondo==true)
+                    if(estadofondo == true)
                     {
-                        insert="insert into evento(id,titulo,fecha,hora,urlfondo,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFondo()+"','HABILITADO')";
+                        insert = "insert into evento(id,titulo,fecha,hora,urlfondo,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','"+GuardarFondo()+"','HABILITADO')";
                     }else
                     {
-                        insert="insert into evento(id,titulo,fecha,hora,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','HABILITADO')";
+                        insert = "insert into evento(id,titulo,fecha,hora,estado) values(?,'"+titulo+"','"+fecha+"','"+Hora+"','HABILITADO')";
                     }
                 }
             }
             try {
-                BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+
+                BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
                 SQLiteDatabase bd = objEvento.getWritableDatabase();
-                if(bd!=null){
+                if(bd != null){
                     bd.execSQL(insert);
                     msn("Se Guardo Correctamente");
                 }
@@ -303,6 +317,7 @@ public class NuevoEvento extends AppCompatActivity implements  TimePickerDialog.
             }catch (Exception E){
                 msn("ERROR");
             }
+
         }catch (Exception E){
             msn("ERROR");
         }

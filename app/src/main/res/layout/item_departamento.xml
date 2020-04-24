@@ -15,7 +15,7 @@
     <ImageView
         android:contentDescription="@string/img"
         android:id="@+id/item_dep_img"
-        android:src="@drawable/camello"
+        android:src="@drawable/fondorosa"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"

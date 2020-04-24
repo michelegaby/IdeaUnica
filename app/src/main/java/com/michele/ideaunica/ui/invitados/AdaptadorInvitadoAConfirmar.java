@@ -29,21 +29,19 @@ public class AdaptadorInvitadoAConfirmar extends RecyclerView.Adapter<AdaptadorI
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
-        nListener=listener;
+        nListener = listener;
     }
-
 
     public AdaptadorInvitadoAConfirmar(Context nContext, ArrayList<InvitadosClass> nData) {
         this.nContext = nContext;
         this.nData = nData;
     }
 
-
     @NonNull
     @Override
     public AdaptadorInvitadoAConfirmar.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_invitado_a_confirmar,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_invitado_a_confirmar,viewGroup,false);
         AdaptadorInvitadoAConfirmar.MyViewHolder viewHolder = new AdaptadorInvitadoAConfirmar.MyViewHolder(view,nListener);
         return viewHolder;
     }
@@ -58,7 +56,7 @@ public class AdaptadorInvitadoAConfirmar extends RecyclerView.Adapter<AdaptadorI
         myViewHolder.mostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(myViewHolder.expandableView.getVisibility()==View.GONE){
+                if(myViewHolder.expandableView.getVisibility() == View.GONE){
                     myViewHolder.expandableView.setVisibility(View.VISIBLE);
                     myViewHolder.mostrar.setBackgroundResource(R.drawable.keyboard_arrow_up);
                 }
@@ -90,48 +88,52 @@ public class AdaptadorInvitadoAConfirmar extends RecyclerView.Adapter<AdaptadorI
 
         public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            nombre=itemView.findViewById(R.id.item_nombre_invitado_a_confirmar);
-            tipo=itemView.findViewById(R.id.item_tipo_invitado_a_confirmar);
-            adulto=itemView.findViewById(R.id.item_adulto_invitado_a_confirmar);
-            ninyo=itemView.findViewById(R.id.item_ninyo_invitado_a_confirmar);
-            expandableView=itemView.findViewById(R.id.item_detalle_invitado_a_confirmar);
-            celular=itemView.findViewById(R.id.item_celular_invitado_a_confirmar);
+            nombre = itemView.findViewById(R.id.item_nombre_invitado_a_confirmar);
+            tipo = itemView.findViewById(R.id.item_tipo_invitado_a_confirmar);
+            adulto = itemView.findViewById(R.id.item_adulto_invitado_a_confirmar);
+            ninyo = itemView.findViewById(R.id.item_ninyo_invitado_a_confirmar);
+            expandableView = itemView.findViewById(R.id.item_detalle_invitado_a_confirmar);
+            celular = itemView.findViewById(R.id.item_celular_invitado_a_confirmar);
 
-            eliminar=itemView.findViewById(R.id.item_eliminar_invitado_a_confirmar);
-            modificar=itemView.findViewById(R.id.item_modificar_invitado_a_confirmar);
-            confirmar=itemView.findViewById(R.id.item_confirmar_invitado_a_confirmar);
+            eliminar = itemView.findViewById(R.id.item_eliminar_invitado_a_confirmar);
+            modificar = itemView.findViewById(R.id.item_modificar_invitado_a_confirmar);
+            confirmar = itemView.findViewById(R.id.item_confirmar_invitado_a_confirmar);
 
-            mostrar=itemView.findViewById(R.id.item_mostrar_invitado_a_confirmar);
+            mostrar = itemView.findViewById(R.id.item_mostrar_invitado_a_confirmar);
 
+            //Funcionalidad al boton eliminar en el padre
             eliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        int position= getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
                             listener.onElimanarClick(position);
                         }
                     }
                 }
             });
+
+            //Funcionalidad al boton modificar en el padre
             modificar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        int position= getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
                             listener.onModificarClick(position);
                         }
                     }
                 }
             });
 
+            //Funcionalidad al boton confirmar en el padre
             confirmar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        int position= getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
                             listener.onConfirmarClick(position);
                         }
                     }
@@ -139,6 +141,7 @@ public class AdaptadorInvitadoAConfirmar extends RecyclerView.Adapter<AdaptadorI
             });
         }
     }
+
     public void setfilter(ArrayList<InvitadosClass> listaInvitado){
         nData = new ArrayList<>();
         nData.addAll(listaInvitado);
@@ -150,11 +153,8 @@ public class AdaptadorInvitadoAConfirmar extends RecyclerView.Adapter<AdaptadorI
         notifyItemRemoved(position);
     }
 
-
     public void restoreItem(InvitadosClass invitado,int position){
         nData.add(position, invitado);
         notifyItemInserted(position);
     }
-
-
 }

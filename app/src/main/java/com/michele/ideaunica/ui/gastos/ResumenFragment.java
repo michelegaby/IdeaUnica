@@ -47,19 +47,20 @@ public class ResumenFragment extends Fragment {
     public ResumenFragment() {
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_resumen, container, false);
+        view = inflater.inflate(R.layout.fragment_resumen, container, false);
         inicializacionComponentes();
         Bundle parametros = getArguments();
-        ID=parametros.getInt("ID",0);
+        ID = parametros.getInt("ID",0);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getContext(),NuevoGasto.class);
-                Bundle parmetros= new Bundle();
+                Intent intent = new Intent(getContext(),NuevoGasto.class);
+                Bundle parmetros = new Bundle();
                 parmetros.putInt("ID",ID);
                 intent.putExtras(parmetros);
                 startActivity(intent);
@@ -99,12 +100,12 @@ public class ResumenFragment extends Fragment {
     private void GenerarDatos() {
         try {
 
-            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                Cursor objCursor = bd.rawQuery("Select * from evento where id=" +ID, null);
+            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                Cursor objCursor = bd.rawQuery("Select * from evento where id = " + ID, null);
                 while (objCursor.moveToNext()) {
-                    if(objCursor.getString(6)!= null && !objCursor.getString(6).isEmpty())
+                    if(objCursor.getString(6) != null && !objCursor.getString(6).isEmpty())
                     {
                         presupuesto.setText(objCursor.getString(6));
                     }
@@ -120,38 +121,38 @@ public class ResumenFragment extends Fragment {
 
     private void ControlDeGastos(){
         try {
-            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                double apagar=0;
-                double pago=0;
-                double vencido=0;
-                Cursor objCursor = bd.rawQuery("Select * from gastos where idevento=" + ID, null);
+            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                double apagar = 0;
+                double pago = 0;
+                double vencido = 0;
+                Cursor objCursor = bd.rawQuery("Select * from gastos where idevento = " + ID, null);
                 while (objCursor.moveToNext()){
                         try {
-                            BDEvento obj2= new BDEvento(getContext(),"bdEvento",null,1);
-                            SQLiteDatabase bd2= obj2.getReadableDatabase();
-                            if(bd2!=null){
-                                Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto=" +
+                            BDEvento obj2 = new BDEvento(getContext(),"bdEvento",null,1);
+                            SQLiteDatabase bd2 = obj2.getReadableDatabase();
+                            if(bd2 != null){
+                                Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto = " +
                                         objCursor.getInt(0), null);
 
                                 Date d = new Date();
                                 CharSequence s = DateFormat.format("dd/MM/yyyy", d.getTime());
-                                SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
-                                Date date1= sdf.parse(s.toString());
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                Date date1 = sdf.parse(s.toString());
 
                                 while (objCursor2.moveToNext()){
                                     if(objCursor2.getString(5).equals("Sin Pagar")){
-                                        Date date2=sdf.parse(objCursor2.getString(3));
+                                        Date date2 = sdf.parse(objCursor2.getString(3));
                                         if(date1.before(date2) || date1.equals(date2))
                                         {
-                                            apagar=apagar+Double.valueOf(objCursor2.getString(4));
+                                            apagar = apagar + Double.valueOf(objCursor2.getString(4));
                                         }
                                         else {
-                                            vencido=vencido+Double.valueOf(objCursor2.getString(4));
+                                            vencido = vencido + Double.valueOf(objCursor2.getString(4));
                                         }
                                     }else{
-                                        pago=pago+Double.valueOf(objCursor2.getString(4));
+                                        pago = pago + Double.valueOf(objCursor2.getString(4));
                                     }
                                 }
                             }
@@ -165,8 +166,8 @@ public class ResumenFragment extends Fragment {
                 APagar.setText(String.valueOf(apagar));
                 Pago.setText(String.valueOf(pago));
                 Vencido.setText(String.valueOf(vencido));
-                Gastos.setText(String.valueOf(apagar+pago));
-                double p=Double.valueOf(presupuesto.getText().toString());
+                Gastos.setText(String.valueOf(apagar + pago));
+                double p = Double.valueOf(presupuesto.getText().toString());
                 Actual.setText(String.valueOf(p-pago));
                 Final.setText(String.valueOf(p-pago-apagar));
             }
@@ -176,12 +177,13 @@ public class ResumenFragment extends Fragment {
             Toast.makeText(getContext(),E.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+
     private void CambiarProsupuesto(Double money){
         try {
-            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                bd.execSQL("update evento set presupuesto='"+money.toString()+"'  where id="+ID);
+            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                bd.execSQL("update evento set presupuesto = '" + money.toString() + "'  where id = " + ID);
                 presupuesto.setText(money.toString());
             }
             bd.close();
@@ -191,17 +193,19 @@ public class ResumenFragment extends Fragment {
             Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
     }
+
     private void inicializacionComponentes() {
-        fab=view.findViewById(R.id.fab_fragment_gastos);
-        presupuesto=view.findViewById(R.id.presupuesto_resumen);
-        APagar=view.findViewById(R.id.apagar_resumen);
-        Pago=view.findViewById(R.id.pago_resumen);
-        Vencido=view.findViewById(R.id.vencido_resumen);
-        Actual=view.findViewById(R.id.actual_resumen);
-        Final=view.findViewById(R.id.final_resumen);
-        Gastos=view.findViewById(R.id.gastos_resumen);
-        RESUMEN=view.findViewById(R.id.cardview_resumen);
+        fab = view.findViewById(R.id.fab_fragment_gastos);
+        presupuesto = view.findViewById(R.id.presupuesto_resumen);
+        APagar = view.findViewById(R.id.apagar_resumen);
+        Pago = view.findViewById(R.id.pago_resumen);
+        Vencido = view.findViewById(R.id.vencido_resumen);
+        Actual = view.findViewById(R.id.actual_resumen);
+        Final = view.findViewById(R.id.final_resumen);
+        Gastos = view.findViewById(R.id.gastos_resumen);
+        RESUMEN = view.findViewById(R.id.cardview_resumen);
     }
+
     @Override
     public void onStart() {
         GenerarDatos();

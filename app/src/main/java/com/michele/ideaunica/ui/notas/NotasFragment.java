@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class NotasFragment extends Fragment {
 
     View view;
+
     //componentes
     private RecyclerView rv_notas;
     private ProgressBar progressBar;
@@ -39,16 +40,17 @@ public class NotasFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_notas,container,false);
+        view = inflater.inflate(R.layout.fragment_notas,container,false);
         InicializarComponentes();
         Bundle parametros = getActivity().getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+
+        ID = parametros.getInt("ID",0);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(),NuevaNota.class);
-                Bundle parm= new Bundle();
+                Intent intent = new Intent(getContext(),NuevaNota.class);
+                Bundle parm = new Bundle();
                 parm.putInt("ID",ID);
                 intent.putExtras(parm);
                 startActivity(intent);
@@ -58,17 +60,19 @@ public class NotasFragment extends Fragment {
         GenerarDatos();
         return view;
     }
+
     private void InicializarComponentes() {
-        rv_notas=view.findViewById(R.id.notas_fragment_recyclerview);
-        progressBar=view.findViewById(R.id.progress_fragment_notas);
-        fab=view.findViewById(R.id.fab_fragment_notas);
+        rv_notas = view.findViewById(R.id.notas_fragment_recyclerview);
+        progressBar = view.findViewById(R.id.progress_fragment_notas);
+        fab = view.findViewById(R.id.fab_fragment_notas);
     }
+
     private void GenerarDatos() {
         try {
-            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                Cursor objCursor = bd.rawQuery("Select * from notas where idevento=" + ID, null);
+            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                Cursor objCursor = bd.rawQuery("Select * from notas where idevento = " + ID, null);
                 listNotas.clear();
 
                 while (objCursor.moveToNext()){
@@ -80,7 +84,7 @@ public class NotasFragment extends Fragment {
                 adaptadorNota.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(getContext(),Nota.class);
+                        Intent intent = new Intent(getContext(),Nota.class);
                         Bundle parametros = new Bundle();
                         parametros.putInt("ID",ID);
                         parametros.putInt("id",listNotas.get(rv_notas.getChildAdapterPosition(v)).getId());
@@ -98,6 +102,7 @@ public class NotasFragment extends Fragment {
             Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onStart() {
         GenerarDatos();

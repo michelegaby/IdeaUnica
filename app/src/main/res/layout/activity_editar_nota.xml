@@ -18,6 +18,7 @@
             android:layout_height="100dp"
             android:background="#4C79FB">
             <EditText
+                android:autofillHints="@string/titulo"
                 android:id="@+id/titulo_editar_nota"
                 android:hint="@string/titulo"
                 android:textColorHint="#8BFFFFFF"
@@ -28,15 +29,15 @@
                 android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
         </LinearLayout>
         <EditText
+            android:autofillHints="@string/descripcion"
             android:id="@+id/contenido_editar_nota"
             android:paddingHorizontal="20dp"
             android:paddingVertical="20dp"
             android:hint="@string/descripcion"
             android:textColor="#000"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:singleLine="false"
             android:focusable="true"
             android:focusableInTouchMode="true"

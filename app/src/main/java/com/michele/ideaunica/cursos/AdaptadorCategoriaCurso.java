@@ -23,14 +23,16 @@ public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCate
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorCategoriaCurso.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_categoria_curso,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_categoria_curso,viewGroup,false);
         AdaptadorCategoriaCurso.MyViewHolder viewHolder = new AdaptadorCategoriaCurso.MyViewHolder(view);
         view.setOnClickListener(this);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull AdaptadorCategoriaCurso.MyViewHolder myViewHolder, int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
@@ -40,19 +42,24 @@ public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCate
                 .error(R.drawable.fondorosa)
                 .into(myViewHolder.img);
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
+    //Funcionalidad se encuentra en el padre
     public void setOnClickListener(View.OnClickListener listener){
-        this.listener =listener;
+        this.listener = listener;
     }
+
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if(listener != null){
             listener.onClick(v);
         }
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -60,11 +67,12 @@ public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCate
         private ImageView img;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_categoria_curso);
-            contenido=itemView.findViewById(R.id.item_tipo_categoria_curso);
-            img=itemView.findViewById(R.id.item_img_categoria_curso);
+            titulo = itemView.findViewById(R.id.item_titulo_categoria_curso);
+            contenido = itemView.findViewById(R.id.item_tipo_categoria_curso);
+            img = itemView.findViewById(R.id.item_img_categoria_curso);
         }
     }
+
     public void setfilter(ArrayList<CategoriaCursosClass> listaCategoriaCursos){
         nData = new ArrayList<>();
         nData.addAll(listaCategoriaCursos);

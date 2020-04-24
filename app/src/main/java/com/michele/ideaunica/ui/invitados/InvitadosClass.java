@@ -1,6 +1,7 @@
 package com.michele.ideaunica.ui.invitados;
 
 public class InvitadosClass {
+
     private int ID;
     private String Nombre;
     private int adultos;

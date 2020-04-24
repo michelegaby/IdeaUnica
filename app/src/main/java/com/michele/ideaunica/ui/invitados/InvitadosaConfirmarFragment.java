@@ -31,16 +31,17 @@ import java.util.ArrayList;
 public class InvitadosaConfirmarFragment extends Fragment {
 
     View view;
+    private static int ID;
 
     //Componentes
     private FloatingActionButton fab;
     private RecyclerView myrecyclerview;
     private ProgressBar progress;
     private SwipeRefreshLayout swipeRefreshLayout;
+
     //Complementos
     AdaptadorInvitadoAConfirmar adaptadorInvitado;
     private ArrayList<InvitadosClass> listInvitados = new ArrayList<>();
-    private static int ID;
 
     public InvitadosaConfirmarFragment() {
     }
@@ -48,17 +49,19 @@ public class InvitadosaConfirmarFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_invitados_a_confirmar,container,false);
+        view = inflater.inflate(R.layout.fragment_invitados_a_confirmar,container,false);
         InicializarComponentes();
 
         Bundle parametros = getActivity().getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
 
+        ID = parametros.getInt("ID",0);
+
+        //Funcionalidad de button flotante
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), NuevoInvitado.class);
-                Bundle parmetros= new Bundle();
+                Bundle parmetros = new Bundle();
                 parmetros.putInt("ID",ID);
                 intent.putExtras(parmetros);
                 startActivity(intent);
@@ -66,6 +69,8 @@ public class InvitadosaConfirmarFragment extends Fragment {
         });
 
         GenerarDatos();
+
+        //Refresh
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -73,6 +78,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 
@@ -96,10 +102,11 @@ public class InvitadosaConfirmarFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
         }
     }
+
     private void InicializarComponentes() {
         fab = view.findViewById(R.id.fab);
-        myrecyclerview=view.findViewById(R.id.Invitado_a_confirmar_recyclerview);
-        progress=view.findViewById(R.id.progress_invitados_a_confirmar);
+        myrecyclerview = view.findViewById(R.id.Invitado_a_confirmar_recyclerview);
+        progress = view.findViewById(R.id.progress_invitados_a_confirmar);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_invitadosA);
     }
 
@@ -108,7 +115,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento=" + ID+" and estado='NOCONFIRMADO'", null);
+                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento = " + ID + " and estado = 'NOCONFIRMADO'", null);
                 listInvitados.clear();
 
                 while (objCursor.moveToNext()) {
@@ -122,7 +129,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
                     @Override
                     public void onElimanarClick(final int position) {
 
-                        AlertDialog.Builder Advertencia= new AlertDialog.Builder(getContext());
+                        AlertDialog.Builder Advertencia = new AlertDialog.Builder(getContext());
                         Advertencia.setTitle("Eliminar");
                         Advertencia.setMessage("Esta seguro de eliminar a este Invitado?");
                         Advertencia.setCancelable(false);
@@ -142,7 +149,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
 
                     @Override
                     public void onModificarClick(int position) {
-                        Intent intent=new Intent(getContext(), EditarInvitado.class);
+                        Intent intent = new Intent(getContext(), EditarInvitado.class);
                         Bundle parametros = new Bundle();
                         parametros.putInt("ID",listInvitados.get(position).getID());
                         parametros.putString("nom",listInvitados.get(position).getNombre());
@@ -176,7 +183,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
 
-                bd.execSQL("update invitados set estado='CONFIRMADO' where id="+listInvitados.get(posicion).getID());
+                bd.execSQL("update invitados set estado = 'CONFIRMADO' where id = " + listInvitados.get(posicion).getID());
                 adaptadorInvitado.removeItem(posicion);
             }
             bd.close();
@@ -185,6 +192,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
             Toast.makeText(getContext(), "Error Nose", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void EliminarInvitado(int posicion) {
 
         try {
@@ -192,7 +200,7 @@ public class InvitadosaConfirmarFragment extends Fragment {
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
 
-                bd.execSQL("delete from invitados where id="+listInvitados.get(posicion).getID());
+                bd.execSQL("delete from invitados where id = " + listInvitados.get(posicion).getID());
             }
             bd.close();
             adaptadorInvitado.removeItem(posicion);

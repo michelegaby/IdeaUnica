@@ -23,12 +23,12 @@ import java.util.ArrayList;
 
 public class SliderShowGaleriaEmpresa extends DialogFragment {
 
-    private String TAG= SliderShowGaleriaEmpresa.class.getSimpleName();
+    private String TAG = SliderShowGaleriaEmpresa.class.getSimpleName();
     private ArrayList<GaleriaEmpresaClass> galeriaEmpresaClasses;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private TextView lblCount, lblTitule;
-    private int selectedPosition=0;
+    private int selectedPosition = 0;
 
     public static SliderShowGaleriaEmpresa newInstance(){
         SliderShowGaleriaEmpresa f = new SliderShowGaleriaEmpresa();
@@ -41,9 +41,9 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_image_galeria,container,false);
-        viewPager=v.findViewById(R.id.fragment_viewpaper);
-        lblCount=v.findViewById(R.id.lbl_count);
-        lblTitule=v.findViewById(R.id.titulo_viewpaper);
+        viewPager = v.findViewById(R.id.fragment_viewpaper);
+        lblCount = v.findViewById(R.id.lbl_count);
+        lblTitule = v.findViewById(R.id.titulo_viewpaper);
         galeriaEmpresaClasses = (ArrayList<GaleriaEmpresaClass>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
         Log.e(TAG, "position: " + selectedPosition);
@@ -54,6 +54,7 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
         setCurrentItem(selectedPosition);
         return v;
     }
+
     private void setCurrentItem(int position) {
         viewPager.setCurrentItem(position, false);
         displayMetaInfo(selectedPosition);
@@ -85,7 +86,6 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
 
-
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
         public MyViewPagerAdapter(){
@@ -104,14 +104,17 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
             container.addView(view);
             return view;
         }
+
         @Override
         public int getCount() {
             return galeriaEmpresaClasses.size();
         }
+
         @Override
         public boolean isViewFromObject(View view, Object obj) {
             return view == ((View) obj);
         }
+
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);

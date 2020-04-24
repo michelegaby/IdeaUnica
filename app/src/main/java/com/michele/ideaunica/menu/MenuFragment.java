@@ -43,17 +43,20 @@ public class MenuFragment extends Fragment{
 
     View view;
 
+    //Componentes
     private CardView evento;
     private CardView revista;
     private CardView entrevista;
     private CardView contactanos;
     private SliderLayout sliderLayout;
-    private static  String URL="https://ideaunicabolivia.com/apps/publicidad.php";
+
+    //Complemento
+    private static  String URL = "https://ideaunicabolivia.com/apps/publicidad.php";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_menu,container,false);
+        view = inflater.inflate(R.layout.fragment_menu,container,false);
         InicialiazarComponentes();
         CLICK();
         GenerarPublicidad();
@@ -66,7 +69,7 @@ public class MenuFragment extends Fragment{
         evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Eventos.class);
+                Intent intent = new Intent(getContext(), Eventos.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
@@ -75,7 +78,7 @@ public class MenuFragment extends Fragment{
         revista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Revistas.class);
+                Intent intent = new Intent(getContext(), Revistas.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
@@ -84,7 +87,7 @@ public class MenuFragment extends Fragment{
         entrevista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Entrevistas.class);
+                Intent intent = new Intent(getContext(), Entrevistas.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
@@ -93,7 +96,7 @@ public class MenuFragment extends Fragment{
         contactanos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Contactos.class);
+                Intent intent = new Intent(getContext(), Contactos.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
@@ -101,11 +104,11 @@ public class MenuFragment extends Fragment{
     }
 
     private void InicialiazarComponentes() {
-        evento=view.findViewById(R.id.evento_menu);
-        revista=view.findViewById(R.id.revista_menu);
-        entrevista=view.findViewById(R.id.entrevista_menu);
-        contactanos=view.findViewById(R.id.contactanos_menu);
-        sliderLayout=view.findViewById(R.id.slider_publicidad_menu);
+        evento = view.findViewById(R.id.evento_menu);
+        revista = view.findViewById(R.id.revista_menu);
+        entrevista = view.findViewById(R.id.entrevista_menu);
+        contactanos = view.findViewById(R.id.contactanos_menu);
+        sliderLayout = view.findViewById(R.id.slider_publicidad_menu);
     }
 
     public void GenerarPublicidad(){
@@ -117,7 +120,7 @@ public class MenuFragment extends Fragment{
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
                             for (int i = 0; i < jsonArray2.length(); i++) {
-                                DefaultSliderView sliderView= new DefaultSliderView(getContext());
+                                DefaultSliderView sliderView = new DefaultSliderView(getContext());
                                 JSONObject object = jsonArray2.getJSONObject(i);
                                 sliderView.setImageUrl("https://sice.com.bo/ideaunica/"+object.getString("url"));
                                 sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);

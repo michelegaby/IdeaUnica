@@ -40,6 +40,8 @@ public class MostrarGasto extends AppCompatActivity {
     private TextView fecha;
     private TextView comentario;
     private CheckBox confirmar;
+
+    //Complementos
     public static String ID;
     public static String id;
     public static String check;
@@ -55,11 +57,16 @@ public class MostrarGasto extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Ver");
         inicializaComponentes();
+
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getString("ID");
-        id=parametros.getString("id");
-        check="FALSE";
+
+        ID = parametros.getString("ID");
+        id = parametros.getString("id");
+
+        check = "FALSE";
+
         InicializarDato();
+
         confirmar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -77,23 +84,24 @@ public class MostrarGasto extends AppCompatActivity {
             }
         });
     }
+
     public void InicializarDato(){
             try {
 
-                BDEvento obj= new BDEvento(getApplicationContext(),"bdEvento",null,1);
-                SQLiteDatabase bd= obj.getReadableDatabase();
-                if(bd!=null){
-                    Cursor objCursor = bd.rawQuery("Select * from gastos where id=" + ID, null);
+                BDEvento obj = new BDEvento(getApplicationContext(),"bdEvento",null,1);
+                SQLiteDatabase bd = obj.getReadableDatabase();
+                if(bd != null){
+                    Cursor objCursor = bd.rawQuery("Select * from gastos where id = " + ID, null);
                     while (objCursor.moveToNext()) {
                         titulo.setText(objCursor.getString(2));
                         proveedor.setText(objCursor.getString(3));
                         formadepago.setText(objCursor.getString(6));
 
-                        BDEvento obj2= new BDEvento(getApplicationContext(),"bdEvento",null,1);
-                        SQLiteDatabase bd2= obj2.getReadableDatabase();
-                        if(bd2!=null){
-                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto="+ ID, null);
-                            int c= objCursor2.getCount();
+                        BDEvento obj2 = new BDEvento(getApplicationContext(),"bdEvento",null,1);
+                        SQLiteDatabase bd2 = obj2.getReadableDatabase();
+                        if(bd2 != null){
+                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto = "+ ID, null);
+                            int c = objCursor2.getCount();
                             while (objCursor2.moveToNext()){
                                 if(objCursor2.getString(0).equals(id))
                                 {
@@ -105,7 +113,7 @@ public class MostrarGasto extends AppCompatActivity {
                                     if(objCursor2.getString(5).equals("Pagado"))
                                     {
                                         confirmar.setChecked(true);
-                                        check="TRUE";
+                                        check = "TRUE";
                                     }
                                     break;
                                 }
@@ -121,15 +129,16 @@ public class MostrarGasto extends AppCompatActivity {
             }
 
     }
+
     private void inicializaComponentes() {
-        titulo=findViewById(R.id.titulo_mostrar_gasto);
-        proveedor=findViewById(R.id.proveedor_mostrar_gasto);
-        dinero=findViewById(R.id.dinero_mostrar_gasto);
-        formadepago=findViewById(R.id.formadepago_mostrar_gasto);
-        cuota=findViewById(R.id.cuotas_mostrar_gasto);
-        fecha=findViewById(R.id.fecha_mostrar_gasto);
-        comentario=findViewById(R.id.comentario_mostrar_gasto);
-        confirmar=findViewById(R.id.confirmar_mostrar_invitado);
+        titulo = findViewById(R.id.titulo_mostrar_gasto);
+        proveedor = findViewById(R.id.proveedor_mostrar_gasto);
+        dinero = findViewById(R.id.dinero_mostrar_gasto);
+        formadepago = findViewById(R.id.formadepago_mostrar_gasto);
+        cuota = findViewById(R.id.cuotas_mostrar_gasto);
+        fecha = findViewById(R.id.fecha_mostrar_gasto);
+        comentario = findViewById(R.id.comentario_mostrar_gasto);
+        confirmar = findViewById(R.id.confirmar_mostrar_invitado);
     }
 
     @Override
@@ -162,8 +171,9 @@ public class MostrarGasto extends AppCompatActivity {
         startActivity(i);
 
     }
+
     public void Eliminar(){
-        AlertDialog.Builder Advertencia= new AlertDialog.Builder(this);
+        AlertDialog.Builder Advertencia = new AlertDialog.Builder(this);
         Advertencia.setTitle("Eliminar");
         Advertencia.setMessage("Esta seguro de eliminar esta Gasto?");
         Advertencia.setCancelable(false);
@@ -180,6 +190,7 @@ public class MostrarGasto extends AppCompatActivity {
         });
         Advertencia.show();
     }
+
     public void EliminarGasto(){
         if(cuota.getText().toString().equals("1/1")){
             EliminarUnicoGasto();
@@ -210,6 +221,7 @@ public class MostrarGasto extends AppCompatActivity {
             Advertencia.show();
         }
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -218,10 +230,10 @@ public class MostrarGasto extends AppCompatActivity {
 
     public void EliminarUnicoGasto(){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                bd.execSQL("delete from cuotas where id="+id);
+            if(bd != null){
+                bd.execSQL("delete from cuotas where id = "+id);
                 Verificar();
                 onBackPressed();
             }
@@ -230,12 +242,13 @@ public class MostrarGasto extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
         }
     }
+
     public void EliminarBDGasto(){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                bd.execSQL("delete from cuotas where idgasto="+ID);
+            if(bd != null){
+                bd.execSQL("delete from cuotas where idgasto = " + ID);
                 Verificar();
                 onBackPressed();
             }
@@ -247,10 +260,10 @@ public class MostrarGasto extends AppCompatActivity {
 
     private void update(String titl) {
         try {
-            BDEvento obj= new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                bd.execSQL("update cuotas set estado='"+titl+"' where id="+id);
+            BDEvento obj = new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                bd.execSQL("update cuotas set estado = '" + titl + "' where id = " + id);
             }
             bd.close();
             onBackPressed();
@@ -269,16 +282,16 @@ public class MostrarGasto extends AppCompatActivity {
 
     public void Verificar(){
         try {
-            BDEvento obj= new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
+            BDEvento obj = new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
                 Cursor objCursor = bd.rawQuery("Select * from cuotas where idgasto=" + ID, null);
-                if(objCursor.getCount()<=0){
+                if(objCursor.getCount() <= 0){
                     try {
-                        BDEvento objEvento2= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+                        BDEvento objEvento2 = new BDEvento(getApplicationContext(),"bdEvento",null,1);
                         SQLiteDatabase bd2 = objEvento2.getWritableDatabase();
-                        if(bd2!=null){
-                            bd2.execSQL("delete from gastos where id="+ID);
+                        if(bd2 != null){
+                            bd2.execSQL("delete from gastos where id = " + ID);
                         }
                         bd2.close();
                     }catch (Exception E){

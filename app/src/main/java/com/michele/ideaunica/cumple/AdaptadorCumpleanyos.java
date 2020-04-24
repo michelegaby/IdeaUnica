@@ -33,7 +33,7 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
     }
 
     public void setOnItemClickListener(AdaptadorCumpleanyos.OnItemClickListener listener){
-        nListener=listener;
+        nListener = listener;
     }
 
 
@@ -41,14 +41,16 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorCumpleanyos.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_cumpleanyos,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_cumpleanyos,viewGroup,false);
         AdaptadorCumpleanyos.MyViewHolder viewHolder = new AdaptadorCumpleanyos.MyViewHolder(view,nListener);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorCumpleanyos.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
@@ -70,10 +72,12 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
             Toast.makeText(nContext,nData.get(i).getUrlfoto()+" MSN "+e.getMessage(),Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -83,17 +87,19 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
         private LinearLayout linearLayout;
         public MyViewHolder(@NonNull View itemView, final AdaptadorCumpleanyos.OnItemClickListener listener) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_cumpleanyos);
-            fecha=itemView.findViewById(R.id.item_fecha_cumpleanyos);
-            hora=itemView.findViewById(R.id.item_hora_cumpleanyos);
-            img=itemView.findViewById(R.id.item_img_cumpleanyos);
-            linearLayout=itemView.findViewById(R.id.item_cumpleanos);
+            titulo = itemView.findViewById(R.id.item_titulo_cumpleanyos);
+            fecha = itemView.findViewById(R.id.item_fecha_cumpleanyos);
+            hora = itemView.findViewById(R.id.item_hora_cumpleanyos);
+            img = itemView.findViewById(R.id.item_img_cumpleanyos);
+            linearLayout = itemView.findViewById(R.id.item_cumpleanos);
+
+            //Funcionalidad se encuenta en el padre
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        int position= getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
                             listener.onItenClick(position);
                         }
                     }
@@ -101,6 +107,7 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
             });
         }
     }
+
     public void setfilter(ArrayList<CumpleanyosClass> listaCumpleanyos){
         nData = new ArrayList<>();
         nData.addAll(listaCumpleanyos);

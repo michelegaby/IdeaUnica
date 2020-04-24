@@ -1,6 +1,7 @@
 package com.michele.ideaunica.departamento;
 
 public class DepartamentoClass {
+
     private int ID;
     private String Nombre;
     private String Url;
@@ -14,18 +15,23 @@ public class DepartamentoClass {
     public int getID() {
         return ID;
     }
+
     public void setID(int ID) {
         this.ID = ID;
     }
+
     public String getNombre() {
         return Nombre;
     }
+
     public void setNombre(String nombre) {
         Nombre = nombre;
     }
+
     public String getUrl() {
         return Url;
     }
+
     public void setUrl(String url) {
         Url = url;
     }

@@ -24,11 +24,12 @@ import java.util.Date;
 
 public class EditarNota extends AppCompatActivity {
 
+    //Componentes
     private EditText titulo;
     private EditText contenido;
     private LinearLayout encabezado;
 
-
+    //Complemento
     private static int ID;
     private static String colores;
     private static String titulos;
@@ -41,26 +42,27 @@ public class EditarNota extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         InicializarComponentes();
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("id",0);
-        titulos=parametros.getString("titulo","Error");
+
+        ID = parametros.getInt("id",0);
+
+        titulos = parametros.getString("titulo","Error");
         titulo.setText(titulos);
-        contenidos= Html.fromHtml(parametros.getString("contenido","Error"));
+        contenidos = Html.fromHtml(parametros.getString("contenido","Error"));
         contenido.setText(contenidos);
-        colores=parametros.getString("color");
-        encabezado.setBackgroundColor(Color.parseColor("#"+colores));
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#"+colores)));
+        colores = parametros.getString("color");
+        encabezado.setBackgroundColor(Color.parseColor("#" + colores));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#" + colores)));
         contenido.requestFocus();
     }
 
     private void InicializarComponentes() {
-        titulo=findViewById(R.id.titulo_editar_nota);
-        encabezado=findViewById(R.id.encabezado_editar_nota);
-        contenido=findViewById(R.id.contenido_editar_nota);
+        titulo = findViewById(R.id.titulo_editar_nota);
+        encabezado = findViewById(R.id.encabezado_editar_nota);
+        contenido = findViewById(R.id.contenido_editar_nota);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_editar_nota,menu);
         return true;
     }
@@ -88,12 +90,12 @@ public class EditarNota extends AppCompatActivity {
 
     private void update(String titl, String conte) {
         try {
-            BDEvento obj= new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
+            BDEvento obj = new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
                 Date d = new Date();
                 CharSequence s = DateFormat.format("MMMM d, yyyy ", d.getTime());
-                bd.execSQL("update notas set titulo='"+titl+"', contenido='"+conte+"', color='"+colores+"', fecha='"+s.toString()+"' where id="+ID);
+                bd.execSQL("update notas set titulo = '" + titl + "', contenido = '" + conte + "', color = '" + colores + "', fecha = '" + s.toString() + "' where id = " + ID);
             }
             bd.close();
 
@@ -105,37 +107,37 @@ public class EditarNota extends AppCompatActivity {
 
     public void ColorAzul(){
         encabezado.setBackgroundColor(Color.parseColor("#4C79FB"));
-        colores="4C79FB";
+        colores = "4C79FB";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4C79FB")));
 
     }
     public void ColorVerde(){
         encabezado.setBackgroundColor(Color.parseColor("#48CC64"));
-        colores="48CC64";
+        colores = "48CC64";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#48CC64")));
     }
 
     public void ColorAmarillo(){
         encabezado.setBackgroundColor(Color.parseColor("#FDBB00"));
-        colores="FDBB00";
+        colores = "FDBB00";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FDBB00")));
     }
 
     public void ColorLila(){
         encabezado.setBackgroundColor(Color.parseColor("#9F50E3"));
-        colores="9F50E3";
+        colores = "9F50E3";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#9F50E3")));
     }
     public void ColorCeleste(){
         encabezado.setBackgroundColor(Color.parseColor("#03A9F4"));
-        colores="03A9F4";
+        colores = "03A9F4";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#03A9F4")));
     }
 
     @Override
     public void onBackPressed() {
         if(!titulo.getText().toString().equals(titulos) || !contenido.getText().toString().equals(contenidos.toString())){
-            AlertDialog.Builder Advertencia= new AlertDialog.Builder(this);
+            AlertDialog.Builder Advertencia = new AlertDialog.Builder(this);
             Advertencia.setTitle("Advertencia");
             Advertencia.setMessage("Desea salir. Las modificaciones realizadas se perderan");
             Advertencia.setCancelable(false);

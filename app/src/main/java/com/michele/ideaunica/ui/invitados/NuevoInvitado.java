@@ -29,6 +29,7 @@ public class NuevoInvitado extends AppCompatActivity {
     private Spinner tipo;
     private CheckBox confirmar;
 
+    //Complemento
     private static int ID;
 
     @Override
@@ -43,8 +44,11 @@ public class NuevoInvitado extends AppCompatActivity {
         getSupportActionBar().setTitle("Nuevo Invitado");
 
         inicializarComponentes();
+
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+
+        ID = parametros.getInt("ID",0);
+
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +84,6 @@ public class NuevoInvitado extends AppCompatActivity {
                                 "NOCONFIRMADO");
                     }
                 }
-
             }
         });
     }
@@ -93,19 +96,20 @@ public class NuevoInvitado extends AppCompatActivity {
 
     private void inicializarComponentes() {
         nombre = findViewById(R.id.nombre_nuevo_invitado);
-        adulto=findViewById(R.id.adulto_nuevo_invitado);
-        ninyo=findViewById(R.id.ninyo_nuevo_invitado);
-        celular=findViewById(R.id.celular_nuevo_invitado);
-        guardar=findViewById(R.id.guardar_nuevo_invitado);
-        tipo=findViewById(R.id.tipo_nuevo_invitado);
-        confirmar=findViewById(R.id.confirmar_nuevo_invitado);
+        adulto = findViewById(R.id.adulto_nuevo_invitado);
+        ninyo = findViewById(R.id.ninyo_nuevo_invitado);
+        celular = findViewById(R.id.celular_nuevo_invitado);
+        guardar = findViewById(R.id.guardar_nuevo_invitado);
+        tipo = findViewById(R.id.tipo_nuevo_invitado);
+        confirmar = findViewById(R.id.confirmar_nuevo_invitado);
     }
+
     public void Guardar(final String nom,final String adulto, final String ninyo,final String celular, final String tipo,final String estadp){
         try {
-            BDEvento objEvento= new BDEvento(getApplicationContext(),"bdEvento",null,1);
+            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
             SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd!=null){
-                bd.execSQL("insert into invitados values(?,'"+ID+"','"+nom+"',"+adulto+","+ninyo+",'"+celular+"','"+tipo+"','"+estadp+"')");
+            if(bd != null){
+                bd.execSQL("insert into invitados values(?,'" + ID + "','"+nom+"'," + adulto + "," + ninyo + ",'" + celular + "','" + tipo + "','" + estadp + "')");
                 msn("Se Guardo Correctamente");
                 onBackPressed();
                 Borrar();

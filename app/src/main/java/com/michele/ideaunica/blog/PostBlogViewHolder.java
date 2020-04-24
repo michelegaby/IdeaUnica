@@ -32,19 +32,18 @@ public class PostBlogViewHolder extends BaseViewHolder{
 
     public PostBlogViewHolder(@NonNull View itemView, Context nContext) {
         super(itemView);
-        empresa=itemView.findViewById(R.id.item_post_blog_empresa);
-        tiempo=itemView.findViewById(R.id.item_post_blog_time);
-        contenido=itemView.findViewById(R.id.item_post_blog_text);
-        imgEmpresa=itemView.findViewById(R.id.item_post_blog_img_empresa);
-        img=itemView.findViewById(R.id.item_post_blog_img);
-        leer=itemView.findViewById(R.id.item_post_blog_leer_mas);
-        context=nContext;
+        empresa = itemView.findViewById(R.id.item_post_blog_empresa);
+        tiempo = itemView.findViewById(R.id.item_post_blog_time);
+        contenido = itemView.findViewById(R.id.item_post_blog_text);
+        imgEmpresa = itemView.findViewById(R.id.item_post_blog_img_empresa);
+        img = itemView.findViewById(R.id.item_post_blog_img);
+        leer = itemView.findViewById(R.id.item_post_blog_leer_mas);
+        context =nContext;
     }
 
     @Override
     void setData(TimelineClass item) {
         final PostBlogClass post = item.getPostBlogClass();
-        //contenido.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/toruslight.ttf"));
         empresa.setText(post.getEmpresa());
         tiempo.setText(post.getTime());
         contenido.setText(post.getContenido());
@@ -72,7 +71,7 @@ public class PostBlogViewHolder extends BaseViewHolder{
                 @Override
                 public void onClick(View v) {
                     Uri uri = Uri.parse(post.getUrl());
-                    Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                     context.startActivity(intent);
                 }
             });

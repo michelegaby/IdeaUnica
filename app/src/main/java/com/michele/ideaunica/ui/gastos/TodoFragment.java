@@ -32,6 +32,7 @@ import java.util.Date;
 public class TodoFragment extends Fragment {
 
     View view;
+    public static int ID;
 
     //Componentes
     private RecyclerView recyclerView;
@@ -40,11 +41,8 @@ public class TodoFragment extends Fragment {
     AdaptadorGastosTotal adaptadorGastosTotal;
     private ArrayList<GastosTotalClass> listGastos = new ArrayList<>();
 
-    public static int ID;
-
     public TodoFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,14 +81,14 @@ public class TodoFragment extends Fragment {
             BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
             SQLiteDatabase bd = obj.getReadableDatabase();
             if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from gastos where idevento=" + ID, null);
+                Cursor objCursor = bd.rawQuery("Select * from gastos where idevento = " + ID, null);
                 listGastos.clear();
                 while (objCursor.moveToNext()) {
                     try {
                         BDEvento obj2 = new BDEvento(getContext(), "bdEvento", null, 1);
                         SQLiteDatabase bd2 = obj2.getReadableDatabase();
                         if (bd2 != null) {
-                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto=" +
+                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto = " +
                                     objCursor.getInt(0), null);
 
 
@@ -121,7 +119,7 @@ public class TodoFragment extends Fragment {
                                     new GastosTotalClass(
                                             objCursor.getInt(0),
                                             objCursor.getString(2),
-                                            String.valueOf(pago+apagar+vencido),
+                                            String.valueOf(pago + apagar + vencido),
                                             String.valueOf(apagar),
                                             String.valueOf(pago),
                                             String.valueOf(vencido))

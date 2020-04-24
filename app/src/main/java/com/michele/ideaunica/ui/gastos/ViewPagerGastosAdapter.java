@@ -12,8 +12,8 @@ import java.util.List;
 public class ViewPagerGastosAdapter extends FragmentPagerAdapter {
 
 
-    private final List<Fragment> lstFragment=new ArrayList<>();
-    private final List<String> listTitles= new ArrayList<>();
+    private final List<Fragment> lstFragment = new ArrayList<>();
+    private final List<String> listTitles = new ArrayList<>();
 
     public  ViewPagerGastosAdapter(FragmentManager fm){
         super(fm);

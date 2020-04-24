@@ -16,16 +16,20 @@ public class SplashScreen extends AppCompatActivity {
     private TextView nombre;
     private TextView from;
     private ImageView logo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         inicializarComponentes();
-        Animation animation= AnimationUtils.loadAnimation(this,R.anim.animsplashcreen);
+
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.animsplashcreen);
         logo.startAnimation(animation);
         nombre.startAnimation(animation);
         from.startAnimation(animation);
         final Intent intent = new Intent(this,IdeaUnica.class);
+
         Thread timer = new Thread() {
             @Override
             public void run() {
@@ -39,12 +43,13 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         };
+
         timer.start();
     }
 
     private void inicializarComponentes() {
-        nombre=findViewById(R.id.nombre_splash);
-        from=findViewById(R.id.from_splash);
-        logo=findViewById(R.id.logo_splash);
+        nombre = findViewById(R.id.nombre_splash);
+        from = findViewById(R.id.from_splash);
+        logo = findViewById(R.id.logo_splash);
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 public class EmpresaClass {
+
     private int ID;
     private String Titulo;
     private String Color;

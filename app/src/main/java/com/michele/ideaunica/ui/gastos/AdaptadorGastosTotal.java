@@ -19,14 +19,16 @@ public class AdaptadorGastosTotal extends RecyclerView.Adapter<AdaptadorGastosTo
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public AdaptadorGastosTotal.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_gastos_total,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_gastos_total,viewGroup,false);
         AdaptadorGastosTotal.MyViewHolder viewHolder = new AdaptadorGastosTotal.MyViewHolder(view);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorGastosTotal.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
@@ -35,10 +37,12 @@ public class AdaptadorGastosTotal extends RecyclerView.Adapter<AdaptadorGastosTo
         myViewHolder.pago.setText(nData.get(i).getPago());
         myViewHolder.vencido.setText(nData.get(i).getVencido());
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -48,13 +52,14 @@ public class AdaptadorGastosTotal extends RecyclerView.Adapter<AdaptadorGastosTo
         private TextView vencido;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_gastos_total);
-            total=itemView.findViewById(R.id.item_total_gastos_total);
-            apagar=itemView.findViewById(R.id.item_apagar_gastos_total);
-            pago=itemView.findViewById(R.id.item_pago_gastos_total);
-            vencido=itemView.findViewById(R.id.item_vencido_gastos_total);
+            titulo = itemView.findViewById(R.id.item_titulo_gastos_total);
+            total = itemView.findViewById(R.id.item_total_gastos_total);
+            apagar = itemView.findViewById(R.id.item_apagar_gastos_total);
+            pago = itemView.findViewById(R.id.item_pago_gastos_total);
+            vencido = itemView.findViewById(R.id.item_vencido_gastos_total);
         }
     }
+
     public void setfilter(ArrayList<GastosTotalClass> listaGastos){
         nData = new ArrayList<>();
         nData.addAll(listaGastos);

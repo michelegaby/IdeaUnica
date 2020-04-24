@@ -26,14 +26,14 @@ import java.util.Date;
 public class PagoFragment extends Fragment {
 
     View view;
+    public static int ID;
+
     //Componentes
     private RecyclerView recyclerView;
 
-    //GastosTotal
+    //Complementos
     AdaptadorGastos adaptadorGastos;
     private ArrayList<GastosClass> listGastos = new ArrayList<>();
-
-    public static int ID;
 
     public PagoFragment() {
 
@@ -42,37 +42,37 @@ public class PagoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_pago, container, false);
+        view = inflater.inflate(R.layout.fragment_pago, container, false);
         inicializarComponentes();
         Bundle parametros = getArguments();
-        ID=parametros.getInt("ID",0);
+        ID = parametros.getInt("ID",0);
         GenerarDatos();
 
         return view;
     }
 
     private void inicializarComponentes() {
-        recyclerView=view.findViewById(R.id.Pago_recyclerview);
+        recyclerView = view.findViewById(R.id.Pago_recyclerview);
     }
 
     private void GenerarDatos() {
         try {
 
-            BDEvento obj= new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd= obj.getReadableDatabase();
-            if(bd!=null){
-                Cursor objCursor = bd.rawQuery("Select * from gastos where idevento=" + ID, null);
+            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
+            SQLiteDatabase bd = obj.getReadableDatabase();
+            if(bd != null){
+                Cursor objCursor = bd.rawQuery("Select * from gastos where idevento = " + ID, null);
                 listGastos.clear();
 
                 while (objCursor.moveToNext()){
                     try {
-                        BDEvento obj2= new BDEvento(getContext(),"bdEvento",null,1);
-                        SQLiteDatabase bd2= obj2.getReadableDatabase();
-                        if(bd2!=null){
-                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto=" +
+                        BDEvento obj2 = new BDEvento(getContext(),"bdEvento",null,1);
+                        SQLiteDatabase bd2 = obj2.getReadableDatabase();
+                        if(bd2 != null){
+                            Cursor objCursor2 = bd.rawQuery("Select * from cuotas where idgasto = " +
                                     objCursor.getInt(0), null);
 
-                            int c= objCursor2.getCount();
+                            int c = objCursor2.getCount();
                             while (objCursor2.moveToNext()){
                                 if(objCursor2.getString(5).equals("Pagado"))
                                     listGastos.add(
@@ -84,7 +84,7 @@ public class PagoFragment extends Fragment {
                                                     objCursor2.getString(4),
                                                     objCursor.getString(6),
                                                     objCursor2.getString(3),
-                                                    objCursor2.getString(2)+"/"+c,
+                                                    objCursor2.getString(2) + "/" + c,
                                                     objCursor2.getString(6)));
 
                             }
