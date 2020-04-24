@@ -45,6 +45,7 @@ import java.util.Map;
 
 public class VerDetalleEntrevista extends AppCompatActivity {
 
+    //Componentes
     private RecyclerView rv_galeria;
     private TextView titulo;
     private TextView fecha;
@@ -57,11 +58,11 @@ public class VerDetalleEntrevista extends AppCompatActivity {
     private CardView email;
     private ImageView img;
 
-    //Galeria
+    //Complementos
     AdaptadorGaleriaEntrevista adaptadorGaleriaEntrevista;
     private ArrayList<GaleriaEntrevistaClass> listGaleria = new ArrayList<>();
     private int ID;
-    private static  String URL="https://ideaunicabolivia.com/apps/verDetalleEntrevista.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/verDetalleEntrevista.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +79,12 @@ public class VerDetalleEntrevista extends AppCompatActivity {
             getSupportActionBar().setTitle("");
             inicializarComponente();
             Bundle parametros = this.getIntent().getExtras();
-            ID=parametros.getInt("id");
+
+            ID = parametros.getInt("id");
+
             titulo.setText(parametros.getString("nombre"));
             Glide.with(getApplicationContext())
-                    .load("https://ideaunicabolivia.com/"+parametros.getString("img"))
+                    .load("https://ideaunicabolivia.com/" + parametros.getString("img"))
                     .placeholder(R.drawable.cargando)
                     .error(R.drawable.fondorosa)
                     .into(img);
@@ -100,12 +103,12 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("galeria");
-                            for (int i=0;i<jsonArray.length();i++) {
+                            for (int i = 0;i<jsonArray.length();i++) {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 listGaleria.add(new GaleriaEntrevistaClass(object.getInt("id"), "A",
                                         object.getString("url")));
                             }
-                            adaptadorGaleriaEntrevista= new AdaptadorGaleriaEntrevista(VerDetalleEntrevista.this,listGaleria);
+                            adaptadorGaleriaEntrevista = new AdaptadorGaleriaEntrevista(VerDetalleEntrevista.this,listGaleria);
                             rv_galeria.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             rv_galeria.setAdapter(adaptadorGaleriaEntrevista);
                             JSONArray jsonArray2 = jsonObject.getJSONArray("detalle");
@@ -125,43 +128,43 @@ public class VerDetalleEntrevista extends AppCompatActivity {
 
                             if(!object.getString("whatsapp").equals("null")&& !object.getString("whatsapp").isEmpty()){
                                 whatsapp.setVisibility(View.VISIBLE);
-                                final String what=object.getString("whatsapp");
+                                final String what = object.getString("whatsapp");
                                 whatsapp.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
-                                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone = " + what);
+                                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                         startActivity(intent);
                                     }
                                 });
                             }
                             if(!object.getString("facebook").equals("null")&& !object.getString("facebook").isEmpty()){
                                 facebook.setVisibility(View.VISIBLE);
-                                final String face=object.getString("facebook");
+                                final String face = object.getString("facebook");
                                 facebook.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         Uri uri = Uri.parse(face);
-                                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                         startActivity(intent);
                                     }
                                 });
                             }
                             if(!object.getString("instagram").equals("null")&& !object.getString("instagram").isEmpty()){
                                 instagram.setVisibility(View.VISIBLE);
-                                final String inst=object.getString("instagram");
+                                final String inst = object.getString("instagram");
                                 instagram.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Uri uri=Uri.parse(inst);
-                                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                                        Uri uri = Uri.parse(inst);
+                                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                         startActivity(intent);
                                     }
                                 });
                             }
                             if(!object.getString("email").equals("null") && !object.getString("email").isEmpty() ){
                                 email.setVisibility(View.VISIBLE);
-                                final String em=object.getString("email");
+                                final String em = object.getString("email");
                                 email.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -182,7 +185,7 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No existe fotos", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo masy tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -191,7 +194,7 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }) {
@@ -205,18 +208,19 @@ public class VerDetalleEntrevista extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         requestQueue.add(stringRequest);
     }
+
     private void inicializarComponente() {
-        rv_galeria=findViewById(R.id.galeria_Entrevista_recyclerview);
-        titulo=findViewById(R.id.titulo_VerDetalleEntrevista);
-        fecha=findViewById(R.id.fecha_VerDetalleEntrevista);
-        descripcion_inicio=findViewById(R.id.descripcionArriba_VerdetalleEntrevista);
-        autor=findViewById(R.id.autor_VerdetalleEntrevista);
-        descripcion_final=findViewById(R.id.descripcionAbajo_VerdetalleEntrevista);
-        facebook=findViewById(R.id.facebook_entrevista);
-        whatsapp=findViewById(R.id.whatsapp_entrevista);
-        instagram=findViewById(R.id.instagram_entrevista);
-        email=findViewById(R.id.email_entrevista);
-        img=findViewById(R.id.imgToolBar_Entrevista);
+        rv_galeria = findViewById(R.id.galeria_Entrevista_recyclerview);
+        titulo = findViewById(R.id.titulo_VerDetalleEntrevista);
+        fecha = findViewById(R.id.fecha_VerDetalleEntrevista);
+        descripcion_inicio = findViewById(R.id.descripcionArriba_VerdetalleEntrevista);
+        autor = findViewById(R.id.autor_VerdetalleEntrevista);
+        descripcion_final = findViewById(R.id.descripcionAbajo_VerdetalleEntrevista);
+        facebook = findViewById(R.id.facebook_entrevista);
+        whatsapp = findViewById(R.id.whatsapp_entrevista);
+        instagram = findViewById(R.id.instagram_entrevista);
+        email = findViewById(R.id.email_entrevista);
+        img = findViewById(R.id.imgToolBar_Entrevista);
     }
 
     @Override
@@ -227,6 +231,7 @@ public class VerDetalleEntrevista extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

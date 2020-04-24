@@ -34,14 +34,16 @@ import java.util.Map;
 
 public class DetalleEntrevista extends AppCompatActivity {
 
+    //Componentes
     private Button ver;
     private TextView nombre;
     private TextView biografia;
     private ImageView img;
 
+    //Complementos
     private static int ID;
     private static String urlimg;
-    private static  String URL="https://ideaunicabolivia.com/apps/biografia.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/biografia.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +51,14 @@ public class DetalleEntrevista extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_entrevista);
         inicializarComponentes();
         Bundle parametros = this.getIntent().getExtras();
-        ID=parametros.getInt("id");
+
+        ID = parametros.getInt("id");
 
         GenerarDatos();
         ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(), VerDetalleEntrevista.class);
+                Intent intent = new Intent(getApplicationContext(), VerDetalleEntrevista.class);
                 Bundle parametros = new Bundle();
                 parametros.putInt("id",ID);
                 parametros.putString("nombre",nombre.getText().toString());
@@ -67,12 +70,11 @@ public class DetalleEntrevista extends AppCompatActivity {
     }
 
     private void inicializarComponentes(){
-        ver=findViewById(R.id.abajo_detalle_evento);
-        nombre=findViewById(R.id.nombre_detalleEntrevista);
-        biografia=findViewById(R.id.biografia_detalleEntrevista);
-        img=findViewById(R.id.img_fondo_detalleentrevista);
+        ver = findViewById(R.id.abajo_detalle_evento);
+        nombre = findViewById(R.id.nombre_detalleEntrevista);
+        biografia = findViewById(R.id.biografia_detalleEntrevista);
+        img = findViewById(R.id.img_fondo_detalleentrevista);
     }
-
 
     public void GenerarDatos(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
@@ -85,11 +87,11 @@ public class DetalleEntrevista extends AppCompatActivity {
 
                             JSONObject object = jsonArray.getJSONObject(0);
                             Glide.with(getApplicationContext())
-                                    .load("https://ideaunicabolivia.com/"+object.getString("url"))
+                                    .load("https://ideaunicabolivia.com/" + object.getString("url"))
                                     .placeholder(R.drawable.cargando)
                                     .error(R.drawable.fondorosa)
                                     .into(img);
-                            urlimg=object.getString("url");
+                            urlimg = object.getString("url");
                             nombre.setText(object.getString("nombre"));
                             biografia.setText(object.getString("biografia"));
 
@@ -105,7 +107,7 @@ public class DetalleEntrevista extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexion" + error.getMessage(), Toast.LENGTH_LONG)
                                 .show();
                     }
                 }) {

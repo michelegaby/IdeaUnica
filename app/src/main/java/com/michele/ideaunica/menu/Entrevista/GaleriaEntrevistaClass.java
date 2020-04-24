@@ -1,6 +1,7 @@
 package com.michele.ideaunica.menu.Entrevista;
 
 public class GaleriaEntrevistaClass {
+
     private int id;
     private String titulo;
     private String url;

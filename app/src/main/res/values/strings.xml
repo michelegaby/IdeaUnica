@@ -103,6 +103,12 @@
     <string name="desconfirmar">Desconfirmar</string>
     <string name="actualifacionejemplofechanota">Mar 25, 2019 - Ultima Actualización</string>
     <string name="tarea">Tarea</string>
+    <string name="personajesdestacados">Personajes Destacados</string>
+    <string name="ideaunicabolivia">Idea Unica-Bolivia</string>
+    <string name="pordospuntos">Por:</string>
+    <string name="autor">Autor</string>
+
+
 
     <string-array name="Spinner_tipo_evento">
         <item>Cumpleaños</item>

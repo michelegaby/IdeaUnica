@@ -34,13 +34,16 @@ import java.util.Map;
 
 public class Contactos extends AppCompatActivity {
 
+    //Componentes
     private TextView celular;
     private TextView correo;
     private TextView asunto;
     private TextView mensaje;
     private Button enviar;
 
+    //Complementos
     private static  String URL="https://ideaunicabolivia.com/apps/correo.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +55,11 @@ public class Contactos extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Contáctanos");
         Inicializar();
+
+        //Funcionalidad
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Toast.makeText(getApplicationContext(),celular.getText().toString()+
-                        correo.getText().toString()+asunto.getText().toString()+mensaje.getText().toString(),Toast.LENGTH_LONG).show();*/
                 GenerarDatos();
             }
         });
@@ -70,7 +73,7 @@ public class Contactos extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("mensaje");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 Toast.makeText(getApplicationContext(),object.get("nombre").toString(),Toast.LENGTH_LONG).show();
@@ -105,11 +108,11 @@ public class Contactos extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
     private void Inicializar() {
-        celular=findViewById(R.id.celular_contacto);
-        correo=findViewById(R.id.email_contacto);
-        asunto=findViewById(R.id.asunto_contacto);
-        mensaje=findViewById(R.id.mesaje_contacto);
-        enviar=findViewById(R.id.enviar_contacto);
+        celular = findViewById(R.id.celular_contacto);
+        correo = findViewById(R.id.email_contacto);
+        asunto = findViewById(R.id.asunto_contacto);
+        mensaje = findViewById(R.id.mesaje_contacto);
+        enviar = findViewById(R.id.enviar_contacto);
     }
 
     @Override

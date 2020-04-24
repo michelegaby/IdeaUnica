@@ -47,7 +47,7 @@ public class Entrevistas extends AppCompatActivity {
     //Complementos
     AdaptadorEntrevista adaptadorEntrevista;
     private ArrayList<EntrevistaClass> listEntrevisto = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/entrevista.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/entrevista.php";
     private RecyclerView.LayoutManager manager;
 
     @Override
@@ -64,15 +64,19 @@ public class Entrevistas extends AppCompatActivity {
         titulo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/toledo-serial-bold.ttf"));
         GenerarDatos();
     }
+
     public void GenerarDatos(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de las entrevistas
                             JSONArray jsonArray = jsonObject.getJSONArray("entrevista");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 listEntrevisto.add(new EntrevistaClass(
@@ -82,16 +86,20 @@ public class Entrevistas extends AppCompatActivity {
                                         object.getString("url")));
 
                             }
-                            adaptadorEntrevista= new AdaptadorEntrevista(Entrevistas.this,listEntrevisto);
+
+                            //Funcionalidad en adapter
+
+                            adaptadorEntrevista = new AdaptadorEntrevista(Entrevistas.this,listEntrevisto);
                             manager = new GridLayoutManager(Entrevistas.this,2);
                             myrecyclerview.setLayoutManager(manager);
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorEntrevista);
                             progress.setVisibility(View.GONE);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No existe ningun entrevista", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo masy tarde, gracias.", Toast.LENGTH_LONG)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -101,7 +109,7 @@ public class Entrevistas extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexion, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }
@@ -117,9 +125,9 @@ public class Entrevistas extends AppCompatActivity {
     }
 
     private void InicializarComponenetes() {
-        myrecyclerview=findViewById(R.id.Entrevista_recyclerview);
-        titulo=findViewById(R.id.titulo_entrevistas);
-        progress=findViewById(R.id.progress_entrevistas);
+        myrecyclerview = findViewById(R.id.Entrevista_recyclerview);
+        titulo = findViewById(R.id.titulo_entrevistas);
+        progress = findViewById(R.id.progress_entrevistas);
     }
 
     @Override
@@ -127,6 +135,7 @@ public class Entrevistas extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
