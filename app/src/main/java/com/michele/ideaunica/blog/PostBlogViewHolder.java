@@ -54,14 +54,14 @@ public class PostBlogViewHolder extends BaseViewHolder{
             img.setVisibility(View.VISIBLE);
             Glide.with(itemView.getContext())
                     .load(post.getUrlphoto())
-                    .placeholder(R.drawable.cargando)
-                    .error(R.drawable.fondorosa)
+                    .placeholder(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
                     .into(img);
         }
         Glide.with(itemView.getContext())
                 .load("https://ideaunicabolivia.com/"+post.getUrlempresa())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable. cargando)
                 .into(imgEmpresa);
         if(post.getUrlphoto().isEmpty() || post.getUrlphoto().equals("") || post.getUrlphoto().equals("null")){
             leer.setVisibility(View.GONE);
@@ -124,9 +124,9 @@ public class PostBlogViewHolder extends BaseViewHolder{
                     tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
                     tv.invalidate();
                     if (viewMore) {
-                        makeTextViewResizable(tv, -1, " Leer menos ", false);
+                        makeTextViewResizable(tv, -1, "  Leer menos ", false);
                     } else {
-                        makeTextViewResizable(tv, 10, " Leer más ", true);
+                        makeTextViewResizable(tv, 10, "  Leer más ", true);
                     }
                 }
             }, str.indexOf(spanableText), str.indexOf(spanableText) + spanableText.length(), 0);

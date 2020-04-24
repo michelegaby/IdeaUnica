@@ -51,7 +51,7 @@ public class Contactos extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Contáctanos");
         Inicializar();
@@ -71,7 +71,10 @@ public class Contactos extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //
                             JSONArray jsonArray = jsonObject.getJSONArray("mensaje");
                             for (int i = 0;i<jsonArray.length();i++)
                             {
@@ -81,7 +84,7 @@ public class Contactos extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No se puedo enviar el mensaje", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -90,13 +93,15 @@ public class Contactos extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Enviar atributos del celular email el asunto del email y el mesaje
                 params.put("celular",celular.getText().toString());
                 params.put("email",correo.getText().toString());
                 params.put("asunto",asunto.getText().toString());

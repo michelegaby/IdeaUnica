@@ -39,7 +39,7 @@ public class EditarInvitado extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Editar Invitado");
         inicializarComponentes();

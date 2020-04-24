@@ -155,6 +155,7 @@ public class Empresas extends AppCompatActivity {
                             }
 
                             //Funcionalidad al seleccionar se encuentra en el adapter
+
                             adaptadorEmpresa = new AdaptadorEmpresa(Empresas.this,listEmpresa);
                             myrecyclerview.setLayoutManager(new LinearLayoutManager(Empresas.this));
                             progress.setVisibility(View.GONE);
@@ -180,7 +181,7 @@ public class Empresas extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Empresas.this,
-                                    "Error, Por favor intentelo mas tarde, gracias.", Toast.LENGTH_LONG)
+                                    "Error, Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -190,7 +191,7 @@ public class Empresas extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Empresas.this,
-                                "Error  de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
+                                "Error  de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }

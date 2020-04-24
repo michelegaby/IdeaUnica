@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <ImageView
-        android:contentDescription="@string/imgpublicidad"
         android:id="@+id/img_publicidad_eventos"
+        android:contentDescription="@string/imgpublicidad"
         android:layout_alignParentBottom="true"
         android:src="@drawable/bannerexpofiesta1"
         android:layout_width="match_parent"

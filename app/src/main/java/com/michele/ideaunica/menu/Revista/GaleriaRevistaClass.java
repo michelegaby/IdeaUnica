@@ -1,6 +1,7 @@
 package com.michele.ideaunica.menu.Revista;
 
 public class GaleriaRevistaClass {
+
     private int id;
     private String titulo;
     private String url;

@@ -45,8 +45,8 @@ public class AdaptadorEntrevista extends RecyclerView.Adapter<AdaptadorEntrevist
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         Glide.with(nContext)
                 .load("https://ideaunicabolivia.com/" + nData.get(i).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.img);
 
         //Funcionlidad de click a entrevista

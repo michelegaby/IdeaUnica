@@ -21,14 +21,14 @@
         <LinearLayout
             android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1.5">
             <TextView
                 android:id="@+id/item_titulo_gastos"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -75,7 +75,7 @@
                 android:layout_marginBottom="10dp"
                 android:maxLines="1"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -85,7 +85,7 @@
                 android:layout_marginBottom="10dp"
                 android:maxLines="1"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

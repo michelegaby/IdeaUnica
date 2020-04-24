@@ -57,7 +57,7 @@ public class Entrevistas extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Entrevistas");
         InicializarComponenetes();
@@ -99,7 +99,7 @@ public class Entrevistas extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "Error. Por favor intentelo masy tarde, gracias.", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -109,7 +109,7 @@ public class Entrevistas extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }

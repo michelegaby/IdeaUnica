@@ -80,6 +80,7 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
             listener.onClick(v);
         }
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView nombre;
@@ -97,7 +98,9 @@ public class AdaptadorDepartamento extends RecyclerView.Adapter<AdaptadorDeparta
         nData.addAll(listaEntrada);
         notifyDataSetChanged();
     }
+
     private int lastPosition = -1;
+
     private void setAnimation(View viewToAnimate, int position) {
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(nContext, android.R.anim.slide_in_left);

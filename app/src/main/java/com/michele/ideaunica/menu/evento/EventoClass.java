@@ -1,6 +1,7 @@
 package com.michele.ideaunica.menu.evento;
 
 public class EventoClass {
+
     private int ID;
     private String Url;
     private String titulo;

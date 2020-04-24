@@ -1,6 +1,7 @@
 package com.michele.ideaunica.menu.evento;
 
 public class GaleriaEventoClass {
+
     private int id;
     private String titulo;
     private String url;
@@ -33,5 +34,4 @@ public class GaleriaEventoClass {
     public void setUrl(String url) {
         this.url = url;
     }
-
 }

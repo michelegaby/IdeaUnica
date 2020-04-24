@@ -55,6 +55,8 @@ public class DetalleEntrevista extends AppCompatActivity {
         ID = parametros.getInt("id");
 
         GenerarDatos();
+
+        //funcion boton
         ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,14 +84,17 @@ public class DetalleEntrevista extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de bigrafia de entrevista
                             JSONArray jsonArray = jsonObject.getJSONArray("biografia");
 
                             JSONObject object = jsonArray.getJSONObject(0);
                             Glide.with(getApplicationContext())
                                     .load("https://ideaunicabolivia.com/" + object.getString("url"))
-                                    .placeholder(R.drawable.cargando)
-                                    .error(R.drawable.fondorosa)
+                                    .placeholder(R.drawable.fondorosa)
+                                    .error(R.drawable.cargando)
                                     .into(img);
                             urlimg = object.getString("url");
                             nombre.setText(object.getString("nombre"));
@@ -98,7 +103,7 @@ public class DetalleEntrevista extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No existe Biografia", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mass tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -107,13 +112,15 @@ public class DetalleEntrevista extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion" + error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Enviar atributo id de la entrevista key = "id"
                 params.put("id",String.valueOf(ID));
                 return params;
             }

@@ -9,14 +9,14 @@
         app:tabTextAppearance="@style/MineCustomTabText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorblanco"
+        android:background="@color/bannerColorRosa"
         android:elevation="4dp"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/colorAccent"
         app:tabIndicatorHeight="5dp"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="#000" />
+        app:tabTextColor="@color/colorblanco" />
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpaper_gatos"
         android:layout_width="match_parent"

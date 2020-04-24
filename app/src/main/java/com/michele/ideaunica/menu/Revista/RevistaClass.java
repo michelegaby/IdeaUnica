@@ -1,6 +1,7 @@
 package com.michele.ideaunica.menu.Revista;
 
 public class RevistaClass {
+
     private int ID;
     private String titulo;
     private String fecha;
@@ -132,5 +133,4 @@ public class RevistaClass {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

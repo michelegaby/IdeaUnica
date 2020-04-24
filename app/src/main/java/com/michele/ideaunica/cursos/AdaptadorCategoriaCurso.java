@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCategoriaCurso.MyViewHolder> implements View.OnClickListener {
 
-    Context nContext;
-    ArrayList<CategoriaCursosClass> nData;
+    private Context nContext;
+    private ArrayList<CategoriaCursosClass> nData;
     private View.OnClickListener listener;
 
     public AdaptadorCategoriaCurso(Context nContext, ArrayList<CategoriaCursosClass> nData) {
@@ -38,8 +38,8 @@ public class AdaptadorCategoriaCurso  extends RecyclerView.Adapter<AdaptadorCate
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         myViewHolder.contenido.setText(nData.get(i).getContenido());
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.img);
     }
 

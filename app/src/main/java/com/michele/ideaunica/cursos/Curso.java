@@ -104,7 +104,9 @@ public class Curso extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         InicilizarComponentes();
         final Bundle parametros = this.getIntent().getExtras();
+
         ID = parametros.getString("ID");
+
         titulo.setText(parametros.getString("titulo"));
         costo.setText("Bs."+parametros.getString("costo"));
 
@@ -230,7 +232,7 @@ public class Curso extends AppCompatActivity {
                         final Intent emailIntent = new Intent(Intent.ACTION_SEND);
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{em});
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "IDEA UNICA");
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, "CUERPO");
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas le hablo como referencia de la app idea unica para consultar");
                         emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         emailIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                         emailIntent.setSelector( emailSelectorIntent );
@@ -243,10 +245,9 @@ public class Curso extends AppCompatActivity {
             GenerarGaleria();
 
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     public void onBackPressed() {

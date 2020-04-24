@@ -191,7 +191,7 @@ public class Categoria extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Categoria.this,
-                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -201,7 +201,7 @@ public class Categoria extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Categoria.this,
-                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }

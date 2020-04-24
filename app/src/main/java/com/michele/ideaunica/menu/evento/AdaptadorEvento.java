@@ -38,20 +38,23 @@ public class AdaptadorEvento extends RecyclerView.Adapter<AdaptadorEvento.MyView
         this.nContext = nContext;
         this.nData = nData;
     }
+
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_evento,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_evento,viewGroup,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
 
+        //Funcionalidad se encuentra en el padre
         view.setOnClickListener(this);
 
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
-        //setAnimation(myViewHolder.itemView, i);
+
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         SimpleDateFormat dia = new SimpleDateFormat("dd");
         SimpleDateFormat mes = new SimpleDateFormat("MMM");
@@ -89,23 +92,27 @@ public class AdaptadorEvento extends RecyclerView.Adapter<AdaptadorEvento.MyView
         myViewHolder.detalle.setText(nData.get(i).getDescripcion());
         Glide.with(nContext)
                 .load(nData.get(i).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.img);
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public void setOnClickListener(View.OnClickListener listener){
-        this.listener =listener;
+        this.listener = listener;
     }
+
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if(listener != null){
             listener.onClick(v);
         }
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
@@ -117,20 +124,23 @@ public class AdaptadorEvento extends RecyclerView.Adapter<AdaptadorEvento.MyView
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_evento);
-            fecha=itemView.findViewById(R.id.item_fecha_evento);
-            dia=itemView.findViewById(R.id.item_dia_evento);
-            mes=itemView.findViewById(R.id.item_mes_evento);
-            detalle=itemView.findViewById(R.id.item_detalle_evento);
-            img=itemView.findViewById(R.id.item_img_evento);
+            titulo = itemView.findViewById(R.id.item_titulo_evento);
+            fecha = itemView.findViewById(R.id.item_fecha_evento);
+            dia = itemView.findViewById(R.id.item_dia_evento);
+            mes = itemView.findViewById(R.id.item_mes_evento);
+            detalle = itemView.findViewById(R.id.item_detalle_evento);
+            img = itemView.findViewById(R.id.item_img_evento);
         }
     }
+
     public void setfilter(ArrayList<EventoClass> listaEntrada){
         nData = new ArrayList<>();
         nData.addAll(listaEntrada);
         notifyDataSetChanged();
     }
+
     private int lastPosition = -1;
+
     private void setAnimation(View viewToAnimate, int position) {
 
         if (position > lastPosition) {

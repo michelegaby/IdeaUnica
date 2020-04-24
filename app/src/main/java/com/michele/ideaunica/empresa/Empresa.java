@@ -116,13 +116,13 @@ public class Empresa extends AppCompatActivity {
             //Imagen del Banner
             Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("url"))
                     .placeholder(R.drawable.fondorosa)
-                    .error(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
                     .into(photo);
 
             //Imagen del logo
             Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+parametros.getString("urlToolBar"))
                     .placeholder(R.drawable.fondorosa)
-                    .error(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
                     .into(imgToolBar);
 
             CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collappEmpresa);
@@ -178,11 +178,11 @@ public class Empresa extends AppCompatActivity {
             if(!parametros.getString("whatsapp").equals("null")&& !parametros.getString("whatsapp").isEmpty()){
                 whatsApp.setVisibility(View.VISIBLE);
                 final String what = parametros.getString("whatsapp");
-                tvwhatsApp.setText("+"+what);
+                tvwhatsApp.setText("+" + what);
                 whatsApp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
+                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + what);
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
@@ -247,7 +247,7 @@ public class Empresa extends AppCompatActivity {
                         final Intent emailIntent = new Intent(Intent.ACTION_SEND);
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{em});
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "IDEA UNICA");
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, "CUERPO");
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas le hablo como referencia de la app para consultar");
                         emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         emailIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                         emailIntent.setSelector( emailSelectorIntent );
@@ -398,7 +398,7 @@ public class Empresa extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(Empresa.this,
-                                    "Error", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                             gal.setVisibility(View.GONE);
                             ub.setVisibility(View.GONE);
@@ -409,7 +409,7 @@ public class Empresa extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Empresa.this,
-                                "Error  2"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                         gal.setVisibility(View.GONE);
                         ub.setVisibility(View.GONE);

@@ -85,8 +85,8 @@ public class VerDetalleEntrevista extends AppCompatActivity {
             titulo.setText(parametros.getString("nombre"));
             Glide.with(getApplicationContext())
                     .load("https://ideaunicabolivia.com/" + parametros.getString("img"))
-                    .placeholder(R.drawable.cargando)
-                    .error(R.drawable.fondorosa)
+                    .placeholder(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
                     .into(img);
             GenerarDatos();
         }
@@ -101,20 +101,26 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtener galeria
                             JSONArray jsonArray = jsonObject.getJSONArray("galeria");
                             for (int i = 0;i<jsonArray.length();i++) {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 listGaleria.add(new GaleriaEntrevistaClass(object.getInt("id"), "A",
                                         object.getString("url")));
                             }
+
                             adaptadorGaleriaEntrevista = new AdaptadorGaleriaEntrevista(VerDetalleEntrevista.this,listGaleria);
                             rv_galeria.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             rv_galeria.setAdapter(adaptadorGaleriaEntrevista);
+
                             JSONArray jsonArray2 = jsonObject.getJSONArray("detalle");
                             JSONObject object = jsonArray2.getJSONObject(0);
                             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
                             SimpleDateFormat formateador = new SimpleDateFormat("MMM d, yyyy");
+
                             try {
                                 Date date = parseador.parse(object.getString("fecha"));
                                 fecha.setText(formateador.format(date));
@@ -122,22 +128,26 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                                 e.printStackTrace();
                                 fecha.setText(object.getString("fecha"));
                             }
+
                             descripcion_inicio.setText(object.getString("descripcion_inicio"));
                             descripcion_final.setText(object.getString("descripcion_final"));
                             autor.setText(object.getString("autor"));
 
+                            //whatsapp
                             if(!object.getString("whatsapp").equals("null")&& !object.getString("whatsapp").isEmpty()){
                                 whatsapp.setVisibility(View.VISIBLE);
                                 final String what = object.getString("whatsapp");
                                 whatsapp.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone = " + what);
+                                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + what);
                                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                         startActivity(intent);
                                     }
                                 });
                             }
+
+                            //Facebook
                             if(!object.getString("facebook").equals("null")&& !object.getString("facebook").isEmpty()){
                                 facebook.setVisibility(View.VISIBLE);
                                 final String face = object.getString("facebook");
@@ -150,6 +160,8 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                                     }
                                 });
                             }
+
+                            //Instagram
                             if(!object.getString("instagram").equals("null")&& !object.getString("instagram").isEmpty()){
                                 instagram.setVisibility(View.VISIBLE);
                                 final String inst = object.getString("instagram");
@@ -162,6 +174,8 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                                     }
                                 });
                             }
+
+                            //Email
                             if(!object.getString("email").equals("null") && !object.getString("email").isEmpty() ){
                                 email.setVisibility(View.VISIBLE);
                                 final String em = object.getString("email");
@@ -182,10 +196,11 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                                     }
                                 });
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "Error. Por favor intentelo masy tarde, gracias.", Toast.LENGTH_SHORT)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -201,6 +216,8 @@ public class VerDetalleEntrevista extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Enviar atributos id de la entrevista key = "id"
                 params.put("id",String.valueOf(ID));
                 return params;
             }
@@ -225,9 +242,6 @@ public class VerDetalleEntrevista extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
-        getSupportActionBar().setHomeAsUpIndicator(drawable);
         onBackPressed();
         return true;
     }

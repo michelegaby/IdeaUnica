@@ -50,10 +50,12 @@ public class AdaptadorCurso extends RecyclerView.Adapter<AdaptadorCurso.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorCurso.MyViewHolder myViewHolder, final int position) {
         myViewHolder.titulo.setText(nData.get(position).getTitulo());
+
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(position).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.imagen);
+
         myViewHolder.precio.setText(nData.get(position).getCosto());
         myViewHolder.contenido.setText(nData.get(position).getContenido());
         myViewHolder.departamento.setText(nData.get(position).getDepartamento());

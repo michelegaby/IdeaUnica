@@ -41,6 +41,7 @@ import java.util.Map;
 
 public class DetalleRevista extends AppCompatActivity {
 
+    //Componentes
     private RecyclerView rv_galeria;
     private TextView titulo;
     private TextView fecha;
@@ -53,11 +54,11 @@ public class DetalleRevista extends AppCompatActivity {
     private CardView instragram;
     private CardView email;
 
-    //Galeria
+    //Complementos
     private  static int ID;
     AdaptadorGaleriaRevista adaptadorGaleriaRevista;
     private ArrayList<GaleriaRevistaClass> listGaleria = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/galeriaRevista.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/galeriaRevista.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,56 +75,67 @@ public class DetalleRevista extends AppCompatActivity {
             getSupportActionBar().setTitle("");
             inicializarComponente();
             Bundle parametros = this.getIntent().getExtras();
-            ID=parametros.getInt("id");
+
+            ID = parametros.getInt("id");
+
             titulo.setText(parametros.getString("titulo"));
             fecha.setText(parametros.getString("fecha"));
             descripcion_arriba.setText(parametros.getString("descripcion"));
             autor.setText(parametros.getString("autor"));
             descripcion_abajo.setText(parametros.getString("descripcion_final"));
+
             Glide.with(getApplicationContext())
                     .load("https://ideaunicabolivia.com/"+parametros.getString("url"))
-                    .placeholder(R.drawable.cargando)
-                    .error(R.drawable.fondorosa)
+                    .placeholder(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
                     .into(banner);
+
+            //whatsapp
             if(!parametros.getString("whatsapp").equals("null")&& !parametros.getString("whatsapp").isEmpty()){
                 whatsapp.setVisibility(View.VISIBLE);
-                final String what=parametros.getString("whatsapp");
+                final String what = parametros.getString("whatsapp");
                 whatsapp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //facebook
             if(!parametros.getString("facebook").equals("null")&& !parametros.getString("facebook").isEmpty()){
                 facebook.setVisibility(View.VISIBLE);
-                final String face=parametros.getString("facebook");
+                final String face = parametros.getString("facebook");
                 facebook.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Uri uri = Uri.parse(face);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //instagram
             if(!parametros.getString("instagram").equals("null")&& !parametros.getString("instagram").isEmpty()){
                 instragram.setVisibility(View.VISIBLE);
-                final String inst=parametros.getString("instagram");
+                final String inst = parametros.getString("instagram");
                 instragram.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Uri uri=Uri.parse(inst);
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Uri uri = Uri.parse(inst);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
                 });
             }
+
+            //Email
             if(!parametros.getString("email").equals("null") && !parametros.getString("email").isEmpty() ){
                 email.setVisibility(View.VISIBLE);
-                final String em=parametros.getString("email");
+                final String em = parametros.getString("email");
                 email.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -141,7 +153,9 @@ public class DetalleRevista extends AppCompatActivity {
                     }
                 });
             }
+
             GenerarDatos();
+
         }
         catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
@@ -149,17 +163,17 @@ public class DetalleRevista extends AppCompatActivity {
     }
 
     private void inicializarComponente() {
-        rv_galeria=findViewById(R.id.galeria_revista_recyclerview);
-        titulo=findViewById(R.id.titulo_detallerevista);
-        fecha=findViewById(R.id.fecha_detallerevista);
-        autor=findViewById(R.id.autor_detallerevista);
-        descripcion_arriba=findViewById(R.id.detalle_arriba_detallerevista);
-        descripcion_abajo=findViewById(R.id.detalle_abajo_detallerevista);
-        facebook=findViewById(R.id.facebook_revista);
-        whatsapp=findViewById(R.id.whatsapp_revista);
-        instragram=findViewById(R.id.instagram_revista);
-        email=findViewById(R.id.email_revista);
-        banner=findViewById(R.id.imgToolBar_revista);
+        rv_galeria = findViewById(R.id.galeria_revista_recyclerview);
+        titulo = findViewById(R.id.titulo_detallerevista);
+        fecha = findViewById(R.id.fecha_detallerevista);
+        autor = findViewById(R.id.autor_detallerevista);
+        descripcion_arriba = findViewById(R.id.detalle_arriba_detallerevista);
+        descripcion_abajo = findViewById(R.id.detalle_abajo_detallerevista);
+        facebook = findViewById(R.id.facebook_revista);
+        whatsapp = findViewById(R.id.whatsapp_revista);
+        instragram = findViewById(R.id.instagram_revista);
+        email = findViewById(R.id.email_revista);
+        banner = findViewById(R.id.imgToolBar_revista);
     }
 
     public void GenerarDatos(){
@@ -168,20 +182,25 @@ public class DetalleRevista extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de las imagenes
                             JSONArray jsonArray = jsonObject.getJSONArray("galeria-revista");
-                            for (int i=0;i<jsonArray.length();i++) {
+                            for (int i = 0;i<jsonArray.length();i++) {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 listGaleria.add(new GaleriaRevistaClass(object.getInt("id"), "A",
                                         object.getString("url")));
                             }
-                            adaptadorGaleriaRevista= new AdaptadorGaleriaRevista(DetalleRevista.this,listGaleria);
+
+                            adaptadorGaleriaRevista = new AdaptadorGaleriaRevista(DetalleRevista.this,listGaleria);
                             rv_galeria.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             rv_galeria.setAdapter(adaptadorGaleriaRevista);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No existe tal evento de este evento", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mass tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -190,13 +209,15 @@ public class DetalleRevista extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Enviar atributo codigo de la revista key = "cod"
                 params.put("cod",String.valueOf(ID));
                 return params;
             }
@@ -204,14 +225,13 @@ public class DetalleRevista extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         requestQueue.add(stringRequest);
     }
+
     @Override
     public boolean onSupportNavigateUp() {
-        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
-        getSupportActionBar().setHomeAsUpIndicator(drawable);
         onBackPressed();
         return true;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

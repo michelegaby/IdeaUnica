@@ -23,8 +23,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumpleanyos.MyViewHolder>{
 
-    Context nContext;
-    ArrayList<CumpleanyosClass> nData;
+    private Context nContext;
+    private ArrayList<CumpleanyosClass> nData;
 
     private AdaptadorCumpleanyos.OnItemClickListener nListener;
 
@@ -64,12 +64,12 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
                 Uri imageUri = Uri.fromFile(imgFile);
                 Glide.with(nContext)
                         .load(imageUri)
-                        .placeholder(R.drawable.cargando)
-                        .error(R.drawable.fondorosa)
+                        .placeholder(R.drawable.fondorosa)
+                        .error(R.drawable.cargando)
                         .into(myViewHolder.img);
             }
         }catch (Exception e){
-            Toast.makeText(nContext,nData.get(i).getUrlfoto()+" MSN "+e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(nContext,nData.get(i).getUrlfoto()+" MSN "+e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
 

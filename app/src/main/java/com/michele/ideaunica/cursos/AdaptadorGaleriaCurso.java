@@ -36,8 +36,8 @@ public class AdaptadorGaleriaCurso extends RecyclerView.Adapter<AdaptadorGaleria
     @Override
     public void onBindViewHolder(@NonNull AdaptadorGaleriaCurso.MyViewHolder myViewHolder, int i) {
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.img);
     }
 

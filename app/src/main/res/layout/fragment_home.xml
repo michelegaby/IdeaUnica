@@ -20,14 +20,14 @@
             android:layout_width="match_parent"
             android:layout_marginTop="-50dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="10dp"
             app:cardElevation="2dp">
             <LinearLayout
                 android:orientation="vertical"
-                android:paddingBottom="30dp"
+                android:paddingBottom="20dp"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -50,9 +50,9 @@
                     android:gravity="center"
                     android:text="¡La gran hora llegó!"
                     android:textColor="@color/colorAccent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_width="200dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"/>
 
                 <LinearLayout
@@ -68,7 +68,7 @@
                         <TextView
                             android:id="@+id/dias_dias_evento"
                             android:textColor="#000"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -80,7 +80,7 @@
                         <TextView
                             android:id="@+id/dias_hora_evento"
                             android:textColor="#000"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -92,7 +92,7 @@
                         <TextView
                             android:id="@+id/dias_minutos_evento"
                             android:textColor="#000"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -104,7 +104,7 @@
                         <TextView
                             android:id="@+id/dias_seg_evento"
                             android:textColor="#000"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -117,25 +117,25 @@
                         <TextView
                             android:text="  Días   "
                             android:textColor="#000"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="  Hrs.   "
                             android:textColor="#000"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="   Min.  "
                             android:textColor="#000"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:text="   Seg.  "
                             android:textColor="#000"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -166,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/cero"
                             android:textColor="#000"
-                            android:textSize="18sp" />
+                            android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
                         android:gravity="center"
@@ -183,7 +183,7 @@
                         <TextView
                             android:id="@+id/invitados_sin_confirmar_evento"
                             android:text="@string/cero"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textColor="#000"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -192,32 +192,33 @@
                 <TextView
                     android:layout_marginTop="10dp"
                     android:text="Tareas Realizadas:"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tareas_hechas_evento"
                         android:text="@string/cero"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                     <TextView
                         android:text="/"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                     <TextView
                         android:id="@+id/tareas_total_evento"
                         android:text="54"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>

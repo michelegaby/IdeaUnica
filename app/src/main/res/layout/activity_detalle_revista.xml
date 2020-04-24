@@ -47,8 +47,8 @@
         <LinearLayout
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -83,9 +83,8 @@
                 android:paddingHorizontal="10dp"
                 android:lineSpacingExtra="8sp"
                 android:ellipsize="end"/>
-
             <LinearLayout
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
@@ -112,7 +111,6 @@
                     android:lineSpacingExtra="8sp"
                     android:ellipsize="end"/>
             </LinearLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/galeria_revista_recyclerview"
@@ -131,7 +129,6 @@
                 android:paddingHorizontal="10dp"
                 android:lineSpacingExtra="8sp"
                 android:ellipsize="end"/>
-
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:text="@string/redessociales"
@@ -147,11 +144,9 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/facebook_revista"
                     android:visibility="gone"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="#fff"
@@ -169,12 +164,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                 </androidx.cardview.widget.CardView>
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/whatsapp_revista"
                     android:visibility="gone"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -195,7 +187,6 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/instagram_revista"
                     android:visibility="gone"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="#fff"
@@ -213,12 +204,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                 </androidx.cardview.widget.CardView>
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/email_revista"
                     android:visibility="gone"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     app:cardElevation="1dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="#fff"

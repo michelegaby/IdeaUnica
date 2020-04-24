@@ -66,8 +66,11 @@ public class Cursos extends AppCompatActivity {
         drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         Bundle parametros = this.getIntent().getExtras();
+
         cat = parametros.getString("titulo");
+
         ID = parametros.getString("id");
+
         getSupportActionBar().setTitle("Cursos de "+parametros.getString("titulo"));
         InicializarComponentes();
         GenerarDatos();
@@ -126,6 +129,7 @@ public class Cursos extends AppCompatActivity {
                             }
 
                             //La funcion de seleccionar se encuentra en el adapter
+
                             adaptadorCurso = new AdaptadorCurso(Cursos.this,listCurso);
                             rv_curso.setLayoutManager(new LinearLayoutManager(Cursos.this));
                             progressBar.setVisibility(View.GONE);

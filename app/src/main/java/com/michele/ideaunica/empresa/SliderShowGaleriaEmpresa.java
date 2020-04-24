@@ -75,7 +75,7 @@ public class SliderShowGaleriaEmpresa extends DialogFragment {
     };
 
     private void displayMetaInfo(int position) {
-        lblCount.setText((position + 1) + " of " + galeriaEmpresaClasses.size());
+        lblCount.setText((position + 1) + " de " + galeriaEmpresaClasses.size());
         GaleriaEmpresaClass image = galeriaEmpresaClasses.get(position);
         lblTitule.setText(image.getTitulo());
     }

@@ -11,6 +11,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,12 +38,16 @@ import java.util.Map;
 
 public class Eventos extends AppCompatActivity {
 
+    //Componentes
     private RecyclerView recyclerView;
     private ProgressBar progress;
+    private ImageView publicidad_img;
+
     //Complementos
     AdaptadorEvento adaptadorEvento;
     private ArrayList<EventoClass> listEvento = new ArrayList<>();
-    private static  String URL="https://ideaunicabolivia.com/apps/evento.php";
+    private static  String URL = "https://ideaunicabolivia.com/apps/evento.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +56,7 @@ public class Eventos extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
+        drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Eventos");
 
@@ -60,8 +65,9 @@ public class Eventos extends AppCompatActivity {
     }
 
     private void InicializarComponenetes() {
-        recyclerView=findViewById(R.id.Evento_recyclerview);
-        progress=findViewById(R.id.progress_eventos);
+        recyclerView = findViewById(R.id.Evento_recyclerview);
+        progress = findViewById(R.id.progress_eventos);
+        publicidad_img = findViewById(R.id.img_publicidad_eventos);
     }
 
     public void GenerarDatos(){
@@ -70,12 +76,15 @@ public class Eventos extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de datos de eventos
                             JSONArray jsonArray = jsonObject.getJSONArray("evento");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
-                                EventoClass departamento= new EventoClass(
+                                EventoClass departamento = new EventoClass(
                                         object.getInt("id"),
                                         object.getString("url").trim(),
                                         object.getString("titulo").trim(),
@@ -84,9 +93,11 @@ public class Eventos extends AppCompatActivity {
                                         object.getString("descripcion").trim());
                                 listEvento.add(departamento);
                             }
-                            progress.setVisibility(View.GONE);
-                            adaptadorEvento= new AdaptadorEvento(getApplicationContext(),listEvento);
+
+                            adaptadorEvento = new AdaptadorEvento(getApplicationContext(),listEvento);
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                            //Funcionalidad al seleccionar un evento
                             adaptadorEvento.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -106,11 +117,14 @@ public class Eventos extends AppCompatActivity {
                                     startActivity(i);
                                 }
                             });
+
+                            progress.setVisibility(View.GONE);
                             recyclerView.setAdapter(adaptadorEvento);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No existe ningun evento", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                             progress.setVisibility(View.GONE);
                         }
@@ -120,7 +134,7 @@ public class Eventos extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                         progress.setVisibility(View.GONE);
                     }
@@ -134,11 +148,13 @@ public class Eventos extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         requestQueue.add(stringRequest);
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

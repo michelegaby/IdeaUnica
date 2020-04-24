@@ -38,14 +38,15 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
     public AdaptadorRevista.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_revista,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_revista,viewGroup,false);
         AdaptadorRevista.MyViewHolder viewHolder = new AdaptadorRevista.MyViewHolder(view);
 
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        //myViewHolder.titulo.setTypeface(Typeface.createFromAsset(nContext.getAssets(),"fonts/toledo-serial-bold.ttf"));
+
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
         SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");
@@ -57,10 +58,12 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
             myViewHolder.fecha.setText(nData.get(i).getFecha());
         }
         myViewHolder.descripcion.setText(nData.get(i).getDescripcion());
+
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.img);
+
         myViewHolder.leer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,13 +101,14 @@ public class AdaptadorRevista extends RecyclerView.Adapter<AdaptadorRevista.MyVi
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.item_titulo_revista);
-            fecha=itemView.findViewById(R.id.item_fecha_revista);
-            img=itemView.findViewById(R.id.item_img_revista);
-            descripcion=itemView.findViewById(R.id.item_detalle_revista);
-            leer=itemView.findViewById(R.id.item_post_leer_mas_revista);
+            titulo = itemView.findViewById(R.id.item_titulo_revista);
+            fecha = itemView.findViewById(R.id.item_fecha_revista);
+            img = itemView.findViewById(R.id.item_img_revista);
+            descripcion = itemView.findViewById(R.id.item_detalle_revista);
+            leer = itemView.findViewById(R.id.item_post_leer_mas_revista);
         }
     }
+
     public void setfilter(ArrayList<RevistaClass> lista){
         nData = new ArrayList<>();
         nData.addAll(lista);

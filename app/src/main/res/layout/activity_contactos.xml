@@ -23,7 +23,7 @@
         <TextView
             android:layout_marginHorizontal="20dp"
             android:text="@string/descripcionhola"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -32,8 +32,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:text="@string/telefono"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <LinearLayout
@@ -46,7 +45,7 @@
             <TextView
                 android:textColor="#000"
                 android:text="@string/codigonumero"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <View
@@ -61,7 +60,7 @@
                 android:autofillHints="@string/ejemplocelular"
                 android:hint="@string/ejemplocelular"
                 android:background="@null"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -76,8 +75,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:text="@string/email"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -90,7 +88,7 @@
             android:autofillHints="@string/ejemploemail"
             android:hint="@string/ejemploemail"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -104,8 +102,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:text="@string/asunto"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -118,7 +115,7 @@
             android:inputType="textEmailSubject"
             android:hint="@string/ejemploasunto"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -132,8 +129,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:text="@string/mensaje"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText

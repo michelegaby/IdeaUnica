@@ -150,7 +150,7 @@ public class BlogFragment extends Fragment{
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(),
-                                    "Error. Por favor intente mas tarde, gracias", Toast.LENGTH_LONG)
+                                    "Error. Por favor intente mas tarde, gracias", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -159,7 +159,7 @@ public class BlogFragment extends Fragment{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(),
-                                "Error de conexion, por favor verifique el acceso a internet", Toast.LENGTH_LONG)
+                                "Error de conexion, por favor verifique el acceso a internet", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }) {

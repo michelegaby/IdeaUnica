@@ -13,6 +13,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,23 +42,24 @@ import java.util.Map;
 
 public class Evento extends AppCompatActivity {
 
+    //Componentes
     private ImageView imgbanner;
     private TextView titulo;
     private TextView fecha;
     private TextView descripcion_arriba;
     private RecyclerView recyclerView;
     private TextView descripcion_abajo;
-
     private CardView facebook;
     private CardView whatsapp;
     private CardView instragram;
     private CardView email;
 
+    //Complementos
     private String ID;
-    private static  String URL="https://ideaunicabolivia.com/apps/detalleEvento.php";
-
+    private static  String URL = "https://ideaunicabolivia.com/apps/detalleEvento.php";
     AdaptadorGaleriaEvento adaptadorGaleriaEvento;
     private ArrayList<GaleriaEventoClass> listGaleria = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public class Evento extends AppCompatActivity {
                 getSupportActionBar().setTitle("");
                 inicializarComponente();
                 Bundle parametros = this.getIntent().getExtras();
-                ID=parametros.getString("ID");
+                ID = parametros.getString("ID");
                 titulo.setText(parametros.getString("titulo"));
                 descripcion_arriba.setText(parametros.getString("descripcion"));
 
@@ -98,74 +100,85 @@ public class Evento extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
         }
     }
+
     private void inicializarComponente() {
-            imgbanner=findViewById(R.id.imgToolBar_Evento);
-            titulo=findViewById(R.id.titulo_evento);
-            fecha=findViewById(R.id.fecha_evento);
-            descripcion_arriba=findViewById(R.id.arriba_detalle_evento);
-            recyclerView=findViewById(R.id.galeria_evento_recyclerview);
-            descripcion_abajo=findViewById(R.id.abajo_detalle_evento);
-            facebook=findViewById(R.id.facebook_evento);
-            whatsapp=findViewById(R.id.whatsapp_evento);
-            instragram=findViewById(R.id.instagram_evento);
-            email=findViewById(R.id.email_evento);
-        }
+        imgbanner = findViewById(R.id.imgToolBar_Evento);
+        titulo = findViewById(R.id.titulo_evento);
+        fecha = findViewById(R.id.fecha_evento);
+        descripcion_arriba = findViewById(R.id.arriba_detalle_evento);
+        recyclerView = findViewById(R.id.galeria_evento_recyclerview);
+        descripcion_abajo = findViewById(R.id.abajo_detalle_evento);
+        facebook = findViewById(R.id.facebook_evento);
+        whatsapp = findViewById(R.id.whatsapp_evento);
+        instragram = findViewById(R.id.instagram_evento);
+        email = findViewById(R.id.email_evento);
+    }
+
     public void GenerarDatos(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            //JSON
                             JSONObject jsonObject = new JSONObject(response);
+
+                            //Obtencion de datos eventos
                             JSONArray jsonArray = jsonObject.getJSONArray("evento");
-                            for (int i=0;i<jsonArray.length();i++)
+                            for (int i = 0;i<jsonArray.length();i++)
                             {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 Glide.with(getApplicationContext())
                                         .load("https://ideaunicabolivia.com/"+object.getString("url"))
-                                        .placeholder(R.drawable.cargando)
-                                        .error(R.drawable.fondorosa)
+                                        .placeholder(R.drawable.fondorosa)
+                                        .error(R.drawable.cargando)
                                         .into(imgbanner);
-                                descripcion_abajo.setText(object.getString("descripcion"));
+                                descripcion_abajo.setText(Html.fromHtml(object.getString("descripcion")));
                                 if(!object.getString("whatsapp").equals("null")&& !object.getString("whatsapp").isEmpty()){
                                     whatsapp.setVisibility(View.VISIBLE);
-                                    final String what=object.getString("whatsapp");
+                                    final String what = object.getString("whatsapp");
                                     whatsapp.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
                                             Uri uri = Uri.parse("https://api.whatsapp.com/send?phone="+what);
-                                            Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                                            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                             startActivity(intent);
                                         }
                                     });
                                 }
+
+                                //facebook
                                 if(!object.getString("facebook").equals("null")&& !object.getString("facebook").isEmpty()){
                                     facebook.setVisibility(View.VISIBLE);
-                                    final String face=object.getString("facebook");
+                                    final String face = object.getString("facebook");
                                     facebook.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
                                             Uri uri = Uri.parse(face);
-                                            Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                                            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                             startActivity(intent);
                                         }
                                     });
                                 }
+
+                                //instagram
                                 if(!object.getString("instagram").equals("null")&& !object.getString("instagram").isEmpty()){
                                     instragram.setVisibility(View.VISIBLE);
-                                    final String inst=object.getString("instagram");
+                                    final String inst = object.getString("instagram");
                                     instragram.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            Uri uri=Uri.parse(inst);
-                                            Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                                            Uri uri = Uri.parse(inst);
+                                            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                             startActivity(intent);
                                         }
                                     });
                                 }
+
+                                //email
                                 if(!object.getString("email").equals("null") && !object.getString("email").isEmpty() ){
                                     email.setVisibility(View.VISIBLE);
-                                    final String em=object.getString("email");
+                                    final String em = object.getString("email");
                                     email.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -174,7 +187,7 @@ public class Evento extends AppCompatActivity {
                                             final Intent emailIntent = new Intent(Intent.ACTION_SEND);
                                             emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{em});
                                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "IDEA UNICA");
-                                            emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas le hablo como referencia de la app para consultar");
+                                            emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas le hablo como referencia de la app idea unica para consultar");
                                             emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                                             emailIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                                             emailIntent.setSelector( emailSelectorIntent );
@@ -185,13 +198,15 @@ public class Evento extends AppCompatActivity {
                                 }
                             }
 
+                            //Obtencion de la galeria
                             JSONArray jsonArray1 = jsonObject.getJSONArray("galeria");
-                            for (int i=0;i<jsonArray1.length();i++) {
+                            for (int i = 0;i<jsonArray1.length();i++) {
                                 JSONObject object = jsonArray1.getJSONObject(i);
                                 listGaleria.add(new GaleriaEventoClass(object.getInt("id"),
                                         "",object.getString("url")));
                             }
-                            adaptadorGaleriaEvento= new AdaptadorGaleriaEvento(getApplicationContext(),listGaleria);
+
+                            adaptadorGaleriaEvento = new AdaptadorGaleriaEvento(getApplicationContext(),listGaleria);
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             recyclerView.setVisibility(View.VISIBLE);
                             recyclerView.setAdapter(adaptadorGaleriaEvento);
@@ -199,7 +214,7 @@ public class Evento extends AppCompatActivity {
                             } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
-                                    "No existe Detalles de este evento", Toast.LENGTH_LONG)
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -208,13 +223,15 @@ public class Evento extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),
-                                "Error de conexion"+error.getMessage(), Toast.LENGTH_LONG)
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
+                //Enviamos el atributo del id key = "id"
                 params.put("cod",ID);
                 return params;
             }
@@ -222,17 +239,16 @@ public class Evento extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         requestQueue.add(stringRequest);
     }
-        @Override
-        public boolean onSupportNavigateUp() {
-            Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
-            drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN));
-            getSupportActionBar().setHomeAsUpIndicator(drawable);
-            onBackPressed();
-            return true;
-        }
-        @Override
-        public void onBackPressed() {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.left_in, R.anim.right_out);
-        }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
 }

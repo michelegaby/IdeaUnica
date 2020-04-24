@@ -20,8 +20,8 @@ import java.util.Date;
 
 public class AdaptadorGaleriaRevista extends RecyclerView.Adapter<AdaptadorGaleriaRevista.MyViewHolder>{
 
-    Context nContext;
-    ArrayList<GaleriaRevistaClass> nData;
+    private Context nContext;
+    private ArrayList<GaleriaRevistaClass> nData;
 
     public AdaptadorGaleriaRevista(Context nContext, ArrayList<GaleriaRevistaClass> nData) {
         this.nContext = nContext;
@@ -31,32 +31,36 @@ public class AdaptadorGaleriaRevista extends RecyclerView.Adapter<AdaptadorGaler
     public AdaptadorGaleriaRevista.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
-        view= LayoutInflater.from(nContext).inflate(R.layout.item_galeria_revista,viewGroup,false);
+        view = LayoutInflater.from(nContext).inflate(R.layout.item_galeria_revista,viewGroup,false);
         AdaptadorGaleriaRevista.MyViewHolder viewHolder = new AdaptadorGaleriaRevista.MyViewHolder(view);
 
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
-                .placeholder(R.drawable.cargando)
-                .error(R.drawable.fondorosa)
+                .placeholder(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.img);
 
     }
+
     @Override
     public int getItemCount() {
         return nData.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView img;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            img=itemView.findViewById(R.id.item_photo_galeria_revista);
+            img = itemView.findViewById(R.id.item_photo_galeria_revista);
         }
     }
+
     public void setfilter(ArrayList<GaleriaRevistaClass> lista){
         nData = new ArrayList<>();
         nData.addAll(lista);

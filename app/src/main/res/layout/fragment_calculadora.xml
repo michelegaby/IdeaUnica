@@ -7,12 +7,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingBottom="20dp">
+        android:paddingHorizontal="15dp"
+        android:paddingBottom="15dp">
         <TextView
             android:text="Invitados Confirmados"
             android:gravity="center"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="#000"
             android:textStyle="bold"
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:text="0"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -84,7 +84,7 @@
                 android:gravity="center"
                 android:text="0"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -99,7 +99,7 @@
                 android:scaleType="fitCenter"/>
         </LinearLayout>
         <View
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginVertical="10dp"
             android:layout_width="fill_parent"
             android:layout_height="1px"
@@ -108,7 +108,7 @@
         <TextView
             android:text="Comida y benidas"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                 android:gravity="center"
                 android:text="100"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -192,7 +192,7 @@
                 android:gravity="center"
                 android:text="1"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -241,7 +241,7 @@
                 android:gravity="center"
                 android:text="5"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
             <ImageButton
                 android:contentDescription="@string/img"
                 android:id="@+id/salado_add_adulto"
@@ -284,7 +284,7 @@
                 android:gravity="center"
                 android:text="1"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -330,7 +330,7 @@
                 android:gravity="center"
                 android:text="500"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -376,7 +376,7 @@
                 android:gravity="center"
                 android:text="360"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -420,9 +420,9 @@
             <TextView
                 android:id="@+id/agua_adulto"
                 android:gravity="center"
-                android:text="200"
+                android:text="150"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -449,11 +449,10 @@
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:background="#4D4B4B"/>
-
         <TextView
             android:text="Utensilios desechables"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -491,7 +490,7 @@
                 android:gravity="center"
                 android:text="1"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -537,7 +536,7 @@
                 android:gravity="center"
                 android:text="3"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -583,7 +582,7 @@
                 android:gravity="center"
                 android:text="2"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -629,7 +628,7 @@
                 android:gravity="center"
                 android:text="1"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -675,7 +674,7 @@
                 android:gravity="center"
                 android:text="2"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -721,7 +720,7 @@
                 android:gravity="center"
                 android:text="1"
                 android:background="@drawable/medio"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="60dp"
                 android:layout_height="35dp"/>
@@ -744,10 +743,10 @@
         </LinearLayout>
         <Button
             android:id="@+id/calcular_comida"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="15dp"
             android:text="Calcular"
             android:textSize="15sp"
-            android:background="@color/colorAccent"
+            android:background="@color/bannerColorRosa"
             android:textColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

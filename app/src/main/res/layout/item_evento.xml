@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/item_dia_evento"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -50,7 +50,7 @@
             android:layout_marginStart="60dp">
             <TextView
                 android:id="@+id/item_titulo_evento"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:textColor="#000"

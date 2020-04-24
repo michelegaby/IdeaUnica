@@ -50,7 +50,7 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
         myViewHolder.categoria.setText(nData.get(i).getCategoria());
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.fondorosa)
-                .error(R.drawable.fondorosa)
+                .error(R.drawable.cargando)
                 .into(myViewHolder.circleImageView);
 
         //Funcion al seleccionar redirecciona a Empresa
