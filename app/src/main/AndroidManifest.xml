@@ -33,7 +33,6 @@
             android:theme="@style/AppThemeNobar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,7 +44,6 @@
             android:label="Nuevo Gasto" />
         <activity
             android:name=".cursos.Curso"/>
-
         <activity android:name=".ui.invitados.NuevoInvitado" />
         <activity android:name=".cumple.NuevoEvento" />
         <activity android:name=".cursos.Cursos" />
@@ -73,5 +71,4 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
-
 </manifest>
