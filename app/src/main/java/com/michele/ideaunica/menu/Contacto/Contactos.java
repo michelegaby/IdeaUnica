@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +32,15 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class Contactos extends AppCompatActivity {
 
@@ -41,9 +51,10 @@ public class Contactos extends AppCompatActivity {
     private TextView mensaje;
     private Button enviar;
 
-    //Complementos
-    private static  String URL="https://ideaunicabolivia.com/apps/correo.php";
-
+    //complementos
+    private String correoOrigen;
+    private String contrasenyaOrigen;
+    private Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,62 +67,59 @@ public class Contactos extends AppCompatActivity {
         getSupportActionBar().setTitle("Contáctanos");
         Inicializar();
 
+        contrasenyaOrigen = "siceboliviasrl@gmail.com";
+        contrasenyaOrigen = "W@lterS1ceR";
         //Funcionalidad
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GenerarDatos();
+
+
+                /*
+                try {
+                    GMailSender sender = new GMailSender("siceboliviasrl@gmail.com", "W@lterS1ceR");
+                    sender.sendMail("This is Subject",
+                            "This is Body",
+                            "siceboliviasrl@gmail.com",
+                            "micheleserrano2016@gmail.com");
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }*/
+                
+                Properties properties = new Properties();
+                properties.put("mail.smtp.host","smtp.googlemail.com");
+                properties.put("mail.smtp.socketFactory.port","465");
+                properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+                properties.put("mail.smtp.auth","true");
+                properties.put("mail.smtp.port","465");
+
+                try {
+
+                    session = Session.getDefaultInstance(properties, new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(contrasenyaOrigen,contrasenyaOrigen);
+                        }
+                    });
+
+                    if(session != null){
+                        MimeMessage message = new MimeMessage(session);
+                        message.setFrom(new InternetAddress(correoOrigen));
+                        message.setSubject(asunto.getText().toString());
+                        message.setRecipients(javax.mail.Message.RecipientType.TO,InternetAddress.parse("micheleserrano2016@gmail.com"));
+                        message.setContent(mensaje.getText().toString(),"text/html; charset=utf-8");
+                        Transport.send(message);
+
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         });
     }
 
-    public void GenerarDatos(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            //JSON
-                            JSONObject jsonObject = new JSONObject(response);
-
-                            //
-                            JSONArray jsonArray = jsonObject.getJSONArray("mensaje");
-                            for (int i = 0;i<jsonArray.length();i++)
-                            {
-                                JSONObject object = jsonArray.getJSONObject(i);
-                                Toast.makeText(getApplicationContext(),object.get("nombre").toString(),Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),
-                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
-                                    .show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),
-                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-
-                //Enviar atributos del celular email el asunto del email y el mesaje
-                params.put("celular",celular.getText().toString());
-                params.put("email",correo.getText().toString());
-                params.put("asunto",asunto.getText().toString());
-                params.put("mesaje",mensaje.getText().toString());
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
-        requestQueue.add(stringRequest);
-    }
     private void Inicializar() {
         celular = findViewById(R.id.celular_contacto);
         correo = findViewById(R.id.email_contacto);

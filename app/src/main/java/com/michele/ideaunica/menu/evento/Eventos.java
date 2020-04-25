@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.michele.ideaunica.R;
 import com.michele.ideaunica.departamento.AdaptadorDepartamento;
 import com.michele.ideaunica.departamento.Categoria;
@@ -120,6 +122,41 @@ public class Eventos extends AppCompatActivity {
 
                             progress.setVisibility(View.GONE);
                             recyclerView.setAdapter(adaptadorEvento);
+
+                            JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
+                            final JSONObject objectPublicidad = jsonArray2.getJSONObject(0);
+
+                            if(!objectPublicidad.getString("photo").equals("null") && !objectPublicidad.getString("photo").isEmpty() ){
+                                Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+objectPublicidad.getString("photo"))
+                                        .placeholder(R.drawable.fondorosa)
+                                        .error(R.drawable.cargando)
+                                        .into(publicidad_img);
+                                if(!objectPublicidad.getString("url").equals("null") && !objectPublicidad.getString("url").isEmpty() ) {
+                                    publicidad_img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            final String web;
+                                            try {
+
+                                                Uri uri = Uri.parse(objectPublicidad.getString("url"));
+                                                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                                                startActivity(intent);
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                                Toast.makeText(getApplicationContext(), "No disponible.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }else {
+                                    publicidad_img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Toast.makeText(getApplicationContext(), "No disponible.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

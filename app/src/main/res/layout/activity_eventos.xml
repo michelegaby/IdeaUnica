@@ -21,9 +21,10 @@
         android:id="@+id/img_publicidad_eventos"
         android:contentDescription="@string/imgpublicidad"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/bannerexpofiesta1"
         android:layout_width="match_parent"
         android:scaleType="fitXY"
+        android:clickable="true"
+        android:focusable="true"
         android:adjustViewBounds="true"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

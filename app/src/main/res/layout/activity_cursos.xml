@@ -59,6 +59,7 @@
         android:layout_centerInParent="true"
         android:id="@+id/progress_cursos"
         android:layout_width="wrap_content"
+        android:layout_above="@id/img_publicidad_cursos"
         android:layout_height="match_parent">
     </ProgressBar>
     <androidx.recyclerview.widget.RecyclerView
@@ -68,12 +69,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="true"
+        android:layout_above="@id/img_publicidad_cursos"
         android:id="@+id/Cursos_recyclerview"/>
     <ImageView
         android:contentDescription="@string/imgpublicidad"
-        android:id="@+id/img_publicidad_eventos"
+        android:id="@+id/img_publicidad_cursos"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/bannerexpofiesta1"
         android:layout_width="match_parent"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
