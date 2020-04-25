@@ -138,6 +138,22 @@ public class Categoria extends AppCompatActivity {
                             //JSON
                             JSONObject jsonObject = new JSONObject(response);
 
+                            //Publicidad
+                            JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
+                            for (int i = 0; i < jsonArray2.length(); i++) {
+                                DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
+                                JSONObject object = jsonArray2.getJSONObject(i);
+                                sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
+                                sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
+                                sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
+                                    @Override
+                                    public void onSliderClick(SliderView sliderView) {
+                                        Toast.makeText(getApplicationContext(),"No disponible.",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                sliderLayout.addSliderView(sliderView);
+                            }
+
                             //Obtencion de Categorias del departamento seleccionado
                             JSONArray jsonArray = jsonObject.getJSONArray("categoria");
                             for (int i = 0;i<jsonArray.length();i++)
@@ -171,22 +187,6 @@ public class Categoria extends AppCompatActivity {
                             progress.setVisibility(View.GONE);
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorCategoria);
-
-                            //Publicidad
-                            JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
-                            for (int i = 0; i < jsonArray2.length(); i++) {
-                                DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
-                                JSONObject object = jsonArray2.getJSONObject(i);
-                                sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
-                                sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-                                sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
-                                    @Override
-                                    public void onSliderClick(SliderView sliderView) {
-                                        Toast.makeText(getApplicationContext(),"No disponible.",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                sliderLayout.addSliderView(sliderView);
-                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

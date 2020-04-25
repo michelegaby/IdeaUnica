@@ -126,6 +126,22 @@ public class Empresas extends AppCompatActivity {
                             //JSON
                             JSONObject jsonObject = new JSONObject(response);
 
+                            //Obtencion de la publicidad
+                            JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
+                            for (int i = 0; i < jsonArray2.length(); i++) {
+                                DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
+                                JSONObject object = jsonArray2.getJSONObject(i);
+                                sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
+                                sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
+                                sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
+                                    @Override
+                                    public void onSliderClick(SliderView sliderView) {
+                                        Toast.makeText(getApplicationContext(),"No disponible.",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                sliderLayout.addSliderView(sliderView);
+                            }
+
                             //Obtencion de las empresas de la categoria seleccionada
                             JSONArray jsonArray = jsonObject.getJSONArray("empresas");
                             for (int i = 0;i<jsonArray.length();i++)
@@ -162,21 +178,7 @@ public class Empresas extends AppCompatActivity {
                             myrecyclerview.setVisibility(View.VISIBLE);
                             myrecyclerview.setAdapter(adaptadorEmpresa);
 
-                            //Obtencion de la publicidad
-                            JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
-                            for (int i = 0; i < jsonArray2.length(); i++) {
-                                DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
-                                JSONObject object = jsonArray2.getJSONObject(i);
-                                sliderView.setImageUrl("https://ideaunicabolivia.com/"+object.getString("url"));
-                                sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-                                sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
-                                    @Override
-                                    public void onSliderClick(SliderView sliderView) {
-                                        Toast.makeText(getApplicationContext(),"No disponible.",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                sliderLayout.addSliderView(sliderView);
-                            }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

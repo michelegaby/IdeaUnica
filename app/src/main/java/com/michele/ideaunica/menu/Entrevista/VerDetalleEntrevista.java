@@ -140,7 +140,8 @@ public class VerDetalleEntrevista extends AppCompatActivity {
                                 whatsapp.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + what);
+                                        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + what + "&text=Hola,%20vengo%20como%20referencia%20de%20la%20app%20IdeaUnica%20y%20quisiera%20consultar%20sobre%20'"+
+                                        titulo.getText().toString() + "'%20que%20se%20encuentra%20en%20la%20sección%20entrevista%20");
                                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                                         startActivity(intent);
                                     }
