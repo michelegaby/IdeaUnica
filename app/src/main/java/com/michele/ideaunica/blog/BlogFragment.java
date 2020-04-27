@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,7 @@ public class BlogFragment extends Fragment{
     //componentes
     private RecyclerView timelineRv;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar progress;
 
     //Complementos
     private TimelineAdapter adapter;
@@ -103,6 +105,7 @@ public class BlogFragment extends Fragment{
         timelineRv = view.findViewById(R.id.timelinedosfragment_rv);
         timelineRv.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_blog);
+        progress = view.findViewById(R.id.progress_blog);
     }
 
     private void setupAdapter() {
@@ -143,7 +146,7 @@ public class BlogFragment extends Fragment{
                             }
 
                             //Funcionalidad en adapter post
-
+                            progress.setVisibility(View.GONE);
                             adapter = new TimelineAdapter(getContext(),nData);
                             timelineRv.setAdapter(adapter);
 
@@ -152,6 +155,7 @@ public class BlogFragment extends Fragment{
                             Toast.makeText(getContext(),
                                     "Error. Por favor intente mas tarde, gracias", Toast.LENGTH_SHORT)
                                     .show();
+                            progress.setVisibility(View.GONE);
                         }
                     }
                 },
@@ -161,6 +165,7 @@ public class BlogFragment extends Fragment{
                         Toast.makeText(getContext(),
                                 "Error de conexion, por favor verifique el acceso a internet", Toast.LENGTH_SHORT)
                                 .show();
+                        progress.setVisibility(View.GONE);
                     }
                 }) {
             @Override

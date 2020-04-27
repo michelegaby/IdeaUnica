@@ -63,7 +63,7 @@ public class IdeaUnica extends AppCompatActivity {
     private void requestStoregePermission(){
         if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
             new AlertDialog.Builder(this)
-                    .setTitle("Perminisos denegados")
+                    .setTitle("Perminisos")
                     .setMessage("Se necesitan los permisos para habilitar la sección de evento.")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override

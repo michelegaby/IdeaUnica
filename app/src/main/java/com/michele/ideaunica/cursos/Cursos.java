@@ -146,8 +146,6 @@ public class Cursos extends AppCompatActivity {
 
                             if(!objectPublicidad.getString("photo").equals("null") && !objectPublicidad.getString("photo").isEmpty() ){
                                 Glide.with(getApplicationContext()).load("https://ideaunicabolivia.com/"+objectPublicidad.getString("photo"))
-                                        .placeholder(R.drawable.fondorosa)
-                                        .error(R.drawable.cargando)
                                         .into(publicidad_img);
                                 if(!objectPublicidad.getString("url").equals("null") && !objectPublicidad.getString("url").isEmpty() ) {
                                     publicidad_img.setOnClickListener(new View.OnClickListener() {
