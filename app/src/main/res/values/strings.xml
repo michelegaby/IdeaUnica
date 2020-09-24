@@ -109,7 +109,6 @@
     <string name="autor">Autor</string>
 
 
-
     <string-array name="Spinner_tipo_evento">
         <item>Cumpleaños</item>
         <item>Celebración</item>

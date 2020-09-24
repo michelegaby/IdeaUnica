@@ -13,9 +13,17 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppThemeNobar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".menu.Entrevista.VerDetalleEntrevista"
-            android:theme="@style/AppThemeNobar" ></activity>
+            android:theme="@style/AppThemeNobar" />
         <activity
             android:name=".menu.Entrevista.DetalleEntrevista"
             android:theme="@style/AppThemeNobar" />
@@ -24,8 +32,9 @@
             android:theme="@style/AppThemeNobar" />
         <activity android:name=".menu.Revista.Revistas" />
         <activity android:name=".menu.Entrevista.Entrevistas" />
-        <activity android:name=".menu.evento.Evento"
-            android:theme="@style/AppThemeNobar"/>
+        <activity
+            android:name=".menu.evento.Evento"
+            android:theme="@style/AppThemeNobar" />
         <activity android:name=".menu.Contacto.Contactos" />
         <activity android:name=".menu.evento.Eventos" />
         <activity
@@ -33,6 +42,7 @@
             android:theme="@style/AppThemeNobar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,8 +52,7 @@
         <activity
             android:name=".ui.gastos.NuevoGasto"
             android:label="Nuevo Gasto" />
-        <activity
-            android:name=".cursos.Curso"/>
+        <activity android:name=".cursos.Curso" />
         <activity android:name=".ui.invitados.NuevoInvitado" />
         <activity android:name=".cumple.NuevoEvento" />
         <activity android:name=".cursos.Cursos" />
@@ -52,8 +61,7 @@
             android:theme="@style/AppThemeNobar" />
         <activity android:name=".empresa.Empresas" />
         <activity android:name=".departamento.Categoria" />
-        <activity
-            android:name=".IdeaUnica" />
+        <activity android:name=".IdeaUnica" />
         <activity
             android:name=".ui.notas.Nota"
             android:label="Nota"
@@ -71,4 +79,5 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
+
 </manifest>
