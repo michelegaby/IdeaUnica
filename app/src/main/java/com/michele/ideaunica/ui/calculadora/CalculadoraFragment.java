@@ -132,22 +132,22 @@ public class CalculadoraFragment extends Fragment{
 
         SMS = "Cantidad total:<br/> <br/> ";
 
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Pastel.getText().toString())) + (personanino*(Double.valueOf(Pastel.getText().toString()) / 2))) + " gr. de Pastel, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Dulce.getText().toString())) + (personanino*(Double.valueOf(Dulce.getText().toString()) / 2))) + " cantidad de Aperitivos dulces, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Salado.getText().toString())) + (personanino*(Double.valueOf(Salado.getText().toString()) / 2))) + " cantidad de Aperitivos salados, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Sand.getText().toString())) + (personanino*(Double.valueOf(Sand.getText().toString())))) + " cantindad de hamburguesa, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Gas.getText().toString())) + (personanino*(Double.valueOf(Gas.getText().toString()) / 2))) + " ml. de Gaseosa <br/> ";
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Jugo.getText().toString())) + (personanino*(Double.valueOf(Jugo.getText().toString()) / 2))) + " ml. de jugo, <br/> ";
-        SMS = SMS +String.valueOf((personaadulto * Double.valueOf(Agua.getText().toString())) + (personanino*(Double.valueOf(Agua.getText().toString()) / 2))) + " ml. de agua, <br/> <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Pastel.getText().toString())) + (personanino * (Double.valueOf(Pastel.getText().toString()) / 2))) + " gr. de Pastel, <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Dulce.getText().toString())) + (personanino * (Double.valueOf(Dulce.getText().toString()) / 2))) + " cantidad/es de Aperitivos Dulces, <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Salado.getText().toString())) + (personanino * (Double.valueOf(Salado.getText().toString()) / 2))) + " cantidad/es de Aperitivos Salados, <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Sand.getText().toString())) + (personanino * (Double.valueOf(Sand.getText().toString())))) + " cantidad/es de Hamburguesas, <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Gas.getText().toString())) + (personanino * (Double.valueOf(Gas.getText().toString()) / 2))) + " ml. de Gaseosas <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Jugo.getText().toString())) + (personanino * (Double.valueOf(Jugo.getText().toString()) / 2))) + " ml. de Jugo, <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Agua.getText().toString())) + (personanino * (Double.valueOf(Agua.getText().toString()) / 2))) + " ml. de Agua, <br/> <br/> ";
 
 
 
         SMS = SMS+ "<br/> Utensilios: <br/> <br/>";
-        SMS = SMS +String.valueOf(persona*Integer.valueOf(Platos.getText().toString()))+" unidad/es de platos, <br/> ";
-        SMS = SMS +String.valueOf(persona*Integer.valueOf(Vasos.getText().toString()))+" unidad/es de  vasos, <br/> ";
-        SMS = SMS +String.valueOf(persona*Integer.valueOf(Tenedor.getText().toString()))+" unidad/es de  tenedores, <br/> ";
-        SMS = SMS +String.valueOf(persona*Integer.valueOf(Servilleta.getText().toString()))+" cantidad de servilletas, <br/> ";
-        SMS = SMS +String.valueOf(persona*Integer.valueOf(Copa.getText().toString()))+" cantidad de copas <br/> ";
+        SMS = SMS + persona * Integer.valueOf(Platos.getText().toString()) + " unidad/es de Platos, <br/> ";
+        SMS = SMS + persona * Integer.valueOf(Vasos.getText().toString()) + " unidad/es de Vasos, <br/> ";
+        SMS = SMS + persona * Integer.valueOf(Tenedor.getText().toString()) + " unidad/es de Tenedores, <br/> ";
+        SMS = SMS + persona * Integer.valueOf(Servilleta.getText().toString()) + " cantidad/es de Servilletas, <br/> ";
+        SMS = SMS + persona * Integer.valueOf(Copa.getText().toString()) + " cantidad/es de Copas <br/> ";
 
         Intent intent = new Intent(getContext(), NuevaNota.class);
         Bundle parametros = new Bundle();

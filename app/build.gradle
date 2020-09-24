@@ -4,10 +4,10 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.michele.ideaunica"
-        minSdkVersion 27
+        minSdkVersion 25
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.2"
+        versionCode 5
+        versionName '3.0'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true

@@ -59,7 +59,7 @@
                 android:scaleType="fitCenter"/>
         </LinearLayout>
         <TextView
-            android:text="Cantidad de niños:"
+            android:text="Cantidad de Niños:"
             android:textSize="15sp"
             android:textColor="#000"
             android:layout_marginVertical="10dp"
@@ -106,7 +106,7 @@
             android:background="#4D4B4B"/>
 
         <TextView
-            android:text="Comida y benidas"
+            android:text="Comida y bebidas"
             android:gravity="center"
             android:textSize="15sp"
             android:textColor="#000"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"/>
         <TextView
-            android:text="* Cantidad de comida y bebidas para cada persona adulta. Teniendo como referencia que la mitad de cada item correspondras a cada niño."
+            android:text="* Cantidad de comida y bebidas para cada persona adulta. Teniendo como referencia que la mitad de cada item correspondras para cada niño."
             android:textSize="13sp"
             android:textColor="#4D4B4B"
             android:layout_marginBottom="15dp"
@@ -299,7 +299,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="Unidad de hamburguesa"
+                android:text="Unidad de Hamburguesas"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -345,7 +345,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="ml. de Gaseosa"
+                android:text="ml. de Gaseosas"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -391,7 +391,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="ml. de jugos"
+                android:text="ml. de Jugos"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -437,7 +437,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="ml. de agua"
+                android:text="ml. de Agua"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -551,7 +551,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="Unidad de vasos"
+                android:text="Unidad de Vasos"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -597,7 +597,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="Unidad de cucharas"
+                android:text="Unidad de Cucharas"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -643,7 +643,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="Unidad de tenedores"
+                android:text="Unidad de Tenedores"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -735,7 +735,7 @@
                 android:scaleType="fitCenter"/>
             <TextView
                 android:layout_marginStart="10dp"
-                android:text="Unidad de copas"
+                android:text="Unidad de Copas"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
