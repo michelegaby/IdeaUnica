@@ -1,4 +1,8 @@
 <resources>
+
+    <string name="facebook_app_id">618163832425196</string> <string name="fb_login_protocol_scheme">fb618163832425196</string>
+    <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+
     <string name="app_name">Idea Unica</string>
     <string name="img">Imagen</string>
     <string name="imgpublicidad">Publicidad</string>
@@ -144,6 +148,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo">Logo</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="iniciar_sesi_n_con">Iniciar sesión con:</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="inicie_sesi_n_para_continuar">Inicie sesión para continuar</string>
     <string-array name="tarea_seis_meses">
         <item>Defina su presupuesto</item>
         <item>Cantidad de invitados</item>
