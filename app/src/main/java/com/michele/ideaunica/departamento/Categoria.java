@@ -61,17 +61,25 @@ public class Categoria extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
         drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorblanco), PorterDuff.Mode.SRC_IN));
+
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         getSupportActionBar().setTitle("Categorias");
+
         InicializarComponentes();
+
         Bundle parametros = this.getIntent().getExtras();
+
         departamento.setText(parametros.getString("namedepartamento"));
         GenerarDatos(parametros.getString("departamento"));
+
         BuscarCategoria();
+
         myrecyclerview.setHasFixedSize(true);
         sliderLayout.setIndicatorAnimation(IndicatorAnimations.FILL);
         sliderLayout.setScrollTimeInSec(3);
@@ -138,7 +146,6 @@ public class Categoria extends AppCompatActivity {
                             //JSON
                             JSONObject jsonObject = new JSONObject(response);
 
-                            //Publicidad
                             JSONArray jsonArray2 = jsonObject.getJSONArray("publicidad");
                             for (int i = 0; i < jsonArray2.length(); i++) {
                                 DefaultSliderView sliderView = new DefaultSliderView(getApplicationContext());
@@ -154,7 +161,6 @@ public class Categoria extends AppCompatActivity {
                                 sliderLayout.addSliderView(sliderView);
                             }
 
-                            //Obtencion de Categorias del departamento seleccionado
                             JSONArray jsonArray = jsonObject.getJSONArray("categoria");
                             for (int i = 0;i<jsonArray.length();i++)
                             {
@@ -171,7 +177,6 @@ public class Categoria extends AppCompatActivity {
                             manager = new GridLayoutManager(Categoria.this,2);
                             myrecyclerview.setLayoutManager(manager);
 
-                            //Funcion al seleccionar redireccionar a una lista(recyclerview) de todas las empresas de la categoria seleccionada
                             adaptadorCategoria.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -209,8 +214,6 @@ public class Categoria extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-
-                //Envias como atributo el id del departamento con la key "departamento"
                 params.put("departamento",dep);
                 return params;
             }

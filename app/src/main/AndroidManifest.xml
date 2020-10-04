@@ -15,11 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity"
             android:theme="@style/AppThemeNobar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".menu.Entrevista.VerDetalleEntrevista"
@@ -100,9 +96,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
-
 
     </application>
 

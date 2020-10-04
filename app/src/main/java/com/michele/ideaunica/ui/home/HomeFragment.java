@@ -50,6 +50,8 @@ public class HomeFragment extends Fragment {
     private Runnable runnable;
     private TextView msn;
 
+    private static  String URL = "https://www.ideaunicabolivia.com/apps/fiesta/loginapp.php";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);

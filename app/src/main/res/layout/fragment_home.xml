@@ -1,247 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
+
+    <ImageView
+        android:contentDescription="@string/img"
+        android:id="@+id/img_fondo_evento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondorosa"/>
+
+    <ScrollView
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:contentDescription="@string/img"
-            android:id="@+id/img_fondo_evento"
+        android:layout_height="match_parent"
+        android:background="#19000000">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fondorosa"/>
-        <androidx.cardview.widget.CardView
-            android:layout_below="@id/img_fondo_evento"
-            android:layout_width="match_parent"
-            android:layout_marginTop="-50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="15dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp">
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100sp"
+                app:cardCornerRadius="55dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:contentDescription="@string/img"
+                    android:id="@+id/img_perfil_evento"
+                    android:src="@drawable/perfil"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/titulo_home_evento"
+                android:textStyle="bold"
+                android:text="@string/titulo"
+                android:textColor="@color/colorblanco"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/fecha_home_evento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/colorblanco"/>
+
+            <TextView
+                android:id="@+id/msn_home_evento"
+                android:visibility="gone"
+                android:gravity="center"
+                android:text="¡La gran hora llegó!"
+                android:textColor="@color/colorblanco"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:orientation="vertical"
-                android:paddingBottom="20dp"
-                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/titulo_home_evento"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:textSize="20sp"
-                    android:layout_marginTop="70dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/fecha_home_evento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/msn_home_evento"
-                    android:visibility="gone"
-                    android:gravity="center"
-                    android:text="¡La gran hora llegó!"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/dias_dias_evento"
-                            android:textColor="#000"
-                            android:textSize="20sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text=" | "
-                            android:textColor="#000"
-                            android:textSize="35sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/dias_hora_evento"
-                            android:textColor="#000"
-                            android:textSize="20sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text=" | "
-                            android:textColor="#000"
-                            android:textSize="35sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/dias_minutos_evento"
-                            android:textColor="#000"
-                            android:textSize="20sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text=" | "
-                            android:textColor="#000"
-                            android:textSize="35sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/dias_seg_evento"
-                            android:textColor="#000"
-                            android:textSize="20sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="  Días   "
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="  Hrs.   "
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="   Min.  "
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="   Seg.  "
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginVertical="15dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:gravity="center"
-                        android:layout_marginEnd="5dp"
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:gravity="center"
-                            android:textColor="#000"
-                            android:text="Inv. Confirmados"
-                            android:layout_width="100sp"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:id="@+id/invitados_confirmados_evento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cero"
-                            android:textColor="#000"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:gravity="center"
-                            android:text="Inv.Sin Confirmar"
-                            android:layout_width="100sp"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/invitados_sin_confirmar_evento"
-                            android:text="@string/cero"
-                            android:textSize="15sp"
-                            android:textColor="#000"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <TextView
                     android:layout_marginTop="10dp"
-                    android:text="Tareas Realizadas:"
-                    android:textSize="15sp"
-                    android:textColor="#000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <LinearLayout
-                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
-                        android:id="@+id/tareas_hechas_evento"
-                        android:text="@string/cero"
-                        android:textSize="15sp"
-                        android:textColor="#000"
+                        android:id="@+id/dias_dias_evento"
+                        android:text="0"
+                        android:textColor="@color/colorblanco"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
+
                     <TextView
-                        android:text="/"
-                        android:textSize="15sp"
-                        android:textColor="#000"
+                        android:text=" | "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="35sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
+
                     <TextView
-                        android:id="@+id/tareas_total_evento"
-                        android:text="54"
-                        android:textSize="15sp"
-                        android:textColor="#000"
+                        android:id="@+id/dias_hora_evento"
+                        android:text="0"
+                        android:textColor="@color/colorblanco"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" | "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="35sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/dias_minutos_evento"
+                        android:textColor="@color/colorblanco"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" | "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="35sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/dias_seg_evento"
+                        android:textColor="@color/colorblanco"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="  Días   "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="  Hrs.   "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="   Min.  "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="   Seg.  "
+                        android:textColor="@color/colorblanco"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-110dp"
-            android:layout_below="@+id/img_fondo_evento"
-            app:cardCornerRadius="55dp"
-            app:cardElevation="10dp">
-            <ImageView
-                android:contentDescription="@string/img"
-                android:id="@+id/img_perfil_evento"
-                android:src="@drawable/perfil"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:layout_width="110dp"
-                android:layout_height="110dp"/>
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-</ScrollView>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Invitados"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/colorblanco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginVertical="15dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/colorblanco"
+                        android:text="Inv. Confirmados"
+                        android:layout_width="100sp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/invitados_confirmados_evento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cero"
+                        android:textColor="@color/colorblanco"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:gravity="center"
+                        android:text="Inv.Sin Confirmar"
+                        android:layout_width="100sp"
+                        android:textColor="@color/colorblanco"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/invitados_sin_confirmar_evento"
+                        android:text="@string/cero"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorblanco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Tareas Realizadas"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorblanco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tareas_hechas_evento"
+                    android:text="@string/cero"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorblanco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="/"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorblanco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/tareas_total_evento"
+                    android:text="54"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorblanco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

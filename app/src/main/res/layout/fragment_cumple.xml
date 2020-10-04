@@ -1,40 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <RelativeLayout
+        android:id="@+id/liner_header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
-            <ImageView
-                android:contentDescription="@string/logoempresa"
-                android:tint="@color/colorAccent"
-                android:src="@drawable/logo3"
-                android:layout_width="80dp"
-                android:layout_height="80dp"/>
-        </LinearLayout>
+        android:layout_height="250dp"
+        android:background="#F3F4F4"
+        android:padding="15dp">
+
         <TextView
-            android:textColor="#000"
-            android:text="@string/descripcionfragmentevento"
-            android:paddingHorizontal="15dp"
+            android:id="@+id/nombre_idea_unica"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:clipToPadding="true"
-            android:id="@+id/Cumpleanyos_recyclerview"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:textSize="15sp"
+            android:text="I D E A    Ú N I C A"/>
+
+        <TextView
+            android:id="@+id/nombre_eventos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nombre_idea_unica"
+            android:textSize="30sp"
+            android:textColor="@color/colorBlack"
+            android:text="Eventos"/>
+
+        <TextView
+            android:id="@+id/name_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nombre_eventos"
+            android:layout_marginTop="20sp"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:text="Gaby Serrano Lima"/>
+
+        <TextView
+            android:id="@+id/email_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_log"
+            android:textSize="15sp"
+            android:text="micheleserrano2016@gmail.com"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_logout"
+            android:orientation="vertical"
+            android:layout_width="110dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/nombre_idea_unica"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/colorblanco"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="17dp">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cerrar sesión"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:orientation="vertical"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="25dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo"
+                android:contentDescription="@string/logo"
+                android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingHorizontal="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:clipToPadding="true"
+        android:id="@+id/Cumpleanyos_recyclerview"
+        android:layout_below="@id/liner_header"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_nuevo_evento"
         android:layout_width="wrap_content"
@@ -46,4 +109,5 @@
         android:layout_gravity="end|bottom"
         android:src="@drawable/add"
         android:tint="#fff"/>
+
 </RelativeLayout>

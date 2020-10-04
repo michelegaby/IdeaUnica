@@ -14,6 +14,7 @@
         android:orientation="vertical"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="-100dp"
         app:cardElevation="0dp"
         app:cardCornerRadius="15dp">
 
@@ -27,10 +28,10 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:layout_marginTop="40dp"
         android:textColor="@color/colorBlack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
         android:textStyle="bold"
         android:textSize="30sp"
         android:text="@string/bienvenido"/>
@@ -44,7 +45,7 @@
         android:text="@string/inicie_sesi_n_para_continuar"/>
 
     <TextView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
         android:layout_width="match_parent"
@@ -79,17 +80,4 @@
         android:drawableStart="@drawable/google_mas"
         android:paddingEnd="40dp"
         android:paddingStart="20dp"/>
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </LinearLayout>

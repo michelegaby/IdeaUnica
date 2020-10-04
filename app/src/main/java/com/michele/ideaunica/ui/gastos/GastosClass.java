@@ -3,12 +3,13 @@ package com.michele.ideaunica.ui.gastos;
 public class GastosClass {
 
     private int ID;
-    private int id;
+    private String idevento;
     private String Titulo;
     private String Proveedor;
     private String Dinero;
-    private String Tipo;
     private String Fecha;
+    private String Tipo;
+
     private String Cuotas;
     private String Comentario;
 
@@ -23,16 +24,14 @@ public class GastosClass {
         Comentario = comentario;
     }
 
-    public GastosClass(int ID, int id, String titulo, String proveedor, String dinero, String tipo, String fecha, String cuotas, String comentario) {
+    public GastosClass(int ID, String idevento, String titulo, String proveedor, String dinero, String fecha, String tipo) {
         this.ID = ID;
-        this.id = id;
+        this.idevento = idevento;
         Titulo = titulo;
         Proveedor = proveedor;
         Dinero = dinero;
-        Tipo = tipo;
         Fecha = fecha;
-        Cuotas = cuotas;
-        Comentario = comentario;
+        Tipo = tipo;
     }
 
     public int getID() {
@@ -43,12 +42,12 @@ public class GastosClass {
         this.ID = ID;
     }
 
-    public int getId() {
-        return id;
+    public String getIdevento() {
+        return idevento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdevento(String idevento) {
+        this.idevento = idevento;
     }
 
     public String getTitulo() {

@@ -1,7 +1,7 @@
 <resources>
 
     <string name="facebook_app_id">618163832425196</string> <string name="fb_login_protocol_scheme">fb618163832425196</string>
-    <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+    <string name="server_client_id">12559647666-6bp4u9p23ok1rt1ikai6u6qm64ckiq2g.apps.googleusercontent.com</string>
 
     <string name="app_name">Idea Unica</string>
     <string name="img">Imagen</string>

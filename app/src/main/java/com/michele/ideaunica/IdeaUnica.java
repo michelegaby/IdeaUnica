@@ -106,30 +106,34 @@ public class IdeaUnica extends AppCompatActivity {
                 case R.id.nav_home:
                     fm.beginTransaction().hide(active).show(fragment1).commit();
                     active = fragment1;
+                    getSupportActionBar().show();
                     getSupportActionBar().setTitle("Departamentos");
                     return true;
 
                 case R.id.nav_cursos:
                     fm.beginTransaction().hide(active).show(fragment2).commit();
                     active = fragment2;
+                    getSupportActionBar().show();
                     getSupportActionBar().setTitle("Cursos");
                     return true;
 
                 case R.id.nav_blog:
                     fm.beginTransaction().hide(active).show(fragment3).commit();
                     active = fragment3;
+                    getSupportActionBar().show();
                     getSupportActionBar().setTitle("Blog Idea Unica");
                     return true;
 
                 case R.id.nav_cumple:
                     fm.beginTransaction().hide(active).show(fragment4).commit();
                     active = fragment4;
-                    getSupportActionBar().setTitle("Mi fiesta");
+                    getSupportActionBar().hide();
                     return true;
 
                 case R.id.nav_evento:
                     fm.beginTransaction().hide(active).show(fragment5).commit();
                     active = fragment5;
+                    getSupportActionBar().show();
                     getSupportActionBar().setTitle("Menú");
                     return true;
             }

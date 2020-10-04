@@ -2,6 +2,7 @@ package com.michele.ideaunica.cumple;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import com.bumptech.glide.Glide;
 import com.michele.ideaunica.R;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -54,20 +58,28 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorCumpleanyos.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
-        myViewHolder.fecha.setText("Fecha: " +nData.get(i).getFecha());
-        myViewHolder.hora.setText("Hora: " +nData.get(i).getHora());
+
+        SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");
+
+        try {
+            Date date = parseador.parse(nData.get(i).getFecha());
+            myViewHolder.fecha.setText(formateador.format(date));
+        } catch (ParseException e) {
+            myViewHolder.fecha.setText(nData.get(i).getFecha());
+        }
+
         try
         {
-            if(nData.get(i).getUrlfoto()!= null && !nData.get(i).getUrlfoto().isEmpty())
+            if(!nData.get(i).getUrlfoto().equals("NULL"))
             {
-                File imgFile = new  File(nData.get(i).getUrlfoto());
-                Uri imageUri = Uri.fromFile(imgFile);
                 Glide.with(nContext)
-                        .load(imageUri)
-                        .placeholder(R.drawable.fondorosa)
-                        .error(R.drawable.cargando)
+                        .load("https://www.ideaunicabolivia.com/apps/fiesta/"+nData.get(i).getUrlfoto())
+                        .placeholder(R.drawable.cargando)
+                        .error(R.drawable.fondorosa)
                         .into(myViewHolder.img);
             }
+
         }catch (Exception e){
             Toast.makeText(nContext,nData.get(i).getUrlfoto()+" MSN "+e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -82,14 +94,12 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
 
         private TextView titulo;
         private TextView fecha;
-        private TextView hora;
         private CircleImageView img;
         private LinearLayout linearLayout;
         public MyViewHolder(@NonNull View itemView, final AdaptadorCumpleanyos.OnItemClickListener listener) {
             super(itemView);
             titulo = itemView.findViewById(R.id.item_titulo_cumpleanyos);
             fecha = itemView.findViewById(R.id.item_fecha_cumpleanyos);
-            hora = itemView.findViewById(R.id.item_hora_cumpleanyos);
             img = itemView.findViewById(R.id.item_img_cumpleanyos);
             linearLayout = itemView.findViewById(R.id.item_cumpleanos);
 

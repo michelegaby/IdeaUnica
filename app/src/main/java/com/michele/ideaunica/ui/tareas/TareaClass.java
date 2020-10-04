@@ -3,11 +3,19 @@ package com.michele.ideaunica.ui.tareas;
 public class TareaClass {
 
     private int id;
+    private String idevento;
     private String titulo;
     private int estado;
 
     public TareaClass(int id, String titulo, int estado) {
         this.id = id;
+        this.titulo = titulo;
+        this.estado = estado;
+    }
+
+    public TareaClass(int id, String idevento, String titulo, int estado) {
+        this.id = id;
+        this.idevento = idevento;
         this.titulo = titulo;
         this.estado = estado;
     }
@@ -18,6 +26,14 @@ public class TareaClass {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIdevento() {
+        return idevento;
+    }
+
+    public void setIdevento(String idevento) {
+        this.idevento = idevento;
     }
 
     public String getTitulo() {

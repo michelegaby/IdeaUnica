@@ -3,6 +3,7 @@ package com.michele.ideaunica.ui.notas;
 public class NotaClass {
 
     private int id;
+    private String idevento;
     private String titulo;
     private String fecha;
     private String Color;

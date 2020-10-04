@@ -8,6 +8,7 @@ public class CumpleanyosClass {
     private String hora;
     private String urlfoto;
     private String urlfondo;
+    private String presupuesto;
 
     public CumpleanyosClass(int id, String titulo, String fecha, String hora, String urlfoto, String urlfondo) {
         this.id = id;
@@ -16,6 +17,16 @@ public class CumpleanyosClass {
         this.hora = hora;
         this.urlfoto = urlfoto;
         this.urlfondo = urlfondo;
+    }
+
+    public CumpleanyosClass(int id, String titulo, String fecha, String hora, String urlfoto, String urlfondo, String presupuesto) {
+        this.id = id;
+        this.titulo = titulo;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.urlfoto = urlfoto;
+        this.urlfondo = urlfondo;
+        this.presupuesto = presupuesto;
     }
 
     public int getId() {
@@ -64,6 +75,14 @@ public class CumpleanyosClass {
 
     public void setUrlfoto(String urlfoto) {
         this.urlfoto = urlfoto;
+    }
+
+    public String getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(String presupuesto) {
+        this.presupuesto = presupuesto;
     }
 }
 

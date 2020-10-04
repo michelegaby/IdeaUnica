@@ -42,36 +42,25 @@ public class MainActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
 
     public static int ID;
-    public TextView navuser;
-    public ImageView navphoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Bundle parametros = this.getIntent().getExtras();
+
         ID = parametros.getInt("ID",0);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        navuser = headerView.findViewById(R.id.usernameevento);
-        navphoto = headerView.findViewById(R.id.userphotoevento);
-        navuser.setText(parametros.getString("titulo","NO"));
-        appBarLayout = findViewById(R.id.appbarEvento);
 
-        if(parametros.getString("urlfoto","")
-                != null && !parametros.getString("urlfoto","").isEmpty())
-        {
-            File imgFile = new  File(parametros.getString("urlfoto"));
-            Uri imageUri = Uri.fromFile(imgFile);
-            Glide.with(this)
-                    .load(imageUri)
-                    .placeholder(R.drawable.fondorosa)
-                    .error(R.drawable.fondorosa)
-                    .into(navphoto);
-        }
+        View headerView = navigationView.getHeaderView(0);
+
+        appBarLayout = findViewById(R.id.appbarEvento);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,R.id.nav_gastos,R.id.nav_tareas,R.id.nav_invitados_a_confirmar,R.id.nav_invitados_confirmados,R.id.nav_notas,R.id.nav_calculadora, R.id.nav_editar)

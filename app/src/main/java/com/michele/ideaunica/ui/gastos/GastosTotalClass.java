@@ -3,6 +3,7 @@ package com.michele.ideaunica.ui.gastos;
 public class GastosTotalClass {
 
     private int ID;
+    private String idgasto;
     private String Titulo;
     private String Total;
     private String Apagar;
@@ -18,12 +19,30 @@ public class GastosTotalClass {
         Vencido = vencido;
     }
 
+    public GastosTotalClass(int ID, String idgasto, String titulo, String total, String apagar, String pago, String vencido) {
+        this.ID = ID;
+        this.idgasto = idgasto;
+        Titulo = titulo;
+        Total = total;
+        Apagar = apagar;
+        Pago = pago;
+        Vencido = vencido;
+    }
+
     public int getID() {
         return ID;
     }
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String getIdgasto() {
+        return idgasto;
+    }
+
+    public void setIdgasto(String idgasto) {
+        this.idgasto = idgasto;
     }
 
     public String getTitulo() {
