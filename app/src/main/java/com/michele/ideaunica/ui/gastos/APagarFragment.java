@@ -53,14 +53,14 @@ public class APagarFragment extends Fragment {
 
         Bundle parametros = getArguments();
         ID = parametros.getInt("ID",0);
-        GenerarDatos();
+        //GenerarDatos();
         return view;
     }
 
     private void inicializarComponentes() {
         recyclerView = view.findViewById(R.id.APagar_recyclerview);
     }
-
+/*
     private void GenerarDatos() {
         try {
 
@@ -150,10 +150,10 @@ public class APagarFragment extends Fragment {
             Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
         }
     }
-
+*/
     @Override
     public void onStart() {
-        GenerarDatos();
+        //GenerarDatos();
         super.onStart();
     }
 }

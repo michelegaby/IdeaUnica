@@ -49,7 +49,7 @@ public class VencidoFragment extends Fragment {
         inicializarComponentes();
         Bundle parametros = getArguments();
         ID = parametros.getInt("ID",0);
-        GenerarDatos();
+        //GenerarDatos();
         return view;
     }
 
@@ -76,7 +76,7 @@ public class VencidoFragment extends Fragment {
         recyclerView.setAdapter(adaptadorGastos);
     }
 
-
+/*
     private void GenerarDatos() {
         try {
 
@@ -166,10 +166,10 @@ public class VencidoFragment extends Fragment {
             Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
         }
     }
-
+*/
     @Override
     public void onStart() {
-        GenerarDatos();
+        //GenerarDatos();
         super.onStart();
     }
 }
