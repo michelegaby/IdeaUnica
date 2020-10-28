@@ -3,6 +3,7 @@ package com.michele.ideaunica.ui.notas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +21,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.michele.ideaunica.BDEvento;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.sharedPreferences.SessionCumple;
+import com.michele.ideaunica.ui.tareas.TareaClass;
+
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import dmax.dialog.SpotsDialog;
 
 public class Nota extends AppCompatActivity {
+
+    SessionCumple sessionCumple;
 
     //componentes
     private TextView titulo;
@@ -33,26 +57,80 @@ public class Nota extends AppCompatActivity {
     private FloatingActionButton fab;
 
     //Complementos
-    private static int ID;
     private static int id;
     private static String colores;
-    private static String contenidos;
+    private ArrayList<NotaClass> listNotas = new ArrayList<>();
+
+    private static  String URL = "https://www.ideaunicabolivia.com/apps/fiesta/EliminarNota.php";
+
+    android.app.AlertDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nota);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setElevation(0);
-        inializarComponentes();
-        Bundle parametros = this.getIntent().getExtras();
 
-        ID = parametros.getInt("ID");
+        inializarComponentes();
+
+        sessionCumple = new SessionCumple(getApplicationContext());
+
+        mDialog = new SpotsDialog.Builder().setContext(Nota.this).setMessage("Espera un momento por favor").build();
+
+        Bundle parametros = this.getIntent().getExtras();
 
         id = parametros.getInt("id");
 
-        Generar();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),EditarNota.class);
+                Bundle parametros  = new Bundle();
+                parametros.putInt("id",id);
+                parametros.putString("titulo",titulo.getText().toString());
+                parametros.putString("color",colores);
+                parametros.putString("contenido",contenido.getText().toString());
+                intent.putExtras(parametros);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void GetNotas(){
+
+        if(sessionCumple.isNotes()){
+
+            listNotas.clear();
+            listNotas = sessionCumple.readNotes();
+
+            for (NotaClass item: listNotas){
+                if(item.getId() == id){
+
+                    titulo.setText(item.getTitulo());
+
+                    SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");
+
+                    try {
+                        Date date = parseador.parse(item.getFecha());
+                        fecha.setText(formateador.format(date) + " - Ultima Actualización");
+                    } catch (ParseException e) {
+                        fecha.setText(item.getFecha() + " - Ultima Actualización");
+                    }
+
+                    contenido.setText(item.getContenido());
+                    colores = item.getColor();
+                    color.setBackgroundColor(Color.parseColor("#" + colores));
+                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#" + colores)));
+
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -76,44 +154,6 @@ public class Nota extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Generar(){
-        try {
-            BDEvento obj = new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd = obj.getReadableDatabase();
-            if(bd != null){
-                Cursor objCursor = bd.rawQuery("Select * from notas where id = " + id, null);
-
-                while (objCursor.moveToNext()){
-                    titulo.setText(objCursor.getString(3));
-                    fecha.setText(objCursor.getString(2) + " - Ultima Actualización");
-                    contenidos = objCursor.getString(4);
-                    contenido.setText(Html.fromHtml(contenidos));
-                    colores = objCursor.getString(5);
-                    color.setBackgroundColor(Color.parseColor("#" + colores));
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#" + colores)));
-                }
-
-            }
-            bd.close();
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(),EditarNota.class);
-                    Bundle parametros  = new Bundle();
-                    parametros.putInt("id",id);
-                    parametros.putString("titulo",titulo.getText().toString());
-                    parametros.putString("color",colores);
-                    parametros.putString("contenido",contenidos);
-                    intent.putExtras(parametros);
-                    startActivity(intent);
-                }
-            });
-        }
-        catch (Exception E){
-            Toast.makeText(getApplicationContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void Eliminar() {
         AlertDialog.Builder Advertencia = new AlertDialog.Builder(this);
         Advertencia.setTitle("Eliminar");
@@ -123,7 +163,6 @@ public class Nota extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 EliminarNota();
-                onBackPressed();
             }
         });
         Advertencia.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -135,17 +174,132 @@ public class Nota extends AppCompatActivity {
     }
 
     public void EliminarNota(){
-        try {
-            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd != null){
-                bd.execSQL("delete from notas where id = " + id);
-                onBackPressed();
+
+        mDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+
+                            JSONObject jsonObject = new JSONObject(response);
+                            Boolean isStatus = jsonObject.getBoolean("estado");
+
+                            if(isStatus){
+
+                                AlertDialog.Builder Advertencia = new AlertDialog.Builder(Nota.this);
+
+                                Advertencia.setTitle("Guardado");
+                                Advertencia.setMessage("Se pudo guardar correctamente.");
+                                Advertencia.setCancelable(false);
+
+                                Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        EliminarDataNota();
+
+                                    }
+                                });
+
+                                Advertencia.show();
+
+                            }else {
+
+                                AlertDialog.Builder Advertencia = new AlertDialog.Builder(Nota.this);
+
+                                Advertencia.setTitle("Error");
+                                Advertencia.setMessage("No se guardo, lo sentimos mucho");
+                                Advertencia.setCancelable(false);
+
+                                Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+
+                                Advertencia.show();
+                            }
+                            mDialog.dismiss();
+
+                        } catch (Exception e) {
+                            mDialog.dismiss();
+
+                            AlertDialog.Builder Advertencia = new AlertDialog.Builder(Nota.this);
+
+                            Advertencia.setTitle("Error");
+                            Advertencia.setMessage("Por favor intentelo mas tarde, gracias.");
+                            Advertencia.setCancelable(false);
+
+                            Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            Advertencia.show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        mDialog.dismiss();
+
+                        AlertDialog.Builder Advertencia = new AlertDialog.Builder(Nota.this);
+
+                        Advertencia.setTitle("Error");
+                        Advertencia.setMessage("Error de conexión, por favor verifique el acceso a internet.");
+                        Advertencia.setCancelable(false);
+
+                        Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                        Advertencia.show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id",String.valueOf(id));
+                return params;
             }
-            bd.close();
-        }catch (Exception E){
-            Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
+    public void EliminarDataNota(){
+
+        if(sessionCumple.isNotes()){
+
+            listNotas.clear();
+            listNotas = sessionCumple.readNotes();
+
+            ArrayList<NotaClass> listNotasNew = new ArrayList<>();
+
+            for (NotaClass item: listNotas){
+
+                if(item.getId() != id){
+                    listNotasNew.add(item);
+                }
+
+            }
+
+            sessionCumple.createSessionNotes(listNotasNew);
+
         }
+
+        onBackPressed();
     }
 
     private void inializarComponentes() {
@@ -158,7 +312,7 @@ public class Nota extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Generar();
+        GetNotas();
         super.onStart();
     }
 

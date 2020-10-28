@@ -39,6 +39,7 @@ import com.michele.ideaunica.departamento.AdaptadorCategoria;
 import com.michele.ideaunica.departamento.Categoria;
 import com.michele.ideaunica.departamento.CategoriaClass;
 import com.michele.ideaunica.empresa.Empresas;
+import com.michele.ideaunica.sharedPreferences.SessionCumple;
 import com.michele.ideaunica.sharedPreferences.SessionManager;
 import com.smarteist.autoimageslider.DefaultSliderView;
 import com.smarteist.autoimageslider.SliderView;
@@ -58,6 +59,7 @@ public class CumpleFragment extends Fragment {
     View view;
 
     SessionManager sessionManager;
+    SessionCumple sessionCumple;
 
     private RecyclerView myrecyclerview;
     private CardView logout;
@@ -67,7 +69,6 @@ public class CumpleFragment extends Fragment {
 
     AdaptadorCumpleanyos adaptadorCumpleanyos;
     private ArrayList<CumpleanyosClass> listCumple = new ArrayList<>();
-    private RecyclerView.LayoutManager manager;
 
     private static  String URL = "https://www.ideaunicabolivia.com/apps/fiesta/fiestaEventos.php";
 
@@ -77,9 +78,11 @@ public class CumpleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cumple,container,false);
+
         InicializarComponentes();
 
         sessionManager = new SessionManager(getContext());
+        sessionCumple = new SessionCumple(getContext());
 
         mDialog = new SpotsDialog.Builder().setContext(getContext()).setMessage("Espera un momento por favor").build();
 
@@ -156,35 +159,43 @@ public class CumpleFragment extends Fragment {
                             adaptadorCumpleanyos.setOnItemClickListener(new AdaptadorCumpleanyos.OnItemClickListener() {
                                 @Override
                                 public void onItenClick(int position) {
+
+                                    sessionCumple.shopClean();
+                                    sessionCumple.createData(false);
+
+                                    sessionCumple.createSession(
+                                            String.valueOf(listCumple.get(position).getId()),
+                                            listCumple.get(position).getTitulo(),
+                                            listCumple.get(position).getFecha(),
+                                            listCumple.get(position).getHora(),
+                                            listCumple.get(position).getUrlfoto(),
+                                            listCumple.get(position).getUrlfondo(),
+                                            listCumple.get(position).getPresupuesto());
+
+
                                     Intent intent = new Intent(getContext(), MainActivity.class);
-                                    Bundle parmetros = new Bundle();
-                                    parmetros.putInt("ID",listCumple.get(position).getId());
-                                    parmetros.putString("titulo",listCumple.get(position).getTitulo());
-                                    parmetros.putString("fecha",listCumple.get(position).getFecha());
-                                    parmetros.putString("hora",listCumple.get(position).getHora());
-                                    parmetros.putString("urlfoto",listCumple.get(position).getUrlfoto());
-                                    intent.putExtras(parmetros);
                                     startActivity(intent);
                                 }
                             });
                             mDialog.dismiss();
 
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            mDialog.dismiss();
+
                             Toast.makeText(getContext(),
                                     "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
                                     .show();
-                            mDialog.dismiss();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        mDialog.dismiss();
+
                         Toast.makeText(getContext(),
                                 "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
                                 .show();
-                        mDialog.dismiss();
                     }
                 }) {
             @Override
@@ -213,7 +224,6 @@ public class CumpleFragment extends Fragment {
     }
     @Override
     public void onStart() {
-        //GenerarDatos();
         Init(sessionManager.getId());
         super.onStart();
     }

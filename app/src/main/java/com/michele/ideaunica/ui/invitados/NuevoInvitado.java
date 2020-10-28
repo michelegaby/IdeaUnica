@@ -1,13 +1,16 @@
 package com.michele.ideaunica.ui.invitados;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,10 +18,29 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.michele.ideaunica.BDEvento;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.sharedPreferences.SessionCumple;
+import com.michele.ideaunica.ui.notas.NuevaNota;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import dmax.dialog.SpotsDialog;
 
 public class NuevoInvitado extends AppCompatActivity {
+
+    SessionCumple sessionCumple;
 
     //Componentes
     private TextView nombre;
@@ -29,13 +51,15 @@ public class NuevoInvitado extends AppCompatActivity {
     private Spinner tipo;
     private CheckBox confirmar;
 
-    //Complemento
-    private static int ID;
+    android.app.AlertDialog mDialog;
+
+    private static  String URL = "https://www.ideaunicabolivia.com/apps/fiesta/NuevoInvitado.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_invitado);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.fecha_left, null);
@@ -45,9 +69,10 @@ public class NuevoInvitado extends AppCompatActivity {
 
         inicializarComponentes();
 
-        Bundle parametros = this.getIntent().getExtras();
+        sessionCumple = new SessionCumple(getApplicationContext());
 
-        ID = parametros.getInt("ID",0);
+        mDialog = new SpotsDialog.Builder().setContext(NuevoInvitado.this).setMessage("Espera un momento por favor").build();
+
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +99,14 @@ public class NuevoInvitado extends AppCompatActivity {
                                 ninyo.getText().toString().trim(),
                                 celular.getText().toString().trim(),
                                 tipo.getSelectedItem().toString(),
-                                "CONFIRMADO");
+                                "1");
                     }else {
                         Guardar(nombre.getText().toString().trim(),
                                 adulto.getText().toString().trim(),
                                 ninyo.getText().toString().trim(),
                                 celular.getText().toString().trim(),
                                 tipo.getSelectedItem().toString(),
-                                "NOCONFIRMADO");
+                                "0");
                     }
                 }
             }
@@ -105,20 +130,118 @@ public class NuevoInvitado extends AppCompatActivity {
     }
 
     public void Guardar(final String nom,final String adulto, final String ninyo,final String celular, final String tipo,final String estadp){
-        try {
-            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd != null){
-                bd.execSQL("insert into invitados values(?,'" + ID + "','"+nom+"'," + adulto + "," + ninyo + ",'" + celular + "','" + tipo + "','" + estadp + "')");
-                msn("Se Guardo Correctamente");
-                onBackPressed();
-                Borrar();
-            }
-            bd.close();
 
-        }catch (Exception E){
-            msn("ERROR");
-        }
+        mDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            final JSONObject jsonObject = new JSONObject(response);
+                            Boolean isStatus = jsonObject.getBoolean("estado");
+                            if(!isStatus){
+
+                                AlertDialog.Builder Advertencia = new AlertDialog.Builder(NuevoInvitado.this);
+
+                                Advertencia.setTitle("Error");
+                                Advertencia.setMessage("No se guardo, lo sentimos mucho");
+                                Advertencia.setCancelable(false);
+
+                                Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+
+                                Advertencia.show();
+                            }else{
+
+                                String idnew = jsonObject.getString("id");
+
+                                ArrayList<InvitadosClass> listInvitadosList = new ArrayList<>();
+
+                                listInvitadosList = sessionCumple.readInvited();
+
+                                listInvitadosList.add(new InvitadosClass(Integer.valueOf(idnew),sessionCumple.getId(),nom,Integer.valueOf(adulto),Integer.valueOf(ninyo),celular,tipo,estadp));
+
+                                sessionCumple.createSessionInvited(listInvitadosList);
+
+                                AlertDialog.Builder Advertencia = new AlertDialog.Builder(NuevoInvitado.this);
+
+                                Advertencia.setTitle("Guardado");
+                                Advertencia.setMessage("Se guardo correctamente.");
+                                Advertencia.setCancelable(false);
+
+                                Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        onBackPressed();
+                                    }
+                                });
+
+                                Advertencia.show();
+                            }
+                            mDialog.dismiss();
+
+                        } catch (Exception e) {
+                            mDialog.dismiss();
+
+                            AlertDialog.Builder Advertencia = new AlertDialog.Builder(NuevoInvitado.this);
+
+                            Advertencia.setTitle("Error");
+                            Advertencia.setMessage("Por favor intentelo mas tarde, gracias.");
+                            Advertencia.setCancelable(false);
+
+                            Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            Advertencia.show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        mDialog.dismiss();
+
+                        AlertDialog.Builder Advertencia = new AlertDialog.Builder(NuevoInvitado.this);
+
+                        Advertencia.setTitle("Error");
+                        Advertencia.setMessage("Error de conexión, por favor verifique el acceso a internet.");
+                        Advertencia.setCancelable(false);
+
+                        Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                        Advertencia.show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("idevento",sessionCumple.getId());
+                params.put("nombre",String.valueOf(nom));
+                params.put("adulto",String.valueOf(adulto));
+                params.put("nino",String.valueOf(ninyo));
+                params.put("celular",String.valueOf(celular));
+                params.put("tipo",String.valueOf(tipo));
+                params.put("estado",String.valueOf(estadp));
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(NuevoInvitado.this);
+        requestQueue.add(stringRequest);
     }
     public void msn(String mss){
         Toast.makeText(getApplicationContext(),mss,Toast.LENGTH_SHORT).show();

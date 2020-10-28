@@ -1,10 +1,13 @@
 package com.michele.ideaunica.ui.home;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +20,47 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.michele.ideaunica.BDEvento;
+import com.michele.ideaunica.MainActivity;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.cumple.AdaptadorCumpleanyos;
+import com.michele.ideaunica.cumple.CumpleanyosClass;
+import com.michele.ideaunica.sharedPreferences.SessionCumple;
+import com.michele.ideaunica.ui.gastos.CuotaClass;
+import com.michele.ideaunica.ui.gastos.GastosClass;
+import com.michele.ideaunica.ui.invitados.InvitadosClass;
+import com.michele.ideaunica.ui.notas.NotaClass;
+import com.michele.ideaunica.ui.tareas.TareaClass;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import dmax.dialog.SpotsDialog;
 
 public class HomeFragment extends Fragment {
 
     View view;
-    private static int ID;
+
+    SessionCumple sessionCumple;
 
     //Componentes
     private TextView tareas;
@@ -44,24 +75,86 @@ public class HomeFragment extends Fragment {
     private ImageView img_banner;
     private TextView sinconfirmar;
     private TextView confirmar;
-    private String EVENT_DATE_TIME = "01/02/2020 00:00:00";
-    private String DATE_FORMAT = "dd/MM/yyyy HH:mm:ss";
+    private String EVENT_DATE_TIME = "2020-01-01 00:00:00";
+    private String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private Handler handler = new Handler();
     private Runnable runnable;
     private TextView msn;
 
-    private static  String URL = "https://www.ideaunicabolivia.com/apps/fiesta/loginapp.php";
+    AlertDialog mDialog;
+
+    private static  String URL = "https://www.ideaunicabolivia.com/apps/fiesta/todoSobreEvento.php";
+
+
+    private ArrayList<InvitadosClass> listInvited = new ArrayList<>();
+
+    private ArrayList<NotaClass> listNote = new ArrayList<>();
+
+    private ArrayList<TareaClass> listTarea = new ArrayList<>();
+
+    private ArrayList<GastosClass> listGasto = new ArrayList<>();
+
+    private ArrayList<CuotaClass> listCuota = new ArrayList<>();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        Bundle parametros = getActivity().getIntent().getExtras();
-        ID = parametros.getInt("ID", 0);
+
+        sessionCumple = new SessionCumple(getContext());
+
+        mDialog = new SpotsDialog.Builder().setContext(getContext()).setMessage("Espera un momento por favor").build();
+
         InicializarComponentes();
-        InicializarDatos();
-        GenerarInicializacionInvitados();
-        GenerarTarea();
+
+        if(sessionCumple.isData() == false){
+            sessionCumple.createData(true);
+            Init(sessionCumple.getId());
+        }
+
         return view;
+    }
+
+    private void InitData(){
+
+        Log.e("ERROR","DENTRO DE INIT");
+        titulo.setText(sessionCumple.getTitulo());
+
+        SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");
+
+        EVENT_DATE_TIME = sessionCumple.getFecha()+" "+ sessionCumple.getHora();
+
+        try {
+            Date date = parseador.parse(sessionCumple.getFecha());
+            fecha.setText(formateador.format(date));
+        } catch (ParseException e) {
+            fecha.setText(sessionCumple.getFecha());
+        }
+
+        if(!sessionCumple.getUrlperfil().equals("null"))
+        {
+            Glide.with(getActivity())
+                    .load("https://www.ideaunicabolivia.com/apps/fiesta/"+sessionCumple.getUrlperfil())
+                    .placeholder(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
+                    .into(img_perfil);
+        }
+
+        if(!sessionCumple.getUrlfondo().equals("null"))
+        {
+            Glide.with(getActivity())
+                    .load("https://www.ideaunicabolivia.com/apps/fiesta/"+sessionCumple.getUrlfondo())
+                    .placeholder(R.drawable.fondorosa)
+                    .error(R.drawable.cargando)
+                    .into(img_banner);
+        }
+
+        countDownStart();
+
+        calculateInvited();
+        calculateTask();
+
     }
 
     private void countDownStart() {
@@ -101,6 +194,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void InicializarComponentes() {
+
         dias = view.findViewById(R.id.dias_dias_evento);
         hora = view.findViewById(R.id.dias_hora_evento);
         min = view.findViewById(R.id.dias_minutos_evento);
@@ -116,94 +210,213 @@ public class HomeFragment extends Fragment {
         tareas_hechas = view.findViewById(R.id.tareas_hechas_evento);
     }
 
-    private void GenerarInicializacionInvitados() {
-        try {
+    public void Init(final String id){
+        mDialog.show();
 
-            BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
-            SQLiteDatabase bd = obj.getReadableDatabase();
-            if (bd != null) {
-                int si = 0;
-                int no = 0;
-                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento = " + ID, null);
-                while (objCursor.moveToNext()) {
-                    if(objCursor.getString(7).equals("CONFIRMADO"))
-                    {
-                        si = si + objCursor.getInt(3) + 1 + objCursor.getInt(4);
-                    }else {
-                        no = no + objCursor.getInt(3) + 1 + objCursor.getInt(4);
-                    }
-                }
-                sinconfirmar.setText(String.valueOf(no));
-                confirmar.setText(String.valueOf(si));
-            }
-            bd.close();
-        } catch (Exception E) {
-            Toast.makeText(getContext(), "Error:" + E.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void GenerarTarea() {
-        try {
-            BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
-            SQLiteDatabase bd = obj.getReadableDatabase();
-            if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from tarea where estado = 2 and idevento = " + ID, null);
-                tareas_hechas.setText(objCursor.getCount() + "");
-            }
-            bd.close();
-        } catch (Exception E) {
-            Toast.makeText(getContext(), "Error:" + E.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void InicializarDatos() {
-        try {
-            BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
-            SQLiteDatabase bd = obj.getReadableDatabase();
-            if (bd != null) {
-                Cursor objCursor = bd.rawQuery("Select * from evento where id = " + ID, null);
-                while (objCursor.moveToNext()) {
-                    if(objCursor.getString(7).equals("HABILITADO"))
-                    {
-                        titulo.setText(objCursor.getString(1));
-
-                        EVENT_DATE_TIME = objCursor.getString(2) + " " + objCursor.getString(3) + ":00";
+        Log.e("ERROR","DENTRO DE CREATEVIEW");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
                         try {
-                            SimpleDateFormat parseador = new SimpleDateFormat("dd/MM/yyyy");
-                            SimpleDateFormat formateador = new SimpleDateFormat("d MMMM, yyyy");
+                            //JSON
+                            JSONObject jsonObject = new JSONObject(response);
+                            listTarea.clear();
 
-                            Date date = parseador.parse(objCursor.getString(2));
-                            fecha.setText(formateador.format(date));
-                            if(objCursor.getString(4)!= null && !objCursor.getString(4).isEmpty())
-                            {
-                                File imgFile = new  File(objCursor.getString(4));
-                                Uri imageUri = Uri.fromFile(imgFile);
-                                Glide.with(getActivity())
-                                        .load(imageUri)
-                                        .placeholder(R.drawable.cargando)
-                                        .error(R.drawable.fondorosa)
-                                        .into(img_perfil);
+                            try{
+                                JSONArray jsonArrayTarea = jsonObject.getJSONArray("tarea");
+                                for (int i = 0;i<jsonArrayTarea.length();i++)
+                                {
+                                    JSONObject object = jsonArrayTarea.getJSONObject(i);
+                                    listTarea.add(new TareaClass(
+                                            object.getInt("id"),
+                                            object.getString("idevento"),
+                                            object.getString("posicion"),
+                                            object.getString("mes"),
+                                            object.getString("ta"),
+                                            object.getInt("estado")));
+                                }
+
+                                sessionCumple.createSessionTarea(listTarea);
+
+
+                            }catch (Exception e){
+                                Log.e("ERROR","SIN TAREAS");
                             }
-                            if(objCursor.getString(5)!= null && !objCursor.getString(5).isEmpty())
-                            {
-                                File imgFile = new  File(objCursor.getString(5));
-                                Uri imageUri = Uri.fromFile(imgFile);
-                                Glide.with(getActivity())
-                                        .load(imageUri)
-                                        .placeholder(R.drawable.fondorosa)
-                                        .error(R.drawable.fondorosa)
-                                        .into(img_banner);
+
+
+                            listNote.clear();
+
+                            try {
+                                JSONArray jsonArraynota = jsonObject.getJSONArray("nota");
+                                for (int i = 0; i < jsonArraynota.length(); i++) {
+                                    JSONObject object = jsonArraynota.getJSONObject(i);
+                                    listNote.add(new NotaClass(
+                                            object.getInt("id"),
+                                            object.getString("idevento"),
+                                            object.getString("titulo"),
+                                            object.getString("fecha"),
+                                            object.getString("color"),
+                                            object.getString("contenido")));
+                                }
+
+                                sessionCumple.createSessionNotes(listNote);
+
+                            }catch (Exception e){
+                                Log.e("ERROR","SIN NOTAS");
                             }
-                        } catch (Exception e) {
-                            Toast.makeText(getContext(), "ERROR " + e.getStackTrace(), Toast.LENGTH_LONG).show();
+
+                            listGasto.clear();
+
+                            try{
+                                JSONArray jsonArraygasto = jsonObject.getJSONArray("gasto");
+                                for (int i = 0;i<jsonArraygasto.length();i++)
+                                {
+                                    JSONObject object = jsonArraygasto.getJSONObject(i);
+                                    listGasto.add(new GastosClass(
+                                            object.getInt("id"),
+                                            object.getString("idevento"),
+                                            object.getString("titulo"),
+                                            object.getString("proveedor"),
+                                            object.getString("dinero"),
+                                            object.getString("fecha"),
+                                            object.getString("tipo")));
+                                }
+
+                                sessionCumple.createSessionGasto(listGasto);
+
+                            }catch (Exception e){
+                                Log.e("ERROR","SIN GASTOS");
+                            }
+
+                            listInvited.clear();
+
+                            try {
+
+                                JSONArray jsonArrayinvited = jsonObject.getJSONArray("invitado");
+                                for (int i = 0; i < jsonArrayinvited.length(); i++) {
+                                    JSONObject object = jsonArrayinvited.getJSONObject(i);
+                                    listInvited.add(new InvitadosClass(
+                                            object.getInt("id"),
+                                            object.getString("idevento"),
+                                            object.getString("nombre"),
+                                            object.getInt("adultos"),
+                                            object.getInt("ninos"),
+                                            object.getString("celular"),
+                                            object.getString("tipo"),
+                                            object.getString("estado")));
+                                }
+
+                                sessionCumple.createSessionInvited(listInvited);
+
+                            }catch (Exception e){
+                                Log.e("ERROR","SIN INVITADOS");
+                            }
+                            listCuota.clear();
+
+                            try {
+
+                                JSONArray jsonArraycuota = jsonObject.getJSONArray("cuota");
+                                for (int i = 0; i < jsonArraycuota.length(); i++) {
+                                    JSONObject object = jsonArraycuota.getJSONObject(i);
+                                    listCuota.add(new CuotaClass(
+                                            object.getInt("id"),
+                                            object.getInt("idgatos"),
+                                            object.getInt("idevento"),
+                                            object.getString("numCuota"),
+                                            object.getString("fecha"),
+                                            object.getString("dinero"),
+                                            object.getString("estado")));
+                                }
+
+                                sessionCumple.createSessionCuota(listCuota);
+
+                            }catch (Exception e){
+                                Log.e("ERROR","SIN CUOTAS");
+                            }
+
+                            InitData();
+
+                            mDialog.dismiss();
+
+                        } catch (JSONException e) {
+                            mDialog.dismiss();
+
+                            Toast.makeText(getContext(),
+                                    "Error. Por favor intentelo mas tarde, gracias.", Toast.LENGTH_SHORT)
+                                    .show();
                         }
-                        countDownStart();
                     }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        mDialog.dismiss();
+
+                        Toast.makeText(getContext(),
+                                "Error de conexión, por favor verifique el acceso a internet.", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id",id);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+    }
+
+    private void calculateInvited(){
+        if(sessionCumple.isInvited()){
+
+            listInvited = sessionCumple.readInvited();
+
+            int yes = 0;
+            int no = 0;
+
+            for (InvitadosClass item: listInvited){
+                if(item.getEstado().equals("1")){
+                    yes = yes + Integer.valueOf(item.getAdultos()) + Integer.valueOf(item.getNinyos()) + 1;
+                }else{
+                    no = no + Integer.valueOf(item.getAdultos()) + Integer.valueOf(item.getNinyos()) + 1;
                 }
             }
-            bd.close();
-        } catch (Exception E) {
-            Toast.makeText(getContext(), E.getMessage(), Toast.LENGTH_SHORT).show();
+            sinconfirmar.setText(String.valueOf(yes));
+            confirmar.setText(String.valueOf(no));
+
+        }else{
+            sinconfirmar.setText("0");
+            confirmar.setText("0");
         }
+    }
+
+    private void calculateTask(){
+        if(sessionCumple.isTarea()){
+            listTarea = sessionCumple.readTarea();
+
+            tareas.setText(String.valueOf(listTarea.size()));
+
+            int num = 0;
+
+            for (TareaClass item: listTarea){
+                if(item.getEstado() == 1)
+                    num ++;
+            }
+
+            tareas_hechas.setText(String.valueOf(num));
+
+        }else{
+            tareas.setText("0");
+            tareas_hechas.setText("0");
+        }
+    }
+
+    @Override
+    public void onStart() {
+        InitData();
+        super.onStart();
     }
 }

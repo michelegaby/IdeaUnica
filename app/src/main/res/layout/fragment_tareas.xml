@@ -3,17 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:paddingHorizontal="15dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_marginVertical="15dp"
             android:text="Festejar es celebrar la vida!!! Estar cerca de amigos, familias y no existe nada mejor, que encontrar un motivo para hacer fiesta. Crecemos en un universo donde las familias adoran recibir invitados, es por eso que Idea Única te la los pasos para festejar en grande, bajo una excelente organización."
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -59,6 +62,8 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+
+            
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -113,9 +118,9 @@
                     android:background="#4D4B4B"/>
             </LinearLayout>
         </LinearLayout>
-
-
         <LinearLayout
+
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -158,8 +163,8 @@
                     android:background="#4D4B4B"/>
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -202,9 +207,8 @@
                     android:background="#4D4B4B"/>
             </LinearLayout>
         </LinearLayout>
-
-
         <LinearLayout
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -248,6 +252,7 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -290,5 +295,6 @@
                     android:background="#4D4B4B"/>
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

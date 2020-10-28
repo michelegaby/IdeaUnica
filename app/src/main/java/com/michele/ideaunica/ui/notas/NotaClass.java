@@ -17,6 +17,15 @@ public class NotaClass {
         this.contenido = contenido;
     }
 
+    public NotaClass(int id, String idevento, String titulo, String fecha, String color, String contenido) {
+        this.id = id;
+        this.idevento = idevento;
+        this.titulo = titulo;
+        this.fecha = fecha;
+        Color = color;
+        this.contenido = contenido;
+    }
+
     public int getId() {
         return this.id;
     }

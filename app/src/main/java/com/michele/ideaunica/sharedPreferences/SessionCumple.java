@@ -28,9 +28,13 @@ public class SessionCumple {
     private static final String ID = "ID";
     private static final String TITULO = "TITULO";
     private static final String FECHA = "FECHA";
-    private static final String URLLOGO = "URLLOGO";
+    private static final String HORA = "HORA";
+    private static final String URLPERFIL = "URLPERFIL";
     private static final String URLFONDO = "URLFONDO";
     private static final String PRESUPUESTO = "PRESUPUESTO";
+
+
+    private static final String ISDATOS = "IS_DATOS";
 
     public static final String INVITED = "INVITED";
     public static final String ISINVITED = "IS_INVITED";
@@ -53,15 +57,25 @@ public class SessionCumple {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String id, String titulo,String fecha,String urllogo,String urlfondo, String presupuesto){
+    public void createSession(String id, String titulo,String fecha,String hora,String urlperfil,String urlfondo, String presupuesto){
         editor.putBoolean(ISFIESTA,true);
         editor.putString(ID,id);
         editor.putString(TITULO,titulo);
         editor.putString(FECHA,fecha);
-        editor.putString(URLLOGO,urllogo);
+        editor.putString(HORA,hora);
+        editor.putString(URLPERFIL,urlperfil);
         editor.putString(URLFONDO,urlfondo);
         editor.putString(PRESUPUESTO,presupuesto);
         editor.apply();
+    }
+
+    public void createData(boolean estado) {
+        editor.putBoolean(ISDATOS,estado);
+        editor.apply();
+    }
+
+    public boolean isData(){
+        return sharedPreferences.getBoolean(ISDATOS,false);
     }
 
     //Invited
@@ -200,8 +214,12 @@ public class SessionCumple {
         return sharedPreferences.getString(FECHA,null);
     }
 
-    public String getUrllogo(){
-        return sharedPreferences.getString(URLLOGO,null);
+    public String getHora(){
+        return sharedPreferences.getString(HORA,null);
+    }
+
+    public String getUrlperfil(){
+        return sharedPreferences.getString(URLPERFIL,null);
     }
 
     public String getUrlfondo(){

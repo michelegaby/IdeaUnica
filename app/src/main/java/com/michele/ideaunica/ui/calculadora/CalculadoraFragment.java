@@ -18,12 +18,18 @@ import androidx.fragment.app.Fragment;
 
 import com.michele.ideaunica.BDEvento;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.sharedPreferences.SessionCumple;
+import com.michele.ideaunica.ui.invitados.InvitadosClass;
 import com.michele.ideaunica.ui.notas.NuevaNota;
+
+import java.util.ArrayList;
 
 public class CalculadoraFragment extends Fragment{
 
     View view;
     //Componentes
+
+    SessionCumple sessionCumple;
 
     //Adulto
     private ImageButton masAdulto;
@@ -102,16 +108,19 @@ public class CalculadoraFragment extends Fragment{
 
     private Button Calcular;
 
-    private static int ID;
+    private ArrayList<InvitadosClass> listInvited = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_calculadora,container,false);
-        Bundle parametros = getActivity().getIntent().getExtras();
-        ID=parametros.getInt("ID",0);
+        view = inflater.inflate(R.layout.fragment_calculadora,container,false);
+
         InicializarComponentes();
-        GenerarInicializacion();
+
+        sessionCumple = new SessionCumple(getContext());
+
+        calculateInvited();
+
         ButtonMenosMas();
 
         Calcular.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +129,34 @@ public class CalculadoraFragment extends Fragment{
                 Guardar();
             }
         });
+
         return view;
+    }
+
+
+    private void calculateInvited(){
+        if(sessionCumple.isInvited()){
+
+            listInvited = sessionCumple.readInvited();
+
+            int xadulto = 0;
+            int xnino = 0;
+
+            for (InvitadosClass item: listInvited){
+                if(item.getEstado().equals("1")){
+                    xadulto = xadulto + Integer.valueOf(item.getAdultos()) + 1;
+                    xnino = xnino + + Integer.valueOf(item.getNinyos());
+
+                }
+            }
+
+            Adulto.setText(String.valueOf(xadulto));
+            Nino.setText(String.valueOf(xnino));
+
+        }else{
+            Adulto.setText("0");
+            Nino.setText("0");
+        }
     }
 
     public void Guardar(){
@@ -130,28 +166,27 @@ public class CalculadoraFragment extends Fragment{
         int personaadulto = Integer.valueOf(Adulto.getText().toString());
         int personanino = Integer.valueOf(Nino.getText().toString());
 
-        SMS = "Cantidad total:<br/> <br/> ";
+        SMS = "Cantidad total:\n \n ";
 
-        SMS = SMS + ((personaadulto * Double.valueOf(Pastel.getText().toString())) + (personanino * (Double.valueOf(Pastel.getText().toString()) / 2))) + " gr. de Pastel, <br/> ";
-        SMS = SMS + ((personaadulto * Double.valueOf(Dulce.getText().toString())) + (personanino * (Double.valueOf(Dulce.getText().toString()) / 2))) + " cantidad/es de Aperitivos Dulces, <br/> ";
-        SMS = SMS + ((personaadulto * Double.valueOf(Salado.getText().toString())) + (personanino * (Double.valueOf(Salado.getText().toString()) / 2))) + " cantidad/es de Aperitivos Salados, <br/> ";
-        SMS = SMS + ((personaadulto * Double.valueOf(Sand.getText().toString())) + (personanino * (Double.valueOf(Sand.getText().toString())))) + " cantidad/es de Hamburguesas, <br/> ";
-        SMS = SMS + ((personaadulto * Double.valueOf(Gas.getText().toString())) + (personanino * (Double.valueOf(Gas.getText().toString()) / 2))) + " ml. de Gaseosas <br/> ";
-        SMS = SMS + ((personaadulto * Double.valueOf(Jugo.getText().toString())) + (personanino * (Double.valueOf(Jugo.getText().toString()) / 2))) + " ml. de Jugo, <br/> ";
-        SMS = SMS + ((personaadulto * Double.valueOf(Agua.getText().toString())) + (personanino * (Double.valueOf(Agua.getText().toString()) / 2))) + " ml. de Agua, <br/> <br/> ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Pastel.getText().toString())) + (personanino * (Double.valueOf(Pastel.getText().toString()) / 2))) + " gr. de Pastel, \n ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Dulce.getText().toString())) + (personanino * (Double.valueOf(Dulce.getText().toString()) / 2))) + " cantidad/es de Aperitivos Dulces, \n ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Salado.getText().toString())) + (personanino * (Double.valueOf(Salado.getText().toString()) / 2))) + " cantidad/es de Aperitivos Salados, \n ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Sand.getText().toString())) + (personanino * (Double.valueOf(Sand.getText().toString())))) + " cantidad/es de Hamburguesas, \n ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Gas.getText().toString())) + (personanino * (Double.valueOf(Gas.getText().toString()) / 2))) + " ml. de Gaseosas \n ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Jugo.getText().toString())) + (personanino * (Double.valueOf(Jugo.getText().toString()) / 2))) + " ml. de Jugo, \n ";
+        SMS = SMS + ((personaadulto * Double.valueOf(Agua.getText().toString())) + (personanino * (Double.valueOf(Agua.getText().toString()) / 2))) + " ml. de Agua, \n \n ";
 
 
 
-        SMS = SMS+ "<br/> Utensilios: <br/> <br/>";
-        SMS = SMS + persona * Integer.valueOf(Platos.getText().toString()) + " unidad/es de Platos, <br/> ";
-        SMS = SMS + persona * Integer.valueOf(Vasos.getText().toString()) + " unidad/es de Vasos, <br/> ";
-        SMS = SMS + persona * Integer.valueOf(Tenedor.getText().toString()) + " unidad/es de Tenedores, <br/> ";
-        SMS = SMS + persona * Integer.valueOf(Servilleta.getText().toString()) + " cantidad/es de Servilletas, <br/> ";
-        SMS = SMS + persona * Integer.valueOf(Copa.getText().toString()) + " cantidad/es de Copas <br/> ";
+        SMS = SMS+ "\n Utensilios: \n \n";
+        SMS = SMS + persona * Integer.valueOf(Platos.getText().toString()) + " unidad/es de Platos, \n ";
+        SMS = SMS + persona * Integer.valueOf(Vasos.getText().toString()) + " unidad/es de Vasos, \n ";
+        SMS = SMS + persona * Integer.valueOf(Tenedor.getText().toString()) + " unidad/es de Tenedores, \n ";
+        SMS = SMS + persona * Integer.valueOf(Servilleta.getText().toString()) + " cantidad/es de Servilletas, \n ";
+        SMS = SMS + persona * Integer.valueOf(Copa.getText().toString()) + " cantidad/es de Copas \n ";
 
         Intent intent = new Intent(getContext(), NuevaNota.class);
         Bundle parametros = new Bundle();
-        parametros.putInt("ID",ID);
         parametros.putString("titulo","Aperitivos para "+personaadulto+" adulto(s) y "+ personanino+" niño(s)");
         parametros.putString("contenido",SMS);
         intent.putExtras(parametros);
@@ -200,7 +235,7 @@ public class CalculadoraFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 int a = Integer.valueOf(Pastel.getText().toString());
-                Pastel.setText(String.valueOf(a+1));
+                Pastel.setText(String.valueOf(a+10));
             }
         });
 
@@ -209,7 +244,7 @@ public class CalculadoraFragment extends Fragment{
             public void onClick(View v) {
                 if(!Pastel.getText().equals("0")){
                     int a = Integer.valueOf(Pastel.getText().toString());
-                    Pastel.setText(String.valueOf(a-1));
+                    Pastel.setText(String.valueOf(a-10));
                 }
             }
         });
@@ -272,7 +307,7 @@ public class CalculadoraFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 int a = Integer.valueOf(Gas.getText().toString());
-                Gas.setText(String.valueOf(a+1));
+                Gas.setText(String.valueOf(a+20));
             }
         });
 
@@ -281,7 +316,7 @@ public class CalculadoraFragment extends Fragment{
             public void onClick(View v) {
                 if(!Gas.getText().equals("0")){
                     int a = Integer.valueOf(Gas.getText().toString());
-                    Gas.setText(String.valueOf(a-1));
+                    Gas.setText(String.valueOf(a-20));
                 }
             }
         });
@@ -290,7 +325,7 @@ public class CalculadoraFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 int a = Integer.valueOf(Jugo.getText().toString());
-                Jugo.setText(String.valueOf(a+1));
+                Jugo.setText(String.valueOf(a+20));
             }
         });
 
@@ -299,7 +334,7 @@ public class CalculadoraFragment extends Fragment{
             public void onClick(View v) {
                 if(!Jugo.getText().equals("0")){
                     int a = Integer.valueOf(Jugo.getText().toString());
-                    Jugo.setText(String.valueOf(a-1));
+                    Jugo.setText(String.valueOf(a-20));
                 }
             }
         });
@@ -308,7 +343,7 @@ public class CalculadoraFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 int a = Integer.valueOf(Agua.getText().toString());
-                Agua.setText(String.valueOf(a+1));
+                Agua.setText(String.valueOf(a+10));
             }
         });
 
@@ -317,7 +352,7 @@ public class CalculadoraFragment extends Fragment{
             public void onClick(View v) {
                 if(!Agua.getText().equals("0")){
                     int a = Integer.valueOf(Agua.getText().toString());
-                    Agua.setText(String.valueOf(a-1));
+                    Agua.setText(String.valueOf(a-10));
                 }
             }
         });
@@ -425,32 +460,6 @@ public class CalculadoraFragment extends Fragment{
             }
         });
 
-    }
-
-    private void GenerarInicializacion() {
-        try {
-            BDEvento obj = new BDEvento(getContext(), "bdEvento", null, 1);
-            SQLiteDatabase bd = obj.getReadableDatabase();
-            if (bd != null) {
-                int adul = 0;
-                int nin = 0;
-                Cursor objCursor = bd.rawQuery("Select * from invitados where idevento = " + ID+" and estado = 'CONFIRMADO'", null);
-
-                while (objCursor.moveToNext()) {
-                    adul = adul+objCursor.getInt(3)+1;
-                    nin = nin+objCursor.getInt(4);
-                }
-                if(adul != 0||nin != 0){
-                    Adulto.setText(String.valueOf(adul));
-                    Nino.setText(String.valueOf(nin));
-                }
-
-            }
-            bd.close();
-
-        } catch (Exception E) {
-            Toast.makeText(getContext(), "Error Nose porque", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void InicializarComponentes() {

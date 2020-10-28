@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.michele.ideaunica.BDEvento;
 import com.michele.ideaunica.R;
+import com.michele.ideaunica.sharedPreferences.SessionCumple;
+import com.michele.ideaunica.ui.invitados.InvitadosClass;
 
 import java.util.ArrayList;
 
 public class NotasFragment extends Fragment {
 
     View view;
+
+    SessionCumple sessionCumple;
 
     //componentes
     private RecyclerView rv_notas;
@@ -35,30 +40,56 @@ public class NotasFragment extends Fragment {
     AdaptadorNota adaptadorNota;
     private ArrayList<NotaClass> listNotas = new ArrayList<>();
 
-    private static int ID;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_notas,container,false);
-        InicializarComponentes();
-        Bundle parametros = getActivity().getIntent().getExtras();
 
-        ID = parametros.getInt("ID",0);
+        InicializarComponentes();
+
+        sessionCumple = new SessionCumple(getContext());
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),NuevaNota.class);
-                Bundle parm = new Bundle();
-                parm.putInt("ID",ID);
-                intent.putExtras(parm);
                 startActivity(intent);
             }
         });
 
-        GenerarDatos();
+        GetNotas();
+
         return view;
+    }
+
+
+    private void GetNotas(){
+
+        if(sessionCumple.isNotes()){
+
+            listNotas.clear();
+
+            listNotas = sessionCumple.readNotes();
+
+            progressBar.setVisibility(View.GONE);
+            adaptadorNota = new AdaptadorNota(getContext(), listNotas);
+
+            adaptadorNota.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(),Nota.class);
+                    Bundle parametros = new Bundle();
+                    parametros.putInt("id",listNotas.get(rv_notas.getChildAdapterPosition(v)).getId());
+                    intent.putExtras(parametros);
+                    startActivity(intent);
+                }
+            });
+
+            rv_notas.setLayoutManager(new LinearLayoutManager(getContext()));
+            rv_notas.setAdapter(adaptadorNota);
+
+        }
+
     }
 
     private void InicializarComponentes() {
@@ -67,45 +98,9 @@ public class NotasFragment extends Fragment {
         fab = view.findViewById(R.id.fab_fragment_notas);
     }
 
-    private void GenerarDatos() {
-        try {
-            BDEvento obj = new BDEvento(getContext(),"bdEvento",null,1);
-            SQLiteDatabase bd = obj.getReadableDatabase();
-            if(bd != null){
-                Cursor objCursor = bd.rawQuery("Select * from notas where idevento = " + ID, null);
-                listNotas.clear();
-
-                while (objCursor.moveToNext()){
-                    listNotas.add(new NotaClass(objCursor.getInt(0),objCursor.getString(3),objCursor.getString(2),objCursor.getString(5),objCursor.getString(4)));
-                }
-
-                progressBar.setVisibility(View.GONE);
-                adaptadorNota = new AdaptadorNota(getContext(), listNotas);
-                adaptadorNota.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(),Nota.class);
-                        Bundle parametros = new Bundle();
-                        parametros.putInt("ID",ID);
-                        parametros.putInt("id",listNotas.get(rv_notas.getChildAdapterPosition(v)).getId());
-                        intent.putExtras(parametros);
-                        startActivity(intent);
-                    }
-                });
-                rv_notas.setLayoutManager(new LinearLayoutManager(getContext()));
-                rv_notas.setAdapter(adaptadorNota);
-            }
-            bd.close();
-
-        }
-        catch (Exception E){
-            Toast.makeText(getContext(),E.getMessage().toString(),Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     public void onStart() {
-        GenerarDatos();
+        GetNotas();
         super.onStart();
     }
 }

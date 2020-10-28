@@ -71,7 +71,7 @@ public class AdaptadorCumpleanyos extends RecyclerView.Adapter<AdaptadorCumplean
 
         try
         {
-            if(!nData.get(i).getUrlfoto().equals("NULL"))
+            if(!nData.get(i).getUrlfoto().equals("null"))
             {
                 Glide.with(nContext)
                         .load("https://www.ideaunicabolivia.com/apps/fiesta/"+nData.get(i).getUrlfoto())

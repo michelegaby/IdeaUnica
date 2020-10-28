@@ -10,15 +10,6 @@ public class CumpleanyosClass {
     private String urlfondo;
     private String presupuesto;
 
-    public CumpleanyosClass(int id, String titulo, String fecha, String hora, String urlfoto, String urlfondo) {
-        this.id = id;
-        this.titulo = titulo;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.urlfoto = urlfoto;
-        this.urlfondo = urlfondo;
-    }
-
     public CumpleanyosClass(int id, String titulo, String fecha, String hora, String urlfoto, String urlfondo, String presupuesto) {
         this.id = id;
         this.titulo = titulo;

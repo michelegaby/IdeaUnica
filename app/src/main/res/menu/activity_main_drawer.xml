@@ -4,44 +4,47 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
             android:title="@string/menu_home" />
+
         <item
             android:id="@+id/nav_gastos"
             android:icon="@drawable/dinero"
             android:title="Control de gastos" />
+
         <item
             android:id="@+id/nav_tareas"
             android:icon="@drawable/tarea"
             android:title="Tareas" />
+
         <item
             android:id="@+id/nav_invitados_a_confirmar"
             android:icon="@drawable/aconfirmar"
             android:title="Invitados a Confirmar" />
+
         <item
             android:id="@+id/nav_invitados_confirmados"
             android:icon="@drawable/confirmado"
             android:title="Invitados Confirmados" />
+
         <item
             android:id="@+id/nav_notas"
             android:icon="@drawable/nota"
             android:title="Notas" />
+
         <item
             android:iconTint="#000000"
             android:id="@+id/nav_calculadora"
             android:icon="@drawable/calculadora"
             android:title="Calculadora" />
+
+        <item
+            android:id="@+id/nav_editar"
+            android:icon="@drawable/editar"
+            android:title="Editar Evento" />
+
     </group>
-
-    <item android:title="Editar">
-        <menu>
-            <item
-                android:id="@+id/nav_editar"
-                android:icon="@drawable/editar"
-                android:title="Editar Evento" />
-        </menu>
-    </item>
-
 </menu>

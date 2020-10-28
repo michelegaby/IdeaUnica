@@ -4,6 +4,8 @@ public class TareaClass {
 
     private int id;
     private String idevento;
+    private String posicion;
+    private String mes;
     private String titulo;
     private int estado;
 
@@ -13,9 +15,11 @@ public class TareaClass {
         this.estado = estado;
     }
 
-    public TareaClass(int id, String idevento, String titulo, int estado) {
+    public TareaClass(int id, String idevento, String posicion, String mes, String titulo, int estado) {
         this.id = id;
         this.idevento = idevento;
+        this.posicion = posicion;
+        this.mes = mes;
         this.titulo = titulo;
         this.estado = estado;
     }
@@ -34,6 +38,22 @@ public class TareaClass {
 
     public void setIdevento(String idevento) {
         this.idevento = idevento;
+    }
+
+    public String getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = posicion;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
     }
 
     public String getTitulo() {

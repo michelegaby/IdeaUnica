@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private AppBarLayout appBarLayout;
 
-    public static int ID;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +49,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Bundle parametros = this.getIntent().getExtras();
-
-        ID = parametros.getInt("ID",0);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
-        View headerView = navigationView.getHeaderView(0);
 
         appBarLayout = findViewById(R.id.appbarEvento);
 
@@ -125,12 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void EliminarEvento() {
         try {
-            BDEvento objEvento = new BDEvento(getApplicationContext(),"bdEvento",null,1);
-            SQLiteDatabase bd = objEvento.getWritableDatabase();
-            if(bd != null){
-                bd.execSQL("update evento set estado = 'DESHABILITADO' where id = "+ID);
-            }
-            bd.close();
+            Toast.makeText(getApplicationContext(),"ELIMINAR",Toast.LENGTH_LONG).show();
         }catch (Exception E){
             Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
         }

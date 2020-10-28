@@ -3,29 +3,19 @@ package com.michele.ideaunica.ui.tareas;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.michele.ideaunica.BDEvento;
 import com.michele.ideaunica.R;
-import com.michele.ideaunica.cumple.CumpleanyosClass;
 
-import java.io.File;
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-
-import static java.lang.Boolean.TRUE;
 
 public class AdaptadorTarea extends RecyclerView.Adapter<AdaptadorTarea.MyViewHolder>{
 
@@ -59,7 +49,7 @@ public class AdaptadorTarea extends RecyclerView.Adapter<AdaptadorTarea.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorTarea.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
-        if(nData.get(i).getEstado() == 2)
+        if(nData.get(i).getEstado() == 1)
         {
             myViewHolder.titulo.setChecked(true);
             myViewHolder.titulo.setTextColor(Color.GRAY);
@@ -79,6 +69,7 @@ public class AdaptadorTarea extends RecyclerView.Adapter<AdaptadorTarea.MyViewHo
 
         private LinearLayout linearLayout;
         private CheckBox titulo;
+
         public MyViewHolder(@NonNull View itemView, final AdaptadorTarea.OnItemClickListener listener) {
             super(itemView);
             titulo = itemView.findViewById(R.id.item_titulo_tarea);
@@ -105,16 +96,16 @@ public class AdaptadorTarea extends RecyclerView.Adapter<AdaptadorTarea.MyViewHo
 
     public void UpdateItem(int position){
         TareaClass tareaClass1 = nData.remove(position);
-        if(tareaClass1.getEstado() == 1)
+        if(tareaClass1.getEstado() == 0)
         {
-            TareaClass tareaClass2 = new TareaClass(tareaClass1.getId(),tareaClass1.getTitulo(),2);
+            TareaClass tareaClass2 = new TareaClass(tareaClass1.getId(),tareaClass1.getTitulo(),1);
             nData.add(tareaClass2);
-            CambiarEstado(tareaClass1.getId(),2);
+            //CambiarEstado(tareaClass1.getId(),2);
 
         }else {
-            TareaClass tareaClass2 = new TareaClass(tareaClass1.getId(),tareaClass1.getTitulo(),1);
+            TareaClass tareaClass2 = new TareaClass(tareaClass1.getId(),tareaClass1.getTitulo(),0);
             nData.add(0,tareaClass2);
-            CambiarEstado(tareaClass1.getId(),1);
+            //CambiarEstado(tareaClass1.getId(),1);
         }
         notifyDataSetChanged();
     }

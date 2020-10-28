@@ -46,7 +46,11 @@ public class AdaptadorEmpresa extends RecyclerView.Adapter<AdaptadorEmpresa.MyVi
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorEmpresa.MyViewHolder myViewHolder, final int i) {
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
-        myViewHolder.direccion.setText(nData.get(i).getDireccion());
+
+        if(!nData.get(i).getDireccion().equals("null")){
+            myViewHolder.direccion.setText(nData.get(i).getDireccion());
+        }
+
         myViewHolder.categoria.setText(nData.get(i).getCategoria());
         Glide.with(nContext).load("https://ideaunicabolivia.com/"+nData.get(i).getUrl())
                 .placeholder(R.drawable.fondorosa)

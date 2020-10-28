@@ -2,6 +2,7 @@ package com.michele.ideaunica.ui.notas;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.michele.ideaunica.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AdaptadorNota extends RecyclerView.Adapter<AdaptadorNota.MyViewHolder> implements View.OnClickListener {
 
@@ -43,8 +47,19 @@ public class AdaptadorNota extends RecyclerView.Adapter<AdaptadorNota.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final AdaptadorNota.MyViewHolder myViewHolder, final int i) {
+
         myViewHolder.titulo.setText(nData.get(i).getTitulo());
-        myViewHolder.fecha.setText(nData.get(i).getFecha() + " - Ultima Actualización");
+
+        SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formateador = new SimpleDateFormat("MMMM d, yyyy");
+
+        try {
+            Date date = parseador.parse(nData.get(i).getFecha());
+            myViewHolder.fecha.setText(formateador.format(date) + " - Ultima Actualización");
+        } catch (ParseException e) {
+            myViewHolder.fecha.setText(nData.get(i).getFecha() + " - Ultima Actualización");
+        }
+
         myViewHolder.container.setCardBackgroundColor(Color.parseColor("#" + nData.get(i).getColor()));
     }
 
